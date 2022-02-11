@@ -624,8 +624,6 @@ while(k < len - 1){
 
 <ins>***File:***</ins> *[Selection_Sort.cpp](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Selection_Sort.cpp)*
 
-<ins>***File:***</ins> *[Bubble_Sort.cpp](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Bubble_Sort.cpp)*
-
 ### Insertion sort / Сортування включенням / Сортировка вставками
 
 **Time complexity / Часова складність / Временная сложность :** *O(n<sup>2</sup>)*.
