@@ -1,10 +1,10 @@
-function sort(Mass, m){
+function sort(array, m){
     let mass = [];
     for(let i = 0; i < m; i ++){
-        mass.push(Mass[i]);
+        mass.push(array[i]);
     }
     if(m <= 1){
-        Mass[0] = mass[0];
+        array[0] = mass[0];
     }
     else{
         let l = [];
@@ -41,7 +41,7 @@ function sort(Mass, m){
             f += 1;
         }
         for(let i = 0; i < m; i++){
-            Mass[i] = c[i];
+            array[i] = c[i];
         }
     }
 }

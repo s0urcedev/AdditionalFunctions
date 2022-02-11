@@ -1,13 +1,13 @@
 #include <iostream>
 using namespace std;
 
-void sort(int *Mass, int m){
+void sort(int *array, int m){
     int mass[m];
     for(int i = 0; i < m; i ++){
-        mass[i] = Mass[i];
+        mass[i] = array[i];
     }
     if(m <= 1){
-        Mass[0] = mass[0];
+        array[0] = mass[0];
     }
     else{
         int L[m/2], R[m-(m/2)];
@@ -41,7 +41,7 @@ void sort(int *Mass, int m){
             k ++;
         }
         for(int i = 0; i < m; i ++){
-            Mass[i] = C[i];
+            array[i] = C[i];
         }
     }
 }

@@ -1,32 +1,32 @@
 #include <iostream>
 using namespace std;
 
-void sort(int *Mass, int b, int e){
+void sort(int *array, int b, int e){
     int l = b;
     int r = e;
-    int p = Mass[(l + r) / 2];
+    int p = array[(l + r) / 2];
     while(l <= r){
-        while(Mass[l] < p){
+        while(array[l] < p){
             l ++;
         }
-        while(Mass[r] > p){
+        while(array[r] > p){
             r --;
         }
         if(l <= r){
             if(l < r){
-                Mass[l] = Mass[l] + Mass[r];
-                Mass[r] = Mass[l] - Mass[r];
-                Mass[l] = Mass[l] - Mass[r];
+                array[l] = array[l] + array[r];
+                array[r] = array[l] - array[r];
+                array[l] = array[l] - array[r];
             }
             l ++;
             r --;
         }
     }
     if(b < r){
-        sort(Mass, b, r);
+        sort(array, b, r);
     }
     if(e > l){
-        sort(Mass, l, e);
+        sort(array, l, e);
     }
 }
 

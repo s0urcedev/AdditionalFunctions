@@ -4,26 +4,26 @@ s = input()
 for i in s.split(' '):
     a.append(int(i))
 
-def sort(Mass, b, e):
+def sort(array, b, e):
     l = b
     r = e
-    p = Mass[int((l + r) / 2)]
+    p = array[int((l + r) / 2)]
     while l <= r:
-        while Mass[l] < p:
+        while array[l] < p:
             l += 1
-        while Mass[r] > p:
+        while array[r] > p:
             r -= 1
         if l <= r:
             if l < r:
-                Mass[l] = Mass[l] + Mass[r]
-                Mass[r] = Mass[l] - Mass[r]
-                Mass[l] = Mass[l] - Mass[r]
+                array[l] = array[l] + array[r]
+                array[r] = array[l] - array[r]
+                array[l] = array[l] - array[r]
             l += 1
             r -= 1
     if b < r:
-        sort(Mass, b, r)
+        sort(array, b, r)
     if e > l:
-        sort(Mass, l, e)
+        sort(array, l, e)
 
 sort(a, 0, len(a) - 1)
 

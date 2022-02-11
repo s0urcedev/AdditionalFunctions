@@ -1,30 +1,30 @@
 let a = [];
 
-function sort(Mass, b, e){
+function sort(array, b, e){
     let l = b;
     let r = e;
-    let p = Mass[Math.floor((l + r) / 2)];
+    let p = array[Math.floor((l + r) / 2)];
     while(l <= r){
-        while(Mass[l] < p){
+        while(array[l] < p){
             l ++;
         }
-        while(Mass[r] > p){
+        while(array[r] > p){
             r --;
         }
         if(l <= r){
             if(l < r){
-                Mass[l] = Mass[l] + Mass[r];
-                Mass[r] = Mass[l] - Mass[r];
-                Mass[l] = Mass[l] - Mass[r];
+                array[l] = array[l] + array[r];
+                array[r] = array[l] - array[r];
+                array[l] = array[l] - array[r];
             }
             l ++;
             r --;
         }
         if(b < r){
-            sort(Mass, b, r);
+            sort(array, b, r);
         }
         if(e > l){
-            sort(Mass, l, e);
+            sort(array, l, e);
         }
     }
 }

@@ -1,9 +1,9 @@
-def sort(Mass, m):
+def sort(array, m):
     mass = []
     for i in range(0, m):
-        mass.append(Mass[i])
+        mass.append(array[i])
     if m <= 1:
-        Mass[0] = mass[0]
+        array[0] = mass[0]
     else:
         l = []
         r = []
@@ -31,7 +31,7 @@ def sort(Mass, m):
             c.append(r[f])
             f += 1
         for i in range(0, m):
-            Mass[i] = c[i]
+            array[i] = c[i]
 
 a = []
 s = input()
