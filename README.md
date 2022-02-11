@@ -163,7 +163,7 @@ result = x in a
 `JavaScript`:
 
 ```js
-let result = a.icludes(x);
+let result = a.includes(x);
 ```
 
 `C++`:
