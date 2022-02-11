@@ -683,3 +683,120 @@ for(int j = 1; j < len; j ++){
 ```
 
 <ins>***File:***</ins> *[Insertion_Sort.cpp](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Insertion_Sort.cpp)*
+
+### Quick sort / Швидке сортування / Быстрая сортировка
+
+**Time complexity / Часова складність / Временная сложность :** *O(n log n)*.
+
+**Pluses / Плюси / Плюсы :** *Fast and not long / Швидка та не довга / Быстрая и не долгая*
+
+**Minuses / Мінуси / Минусы :** *Unfixed time comlexity (the worst case is O(n<sup>2</sup>)) / Нефіксована часова скалдність (найгірший випадок O(n<sup>2</sup>)) / Нефиксированая временная сложность (наихудший случай O(n<sup>2</sup>))*
+
+<ins>***Wikipedia:***</ins> *[Quick_Sort](https://en.wikipedia.org/wiki/Quicksort)*
+
+<ins>***Вікіпедія:***</ins> *[Швидке сортування](https://uk.wikipedia.org/wiki/Швидке_сортування)*
+
+<ins>***Википедия:***</ins> *[Быстрая сортировка](https://ru.wikipedia.org/wiki/Быстрая_сортировка)*
+
+`Python`:
+
+```python
+def sort(array, b, e):
+    l = b
+    r = e
+    p = array[int((l + r) / 2)]
+    while l <= r:
+        while array[l] < p:
+            l += 1
+        while array[r] > p:
+            r -= 1
+        if l <= r:
+            if l < r:
+                array[l] = array[l] + array[r]
+                array[r] = array[l] - array[r]
+                array[l] = array[l] - array[r]
+            l += 1
+            r -= 1
+    if b < r:
+        sort(array, b, r)
+    if e > l:
+        sort(array, l, e)
+
+sort(a, 0, len(a) - 1)
+```
+
+<ins>***File:***</ins> *[Quick_Sort.py](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Quick_Sort.py)*
+
+`JavaScript`:
+
+```js
+function sort(array, b, e){
+    let l = b;
+    let r = e;
+    let p = array[Math.floor((l + r) / 2)];
+    while(l <= r){
+        while(array[l] < p){
+            l ++;
+        }
+        while(array[r] > p){
+            r --;
+        }
+        if(l <= r){
+            if(l < r){
+                array[l] = array[l] + array[r];
+                array[r] = array[l] - array[r];
+                array[l] = array[l] - array[r];
+            }
+            l ++;
+            r --;
+        }
+        if(b < r){
+            sort(array, b, r);
+        }
+        if(e > l){
+            sort(array, l, e);
+        }
+    }
+}
+
+sort(a, 0, a.length - 1)
+```
+
+<ins>***File:***</ins> *[Quick_Sort.js](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Quick_Sort.js)*
+
+`C++`:
+
+```cpp
+void sort(int *array, int b, int e){
+    int l = b;
+    int r = e;
+    int p = array[(l + r) / 2];
+    while(l <= r){
+        while(array[l] < p){
+            l ++;
+        }
+        while(array[r] > p){
+            r --;
+        }
+        if(l <= r){
+            if(l < r){
+                array[l] = array[l] + array[r];
+                array[r] = array[l] - array[r];
+                array[l] = array[l] - array[r];
+            }
+            l ++;
+            r --;
+        }
+    }
+    if(b < r){
+        sort(array, b, r);
+    }
+    if(e > l){
+        sort(array, l, e);
+    }
+}
+
+sort(a, 0, len - 1);
+```
+
+<ins>***File:***</ins> *[Quick_Sort.cpp](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Quick_Sort.cpp)*
