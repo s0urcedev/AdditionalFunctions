@@ -688,7 +688,7 @@ for(int j = 1; j < len; j ++){
 
 **Time complexity / Часова складність / Временная сложность :** *O(n log n)*.
 
-**Pluses / Плюси / Плюсы :** *Fast and not long / Швидка та не довга / Быстрая и не долгая*
+**Pluses / Плюси / Плюсы :** *Fast and not long / Швидка та не довга / Быстрая и не длинная*
 
 **Minuses / Мінуси / Минусы :** *Unfixed time comlexity (the worst case is O(n<sup>2</sup>)) / Нефіксована часова скалдність (найгірший випадок O(n<sup>2</sup>)) / Нефиксированая временная сложность (наихудший случай O(n<sup>2</sup>))*
 
@@ -759,7 +759,7 @@ function sort(array, b, e){
     }
 }
 
-sort(a, 0, a.length - 1)
+sort(a, 0, a.length - 1);
 ```
 
 <ins>***File:***</ins> *[Quick_Sort.js](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Quick_Sort.js)*
@@ -800,3 +800,169 @@ sort(a, 0, len - 1);
 ```
 
 <ins>***File:***</ins> *[Quick_Sort.cpp](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Quick_Sort.cpp)*
+
+### Merge sort / Сортування злиттям / Сортировка слиянием
+
+**Time complexity / Часова складність / Временная сложность :** *O(n log n)*.
+
+**Pluses / Плюси / Плюсы :** *Fast and stable / Швидка та стабільна / Быстрая и стабильная*
+
+**Minuses / Мінуси / Минусы :** *Difficult in coding and needs additional memory / Важка в програмуванні та потрибує додаткової пам'яті / Сложная в прогаммировании и требует дополнительной памяти*
+
+<ins>***Wikipedia:***</ins> *[Merge sort](https://en.wikipedia.org/wiki/Merge_sort)*
+
+<ins>***Вікіпедія:***</ins> *[Сортування злиттям](https://uk.wikipedia.org/wiki/Сортування_злиттям)*
+
+<ins>***Википедия:***</ins> *[Сортировка слиянием](https://ru.wikipedia.org/wiki/Сортировка_слиянием)*
+
+`Python`:
+
+```python
+def sort(array, m):
+    mass = []
+    for i in range(0, m):
+        mass.append(array[i])
+    if m <= 1:
+        array[0] = mass[0]
+    else:
+        l = []
+        r = []
+        for i in range(0, m):
+            if i < int(m/2):
+                l.append(mass[i])
+            else:
+                r.append(mass[i])
+        sort(l, len(l))
+        sort(r, len(r))
+        h = 0
+        f = 0
+        c = []
+        while h < len(l) and f < len(r):
+            if l[h] < r[f]:
+                c.append(l[h])
+                h += 1
+            else:
+                c.append(r[f])
+                f += 1
+        while h < len(l):
+            c.append(l[h])
+            h += 1
+        while f < len(r):
+            c.append(r[f])
+            f += 1
+        for i in range(0, m):
+            array[i] = c[i]
+
+sort(a, len(a))
+```
+
+<ins>***File:***</ins> *[Merge_Sort.py](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Merge_Sort.py)*
+
+`JavaScript`:
+
+```js
+function sort(array, m){
+    let mass = [];
+    for(let i = 0; i < m; i ++){
+        mass.push(array[i]);
+    }
+    if(m <= 1){
+        array[0] = mass[0];
+    }
+    else{
+        let l = [];
+        let r = [];
+        for(let i = 0; i < m; i ++){
+            if(i < Math.floor(m/2)){
+                l.push(mass[i]);
+            }
+            else{
+                r.push(mass[i]);
+            }
+        }
+        sort(l, l.length);
+        sort(r, r.length);
+        let h = 0;
+        let f = 0;
+        let c = [];
+        while(h < l.length && f < r.length){
+            if(l[h] < r[f]){
+                c.push(l[h]);
+                h += 1;
+            }
+            else{
+                c.push(r[f]);
+                f += 1;
+            }
+        }
+        while(h < l.length){
+            c.push(l[h]);
+            h += 1;
+        }
+        while(f < r.length){
+            c.push(r[f]);
+            f += 1;
+        }
+        for(let i = 0; i < m; i++){
+            array[i] = c[i];
+        }
+    }
+}
+
+sort(a, a.length);
+```
+
+<ins>***File:***</ins> *[Merge_Sort.js](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Merge_Sort.js)*
+
+`C++`:
+
+```cpp
+void sort(int *array, int m){
+    int mass[m];
+    for(int i = 0; i < m; i ++){
+        mass[i] = array[i];
+    }
+    if(m <= 1){
+        array[0] = mass[0];
+    }
+    else{
+        int L[m/2], R[m-(m/2)];
+        for(int i = 0; i < m; i ++){
+            if(i < m/2) L[i] = mass[i];
+            else R[i-(m/2)] = mass[i];
+        }
+        sort(L, m/2);
+        sort(R, m - (m/2));
+        int h = 0, f = 0, k = 0;
+        int C[m];
+        while(h < m/2 && f < m - (m/2)){
+            if(L[h] < R[f]){
+                C[k] = L[h];
+                h ++;
+            }
+            else{
+                C[k] = R[f];
+                f ++;
+            }
+            k ++;
+        }
+        while(h < m/2){
+            C[k] = L[h];
+            h ++;
+            k ++;
+        }
+        while(f < m - (m/2)){
+            C[k] = R[f];
+            f ++;
+            k ++;
+        }
+        for(int i = 0; i < m; i ++){
+            array[i] = C[i];
+        }
+    }
+}
+
+sort(a, len);
+```
+
+<ins>***File:***</ins> *[Merge_Sort.cpp](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Merge_Sort.cpp)*
