@@ -7,6 +7,24 @@
 
 <ins>***Русский:***</ins> У меня есть некоторый опыт в олимпиадах по программированию. Я считаю, что он моджет помочь другим людям подготовится к соревнованиям и получить некоторые рабочие алгоритмы. Тут ты найдёшь алгоритмы на Python, JavaScript и C++, но ты всегда можешь с лёгкостью переписать их на свой язык. Я добавлю ссылки на все идеи и текстовые описания алгоритмов. Я верю что этот репозиторий поможет тебе :)
 
+## Swap / Заміна / Замена
+
+`Python`:
+
+```python
+x = x + y
+y = x - y
+x = x - y
+```
+
+`JavaScript` or `C++`:
+
+```js
+x = x + y;
+y = x - y;
+x = x - y;
+```
+
 ## Working with arrays / Робота с масивами / Работа с массивами
 
 <ins>***English:***</ins> Array — one of the frequently used data structure in programming. In dynamic programming languages like Python or JavaScript there are built functions for working with arrays in most ways: from slicing to sorting, but in static languages like C or C++ there aren't as a lot of functions as in dynamic. So in this part I'ill show you some ways how you can edit arrays on most languages without any problems.
@@ -145,7 +163,7 @@ result = x in a
 `JavaScript`:
 
 ```js
-let result = a.icludes(x);
+let result = a.includes(x);
 ```
 
 `C++`:
