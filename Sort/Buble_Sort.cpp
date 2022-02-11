@@ -8,8 +8,8 @@ int main(){
     for(int i = 0; i < len; i ++){
         cin >> a[i];
     }
-    int m, k;
-    while(k != len - 1){
+    int k = 0;
+    while(k < len - 1){
         k = 0;
         for(int j = 0; j < len - 1; j ++){
             if(a[j] > a[j+1]){
