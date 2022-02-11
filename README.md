@@ -472,5 +472,82 @@ for(int i = y; i < len; i ++){
 `y` — element index / індекс елемента / индекс элемента
 
 
-
 ## Sorting / Сортування / Сотрировка
+
+<ins>***English:***</ins> Continuing topix about array I'll tell you about sortring arrays. For better understanding I recomend you to read about [algorythm's time complexity](https://en.wikipedia.org/wiki/Time_complexity). In this part you could know most ways how you can sort your array. Understand pluses and minuses of all algorythms and get cases when and where you might use them.
+
+<ins>***Українська:***</ins> Продовженням теми про масиви я розповім тобі про сортування масивів. Для більш гарного розуміння я рекомендую тобі почитати про [часову складність алгоритму](https://uk.wikipedia.org/wiki/Часова_складність). У цій частині ти зможеш дізнатися про більшість способів, як ти можешь відсортувати твій масив. Зрозуміти плюси на мінуси усіх алгоритмів та отримати ситуаціх коли ти маешь їх використовувати.
+
+<ins>***Русский:***</ins> Продолжением темы про массивы я расскажу тебя про сортировку массивов. Для лучшего понимания я рекомендую тебе почитать про [временную сложность алгоритма](https://ru.wikipedia.org/wiki/Временная_сложность_алгоритма). В этой части ты сможеш узнать про большинство способов, как ты можешь отсортировать твой массив. Понять плюсы и минусы всех алгоритмов и получить ситуации когда ты должен их использовать.
+
+### Bubble sort / Бульбашкове сортування / Пузырьковая сортировка
+
+**Time complexity / Часова складність / Временная сложность :** *O(n<sup>2</sup>)*.
+
+**Pluses / Плюси / Плюсы :** *Easy and short / Простий та короткий / Простой и которкий*
+
+**Minuses / Мінуси / Минусы :** *Slow / Повільний / Медленний*
+
+<ins>***Wikipedia:***</ins> *[Bubble sort](https://en.wikipedia.org/wiki/Bubble_sort#Variations)*
+
+<ins>***Вікіпедія:***</ins> *[Бульбашкове сортування](https://uk.wikipedia.org/wiki/Сортування_бульбашкою)*
+
+<ins>***Википедия:***</ins> *[Пузырьковая сортировка](https://ru.wikipedia.org/wiki/Сортировка_пузырьком)*
+
+`Python`:
+
+```python
+k = 0
+while k < len(a) - 1:
+    k = 0
+    for j in range(0, len(a)-1):
+        if a[j] > a[j+1]:
+            a[j] = a[j] + a[j+1]
+            a[j+1] = a[j] - a[j+1]
+            a[j] = a[j] - a[j+1]
+        else:
+            k += 1
+```
+
+<ins>***File:***</ins> *[Bubble_Sort.py](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Bubble_Sort.py)*
+
+`JavaScript`:
+
+```js
+let k = 0;
+while(k < a.length - 1){
+    k = 0;
+    for(let j = 0; j < a.length - 1; j ++){
+        if(a[j] > a[j+1]){
+            a[j] = a[j] + a[j+1];
+            a[j+1] = a[j] - a[j+1];
+            a[j] = a[j] - a[j+1];
+        }
+        else{
+            k ++;
+        }
+    }
+}
+```
+
+<ins>***File:***</ins> *[Bubble_Sort.js](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Bubble_Sort.js)*
+
+`C++`:
+
+```cpp
+while(k < len - 1){
+    k = 0;
+    for(int j = 0; j < len - 1; j ++){
+        if(a[j] > a[j+1]){
+            a[j] = a[j] + a[j+1];
+            a[j+1] = a[j] - a[j+1];
+            a[j] = a[j] - a[j+1];
+        }
+        else{
+            k ++;
+        }
+    }
+}
+```
+
+<ins>***File:***</ins> *[Bubble_Sort.cpp](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Bubble_Sort.cpp)*
