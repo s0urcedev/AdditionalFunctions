@@ -488,7 +488,7 @@ for(int i = y; i < len; i ++){
 
 **Minuses / Мінуси / Минусы :** *Slow / Повільний / Медленний*
 
-<ins>***Wikipedia:***</ins> *[Bubble sort](https://en.wikipedia.org/wiki/Bubble_sort#Variations)*
+<ins>***Wikipedia:***</ins> *[Bubble sort](https://en.wikipedia.org/wiki/Bubble_sort)*
 
 <ins>***Вікіпедія:***</ins> *[Бульбашкове сортування](https://uk.wikipedia.org/wiki/Сортування_бульбашкою)*
 
@@ -551,3 +551,135 @@ while(k < len - 1){
 ```
 
 <ins>***File:***</ins> *[Bubble_Sort.cpp](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Bubble_Sort.cpp)*
+
+### Selection sort / Сортування вибором / Сортировка выбором
+
+**Time complexity / Часова складність / Временная сложность :** *O(n<sup>2</sup>)*.
+
+**Pluses / Плюси / Плюсы :** *Easy and short / Простий та короткий / Простой и которкий*
+
+**Minuses / Мінуси / Минусы :** *Slow / Повільний / Медленний*
+
+<ins>***Wikipedia:***</ins> *[Selection sort](https://en.wikipedia.org/wiki/Selection_sort)*
+
+<ins>***Вікіпедія:***</ins> *[Сортування вибором](https://uk.wikipedia.org/wiki/Сортування_вибором)*
+
+<ins>***Википедия:***</ins> *[Сортировка выбором](https://ru.wikipedia.org/wiki/Сортировка_выбором)*
+
+`Python`:
+
+```python
+for i in range(0, len(a) - 1):
+    imin = i
+    for j in range(i + 1, len(a)):
+        if a[j] < a[imin]:
+            imin = j
+    if imin != i:
+        a[i] = a[i] + a[imin]
+        a[imin] = a[i] - a[imin]
+        a[i] = a[i] - a[imin]
+```
+
+<ins>***File:***</ins> *[Selection_Sort.py](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Selection_Sort.py)*
+
+`JavaScript`:
+
+```js
+for(let i = 0; i < a.length - 1; i ++){
+    let imin = i;
+    for(let j = i + 1; j < a.length; j ++){
+        if(a[j] < a[imin]){
+            imin = j;
+        }
+    }
+    if(imin != i){
+        a[i] = a[i] + a[imin];
+        a[imin] = a[i] - a[imin];
+        a[i] = a[i] - a[imin];
+    }
+}
+```
+
+<ins>***File:***</ins> *[Selection_Sort.js](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Selection_Sort.js)*
+
+`C++`:
+
+```cpp
+while(k < len - 1){
+    for(int i = 0; i < len - 1; i ++){
+        int imin = i;
+        for(int j = i + 1; j < len; j ++){
+            if(a[j] < a[imin]){
+                imin = j;
+            }
+        }
+        if(imin != i){
+            a[i] = a[i] + a[imin];
+            a[imin] = a[i] - a[imin];
+            a[i] = a[i] - a[imin];
+        }
+    }
+}
+```
+
+<ins>***File:***</ins> *[Selection_Sort.cpp](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Selection_Sort.cpp)*
+
+### Insertion sort / Сортування включенням / Сортировка вставками
+
+**Time complexity / Часова складність / Временная сложность :** *O(n<sup>2</sup>)*.
+
+**Pluses / Плюси / Плюсы :** *Easy and short / Простий та короткий / Простой и которкий*
+
+**Minuses / Мінуси / Минусы :** *Slow / Повільний / Медленний*
+
+<ins>***Wikipedia:***</ins> *[Insertion_Sort](https://en.wikipedia.org/wiki/Insertion_sort)*
+
+<ins>***Вікіпедія:***</ins> *[Сортування включенням](https://uk.wikipedia.org/wiki/Сортування_включенням)*
+
+<ins>***Википедия:***</ins> *[Сортировка вставками](https://ru.wikipedia.org/wiki/Сортировка_вставками)*
+
+`Python`:
+
+```python
+for j in range(1, len(a)):
+    key = a[j]
+    i = j - 1
+    while i >= 0 and a[i] > key:
+        a[i+1] = a[i]
+        i -= 1
+    a[i+1] = key
+```
+
+<ins>***File:***</ins> *[Insertion_Sort.py](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Insertion_Sort.py)*
+
+`JavaScript`:
+
+```js
+for(let j = 1; j < a.length; j ++){
+    key = a[j];
+    i = j - 1;
+    while(i >= 0 && a[i] > key){
+        a[i+1] = a[i];
+        i --;
+    } 
+    a[i+1] = key;
+}
+```
+
+<ins>***File:***</ins> *[Insertion_Sort.js](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Insertion_Sort.js)*
+
+`C++`:
+
+```cpp
+for(int j = 1; j < len; j ++){
+    int key = a[j];
+    int i = j - 1;
+    while (i >= 0 && a[i] > key){
+        a[i+1] = a[i];
+        i --;
+    }
+    a[i+1] = key;
+}
+```
+
+<ins>***File:***</ins> *[Insertion_Sort.cpp](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Insertion_Sort.cpp)*
