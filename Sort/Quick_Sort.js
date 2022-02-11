@@ -29,6 +29,6 @@ function sort(array, b, e){
 
 let a = [];
 
-sort(a, 0, a.length - 1)
+sort(a, 0, a.length - 1);
 
 console.log(a);
