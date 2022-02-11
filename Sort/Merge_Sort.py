@@ -1,6 +1,5 @@
 def sort(Mass, m):
     mass = []
-    m = int(m)
     for i in range(0, m):
         mass.append(Mass[i])
     if m <= 1:
@@ -9,26 +8,26 @@ def sort(Mass, m):
         l = []
         r = []
         for i in range(0, m):
-            if i < m/2:
+            if i < int(m/2):
                 l.append(mass[i])
             else:
                 r.append(mass[i])
-        sort(l, m/2)
-        sort(r, m - (m/2))
+        sort(l, len(l))
+        sort(r, len(r))
         h = 0
         f = 0
         c = []
-        while h < m/2 and f < m - (m/2):
+        while h < len(l) and f < len(r):
             if l[h] < r[f]:
                 c.append(l[h])
                 h += 1
             else:
                 c.append(r[f])
                 f += 1
-        while h < m/2:
+        while h < len(l):
             c.append(l[h])
             h += 1
-        while f < m - (m/2):
+        while f < len(r):
             c.append(r[f])
             f += 1
         for i in range(0, m):
