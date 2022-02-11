@@ -1,9 +1,3 @@
-a = []
-s = input()
-
-for i in s.split(' '):
-    a.append(int(i))
-
 def sort(array, b, e):
     l = b
     r = e
@@ -24,6 +18,13 @@ def sort(array, b, e):
         sort(array, b, r)
     if e > l:
         sort(array, l, e)
+
+a = []
+s = input()
+
+for i in s.split(' '):
+    a.append(int(i))
+
 
 sort(a, 0, len(a) - 1)
 

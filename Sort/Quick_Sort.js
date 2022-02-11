@@ -1,5 +1,3 @@
-let a = [];
-
 function sort(array, b, e){
     let l = b;
     let r = e;
@@ -28,6 +26,8 @@ function sort(array, b, e){
         }
     }
 }
+
+let a = [];
 
 sort(a, 0, a.length - 1)
 
