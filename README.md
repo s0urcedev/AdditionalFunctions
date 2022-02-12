@@ -966,3 +966,99 @@ sort(a, len);
 ```
 
 <ins>***File:***</ins> *[Merge_Sort.cpp](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Merge_Sort.cpp)*
+
+## GCD / НСД / НОД
+
+### Euclidean algorithm (GCD by subtraction) / Алгоритм Евкліда (НСД відніманнямм) / Алгоритм Евклида (НОД вычитанием)
+
+<ins>***Wikipedia:***</ins> *[Euclidean algorithm](https://en.wikipedia.org/wiki/Euclidean_algorithm)*
+
+<ins>***Вікіпедія:***</ins> *[Алгоритм Евкліда](https://uk.wikipedia.org/wiki/Алгоритм_Евкліда)*
+
+<ins>***Википедия:***</ins> *[Алгоритм Евклида](https://ru.wikipedia.org/wiki/Алгоритм_Евклида)*
+
+`Python`:
+
+```python
+while a != b:
+    if a > b:
+        a = a - b
+    else:
+        b = b - a
+        
+result = a
+```
+
+`JavaScript`:
+
+```js
+while(a != b){
+    if(a > b){
+        a = a - b;
+    }
+    else{
+        b = b - a;
+    }
+}
+
+let result = a;
+```
+
+`C++`:
+
+```cpp
+while(a != b){
+    if(a > b){
+        a = a - b;
+    }
+    else{
+        b = b - a;
+    }
+}
+
+int result = a;
+```
+
+### GCD by division / НСД діленням / НОД делением
+
+`Python`:
+
+```python
+while a != 0 and b != 0:
+    if a > b:
+        a = a % b
+    else:
+        b = b % a
+        
+result = a + b
+```
+
+`JavaScript`:
+
+```js
+while(a != 0 && b != 0){
+    if(a > b){
+        a = a % b;
+    }
+    else{
+        b = b % a;
+    }
+}
+
+let result = a + b;
+```
+
+`C++`:
+
+```cpp
+while(a != 0 && b != 0){
+    if(a > b){
+        a = a % b;
+    }
+    else{
+        b = b % a;
+    }
+}
+
+int result = a + b;
+```
