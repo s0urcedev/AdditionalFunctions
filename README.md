@@ -270,17 +270,24 @@ a.shift();
 
 `C++`:
 
-> *In C++ you can't changing number of array elemnts, so in real your array will collect some elemеnts in the end after operations, but making `len` less deal with this problem when you iterate array*
+> *In C++ you can't changing number of static array elemnts, so in real your array will collect some elemеnts in the end after operations, but making `len` less deal with this problem when you iterate array*
 > 
-> *У С++ ти не можешь змінювати кількість елементів масива, в реальності твій масив буде накопичувати елементи у кінці після операцій, але зменшування `len` вирішує цю проблему коли ти ітеруешь масив*
+> *У С++ ти не можешь змінювати кількість елементів статичного масива, в реальності твій масив буде накопичувати елементи у кінці після операцій, але зменшування `len` вирішує цю проблему коли ти ітеруешь масив*
 > 
-> *В С++ ты не можешь изменять количество элементов массива, то-этому в реальности твой массив будет накапливать элементы в концу после оперций, но уменьшение  `len` решает эту проблему когда ты итерируешь массив*
+> *В С++ ты не можешь изменять количество элементов статического массива, то-этому в реальности твой массив будет накапливать элементы в концу после оперций, но уменьшение  `len` решает эту проблему когда ты итерируешь массив*
 
 ```cpp
 len --;
 for(int i = 0; i < len; i ++){
     a[i] = a[i + 1];
 }
+```
+
+`C++`(Using vectors):
+
+```cpp
+auto iter = a.cbegin();
+a.erase(iter);
 ```
 
 `a` — array / масив / массив
@@ -303,14 +310,26 @@ a.pop();
 
 `C++`:
 
-> *In C++ you can't changing number of array elemnts, so in real your array will collect some elemеnts in the end after operations, but making `len` less deal with this problem when you iterate array*
+> *In C++ you can't changing number of static array elemnts, so in real your array will collect some elemеnts in the end after operations, but making `len` less deal with this problem when you iterate array*
 > 
-> *У С++ ти не можешь змінювати кількість елементів масива, в реальності твій масив буде накопичувати елементи у кінці після операцій, але зменшування `len` вирішує цю проблему коли ти ітеруешь масив*
+> *У С++ ти не можешь змінювати кількість елементів статичного масива, в реальності твій масив буде накопичувати елементи у кінці після операцій, але зменшування `len` вирішує цю проблему коли ти ітеруешь масив*
 > 
-> *В С++ ты не можешь изменять количество элементов массива, то-этому в реальности твой массив будет накапливать элементы в концу после оперций, но уменьшение  `len` решает эту проблему когда ты итерируешь массив*
+> *В С++ ты не можешь изменять количество элементов статического массива, то-этому в реальности твой массив будет накапливать элементы в концу после оперций, но уменьшение  `len` решает эту проблему когда ты итерируешь массив*
 
 ```cpp
 len --;
+```
+`C++`(Using vectors):
+
+```cpp
+auto iter = a.cend();
+a.erase(iter);
+```
+
+`Or`(Using vectors):
+
+```cpp
+a.pop_back();
 ```
 
 `a` — array / масив / массив
@@ -333,17 +352,24 @@ a.splice(x, 1);
 
 `C++`:
 
-> *In C++ you can't changing number of array elemnts, so in real your array will collect some elemеnts in the end after operations, but making `len` less deal with this problem when you iterate array*
+> *In C++ you can't changing number of static array elemnts, so in real your array will collect some elemеnts in the end after operations, but making `len` less deal with this problem when you iterate array*
 > 
-> *У С++ ти не можешь змінювати кількість елементів масива, в реальності твій масив буде накопичувати елементи у кінці після операцій, але зменшування `len` вирішує цю проблему коли ти ітеруешь масив*
+> *У С++ ти не можешь змінювати кількість елементів статичного масива, в реальності твій масив буде накопичувати елементи у кінці після операцій, але зменшування `len` вирішує цю проблему коли ти ітеруешь масив*
 > 
-> *В С++ ты не можешь изменять количество элементов массива, то-этому в реальности твой массив будет накапливать элементы в концу после оперций, но уменьшение  `len` решает эту проблему когда ты итерируешь массив*
+> *В С++ ты не можешь изменять количество элементов статического массива, то-этому в реальности твой массив будет накапливать элементы в концу после оперций, но уменьшение  `len` решает эту проблему когда ты итерируешь массив*
 
 ```cpp
 for(int i = x; i < len; i ++){
     a[i] = a[i + 1];
 }
 len --;
+```
+
+`C++`(Using vectors):
+
+```cpp
+auto iter = a.cend();
+a.erase(iter + x);
 ```
 
 `a` — array / масив / массив
@@ -368,11 +394,11 @@ a.splice(0, 0, x);
 
 `C++`:
 
-> *In C++ you can't changing number of array elemnts, so you have to create new one*
+> *In C++ you can't changing number of static array elemnts, so you have to create new one*
 > 
-> *У С++ ти не можешь змінювати кількість елементів масива, тому ти повинен створити новий*
+> *У С++ ти не можешь змінювати кількість елементів статичного масива, тому ти повинен створити новий*
 > 
-> *В С++ ты не можешь изменять количество элементов массива, то-этому ти должен создать новый*
+> *В С++ ты не можешь изменять количество элементов статического массива, то-этому ти должен создать новый*
 
 ```cpp
 int b[len + 1];
@@ -380,6 +406,13 @@ b[0] = x;
 for(int i = 0; i < len; i ++){
     b[i + 1] = a[i];
 }
+```
+
+`C++`(Using vectors):
+
+```cpp
+auto iter = a.cbegin();
+a.emplace(iter, x);
 ```
 
 `a` — old array / старий масив / старый массив
@@ -406,11 +439,11 @@ a.push(x);
 
 `C++`:
 
-> *In C++ you can't changing number of array elemnts, so you have to create new one*
+> *In C++ you can't changing number of static array elemnts, so you have to create new one*
 > 
-> *У С++ ти не можешь змінювати кількість елементів масива, тому ти повинен створити новий*
+> *У С++ ти не можешь змінювати кількість елементів статичного масива, тому ти повинен створити новий*
 > 
-> *В С++ ты не можешь изменять количество элементов массива, то-этому ти должен создать новый*
+> *В С++ ты не можешь изменять количество элементов статического массива, то-этому ти должен создать новый*
 
 ```cpp
 int b[len + 1];
@@ -418,6 +451,19 @@ for(int i = 0; i < len; i ++){
     b[i] = a[i];
 }
 b[len] = x;
+```
+
+`C++`(Using vectors):
+
+```cpp
+auto iter = a.cend();
+a.emplace(iter, x);
+```
+
+`Or`(Using vectors):
+
+```cpp
+a.push_bacl(x);
 ```
 
 `a` — old array / старий масив / старый массив
@@ -444,11 +490,11 @@ a.splice(y, 0, x);
 
 `C++`:
 
-> *In C++ you can't changing number of array elemnts, so you have to create new one*
+> *In C++ you can't changing number of static array elemnts, so you have to create new one*
 > 
-> *У С++ ти не можешь змінювати кількість елементів масива, тому ти повинен створити новий*
+> *У С++ ти не можешь змінювати кількість елементів статичного масива, тому ти повинен створити новий*
 > 
-> *В С++ ты не можешь изменять количество элементов массива, то-этому ти должен создать новый*
+> *В С++ ты не можешь изменять количество элементов статического массива, то-этому ти должен создать новый*
 
 ```cpp
 int b[len + 1];
@@ -459,6 +505,13 @@ b[y] = x;
 for(int i = y; i < len; i ++){
     b[i + 1] = a[i];
 }
+```
+
+`C++`(Using vectors):
+
+```cpp
+auto iter = a.cbegin();
+a.emplace(iter + y, x);
 ```
 
 `a` — old array / старий масив / старый массив
@@ -1061,4 +1114,57 @@ while(a != 0 && b != 0){
 }
 
 int result = a + b;
+```
+
+## Finding prime factors of a number / Пошук простих множників числа / Поиск простых множителей числа
+
+`Python`:
+
+```python
+result = []
+d = 2
+while d * d <= a:
+    if a % d == 0:
+        result.append(d)
+        a //= d
+    else:
+        d += 1
+if a > 1:
+    result.append(a)
+```
+
+`JavaScript`:
+
+```js
+let result = [];
+let d = 2;
+while(d * d <= a){
+    if(a % d == 0){
+        result.push(d);
+        a = Math.floor(a / d);
+    }
+    else{
+        d ++;
+    }
+if(a > 1){
+    result.push(a);
+}
+```
+
+`C++`(Using vectors):
+
+```cpp
+std::vector<int> result;
+int d = 2;
+while(d * d <= a){
+    if(a % d == 0){
+        result.push_back(d);
+        a = a / d;
+    }
+    else{
+        d ++;
+    }
+if(a > 1){
+    result.push_back(a);
+}
 ```
