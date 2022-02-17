@@ -1171,8 +1171,6 @@ if(a > 1){
 
 ## Fibonacci number / Послідовність Фібоначчі / Числа Фибоначчи
 
-### Euclidean algorithm (GCD by subtraction) / Алгоритм Евкліда (НСД відніманнямм) / Алгоритм Евклида (НОД вычитанием)
-
 <ins>***Wikipedia:***</ins> *[Fibonacci number](https://en.wikipedia.org/wiki/Fibonacci_number)*
 
 <ins>***Вікіпедія:***</ins> *[Послідовність Фібоначчі](https://uk.wikipedia.org/wiki/Послідовність_Фібоначчі)*
