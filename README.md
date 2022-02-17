@@ -1168,3 +1168,50 @@ if(a > 1){
     result.push_back(a);
 }
 ```
+
+## Fibonacci number / Послідовність Фібоначчі / Числа Фибоначчи
+
+### Euclidean algorithm (GCD by subtraction) / Алгоритм Евкліда (НСД відніманнямм) / Алгоритм Евклида (НОД вычитанием)
+
+<ins>***Wikipedia:***</ins> *[Fibonacci number](https://en.wikipedia.org/wiki/Fibonacci_number)*
+
+<ins>***Вікіпедія:***</ins> *[Послідовність Фібоначчі](https://uk.wikipedia.org/wiki/Послідовність_Фібоначчі)*
+
+<ins>***Википедия:***</ins> *[Числа Фибоначчи](https://ru.wikipedia.org/wiki/Числа_Фибоначчи)*
+
+`Python`:
+
+```python
+def fibo(n):
+    if n <= 1:
+        return n
+    else:
+        return fibo(n - 1) + fibo(n - 2)
+```
+
+`JavaScript`:
+
+```js
+function fibo(n){
+    if(n <= 1){
+        return n;
+    }
+    else{
+        return fibo(n - 1) + fibo(n - 2);
+    }
+}
+```
+
+`C++`:
+
+```cpp
+int fibo(int n){
+    if(n <= 1){
+        return n;
+    }
+    else{
+        return fibo(n - 1) + fibo(n - 2);
+    }
+}
+```
+
