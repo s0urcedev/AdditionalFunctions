@@ -368,7 +368,7 @@ len --;
 `C++`(Using vectors):
 
 ```cpp
-auto iter = a.cend();
+auto iter = a.cbegin();
 a.erase(iter + x);
 ```
 
