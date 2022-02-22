@@ -172,7 +172,7 @@ let result = a.includes(x);
 bool result = false;
 for(int i = 0; i < len; i ++){
     if(a[i] == x){
-        relult = true;
+        result = true;
         break;
     }
 }
