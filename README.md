@@ -83,6 +83,16 @@ for(int i = 0; i < len; i++){
 }
 ```
 
+`Or`:
+
+```cpp
+for(auto n: a){
+    //do something with n
+    //роби щось з n
+    //делай что-то с n
+}
+```
+
 `a` — array / масив / массив
 
 `len` — array length / довжина масива / длина массива
