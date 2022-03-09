@@ -73,6 +73,26 @@ a.forEach(n => {
 });
 ```
 
+`Or`:
+
+```js
+for(let i in a){
+    //do something with a[i]
+    //роби щось з a[i]
+    //делай что-то с a[i]
+}
+```
+
+`Or`:
+
+```js
+for(let n of a){
+    //do something with n
+    //роби щось з n
+    //делай что-то с n
+}
+```
+
 `C++`:
 
 ```cpp
