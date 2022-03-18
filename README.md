@@ -1284,3 +1284,89 @@ int factorial(int n){
     return result;
 }
 ```
+
+## Counting subfactorial / Підрахунок субфакторіалу / Вычисление субфакториала
+
+<ins>***Wikipedia:***</ins> *[Subfactorial](https://en.wiktionary.org/wiki/subfactorial)*
+
+<ins>***Вікіпедія:***</ins> *[Субфакторіал](https://uk.wikipedia.org/wiki/Субфакторіал)*
+
+<ins>***Википедия:***</ins> *[Субфакториал](https://ru.wikipedia.org/wiki/Субфакториал)*
+
+`Python`:
+
+```py
+def factorial(n):
+    res = 1
+    for m in range(1, n + 1):
+        res *= m;
+    return res
+
+def subfactorial(n):
+    result = 1
+    k = True
+    for m in range(1, n + 1):
+        if k:
+            result -= 1 / factorial(m)
+            k = False
+        else:
+            result += 1 / factorial(m)
+            k = True
+    return round(result * factorial(n))
+```
+
+`JavaScript`:
+
+```js
+function factorial(n){
+    let result = 1;
+    for(let m = 1; m <= n; m ++){
+        result *= m;
+    }
+    return result;
+}
+
+function subfactorial(n){
+    let result = 1;
+    let k = true;
+    for(let m = 1; m <= n; m ++){
+        if(k){
+            result -= 1 / factorial(m);
+            k = false;
+        }
+        else{
+            result += 1 / factorial(m);
+            k = true;
+        }
+    }
+    return Math.round(result * factorial(n));
+}
+```
+
+`C++`:
+
+```cpp
+int factorial(int n){
+    int result = 1;
+    for(int m = 1; m <= n; m ++){
+        result *= m;
+    }
+    return result;
+}
+
+int subfactorial(int n){
+    double result = 1;
+    bool k = true;
+    for(int m = 1; m <= n; m ++){
+        if(k){
+            result -= 1.0 / factorial(m);
+            k = false;
+        }
+        else{
+            result += 1.0 / factorial(m);
+            k = true;
+        }
+    }
+    return result * factorial(n);
+}
+```
