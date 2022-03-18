@@ -1315,6 +1315,19 @@ def subfactorial(n):
     return round(result * factorial(n))
 ```
 
+`Or`:
+
+```py
+def factorial(n):
+    res = 1
+    for m in range(1, n + 1):
+        res *= m;
+    return res
+
+def subfactorial(n):
+    return round(factorial(n) / 2.718)
+```
+
 `JavaScript`:
 
 ```js
@@ -1343,6 +1356,22 @@ function subfactorial(n){
 }
 ```
 
+`Or`:
+
+```js
+function factorial(n){
+    let result = 1;
+    for(let m = 1; m <= n; m ++){
+        result *= m;
+    }
+    return result;
+}
+
+function subfactorial(n){
+    return Math.round(factorial(n) / 2.718);
+}
+```
+
 `C++`:
 
 ```cpp
@@ -1368,5 +1397,23 @@ int subfactorial(int n){
         }
     }
     return result * factorial(n);
+}
+```
+
+`Or`:
+
+```cpp
+#include <math.h>
+
+int factorial(int n){
+    int result = 1;
+    for(int m = 1; m <= n; m ++){
+        result *= m;
+    }
+    return result;
+}
+
+int subfactorial(n){
+    return round(factorial(n) / 2.718);
 }
 ```
