@@ -1243,3 +1243,44 @@ int fibo(int n){
 }
 ```
 
+## Counting factorial / Підрахунок факторіалу / Вычисление факториала
+
+<ins>***Wikipedia:***</ins> *[Factorial](https://en.wikipedia.org/wiki/Factorial)*
+
+<ins>***Вікіпедія:***</ins> *[Факторіал](https://uk.wikipedia.org/wiki/Факторіал)*
+
+<ins>***Википедия:***</ins> *[Факториал](https://ru.wikipedia.org/wiki/Факториал)*
+
+`Python`:
+
+```py
+def factorial(n):
+    result = 1
+    for m in range(1, n + 1):
+        result *= m;
+    return result
+```
+
+`JavaScript`:
+
+```js
+function factorial(n){
+    let result = 1;
+    for(let m = 1; m <= n; m ++){
+        result *= m;
+    }
+    return result;
+}
+```
+
+`C++`:
+
+```cpp
+int factorial(int n){
+    int result = 1;
+    for(int m = 1; m <= n; m ++){
+        result *= m;
+    }
+    return result;
+}
+```
