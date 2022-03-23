@@ -1146,6 +1146,72 @@ while(a != 0 && b != 0){
 int result = a + b;
 ```
 
+## Finding n prime numbers / Пошук n простих чисел / Поиск n простых чисел
+
+`Python`:
+
+```python
+result = []
+i = 0
+m = 1
+while i < n:
+    m += 1
+    k = True
+    for j in result:
+        if m % j == 0:
+            k = False
+            break
+    if k:
+        result.append(m)
+        i += 1
+```
+
+`JavaScript`:
+
+```js
+let result = [];
+let i = 0;
+let m = 1;
+let k;
+while(i < n){
+    m ++;
+    k = true;
+    for(j of result){
+        if(m % j == 0){
+            k = false;
+            break;
+        }
+    }
+    if(k){
+        result.push(m);
+        i ++;
+    }
+}
+```
+
+`c++`:
+
+```cpp
+vector <int> result;
+int i = 0;
+int m = 1;
+bool k;
+while(i < n){
+    m ++;
+    k = true;
+    for(auto j: result){
+        if(m % j == 0){
+            k = false;
+            break;
+        }
+    }
+    if(k){
+        result.push_back(m);
+        i ++;
+    }
+}
+```
+
 ## Finding prime factors of a number / Пошук простих множників числа / Поиск простых множителей числа
 
 `Python`:
@@ -1253,7 +1319,7 @@ int fibo(int n){
 
 `Python`:
 
-```py
+```python
 def factorial(n):
     result = 1
     for m in range(1, n + 1):
@@ -1263,7 +1329,7 @@ def factorial(n):
 
 `Or`:
 
-```py
+```python
 def factorial(n):
     if n == 0: return 1
     else: return n * factorial(n - 1)
@@ -1321,7 +1387,7 @@ int factorial(int n){
 
 `Python`:
 
-```py
+```python
 def factorial(n):
     if n == 0: return 1
     else: return n * factorial(n - 1)
@@ -1341,7 +1407,7 @@ def subfactorial(n):
 
 `Or`:
 
-```py
+```python
 def factorial(n):
     if n == 0: return 1
     else: return n * factorial(n-1)
