@@ -1266,7 +1266,7 @@ def factorial(n):
 ```py
 def factorial(n):
     if n == 0: return 1
-    else: return n * factorial(n-1)
+    else: return n * factorial(n - 1)
 ```
 
 `JavaScript`:
@@ -1307,7 +1307,7 @@ int factorial(int n){
 ```cpp
 int factorial(int n){
     if(n == 0) return 1;
-    else return n * factorial(n-1);
+    else return n * factorial(n - 1);
 }
 ```
 
@@ -1324,7 +1324,7 @@ int factorial(int n){
 ```py
 def factorial(n):
     if n == 0: return 1
-    else: return n * factorial(n-1)
+    else: return n * factorial(n - 1)
 
 def subfactorial(n):
     result = 1
@@ -1393,7 +1393,7 @@ function subfactorial(n){
 ```cpp
 int factorial(int n){
     if(n == 0) return 1;
-    else return n * factorial(n-1);
+    else return n * factorial(n - 1);
 }
 
 int subfactorial(int n){
@@ -1420,7 +1420,7 @@ int subfactorial(int n){
 
 int factorial(int n){
     if(n == 0) return 1;
-    else return n * factorial(n-1);
+    else return n * factorial(n - 1);
 }
 
 int subfactorial(n){
