@@ -1146,6 +1146,70 @@ while(a != 0 && b != 0){
 int result = a + b;
 ```
 
+## Is prime? / Чи просте число? / Простое ли число?
+
+`Python`:
+
+```python
+def isprime(n):
+    result = []
+    d = 2
+    while d * d <= n:
+        if n % d == 0:
+            result.append(d)
+            n //= d
+        else:
+            d += 1
+    if n > 1:
+        result.append(n)
+    if len(result) > 1: return False
+    else: return True
+```
+
+`JavaScript`:
+
+```js
+function isprime(n){
+    let result = [];
+    let d = 2;
+    while(d * d <= a){
+        if(a % d == 0){
+            result.push(d);
+            a = Math.floor(a / d);
+        }
+        else{
+            d ++;
+        }
+    if(a > 1){
+        result.push(a);
+    }
+    if(result.length > 1) return false;
+    else return true;
+}
+```
+
+`C++`:
+
+```cpp
+int isprime(int n){
+    std::vector<int> result;
+    int d = 2;
+    while(d * d <= a){
+        if(a % d == 0){
+            result.push_back(d);
+            a = a / d;
+        }
+        else{
+            d ++;
+        }
+    if(a > 1){
+        result.push_back(a);
+    }
+    if(result.size() > 1) return false;
+    else return true;
+}
+```
+
 ## Finding n prime numbers / Пошук n простих чисел / Поиск n простых чисел
 
 `Python`:
@@ -1192,7 +1256,7 @@ while(i < n){
 `c++`:
 
 ```cpp
-vector <int> result;
+std::vector <int> result;
 int i = 0;
 int m = 1;
 bool k;
@@ -1489,7 +1553,7 @@ int factorial(int n){
     else return n * factorial(n - 1);
 }
 
-int subfactorial(n){
+int subfactorial(int n){
     return round(factorial(n) / 2.718);
 }
 ```
