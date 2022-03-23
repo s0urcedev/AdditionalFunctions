@@ -1261,6 +1261,14 @@ def factorial(n):
     return result
 ```
 
+`Or`:
+
+```py
+def factorial(n):
+    if n == 0: return 1
+    else: return n * factorial(n-1)
+```
+
 `JavaScript`:
 
 ```js
@@ -1270,6 +1278,15 @@ function factorial(n){
         result *= m;
     }
     return result;
+}
+```
+
+`Or`:
+
+```js
+function factorial(n){
+    if(n == 0) return 1;
+    else return n * factorial(n - 1);
 }
 ```
 
@@ -1285,6 +1302,15 @@ int factorial(int n){
 }
 ```
 
+`Or`:
+
+```cpp
+int factorial(int n){
+    if(n == 0) return 1;
+    else return n * factorial(n-1);
+}
+```
+
 ## Counting subfactorial / Підрахунок субфакторіалу / Вычисление субфакториала
 
 <ins>***Wikipedia:***</ins> *[Subfactorial](https://en.wiktionary.org/wiki/subfactorial)*
@@ -1297,10 +1323,8 @@ int factorial(int n){
 
 ```py
 def factorial(n):
-    res = 1
-    for m in range(1, n + 1):
-        res *= m;
-    return res
+    if n == 0: return 1
+    else: return n * factorial(n-1)
 
 def subfactorial(n):
     result = 1
@@ -1319,10 +1343,8 @@ def subfactorial(n):
 
 ```py
 def factorial(n):
-    res = 1
-    for m in range(1, n + 1):
-        res *= m;
-    return res
+    if n == 0: return 1
+    else: return n * factorial(n-1)
 
 def subfactorial(n):
     return round(factorial(n) / 2.718)
@@ -1332,11 +1354,8 @@ def subfactorial(n):
 
 ```js
 function factorial(n){
-    let result = 1;
-    for(let m = 1; m <= n; m ++){
-        result *= m;
-    }
-    return result;
+    if(n == 0) return 1;
+    else return n * factorial(n - 1);
 }
 
 function subfactorial(n){
@@ -1360,11 +1379,8 @@ function subfactorial(n){
 
 ```js
 function factorial(n){
-    let result = 1;
-    for(let m = 1; m <= n; m ++){
-        result *= m;
-    }
-    return result;
+    if(n == 0) return 1;
+    else return n * factorial(n - 1);
 }
 
 function subfactorial(n){
@@ -1376,11 +1392,8 @@ function subfactorial(n){
 
 ```cpp
 int factorial(int n){
-    int result = 1;
-    for(int m = 1; m <= n; m ++){
-        result *= m;
-    }
-    return result;
+    if(n == 0) return 1;
+    else return n * factorial(n-1);
 }
 
 int subfactorial(int n){
@@ -1406,11 +1419,8 @@ int subfactorial(int n){
 #include <math.h>
 
 int factorial(int n){
-    int result = 1;
-    for(int m = 1; m <= n; m ++){
-        result *= m;
-    }
-    return result;
+    if(n == 0) return 1;
+    else return n * factorial(n-1);
 }
 
 int subfactorial(n){
