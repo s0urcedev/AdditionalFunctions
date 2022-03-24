@@ -1375,7 +1375,9 @@ int fibo(int n){
 }
 ```
 
-## Counting factorial / Підрахунок факторіалу / Вычисление факториала
+## Factorials / Факторіали / Факториалы
+
+### Counting factorial / Підрахунок факторіалу / Вычисление факториала
 
 <ins>***Wikipedia:***</ins> *[Factorial](https://en.wikipedia.org/wiki/Factorial)*
 
@@ -1443,7 +1445,7 @@ int factorial(int n){
 }
 ```
 
-## Counting double factorial / Підрахунок подвійного факторіалу / Вычисление двойного факториала
+### Counting double factorial / Підрахунок подвійного факторіалу / Вычисление двойного факториала
 
 `Python`:
 
@@ -1471,7 +1473,7 @@ int double_factorial(int n){
 }
 ```
 
-## Counting subfactorial / Підрахунок субфакторіалу / Вычисление субфакториала
+### Counting subfactorial / Підрахунок субфакторіалу / Вычисление субфакториала
 
 <ins>***Wikipedia:***</ins> *[Subfactorial](https://en.wiktionary.org/wiki/subfactorial)*
 
@@ -1588,7 +1590,7 @@ int subfactorial(int n){
 }
 ```
 
-## Counting primorial / Підрахунок пріморіалу / Вычисление примориала
+### Counting primorial / Підрахунок пріморіалу / Вычисление примориала
 
 
 <ins>***Wikipedia:***</ins> *[Primorial](https://en.wikipedia.org/wiki/Primorial)*
@@ -1767,7 +1769,7 @@ int p_primorial(int n){
 }
 ```
 
-## Counting superfactorial / Підрахунок суперфакторіалу / Вычисление суперфакториала
+### Counting superfactorial / Підрахунок суперфакторіалу / Вычисление суперфакториала
 
 `Python`:
 
@@ -1809,7 +1811,7 @@ int superfactorial(int n){
 }
 ```
 
-## Counting superduperfactorial / Підрахунок гіперфакторіалу / Вычисление гиперфакториала
+### Counting superduperfactorial / Підрахунок гіперфакторіалу / Вычисление гиперфакториала
 
 `Python`:
 
