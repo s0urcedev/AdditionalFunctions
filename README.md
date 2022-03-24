@@ -1866,3 +1866,91 @@ int superduperfactorial(int n){
     else return superfactorial(n) * superduperfactorial(n - 1);
 }
 ```
+
+## Combinatorics / Комбінаторика / Комбинаторика
+
+<ins>***Wikipedia:***</ins> *[Combinatorics](https://en.wikipedia.org/wiki/Combinatorics)*
+
+<ins>***Вікіпедія:***</ins> *[Комбінаторика](https://uk.wikipedia.org/wiki/Комбінаторика)*
+
+<ins>***Википедия:***</ins> *[Комбинаторика](https://ru.wikipedia.org/wiki/Комбинаторика)*
+
+### Permutations / Розміщення / Размещения
+
+`Python`:
+
+```python
+def factorial(n):
+    if n == 0: return 1
+    else: return n * factorial(n - 1)
+    
+def permutations(n, k):
+    return factorial(n) / factorial(n - k)
+```
+
+
+`JavaScript`:
+
+```js
+function factorial(n){
+    if(n == 0) return 1;
+    else return n * factorial(n - 1);
+}
+
+function permutations(n, k){
+    return factorial(n) / factorial(n - k);
+}
+```
+
+`C++`:
+
+```cpp
+int factorial(int n){
+    if(n == 0) return 1;
+    else return n * factorial(n - 1);
+}
+
+int permutations(int n, int k){
+    return factorial(n) / factorial(n - k);
+}
+```
+
+### Combinations / Комбінації / Сочетания
+
+`Python`:
+
+```python
+def factorial(n):
+    if n == 0: return 1
+    else: return n * factorial(n - 1)
+    
+def combinations(n, k):
+    return factorial(n) / (factorial(k) * factorial(n - k))
+```
+
+
+`JavaScript`:
+
+```js
+function factorial(n){
+    if(n == 0) return 1;
+    else return n * factorial(n - 1);
+}
+
+function combinations(n, k){
+    return factorial(n) / (factorial(k) * factorial(n - k));
+}
+```
+
+`C++`:
+
+```cpp
+int factorial(int n){
+    if(n == 0) return 1;
+    else return n * factorial(n - 1);
+}
+
+int combinations(int n, int k){
+    return factorial(n) / (factorial(k) * factorial(n - k));
+}
+```
