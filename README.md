@@ -1308,6 +1308,7 @@ while(d * d <= a){
     else{
         d ++;
     }
+}
 if(a > 1){
     result.push(a);
 }
@@ -1326,6 +1327,7 @@ while(d * d <= a){
     else{
         d ++;
     }
+}
 if(a > 1){
     result.push_back(a);
 }
