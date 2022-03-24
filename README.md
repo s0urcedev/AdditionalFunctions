@@ -1443,6 +1443,34 @@ int factorial(int n){
 }
 ```
 
+## Counting double factorial / Підрахунок подвійного факторіалу / Вычисление двойного факториала
+
+`Python`:
+
+```python
+def double_factorial(n):
+    if n == 0: return 1
+    else: return n * factorial(n - 2)
+```
+
+`JavaScript`:
+
+```js
+function double_factorial(n){
+    if(n == 0) return 1;
+    else return n * factorial(n - 2);
+}
+```
+
+`C++`:
+
+```cpp
+int double_factorial(int n){
+    if(n == 0) return 1;
+    else return n * factorial(n - 2);
+}
+```
+
 ## Counting subfactorial / Підрахунок субфакторіалу / Вычисление субфакториала
 
 <ins>***Wikipedia:***</ins> *[Subfactorial](https://en.wiktionary.org/wiki/subfactorial)*
