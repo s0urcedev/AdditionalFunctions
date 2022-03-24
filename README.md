@@ -1458,7 +1458,7 @@ def double_factorial(n):
 `JavaScript`:
 
 ```js
-function double_factorial(n){
+function doubleFactorial(n){
     if(n == 0) return 1;
     else return n * factorial(n - 2);
 }
@@ -1703,7 +1703,7 @@ function primorial(n){
 //primorial for first n primes
 //пріморіал для перших n простих
 //примориал первых n простых
-function p_primorial(n){
+function pPrimorial(n){
     return primorial(p(n));
 }
 ```
