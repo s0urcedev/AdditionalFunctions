@@ -1172,16 +1172,17 @@ def isprime(n):
 function isprime(n){
     let result = [];
     let d = 2;
-    while(d * d <= a){
-        if(a % d == 0){
+    while(d * d <= n){
+        if(n % d == 0){
             result.push(d);
-            a = Math.floor(a / d);
+            n = Math.floor(n / d);
         }
         else{
             d ++;
         }
-    if(a > 1){
-        result.push(a);
+    }
+    if(n > 1){
+        result.push(n);
     }
     if(result.length > 1) return false;
     else return true;
@@ -1191,19 +1192,20 @@ function isprime(n){
 `C++`:
 
 ```cpp
-int isprime(int n){
+bool isprime(int n){
     std::vector<int> result;
     int d = 2;
-    while(d * d <= a){
-        if(a % d == 0){
+    while(d * d <= n){
+        if(n % d == 0){
             result.push_back(d);
-            a = a / d;
+            n = n / d;
         }
         else{
             d ++;
         }
-    if(a > 1){
-        result.push_back(a);
+    }
+    if(n > 1){
+        result.push_back(n);
     }
     if(result.size() > 1) return false;
     else return true;
@@ -1314,7 +1316,7 @@ if(a > 1){
 `C++`(Using vectors):
 
 ```cpp
-std::vector<int> result;
+std::vector <int> result;
 int d = 2;
 while(d * d <= a){
     if(a % d == 0){
@@ -1557,3 +1559,183 @@ int subfactorial(int n){
     return round(factorial(n) / 2.718);
 }
 ```
+
+## Counting primorial / Підрахунок пріморіалу / Вычисление примориала
+
+
+<ins>***Wikipedia:***</ins> *[Primorial](https://en.wikipedia.org/wiki/Primorial)*
+
+<ins>***Вікіпедія:***</ins> *[Прайморіал](https://uk.wikipedia.org/wiki/Прайморіал)*
+
+<ins>***Википедия:***</ins> *[Праймориал](https://ru.wikipedia.org/wiki/Праймориал)*
+
+`Python`:
+
+```python
+def isprime(n):
+    result = []
+    d = 2
+    while d * d <= n:
+        if n % d == 0:
+            result.append(d)
+            n //= d
+        else:
+            d += 1
+    if n > 1:
+        result.append(n)
+    if len(result) > 1: return False
+    else: return True
+
+def p(n):
+    result = []
+    i = 0
+    m = 1
+    while i < n:
+        m += 1
+        k = True
+        for j in result:
+            if m % j == 0:
+                k = False
+                break
+        if k:
+            result.append(m)
+            i += 1
+    return result[-1]
+
+#primorial less than n
+#пріморіал меньше n
+#примориал меньше n
+def primorial(n):
+    if n == 1: return 1
+    elif isprime(n): return n * primorial(n - 1)
+    else: return primorial(n - 1)
+
+#primorial for first n primes
+#пріморіал для перших n простих
+#примориал первых n простых
+def p_primorial(n):
+    return primorial(p(n))
+```
+
+`JavaScript`:
+
+```js
+function isprime(n){
+    let result = [];
+    let d = 2;
+    while(d * d <= n){
+        if(n % d == 0){
+            result.push(d);
+            n = Math.floor(n / d);
+        }
+        else{
+            d ++;
+        }
+    }
+    if(n > 1){
+        result.push(n);
+    }
+    if(result.length > 1) return false;
+    else return true;
+}
+
+function p(n){
+    let result = [];
+    let i = 0;
+    let m = 1;
+    let k;
+    while(i < n){
+        m ++;
+        k = true;
+        for(j of result){
+            if(m % j == 0){
+                k = false;
+                break;
+            }
+        }
+        if(k){
+            result.push(m);
+            i ++;
+        }
+    }
+    return result[result.length - 1];
+}
+
+//primorial less than n
+//пріморіал меньше n
+//примориал меньше n
+function primorial(n){
+    if(n == 1) return 1;
+    else if(isprime(n)) return n * primorial(n - 1);
+    else return primorial(n - 1);
+}
+
+//primorial for first n primes
+//пріморіал для перших n простих
+//примориал первых n простых
+function p_primorial(n){
+    return primorial(p(n));
+}
+```
+
+`C++`:
+
+```cpp
+bool isprime(int n){
+    std::vector <int> result;
+    int d = 2;
+    while(d * d <= n){
+        if(n % d == 0){
+            result.push_back(d);
+            n = n / d;
+        }
+        else{
+            d ++;
+        }
+    }
+    if(n > 1){
+        result.push_back(n);
+    }
+    if(result.size() > 1) return false;
+    else return true;
+}
+
+int p(int n){
+    std::vector <int> result;
+    int i = 0;
+    int m = 1;
+    bool k;
+    while(i < n){
+        m ++;
+        k = true;
+        for(auto j: result){
+            if(m % j == 0){
+                k = false;
+                break;
+            }
+        }
+        if(k){
+            result.push_back(m);
+            i ++;
+        }
+    }
+    return result[result.size() - 1];
+}
+
+//primorial less than n
+//пріморіал меньше n
+//примориал меньше n
+int primorial(int n){
+    if(n == 1) return 1;
+    else if(isprime(n)) return n * primorial(n - 1);
+    else return primorial(n - 1);
+}
+
+//primorial for first n primes
+//пріморіал для перших n простих
+//примориал первых n простых
+int p_primorial(int n){
+    return primorial(p(n));
+}
+```
+
