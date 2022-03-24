@@ -1739,3 +1739,100 @@ int p_primorial(int n){
 }
 ```
 
+## Counting superfactorial / Підрахунок суперфакторіалу / Вычисление суперфакториала
+
+`Python`:
+
+```python
+def factorial(n):
+    if n == 0: return 1
+    else: return n * factorial(n - 1)
+
+def superfactorial(n):
+    if n == 0: return 1
+    else: return factorial(n) * superfactorial(n - 1)
+```
+
+`JavaScript`:
+
+```js
+function factorial(n){
+    if(n == 0) return 1;
+    else return n * factorial(n - 1);
+}
+
+function superfactorial(n){
+    if(n == 0) return 1;
+    else return factorial(n) * superfactorial(n - 1);
+}
+```
+
+`C++`:
+
+```cpp
+int factorial(int n){
+    if(n == 0) return 1;
+    else return n * factorial(n - 1);
+}
+
+int superfactorial(int n){
+    if(n == 0) return 1;
+    else return factorial(n) * superfactorial(n - 1);
+}
+```
+
+## Counting superduperfactorial / Підрахунок гіперфакторіалу / Вычисление гиперфакториала
+
+`Python`:
+
+```python
+def factorial(n):
+    if n == 0: return 1
+    else: return n * factorial(n - 1)
+
+def superfactorial(n):
+    if n == 0: return 1
+    else: return factorial(n) * superfactorial(n - 1)
+
+def superduperfactorial(n):
+    if n == 0: return 1
+    else: return superfactorial(n) * superduperfactorial(n - 1)
+```
+
+`JavaScript`:
+
+```js
+function factorial(n){
+    if(n == 0) return 1;
+    else return n * factorial(n - 1);
+}
+
+function superfactorial(n){
+    if(n == 0) return 1;
+    else return factorial(n) * superfactorial(n - 1);
+}
+
+function superduperfactorial(n){
+    if(n == 0) return 1;
+    else return superfactorial(n) * superduperfactorial(n - 1);
+}
+```
+
+`C++`:
+
+```cpp
+int factorial(int n){
+    if(n == 0) return 1;
+    else return n * factorial(n - 1);
+}
+
+int superfactorial(int n){
+    if(n == 0) return 1;
+    else return factorial(n) * superfactorial(n - 1);
+}
+
+int superduperfactorial(int n){
+    if(n == 0) return 1;
+    else return superfactorial(n) * superduperfactorial(n - 1);
+}
+```
