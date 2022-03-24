@@ -1169,7 +1169,7 @@ def isprime(n):
 `JavaScript`:
 
 ```js
-function isprime(n){
+function isPrime(n){
     let result = [];
     let d = 2;
     while(d * d <= n){
