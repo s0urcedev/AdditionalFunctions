@@ -1,4 +1,46 @@
 # OlympHelper
+## Packages / Пакети / Пакеты
+
+### Links / Посилання / Ссылки
+
+`Python`: https://pypi.org/project/additional-functions/
+
+`JavaScript`: https://www.npmjs.com/package/additional-functions
+
+### Installing / Встановлення / Установка
+
+`Python`:
+
+```
+$ pip install additional_functions
+```
+
+`JavaScript`:
+
+```
+$ npm install additional-functions
+```
+
+### Importing / Підключення / Подключение
+
+`Python`:
+
+```python
+import additional_functions as main
+from additional_functions import sortings
+from additional_functions import factorials
+from additional_functions import combinatorics
+```
+
+`JavaScript`:
+
+```js
+let main = require('additional_functions');
+let sortings = require('additional_functions/sortings');
+let factorials = require('additional_functions/factorials');
+let combinatorics = require('additional_functions/combinatorics');
+```
+
 ## Introduction / Вступ / Вступление
 
 <ins>***English:***</ins> I have some experience in programming olympics. I think that it could help other people with preparing to competitions and get some working algorithms. There you will find algorithms on Python, JavaScript and C++, but you also can easily rewrite then on your language. I'ill give link to all ideas and text descriptions of algorithms. I believe that this repo could help you :)
@@ -557,6 +599,29 @@ a.emplace(iter + y, x);
 
 ## Sorting / Сортування / Сотрировка
 
+
+### Packages / Пакети / Пакеты
+
+`Python`:
+
+```python
+sortings.bubble(a)
+sortings.selection(a)
+sortings.insertion(a)
+sortings.merge(a)
+sortings.quick(a)
+```
+
+`JavaScript`:
+
+```js
+sortings.bubble(a);
+sortings.selection(a);
+sortings.insertion(a);
+sortings.merge(a);
+sortings.quick(a);
+```
+
 <ins>***English:***</ins> Continuing topix about array I'll tell you about sortring arrays. For better understanding I recomend you to read about [algorythm's time complexity](https://en.wikipedia.org/wiki/Time_complexity). In this part you could know most ways how you can sort your array. Understand pluses and minuses of all algorythms and get cases when and where you might use them.
 
 <ins>***Українська:***</ins> Продовженням теми про масиви я розповім тобі про сортування масивів. Для більш гарного розуміння я рекомендую тобі почитати про [часову складність алгоритму](https://uk.wikipedia.org/wiki/Часова_складність). У цій частині ти зможеш дізнатися про більшість способів, як ти можешь відсортувати твій масив. Зрозуміти плюси на мінуси усіх алгоритмів та отримати ситуаціх коли ти маешь їх використовувати.
@@ -1052,6 +1117,20 @@ sort(a, len);
 
 ## GCD / НСД / НОД
 
+### Packages / Пакети / Пакеты
+
+`Python`:
+
+```python
+main.gcd(a, b)
+```
+
+`JavaScript`:
+
+```js
+main.gcd(a, b);
+```
+
 ### Euclidean algorithm (GCD by subtraction) / Алгоритм Евкліда (НСД відніманнямм) / Алгоритм Евклида (НОД вычитанием)
 
 <ins>***Wikipedia:***</ins> *[Euclidean algorithm](https://en.wikipedia.org/wiki/Euclidean_algorithm)*
@@ -1146,7 +1225,27 @@ while(a != 0 && b != 0){
 int result = a + b;
 ```
 
-## Is prime? / Чи просте число? / Простое ли число?
+## Primes / Прості числа / Простые числа
+
+### Packages / Пакети / Пакеты
+
+`Python`:
+
+```python
+main.iprime(n)
+main.n_primes(n)
+main.prime_factors(n)
+```
+
+`JavaScript`:
+
+```js
+main.iprime(n);
+main.nPrimes(n);
+main.primeFactors(n);
+```
+
+### Is prime? / Чи просте число? / Простое ли число?
 
 `Python`:
 
@@ -1212,7 +1311,7 @@ bool isprime(int n){
 }
 ```
 
-## Finding n prime numbers / Пошук n простих чисел / Поиск n простых чисел
+### Finding n prime numbers / Пошук n простих чисел / Поиск n простых чисел
 
 `Python`:
 
@@ -1278,7 +1377,7 @@ while(i < n){
 }
 ```
 
-## Finding prime factors of a number / Пошук простих множників числа / Поиск простых множителей числа
+### Finding prime factors of a number / Пошук простих множників числа / Поиск простых множителей числа
 
 `Python`:
 
@@ -1335,6 +1434,20 @@ if(a > 1){
 
 ## Fibonacci number / Послідовність Фібоначчі / Числа Фибоначчи
 
+### Packages / Пакети / Пакеты
+
+`Python`:
+
+```python
+main.fibo(n)
+```
+
+`JavaScript`:
+
+```js
+main.fibo(n);
+```
+
 <ins>***Wikipedia:***</ins> *[Fibonacci number](https://en.wikipedia.org/wiki/Fibonacci_number)*
 
 <ins>***Вікіпедія:***</ins> *[Послідовність Фібоначчі](https://uk.wikipedia.org/wiki/Послідовність_Фібоначчі)*
@@ -1378,6 +1491,32 @@ int fibo(int n){
 ```
 
 ## Factorials / Факторіали / Факториалы
+
+### Packages / Пакети / Пакеты
+
+`Python`:
+
+```python
+factorials.factorial(n)
+factorials.double_factorial(n)
+factorials.subfactorial(n)
+factorials.primorial(n)
+factorials.p_primorial(n)
+factorials.superfactorial(n)
+factorials.superduperfactorial(n)
+```
+
+`JavaScript`:
+
+```js
+factorials.factorial(n);
+factorials.doubleFactorial(n);
+factorials.subfactorial(n);
+factorials.primorial(n);
+factorials.pPrimorial(n);
+factorials.superfactorial(n);
+factorials.superduperfactorial(n);
+```
 
 ### Counting factorial / Підрахунок факторіалу / Вычисление факториала
 
@@ -1593,7 +1732,6 @@ int subfactorial(int n){
 ```
 
 ### Counting primorial / Підрахунок пріморіалу / Вычисление примориала
-
 
 <ins>***Wikipedia:***</ins> *[Primorial](https://en.wikipedia.org/wiki/Primorial)*
 
@@ -1870,6 +2008,23 @@ int superduperfactorial(int n){
 ```
 
 ## Combinatorics / Комбінаторика / Комбинаторика
+
+
+### Packages / Пакети / Пакеты
+
+`Python`:
+
+```python
+combinatorics.permutations(n, k)
+combinatorics.combinations(n, k)
+```
+
+`JavaScript`:
+
+```js
+combinatorics.permutations(n, k);
+combinatorics.combinations(n, k);
+```
 
 <ins>***Wikipedia:***</ins> *[Combinatorics](https://en.wikipedia.org/wiki/Combinatorics)*
 
