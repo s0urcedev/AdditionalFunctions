@@ -1,4 +1,4 @@
-# OlympHelper
+# AdditionalFunctions
 ## Packages / Пакети / Пакеты
 
 ### Links / Посилання / Ссылки
