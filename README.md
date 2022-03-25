@@ -30,6 +30,7 @@ import additional_functions as main
 from additional_functions import sortings
 from additional_functions import factorials
 from additional_functions import combinatorics
+from additional_functions import roman_arabic_numerals
 ```
 
 `JavaScript`:
@@ -39,6 +40,7 @@ let main = require('additional_functions');
 let sortings = require('additional_functions/sortings');
 let factorials = require('additional_functions/factorials');
 let combinatorics = require('additional_functions/combinatorics');
+let romanArabicNumerals = require('additional_functions/roman-arabic-numerals');
 ```
 
 ## Introduction / Вступ / Вступление
@@ -2009,7 +2011,6 @@ int superduperfactorial(int n){
 
 ## Combinatorics / Комбінаторика / Комбинаторика
 
-
 ### Packages / Пакети / Пакеты
 
 `Python`:
@@ -2113,6 +2114,22 @@ int combinations(int n, int k){
 ```
 
 ## Roman and arabic numerals / Римські та арабські числа / Римские и арабские числа
+
+### Packages / Пакети / Пакеты
+
+`Python`:
+
+```python
+roman_arabic_numerals.rom_arab(p);
+roman_arabic_numerals.arab_rom(s);
+```
+
+`JavaScript`:
+
+```js
+romanArabicNumerals.romArab(p);
+romanArabicNumerals.arabRom(s);
+```
 
 `Python`:
 
