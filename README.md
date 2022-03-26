@@ -537,7 +537,7 @@ a.emplace(iter, x);
 `Or`(Using vectors):
 
 ```cpp
-a.push_bacl(x);
+a.push_back(x);
 ```
 
 `a` — old array / старий масив / старый массив
