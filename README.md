@@ -2175,8 +2175,8 @@ def generate_permutations(arr, k = None):
                 local_local_result.append(local_local_arr.pop(g - 1))
                 ind -= (g - 1) * f
             if len(local_local_arr):
-                local_local_result.append(local_local_arr[0]);
-            local_result.append(local_local_result);
+                local_local_result.append(local_local_arr[0])
+            local_result.append(local_local_result)
         for u in local_result:
             result.append(u)
     return result
