@@ -2023,8 +2023,10 @@ combinatorics.combinations(n, k)
 `JavaScript`:
 
 ```js
-combinatorics.permutations(n, k);
-combinatorics.combinations(n, k);
+combinatorics.countCombinations(n, k);
+combinatorics.countPermutations(n, k);
+combinatorics.generateCombinations(n, k);
+combinatorics.generatePermutations(n, k);
 ```
 
 <ins>***Wikipedia:***</ins> *[Combinatorics](https://en.wikipedia.org/wiki/Combinatorics)*
@@ -2032,46 +2034,6 @@ combinatorics.combinations(n, k);
 <ins>***Вікіпедія:***</ins> *[Комбінаторика](https://uk.wikipedia.org/wiki/Комбінаторика)*
 
 <ins>***Википедия:***</ins> *[Комбинаторика](https://ru.wikipedia.org/wiki/Комбинаторика)*
-
-### Permutations / Розміщення / Размещения
-
-`Python`:
-
-```python
-def factorial(n):
-    if n == 0: return 1
-    else: return n * factorial(n - 1)
-    
-def permutations(n, k):
-    return factorial(n) / factorial(n - k)
-```
-
-
-`JavaScript`:
-
-```js
-function factorial(n){
-    if(n == 0) return 1;
-    else return n * factorial(n - 1);
-}
-
-function permutations(n, k){
-    return factorial(n) / factorial(n - k);
-}
-```
-
-`C++`:
-
-```cpp
-int factorial(int n){
-    if(n == 0) return 1;
-    else return n * factorial(n - 1);
-}
-
-int permutations(int n, int k){
-    return factorial(n) / factorial(n - k);
-}
-```
 
 ### Combinations / Комбінації / Сочетания
 
@@ -2095,8 +2057,33 @@ function factorial(n){
     else return n * factorial(n - 1);
 }
 
-function combinations(n, k){
+function countCombinations(n, k){
     return factorial(n) / (factorial(k) * factorial(n - k));
+}
+
+function generateCombinations(arr, k = NaN){
+    if(isNaN(k)){
+        k = 1;
+    }
+    let result = [];
+    for(let i = 0; i < countCombinations(arr.length, k); i ++){
+        let localResult = [0];
+        let n = arr.length;
+        let s = 0;
+        for(let j = 1; j <= k; j ++){
+            let t = localResult[j - 1] + 1;
+            while((t < (n - k + j)) && ((s + countCombinations(n - t, k - j)) <= i)){
+                s += countCombinations(n - t, k - j);
+                t ++;   
+            }
+            localResult.push(t);
+        }
+        for(l in localResult){
+            localResult[l] = arr[localResult[l] - 1];
+        }
+        result.push(localResult.slice(1, localResult.length));
+    }
+    return result;
 }
 ```
 
@@ -2110,6 +2097,109 @@ int factorial(int n){
 
 int combinations(int n, int k){
     return factorial(n) / (factorial(k) * factorial(n - k));
+}
+```
+
+### Permutations / Розміщення / Размещения
+
+`Python`:
+
+```python
+def factorial(n):
+    if n == 0: return 1
+    else: return n * factorial(n - 1)
+    
+def permutations(n, k):
+    return factorial(n) / factorial(n - k)
+```
+
+
+`JavaScript`:
+
+```js
+function factorial(n){
+    if(n == 0) return 1;
+    else return n * factorial(n - 1);
+}
+
+function countCombinations(n, k){
+    return factorial(n) / (factorial(k) * factorial(n - k));
+}
+
+function countPermutations(n, k){
+    return factorial(n) / factorial(n - k);
+}
+
+function generateCombinations(arr, k = NaN){
+    if(isNaN(k)){
+        k = 1;
+    }
+    let result = [];
+    for(let i = 0; i < countCombinations(arr.length, k); i ++){
+        let localResult = [0];
+        let n = arr.length;
+        let s = 0;
+        for(let j = 1; j <= k; j ++){
+            let t = localResult[j - 1] + 1;
+            while((t < (n - k + j)) && ((s + countCombinations(n - t, k - j)) <= i)){
+                s += countCombinations(n - t, k - j);
+                t ++;   
+            }
+            localResult.push(t);
+        }
+        for(l in localResult){
+            localResult[l] = arr[localResult[l] - 1];
+        }
+        result.push(localResult.slice(1, localResult.length));
+    }
+    return result;
+}
+
+function generatePermutations(arr, k = NaN){
+    if(isNaN(k)){
+        k = arr.length;
+    }
+    let result = [];
+    let m = generateCombinations(arr, k);
+    for(arr of m){
+        let localResult = [];
+        for(let i = 0; i < factorial(arr.length); i ++){
+            let ind = i + 1;
+            let localLocalResult = [];
+            let localLocalArr = [];
+            for(a of arr){
+                localLocalArr.push(a);
+            }
+            let n = localLocalArr.length;
+            for(let j = 1; j <= n; j ++){
+                let f = factorial(n - j);
+                let g = Math.floor((ind + f - 1) / f);
+                localLocalResult.push(localLocalArr.splice(g - 1, 1)[0]);
+                ind -= (g - 1) * f;
+            }
+            if(localLocalArr.length){
+                localLocalResult.push(localLocalArr[0]);
+            }
+            localResult.push(localLocalResult);
+        }
+        for(u of localResult){
+            result.push(u);
+        }
+    }
+    return result;
+}
+```
+
+`C++`:
+
+```cpp
+int factorial(int n){
+    if(n == 0) return 1;
+    else return n * factorial(n - 1);
+}
+
+int permutations(int n, int k){
+    return factorial(n) / factorial(n - k);
 }
 ```
 
