@@ -3,9 +3,9 @@
 
 ### Links / Посилання / Ссылки
 
-`Python`: https://pypi.org/project/additional-functions/
+`Python`: [https://pypi.org/project/additional-functions](https://pypi.org/project/additional-functions/)
 
-`JavaScript`: https://www.npmjs.com/package/additional-functions
+`JavaScript`: [https://www.npmjs.com/package/additional-functions](https://www.npmjs.com/package/additional-functions)
 
 ### Installing / Встановлення / Установка
 
