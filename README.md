@@ -2343,7 +2343,7 @@ int count_permutations(int n, int k){
     return factorial(n) / factorial(n - k);
 }
 
-std::vector <vector <int>> generate_combinations(vector <int> arr, int k){
+std::vector <vector <int>> generate_combinations(std::vector <int> arr, int k){
     std::vector <vector <int>> result;
     for(int i = 0; i < count_combinations(arr.size(), k); i ++){
         std::vector <int> local_result(1, 0);
@@ -2360,16 +2360,16 @@ std::vector <vector <int>> generate_combinations(vector <int> arr, int k){
         for(int l = 1; l < local_result.size(); l ++){
             local_result[l] = arr[local_result[l] - 1];
         }
-        result.push_back(vector <int>(local_result.begin() + 1, local_result.end()));
+        result.push_back(std::vector <int>(local_result.begin() + 1, local_result.end()));
     }
     return result;
 }
 
-std::vector <vector <int>> generate_permutations(vector <int> arr, int k){
+std::vector <vector <int>> generate_permutations(std::vector <int> arr, int k){
     std::vector <vector <int>> result;
     std::vector <vector <int>> m = generate_combinations(arr, k);
     for(auto a: m){
-        vector <vector <int>> local_result;
+        std::vector <vector <int>> local_result;
         for(int i = 0; i < factorial(a.size()); i ++){
             int ind = i + 1;
             std::vector <int> local_local_result;
