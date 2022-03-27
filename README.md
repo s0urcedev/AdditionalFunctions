@@ -1123,7 +1123,7 @@ sort(a, len);
 
 <ins>***File:***</ins> *[Merge_Sort.cpp](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Merge_Sort.cpp)*
 
-## GCD / НСД / НОД
+## GCD | LCM / НСД | НСК / НОД | НОК
 
 ### Packages / Пакети / Пакеты
 
@@ -1131,106 +1131,130 @@ sort(a, len);
 
 ```python
 main.gcd(a, b)
+main.lcm(a, b)
 ```
 
 `JavaScript`:
 
 ```js
 main.gcd(a, b);
+main.lcm(a, b);
 ```
 
-### Euclidean algorithm (GCD by subtraction) / Алгоритм Евкліда (НСД відніманнямм) / Алгоритм Евклида (НОД вычитанием)
+### GCD / НСД / НОД
 
-<ins>***Wikipedia:***</ins> *[Euclidean algorithm](https://en.wikipedia.org/wiki/Euclidean_algorithm)*
+<ins>***Wikipedia:***</ins> *[GCD](https://en.wikipedia.org/wiki/Greatest_common_divisor)*
 
-<ins>***Вікіпедія:***</ins> *[Алгоритм Евкліда](https://uk.wikipedia.org/wiki/Алгоритм_Евкліда)*
+<ins>***Вікіпедія:***</ins> *[НСД](https://uk.wikipedia.org/wiki/Найбільший_спільний_дільник)*
 
-<ins>***Википедия:***</ins> *[Алгоритм Евклида](https://ru.wikipedia.org/wiki/Алгоритм_Евклида)*
+<ins>***Википедия:***</ins> *[НОД](https://ru.wikipedia.org/wiki/Наибольший_общий_делитель)*
 
 `Python`:
 
 ```python
-while a != b:
-    if a > b:
-        a = a - b
-    else:
-        b = b - a
-        
-result = a
+def gcd(a, b):
+    while a != 0 and b != 0:
+        if a > b:
+            a = a % b
+        else:
+            b = b % a
+    return a + b
 ```
 
 `JavaScript`:
 
 ```js
-while(a != b){
-    if(a > b){
-        a = a - b;
+function gcd(a, b){
+    while(a != 0 && b != 0){
+        if(a > b){
+            a = a % b;
+        }
+        else{
+            b = b % a;
+        }
     }
-    else{
-        b = b - a;
-    }
+    return a + b;
 }
-
-let result = a;
 ```
 
 `C++`:
 
 ```cpp
-while(a != b){
-    if(a > b){
-        a = a - b;
+int gcd(int a, int b){
+    while(a != 0 && b != 0){
+        if(a > b){
+            a = a % b;
+        }
+        else{
+            b = b % a;
+        }
     }
-    else{
-        b = b - a;
-    }
+    return a + b;
 }
-
-int result = a;
 ```
 
-### GCD by division / НСД діленням / НОД делением
+
+### LCM / НСК / НОК
+
+<ins>***Wikipedia:***</ins> *[LCM](https://en.wikipedia.org/wiki/Least_common_multiple)*
+
+<ins>***Вікіпедія:***</ins> *[НСК](https://uk.wikipedia.org/wiki/Найменше_спільне_кратне)*
+
+<ins>***Википедия:***</ins> *[НОК](https://ru.wikipedia.org/wiki/Наименьшее_общее_кратное)*
 
 `Python`:
 
 ```python
-while a != 0 and b != 0:
-    if a > b:
-        a = a % b
-    else:
-        b = b % a
-        
-result = a + b
+def gcd(a, b):
+    while a != 0 and b != 0:
+        if a > b:
+            a = a % b
+        else:
+            b = b % a
+    return a + b
+    
+def lcm(a, b):
+    return int((a * b) / gcd(a, b))
 ```
 
 `JavaScript`:
 
 ```js
-while(a != 0 && b != 0){
-    if(a > b){
-        a = a % b;
+function gcd(a, b){
+    while(a != 0 && b != 0){
+        if(a > b){
+            a = a % b;
+        }
+        else{
+            b = b % a;
+        }
     }
-    else{
-        b = b % a;
-    }
+    return a + b;
 }
 
-let result = a + b;
+function lcm(a, b){
+    return Math.floor((a * b) / gcd(a, b));
+}
 ```
 
 `C++`:
 
 ```cpp
-while(a != 0 && b != 0){
-    if(a > b){
-        a = a % b;
+int gcd(int a, int b){
+    while(a != 0 && b != 0){
+        if(a > b){
+            a = a % b;
+        }
+        else{
+            b = b % a;
+        }
     }
-    else{
-        b = b % a;
-    }
+    return a + b;
 }
 
-int result = a + b;
+int lcm(int a, int b){
+    return (a * b) / gcd(a, b);
+}
 ```
 
 ## Primes / Прості числа / Простые числа
