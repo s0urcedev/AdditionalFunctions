@@ -167,6 +167,53 @@ for(auto n: a){
 
 `len` — array length / довжина масива / длина массива
 
+### Print array / Вивід масива / Вывод массива
+
+`Python`:
+
+```python
+print(a)
+```
+
+`JavaScript`:
+
+```js
+console.log(a);
+```
+
+`C++`:
+
+```cpp
+//change type like you need
+//змінюй тип як тобі треба
+//изменяй тип как тебе надо
+void print_array(int *a, int len){
+    cout << "[ ";
+    for(int i = 0; i < len; i ++){
+        cout << a[i]<< ' ';
+    }
+    cout << "]";
+}
+```
+
+`C++`(Using vectors):
+
+```cpp
+//change type like you need
+//змінюй тип як тобі треба
+//изменяй тип как тебе надо
+void print_vector(std::vector <int> a){
+    cout << "{ ";
+    for(auto i: a){
+        cout << i << ' ';
+    }
+    cout << "}";
+}
+```
+
+`a` — array / масив / массив
+
+`len` — array length / довжина масива / длина массива
 
 ### Make a slice / вирізати / вырезать
 
