@@ -2710,13 +2710,13 @@ int rom_arab(string p){
                 z += 1000;
             }
             else{
-                cout << "Uncorrect input" << endl;
+                std::cout << "Uncorrect input" << std::endl;
                 return 0;
             }
         }
     }
     catch(...){
-        std::cout << "Uncorrect input" << endl;
+        std::cout << "Uncorrect input" << std::endl;
         return 0;
     }
     return z;
@@ -2781,7 +2781,7 @@ string arab_rom(int s){
         }
     }
     catch(...){
-        std::cout << "Uncorrect input" << endl;
+        std::cout << "Uncorrect input" << std::endl;
         return 0;
     }
     return v;
