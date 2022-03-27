@@ -1,11 +1,15 @@
 # AdditionalFunctions
+## Page / Сторінка / Страница
+
+[s0urce18.github.io/AdditionalFunctions](https://s0urce18.github.io/AdditionalFunctions/)
+
 ## Packages / Пакети / Пакеты
 
 ### Links / Посилання / Ссылки
 
-`Python`: [https://pypi.org/project/additional-functions](https://pypi.org/project/additional-functions/)
+`Python`: [pypi.org/project/additional-functions](https://pypi.org/project/additional-functions/)
 
-`JavaScript`: [https://www.npmjs.com/package/additional-functions](https://www.npmjs.com/package/additional-functions)
+`JavaScript`: [npmjs.com/package/additional-functions](https://www.npmjs.com/package/additional-functions)
 
 ### Installing / Встановлення / Установка
 
