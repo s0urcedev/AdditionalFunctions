@@ -30,6 +30,7 @@ import additional_functions as main
 from additional_functions import sortings
 from additional_functions import factorials
 from additional_functions import combinatorics
+from additional_functions import roman_arabic_numerals
 ```
 
 `JavaScript`:
@@ -39,6 +40,7 @@ let main = require('additional_functions');
 let sortings = require('additional_functions/sortings');
 let factorials = require('additional_functions/factorials');
 let combinatorics = require('additional_functions/combinatorics');
+let romanArabicNumerals = require('additional_functions/roman-arabic-numerals');
 ```
 
 ## Introduction / Вступ / Вступление
@@ -535,7 +537,7 @@ a.emplace(iter, x);
 `Or`(Using vectors):
 
 ```cpp
-a.push_bacl(x);
+a.push_back(x);
 ```
 
 `a` — old array / старий масив / старый массив
@@ -2009,21 +2011,24 @@ int superduperfactorial(int n){
 
 ## Combinatorics / Комбінаторика / Комбинаторика
 
-
 ### Packages / Пакети / Пакеты
 
 `Python`:
 
 ```python
-combinatorics.permutations(n, k)
-combinatorics.combinations(n, k)
+combinatorics.count_combinations(n, k);
+combinatorics.count_permutations(n, k);
+combinatorics.generate_combinations(arr, k);
+combinatorics.generate_permutations(arr, k);
 ```
 
 `JavaScript`:
 
 ```js
-combinatorics.permutations(n, k);
-combinatorics.combinations(n, k);
+combinatorics.countCombinations(n, k);
+combinatorics.countPermutations(n, k);
+combinatorics.generateCombinations(arr, k);
+combinatorics.generatePermutations(arr, k);
 ```
 
 <ins>***Wikipedia:***</ins> *[Combinatorics](https://en.wikipedia.org/wiki/Combinatorics)*
@@ -2031,46 +2036,6 @@ combinatorics.combinations(n, k);
 <ins>***Вікіпедія:***</ins> *[Комбінаторика](https://uk.wikipedia.org/wiki/Комбінаторика)*
 
 <ins>***Википедия:***</ins> *[Комбинаторика](https://ru.wikipedia.org/wiki/Комбинаторика)*
-
-### Permutations / Розміщення / Размещения
-
-`Python`:
-
-```python
-def factorial(n):
-    if n == 0: return 1
-    else: return n * factorial(n - 1)
-    
-def permutations(n, k):
-    return factorial(n) / factorial(n - k)
-```
-
-
-`JavaScript`:
-
-```js
-function factorial(n){
-    if(n == 0) return 1;
-    else return n * factorial(n - 1);
-}
-
-function permutations(n, k){
-    return factorial(n) / factorial(n - k);
-}
-```
-
-`C++`:
-
-```cpp
-int factorial(int n){
-    if(n == 0) return 1;
-    else return n * factorial(n - 1);
-}
-
-int permutations(int n, int k){
-    return factorial(n) / factorial(n - k);
-}
-```
 
 ### Combinations / Комбінації / Сочетания
 
@@ -2081,8 +2046,27 @@ def factorial(n):
     if n == 0: return 1
     else: return n * factorial(n - 1)
     
-def combinations(n, k):
+def count_combinations(n, k):
     return factorial(n) / (factorial(k) * factorial(n - k))
+    
+def generate_combinations(arr, k = None):
+    if(k == None):
+        k = 1
+    result = []
+    for i in range(0, count_combinations(len(arr), k)):
+        local_result = [0]
+        n = len(arr)
+        s = 0
+        for j in range(1,k+1):
+            t = local_result[j - 1] + 1;
+            while (t < (n - k + j)) and ((s + count_combinations(n - t, k - j)) <= i):
+                s += count_combinations(n - t, k - j)
+                t += 1  
+            local_result.append(t)
+        for l in range(0, len(local_result)):
+            local_result[l] = arr[local_result[l] - 1]
+        result.append(local_result[1:])
+    return result
 ```
 
 
@@ -2094,8 +2078,33 @@ function factorial(n){
     else return n * factorial(n - 1);
 }
 
-function combinations(n, k){
+function countCombinations(n, k){
     return factorial(n) / (factorial(k) * factorial(n - k));
+}
+
+function generateCombinations(arr, k = NaN){
+    if(isNaN(k)){
+        k = 1;
+    }
+    let result = [];
+    for(let i = 0; i < countCombinations(arr.length, k); i ++){
+        let localResult = [0];
+        let n = arr.length;
+        let s = 0;
+        for(let j = 1; j <= k; j ++){
+            let t = localResult[j - 1] + 1;
+            while((t < (n - k + j)) && ((s + countCombinations(n - t, k - j)) <= i)){
+                s += countCombinations(n - t, k - j);
+                t ++;   
+            }
+            localResult.push(t);
+        }
+        for(l in localResult){
+            localResult[l] = arr[localResult[l] - 1];
+        }
+        result.push(localResult.slice(1, localResult.length));
+    }
+    return result;
 }
 ```
 
@@ -2107,7 +2116,628 @@ int factorial(int n){
     else return n * factorial(n - 1);
 }
 
-int combinations(int n, int k){
+int count_combinations(int n, int k){
     return factorial(n) / (factorial(k) * factorial(n - k));
+}
+
+vector <vector <int>> generate_combinations(vector <int> arr, int k){
+    vector <vector <int>> result;
+    for(int i = 0; i < count_combinations(arr.size(), k); i ++){
+        vector <int> local_result(1, 0);
+        int n = arr.size();
+        int s = 0;
+        for(int j = 1; j <= k; j++){
+            int t = local_result[j - 1] + 1;
+            while((t < (n - k + j)) && ((s + count_combinations(n - t, k - j) <= i))){
+                s += count_combinations(n - t, k - j);
+                t ++;
+            }
+            local_result.push_back(t);
+        }
+        for(int l = 1; l < local_result.size(); l ++){
+            local_result[l] = arr[local_result[l] - 1];
+        }
+        result.push_back(vector <int>(local_result.begin() + 1, local_result.end()));
+    }
+    return result;
+}
+```
+
+### Permutations / Розміщення / Размещения
+
+`Python`:
+
+```python
+def factorial(n):
+    if n == 0: return 1
+    else: return n * factorial(n - 1)
+
+def count_combinations(n, k):
+    return factorial(n) / (factorial(k) * factorial(n - k))
+
+def count_permutations(n, k):
+    return factorial(n) / factorial(n - k)
+    
+def generate_combinations(arr, k = None):
+    if(k == None):
+        k = 1
+    result = []
+    for i in range(0, count_combinations(len(arr), k)):
+        local_result = [0]
+        n = len(arr)
+        s = 0
+        for j in range(1,k+1):
+            t = local_result[j - 1] + 1;
+            while (t < (n - k + j)) and ((s + count_combinations(n - t, k - j)) <= i):
+                s += count_combinations(n - t, k - j)
+                t += 1  
+            local_result.append(t)
+        for l in range(0, len(local_result)):
+            local_result[l] = arr[local_result[l] - 1]
+        result.append(local_result[1:])
+    return result
+
+def generate_permutations(arr, k = None):
+    if(k == None):
+        k = len(arr)
+    result = []
+    m = generate_combinations(arr, k)
+    for arr in m:
+        local_result = []
+        for i in range(0, factorial(len(arr))):
+            ind = i + 1
+            local_local_result = []
+            local_local_arr = []
+            for a in arr:
+                local_local_arr.append(a)
+            n = len(local_local_arr)
+            for j in range(1, n + 1):
+                f = factorial(n - j)
+                g = int((ind + f - 1) / f)
+                local_local_result.append(local_local_arr.pop(g - 1))
+                ind -= (g - 1) * f
+            if len(local_local_arr):
+                local_local_result.append(local_local_arr[0])
+            local_result.append(local_local_result)
+        for u in local_result:
+            result.append(u)
+    return result
+```
+
+
+`JavaScript`:
+
+```js
+function factorial(n){
+    if(n == 0) return 1;
+    else return n * factorial(n - 1);
+}
+
+function countCombinations(n, k){
+    return factorial(n) / (factorial(k) * factorial(n - k));
+}
+
+function countPermutations(n, k){
+    return factorial(n) / factorial(n - k);
+}
+
+function generateCombinations(arr, k = NaN){
+    if(isNaN(k)){
+        k = 1;
+    }
+    let result = [];
+    for(let i = 0; i < countCombinations(arr.length, k); i ++){
+        let localResult = [0];
+        let n = arr.length;
+        let s = 0;
+        for(let j = 1; j <= k; j ++){
+            let t = localResult[j - 1] + 1;
+            while((t < (n - k + j)) && ((s + countCombinations(n - t, k - j)) <= i)){
+                s += countCombinations(n - t, k - j);
+                t ++;   
+            }
+            localResult.push(t);
+        }
+        for(l in localResult){
+            localResult[l] = arr[localResult[l] - 1];
+        }
+        result.push(localResult.slice(1, localResult.length));
+    }
+    return result;
+}
+
+function generatePermutations(arr, k = NaN){
+    if(isNaN(k)){
+        k = arr.length;
+    }
+    let result = [];
+    let m = generateCombinations(arr, k);
+    for(arr of m){
+        let localResult = [];
+        for(let i = 0; i < factorial(arr.length); i ++){
+            let ind = i + 1;
+            let localLocalResult = [];
+            let localLocalArr = [];
+            for(a of arr){
+                localLocalArr.push(a);
+            }
+            let n = localLocalArr.length;
+            for(let j = 1; j <= n; j ++){
+                let f = factorial(n - j);
+                let g = Math.floor((ind + f - 1) / f);
+                localLocalResult.push(localLocalArr.splice(g - 1, 1)[0]);
+                ind -= (g - 1) * f;
+            }
+            if(localLocalArr.length){
+                localLocalResult.push(localLocalArr[0]);
+            }
+            localResult.push(localLocalResult);
+        }
+        for(u of localResult){
+            result.push(u);
+        }
+    }
+    return result;
+}
+```
+
+`C++`:
+
+```cpp
+int factorial(int n){
+    if(n == 0) return 1;
+    else return n * factorial(n - 1);
+}
+
+int count_combinations(int n, int k){
+    return factorial(n) / (factorial(k) * factorial(n - k));
+}
+
+int count_permutations(int n, int k){
+    return factorial(n) / factorial(n - k);
+}
+
+vector <vector <int>> generate_combinations(vector <int> arr, int k){
+    vector <vector <int>> result;
+    for(int i = 0; i < count_combinations(arr.size(), k); i ++){
+        vector <int> local_result(1, 0);
+        int n = arr.size();
+        int s = 0;
+        for(int j = 1; j <= k; j++){
+            int t = local_result[j - 1] + 1;
+            while((t < (n - k + j)) && ((s + count_combinations(n - t, k - j) <= i))){
+                s += count_combinations(n - t, k - j);
+                t ++;
+            }
+            local_result.push_back(t);
+        }
+        for(int l = 1; l < local_result.size(); l ++){
+            local_result[l] = arr[local_result[l] - 1];
+        }
+        result.push_back(vector <int>(local_result.begin() + 1, local_result.end()));
+    }
+    return result;
+}
+
+vector <vector <int>> generate_permutations(vector <int> arr, int k){
+    vector <vector <int>> result;
+    vector <vector <int>> m = generate_combinations(arr, k);
+    for(auto a: m){
+        vector <vector <int>> local_result;
+        for(int i = 0; i < factorial(a.size()); i ++){
+            int ind = i + 1;
+            vector <int> local_local_result;
+            vector <int> local_local_arr;
+            for(auto r: a){
+                local_local_arr.push_back(r);
+            }
+            int n = local_local_arr.size();
+            for(int j = 1; j <= n; j ++){
+                int f = factorial(n - j);
+                int g = (ind + f - 1) / f;
+                local_local_result.push_back(local_local_arr[g - 1]);
+                auto iter = local_local_arr.cbegin();
+                local_local_arr.erase(iter + g - 1);
+                ind -= (g - 1) * f;
+            }
+            if(local_local_arr.size()){
+                local_local_result.push_back(local_local_arr[0]);
+            }
+            local_result.push_back(local_local_result);
+        }
+        for(auto u: local_result){
+            result.push_back(u);
+        }
+    }
+    return result;
+}
+```
+
+## Roman and arabic numerals / Римські та арабські числа / Римские и арабские числа
+
+### Packages / Пакети / Пакеты
+
+`Python`:
+
+```python
+roman_arabic_numerals.rom_arab(p);
+roman_arabic_numerals.arab_rom(s);
+```
+
+`JavaScript`:
+
+```js
+romanArabicNumerals.romArab(p);
+romanArabicNumerals.arabRom(s);
+```
+
+`Python`:
+
+```python
+def rom_arab(p):
+    z = 0
+    try:
+        p = str(p).lower()
+        for i in range(0, len(p)):
+            if p[i] == 'i':
+                try:
+                    if p[i+1] == 'v' or p[i+1] == 'x': 
+                        z -= 1
+                    else:
+                        z += 1
+                except:
+                    z += 1
+            elif p[i] == 'v':
+                z += 5
+            elif p[i] == 'x':
+                try:
+                    if p[i+1] == 'c' or p[i+1] == 'l': 
+                        z -= 10
+                    else:
+                        z += 10
+                except:
+                    z += 10
+            elif p[i] == 'l':
+                z += 50
+            elif p[i] == 'c':
+                try:
+                    if p[i+1] == 'm' or p[i+1] == 'd': 
+                        z -= 100
+                    else:
+                        z += 100
+                except:
+                    z += 100
+            elif p[i] == 'd':
+                z += 500
+            elif p[i] == 'm':
+                z += 1000
+            else:
+                return None
+    except:
+        return None
+    return z
+
+def arab_rom(s):
+    v = ""
+    try:
+        s = int(s)
+        while s > 0:
+            if s >= 1000:
+                s -= 1000
+                v += "M"
+            elif s >= 900:
+                s -= 900
+                v += "CM"
+            elif s >= 500:
+                s -= 500
+                v += "D"
+            elif s >= 400:
+                s -= 400
+                v += "CD"
+            elif s >= 100:
+                s -= 100
+                v += "C"
+            elif s >= 90:
+                s -= 90
+                v += "XC"
+            elif s >= 50:
+                s -= 50
+                v += "L"
+            elif s >= 40:
+                s -= 40
+                v += "XL"
+            elif s >= 10:
+                s -= 10
+                v += "X"
+            elif s >= 9:
+                s -= 9 
+                v += "IX"
+            elif s >= 5:
+                s -= 5
+                v += "V"
+            elif s >= 4:
+                s -= 4
+                v += "IV"
+            elif s >= 1:
+                s -= 1
+                v += "I"
+    except:
+        return None
+    return v
+```
+
+`JavaScript`:
+
+```js
+function romArab(p){
+    let z = 0;
+    try{
+        p = String(p).toLowerCase();
+        for(let i = 0; i < p.length; i ++){
+            if(p[i] == 'i'){
+                try{
+                    if(p[i+1] == 'v' || p[i+1] == 'x'){ 
+                        z -= 1;
+                    }
+                    else{
+                        z += 1;
+                    }
+                }
+                catch(e){
+                    z += 1;
+                }
+            }
+            else if(p[i] == 'v'){
+                z += 5;
+            }
+            else if(p[i] == 'x'){
+                try{
+                    if(p[i+1] == 'c' || p[i+1] == 'l'){
+                        z -= 10;
+                    }
+                    else{
+                        z += 10;
+                    }
+                }
+                catch(e){
+                    z += 10;
+                }
+            }
+            else if(p[i] == 'l'){
+                z += 50;
+            }
+            else if(p[i] == 'c'){
+                try{
+                    if(p[i+1] == 'm' || p[i+1] == 'd'){ 
+                        z -= 100;
+                    }
+                    else{
+                        z += 100;
+                    }
+                }
+                catch(e){
+                    z += 100;
+                }
+            }
+            else if(p[i] == 'd'){
+                z += 500;
+            }
+            else if(p[i] == 'm'){
+                z += 1000;
+            }
+            else{
+                return NaN;
+            }
+        }
+    }
+    catch(e){
+       return NaN;
+    }
+    return z;
+}
+
+function arabRom(s){
+    let v = "";
+    try{
+        s = Number(s);
+        if(isNaN(s)){
+            return NaN;
+        }
+        while(s > 0){
+            if(s >= 1000){
+                s -= 1000;
+                v += "M";
+            }
+            else if(s >= 900){
+                s -= 900;
+                v += "CM";
+            }
+            else if(s >= 500){
+                s -= 500;
+                v += "D";
+            }
+            else if(s >= 400){
+                s -= 400;
+                v += "CD";
+            }
+            else if(s >= 100){
+                s -= 100;
+                v += "C";
+            }
+            else if(s >= 90){
+                s -= 90;
+                v += "XC";
+            }
+            else if(s >= 50){
+                s -= 50;
+                v += "L";
+            }
+            else if(s >= 40){
+                s -= 40;
+                v += "XL";
+            }
+            else if(s >= 10){
+                s -= 10;
+                v += "X";
+            }
+            else if(s >= 9){
+                s -= 9;
+                v += "IX";
+            }
+            else if(s >= 5){
+                s -= 5;
+                v += "V";
+            }
+            else if(s >= 4){
+                s -= 4;
+                v += "IV";
+            }
+            else if(s >= 1){
+                s -= 1;
+                v += "I";
+            }
+        }
+    }
+    catch(e){
+        return NaN;
+    }
+    return v;
+}
+```
+
+`C++`:
+
+```cpp
+int rom_arab(string p){
+    int z = 0;
+    try{
+        for(int i = 0; i < p.length(); i ++){
+            if(tolower(p[i]) == 'i'){
+                try{
+                    if(tolower(p[i+1]) == 'v' || tolower(p[i+1]) == 'x'){ 
+                        z -= 1;
+                    }
+                    else{
+                        z += 1;
+                    }
+                }
+                catch(...){
+                    z += 1;
+                }
+            }
+            else if(tolower(p[i]) == 'v'){
+                z += 5;
+            }
+            else if(tolower(p[i]) == 'x'){
+                try{
+                    if(tolower(p[i+1]) == 'c' || tolower(p[i+1]) == 'l'){
+                        z -= 10;
+                    }
+                    else{
+                        z += 10;
+                    }
+                }
+                catch(...){
+                    z += 10;
+                }
+            }
+            else if(tolower(p[i]) == 'l'){
+                z += 50;
+            }
+            else if(tolower(p[i]) == 'c'){
+                try{
+                    if(tolower(p[i+1]) == 'm' || tolower(p[i+1]) == 'd'){ 
+                        z -= 100;
+                    }
+                    else{
+                        z += 100;
+                    }
+                }
+                catch(...){
+                    z += 100;
+                }
+            }
+            else if(tolower(p[i]) == 'd'){
+                z += 500;
+            }
+            else if(tolower(p[i]) == 'm'){
+                z += 1000;
+            }
+            else{
+                cout << "Uncorrect input" << endl;
+                return 0;
+            }
+        }
+    }
+    catch(...){
+        cout << "Uncorrect input" << endl;
+        return 0;
+    }
+    return z;
+}
+
+string arab_rom(int s){
+    string v = "";
+    try{
+        while(s > 0){
+            if(s >= 1000){
+                s -= 1000;
+                v += "M";
+            }
+            else if(s >= 900){
+                s -= 900;
+                v += "CM";
+            }
+            else if(s >= 500){
+                s -= 500;
+                v += "D";
+            }
+            else if(s >= 400){
+                s -= 400;
+                v += "CD";
+            }
+            else if(s >= 100){
+                s -= 100;
+                v += "C";
+            }
+            else if(s >= 90){
+                s -= 90;
+                v += "XC";
+            }
+            else if(s >= 50){
+                s -= 50;
+                v += "L";
+            }
+            else if(s >= 40){
+                s -= 40;
+                v += "XL";
+            }
+            else if(s >= 10){
+                s -= 10;
+                v += "X";
+            }
+            else if(s >= 9){
+                s -= 9;
+                v += "IX";
+            }
+            else if(s >= 5){
+                s -= 5;
+                v += "V";
+            }
+            else if(s >= 4){
+                s -= 4;
+                v += "IV";
+            }
+            else if(s >= 1){
+                s -= 1;
+                v += "I";
+            }
+        }
+    }
+    catch(...){
+        cout << "Uncorrect input" << endl;
+        return 0;
+    }
+    return v;
 }
 ```
