@@ -1348,64 +1348,72 @@ bool isprime(int n){
 `Python`:
 
 ```python
-result = []
-i = 0
-m = 1
-while i < n:
-    m += 1
-    k = True
-    for j in result:
-        if m % j == 0:
-            k = False
-            break
-    if k:
-        result.append(m)
-        i += 1
+def n_primes(n):
+    result = []
+    i = 0
+    m = 1
+    while i < n:
+        m += 1
+        k = True
+        for j in result:
+            if m % j == 0:
+                k = False
+                break
+        if k:
+            result.append(m)
+            i += 1
+    return result
 ```
 
 `JavaScript`:
 
 ```js
-let result = [];
-let i = 0;
-let m = 1;
-let k;
-while(i < n){
-    m ++;
-    k = true;
-    for(j of result){
-        if(m % j == 0){
-            k = false;
-            break;
+function nPrimes(n){
+    let result = [];
+    let i = 0;
+    let m = 1;
+    let k;
+    while(i < n){
+        m ++;
+        k = true;
+        for(j of result){
+            if(m % j == 0){
+                k = false;
+                break;
+            }
+        }
+        if(k){
+            result.push(m);
+            i ++;
         }
     }
-    if(k){
-        result.push(m);
-        i ++;
-    }
+    return result;
 }
 ```
 
 `c++`:
 
 ```cpp
-std::vector <int> result;
-int i = 0;
-int m = 1;
-bool k;
-while(i < n){
-    m ++;
-    k = true;
-    for(auto j: result){
-        if(m % j == 0){
-            k = false;
-            break;
+std::vector <int> n_primes(a){
+    std::vector <int> result;
+    int i = 0;
+    int m = 1;
+    bool k;
+    while(i < n){
+        m ++;
+        k = true;
+        for(auto j: result){
+            if(m % j == 0){
+                k = false;
+                break;
+            }
+        }
+        if(k){
+            result.push_back(m);
+            i ++;
         }
     }
-    if(k){
-        result.push_back(m);
-        i ++;
-    }
+    return result;
 }
 ```
 
@@ -1414,53 +1422,61 @@ while(i < n){
 `Python`:
 
 ```python
-result = []
-d = 2
-while d * d <= a:
-    if a % d == 0:
-        result.append(d)
-        a //= d
-    else:
-        d += 1
-if a > 1:
-    result.append(a)
+def prime_factors(a):
+    result = []
+    d = 2
+    while d * d <= a:
+        if a % d == 0:
+            result.append(d)
+            a //= d
+        else:
+            d += 1
+    if a > 1:
+        result.append(a)
+    return result
 ```
 
 `JavaScript`:
 
 ```js
-let result = [];
-let d = 2;
-while(d * d <= a){
-    if(a % d == 0){
-        result.push(d);
-        a = Math.floor(a / d);
+function primeFactors(a){
+    let result = [];
+    let d = 2;
+    while(d * d <= a){
+        if(a % d == 0){
+            result.push(d);
+            a = Math.floor(a / d);
+        }
+        else{
+            d ++;
+        }
     }
-    else{
-        d ++;
+    if(a > 1){
+        result.push(a);
     }
-}
-if(a > 1){
-    result.push(a);
+    return result;
 }
 ```
 
 `C++`(Using vectors):
 
 ```cpp
-std::vector <int> result;
-int d = 2;
-while(d * d <= a){
-    if(a % d == 0){
-        result.push_back(d);
-        a = a / d;
+std::vector <int> prime_factors(a){
+    std::vector <int> result;
+    int d = 2;
+    while(d * d <= a){
+        if(a % d == 0){
+            result.push_back(d);
+            a = a / d;
+        }
+        else{
+            d ++;
+        }
     }
-    else{
-        d ++;
+    if(a > 1){
+        result.push_back(a);
     }
-}
-if(a > 1){
-    result.push_back(a);
+    return result;
 }
 ```
 
