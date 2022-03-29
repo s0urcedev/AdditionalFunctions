@@ -61,7 +61,7 @@ let arithmetic = require('additional_functions/arithmetic');
 
 ## Swap / Заміна / Замена
 
-`Python`:
+`Python`(For numbers):
 
 ```python
 x = x + y
@@ -69,12 +69,26 @@ y = x - y
 x = x - y
 ```
 
-`JavaScript` or `C++`:
+`Or`(For all):
+
+```python
+x, y = y, x
+```
+
+`JavaScript`(For numbers) or `C++`(For numbers):
 
 ```js
 x = x + y;
 y = x - y;
 x = x - y;
+```
+
+`Or`(For all):
+
+```python
+swap = y;
+y = x;
+x = swap;
 ```
 
 ## Working with arrays / Робота с масивами / Работа с массивами
