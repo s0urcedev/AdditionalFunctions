@@ -37,6 +37,7 @@ from additional_functions import sortings
 from additional_functions import factorials
 from additional_functions import combinatorics
 from additional_functions import roman_arabic_numerals
+from additional_functions import arithmetic
 ```
 
 `JavaScript`:
@@ -47,6 +48,7 @@ let sortings = require('additional_functions/sortings');
 let factorials = require('additional_functions/factorials');
 let combinatorics = require('additional_functions/combinatorics');
 let romanArabicNumerals = require('additional_functions/roman-arabic-numerals');
+let arithmetic = require('additional_functions/arithmetic');
 ```
 
 ## Introduction / Вступ / Вступление
@@ -2109,10 +2111,10 @@ int superduperfactorial(int n){
 `Python`:
 
 ```python
-combinatorics.count_combinations(n, k);
-combinatorics.count_permutations(n, k);
-combinatorics.generate_combinations(arr, k);
-combinatorics.generate_permutations(arr, k);
+combinatorics.count_combinations(n, k)
+combinatorics.count_permutations(n, k)
+combinatorics.generate_combinations(arr, k)
+combinatorics.generate_permutations(arr, k)
 ```
 
 `JavaScript`:
@@ -2453,8 +2455,8 @@ std::vector <vector <int>> generate_permutations(std::vector <int> arr, int k){
 `Python`:
 
 ```python
-roman_arabic_numerals.rom_arab(p);
-roman_arabic_numerals.arab_rom(s);
+roman_arabic_numerals.rom_arab(p)
+roman_arabic_numerals.arab_rom(s)
 ```
 
 `JavaScript`:
@@ -2832,5 +2834,434 @@ string arab_rom(int s){
         return 0;
     }
     return v;
+}
+```
+
+## Arithmetic for big numbers / Арифметика для великих чисел / Арифметика для больших чисел
+
+### Packages / Пакети / Пакеты
+
+`Python`:
+
+```python
+arithmetic.addition_big_numbers(a, b)
+arithmetic.substraction_big_numbers(a, b)
+arithmetic.multiplication_big_numbers(a, b)
+```
+
+`JavaScript`:
+
+```js
+arithmetic.additionBigNumbers(a, b);
+arithmetic.substractionBigNumbers(a, b);
+arithmetic.multiplicationBigNumbers(a, b);
+```
+
+### Addition / Додавання / Прибавление
+
+`Python`:
+
+```python
+def addition_big_numbers(a, b):
+    a = str(a)[::-1]
+    b = str(b)[::-1]
+
+    while(len(b) < len(a)):
+        b += '0'
+    while(len(a) < len(b)):
+        a += '0'
+
+    result = ''
+    c = 0
+    for i in range(0, len(a)):
+        local_result = int(a[i]) + int(b[i]) + c
+        c = 0
+        if local_result > 9:
+            local_result -= 10
+            c = 1
+        result += str(local_result)
+    if c == 1:
+        result += '1'
+    return result[::-1]
+```
+
+`JavaScript`:
+
+```js
+function additionBigNumbers(a, b){
+    a = String(a).split("").reverse().join("");
+    b = String(b).split("").reverse().join("");
+
+    while(b.length < a.length){
+        b += '0';
+    }
+    while(a.length < b.length){
+        a += '0';
+    }
+
+    let result = '';
+    let c = 0;
+    for(let i = 0; i < a.length; i ++){
+        let localResult = Number(a[i]) + Number(b[i]) + c;
+        c = 0;
+        if(localResult > 9){
+            localResult -= 10;
+            c = 1;
+        }
+        result += String(localResult);
+    }
+    if(c == 1){
+        result += '1';
+    }
+    return result.split("").reverse().join("");
+}
+```
+
+`C++`:
+
+```cpp
+#include <string>
+
+string addition_big_numbers(string a, string b){
+    while(b.length() < a.length()){
+        b = "0" + b;
+    }
+    while(a.length() < b.length()){
+        a = "0" + a;
+    }
+    string result = "";
+    int c = 0;
+    for(int i = a.length() - 1; i >= 0; i --){
+        int local_result = (a[i] - 48) + (b[i] - 48) + c;
+        c = 0;
+        if(local_result > 9){
+            local_result -= 10;
+            c = 1;
+        }
+        result += to_string(local_result);
+    }
+    if(c == 1){
+        result += "1";
+    }
+    string fresult = "";
+    for(auto s: result){
+        fresult = s + fresult;
+    }
+    return fresult;
+}
+```
+
+### Subsctraction / Віднімання / Вычетание
+
+`Python`:
+
+```python
+def substraction_big_numbers(a, b):
+    k = False
+    if int(a) > int(b):
+        a = str(a)[::-1]
+        b = str(b)[::-1]
+    else:
+        k = True
+        swap = str(a)[::-1]
+        a = str(b)[::-1]
+        b = swap
+    while(len(b) < len(a)):
+        b += '0'
+    while(len(a) < len(b)):
+        a += '0'
+
+    result = ''
+    c = 0
+    for i in range(0, len(a)):
+        local_result = int(a[i]) - int(b[i]) - c
+        c = 0
+        if local_result < 0:
+            local_result += 10
+            c = 1
+        result += str(local_result)
+
+    if k:
+        result += '-'
+    while result[-1] == '0':
+        result = result[:-1]
+    return result[::-1]
+```
+
+`JavaScript`:
+
+```js
+function substractionBigNumbers(a, b){
+    let k = false;
+    if(Number(a) > Number(b)){
+        a = String(a).split("").reverse().join("");
+        b = String(b).split("").reverse().join("");
+    }
+    else{
+        k = true;
+        swap = String(a).split("").reverse().join("");
+        a = String(b).split("").reverse().join("");
+        b = swap;
+    }
+
+    while(b.length < a.length){
+        b += '0';
+    }
+    while(a.length < b.length){
+        a += '0';
+    }
+
+    let result = '';
+    let c = 0;
+    for(let i = 0; i < a.length; i ++){
+        let localResult = Number(a[i]) - Number(b[i]) - c;
+        c = 0;
+        if(localResult < 0){
+            localResult += 10;
+            c = 1;
+        }
+        result += String(localResult);
+    }
+    if(k){
+        result += '-'
+    }
+    while(result[result.length - 1] == '0'){
+        result = result.slice(0, result.length - 1);
+    }
+    return result.split("").reverse().join("");
+}
+```
+
+`C++`:
+
+```cpp
+#include <string>
+#include <sstream>
+
+string substraction_big_numbers(string a, string b){
+    stringstream ssa;
+    ssa << a;
+    long long n = 0;
+    ssa >> n;
+    stringstream ssb;
+    ssb << b;
+    long long m = 0;
+    ssb >> m;
+    bool k = false;
+    if(n < m){
+        k = true;
+        string swap = a;
+        a = b;
+        b = swap;
+    }
+    while(b.length() < a.length()){
+        b = "0" + b;
+    }
+    while(a.length() < b.length()){
+        a = "0" + a;
+    }
+    string result = "";
+    int c = 0;
+    for(int i = a.length() - 1; i >= 0; i --){
+        int local_result = (a[i] - 48) - (b[i] - 48) - c;
+        c = 0;
+        if(local_result < 0){
+            local_result += 10;
+            c = 1;
+        }
+        result += to_string(local_result);
+    }
+    if(c == 1){
+        result += "1";
+    }
+    while(result[result.length() - 1] == '0'){
+        result = result.substr(0, result.length() - 1);
+    }
+    string fresult = "";
+    for(auto s: result){
+        fresult = s + fresult;
+    }
+    if(k){
+        fresult = '-' + fresult;
+    }
+    return fresult;
+}
+```
+
+### Multiplication / Множення / Умножение
+
+`Python`:
+
+```python
+def addition_big_numbers(a, b):
+    a = str(a)[::-1]
+    b = str(b)[::-1]
+
+    while(len(b) < len(a)):
+        b += '0'
+    while(len(a) < len(b)):
+        a += '0'
+
+    result = ''
+    c = 0
+    for i in range(0, len(a)):
+        local_result = int(a[i]) + int(b[i]) + c
+        c = 0
+        if local_result > 9:
+            local_result -= 10
+            c = 1
+        result += str(local_result)
+    if c == 1:
+        result += '1'
+    return result[::-1]
+    
+def multiplication_big_numbers(a, b):
+    a = str(a)[::-1]
+    b = str(b)[::-1]
+
+    result = ''
+    c = 0
+    for i in range(0, len(b)):
+        local_result = ''
+        c = 0
+        for j in range(0, len(a)):
+            local_local_result = int(a[j]) * int(b[i]) + c
+            c = 0
+            while local_local_result > 9:
+                local_local_result -= 10
+                c += 1
+            local_result += str(local_local_result)
+        if c > 0:
+            local_result += str(c)
+            c = 0
+        result = addition_big_numbers(str(result), str(local_result)[::-1] + ('0' * i))
+    return result
+```
+
+`JavaScript`:
+
+```js
+function additionBigNumbers(a, b){
+    a = String(a).split("").reverse().join("");
+    b = String(b).split("").reverse().join("");
+
+    while(b.length < a.length){
+        b += '0';
+    }
+    while(a.length < b.length){
+        a += '0';
+    }
+
+    let result = '';
+    let c = 0;
+    for(let i = 0; i < a.length; i ++){
+        let localResult = Number(a[i]) + Number(b[i]) + c;
+        c = 0;
+        if(localResult > 9){
+            localResult -= 10;
+            c = 1;
+        }
+        result += String(localResult);
+    }
+    if(c == 1){
+        result += '1';
+    }
+    return result.split("").reverse().join("");
+}
+
+function multiplicationBigNumbers(a, b){
+    a = String(a).split("").reverse().join("");
+    b = String(b).split("").reverse().join("");
+
+    let result = '';
+    let c = 0;
+    for(let i = 0; i < b.length; i ++){
+        let localResult = '';
+        c = 0;
+        for(let j = 0; j < a.length; j ++){
+            let localLocalResult = Number(a[j]) * Number(b[i]) + c;
+            c = 0;
+            while(localLocalResult > 9){
+                localLocalResult -= 10;
+                c += 1
+            }
+            localResult += String(localLocalResult);
+        }
+        if(c > 0){
+            localResult += String(c);
+            c = 0;
+        }
+        let flocalResult = String(localResult).split("").reverse().join("");
+        for(let f = 0; f < i; f ++){
+            flocalResult += '0';
+        }
+        result = additionBigNumbers(String(result), String(flocalResult));
+    }
+    return result;
+}
+```
+
+`C++`:
+
+```cpp
+#include <string>
+
+string addition_big_numbers(string a, string b){
+    while(b.length() < a.length()){
+        b = "0" + b;
+    }
+    while(a.length() < b.length()){
+        a = "0" + a;
+    }
+    string result = "";
+    int c = 0;
+    for(int i = a.length() - 1; i >= 0; i --){
+        int local_result = (a[i] - 48) + (b[i] - 48) + c;
+        c = 0;
+        if(local_result > 9){
+            local_result -= 10;
+            c = 1;
+        }
+        result += to_string(local_result);
+    }
+    if(c == 1){
+        result += "1";
+    }
+    string fresult = "";
+    for(auto s: result){
+        fresult = s + fresult;
+    }
+    return fresult;
+}
+
+string multiplication_big_numbers(string a, string b){
+    string result = "";
+    int c = 0;
+    for(int i = b.length() - 1; i >= 0; i --){
+        string local_result = "";
+        c = 0;
+        for(int j = a.length() - 1; j >= 0; j --){
+            int local_local_result = (a[j] - 48) * (b[i] - 48) + c;
+            c = 0;
+            while(local_local_result > 9){
+                local_local_result -= 10;
+                c += 1;
+            }
+            local_result += to_string(local_local_result);
+        }
+        if(c > 0){
+            local_result += to_string(c);
+            c = 0;
+        }
+        string flocal_result = "";
+        for(auto s: local_result){
+            flocal_result = s + flocal_result;
+        }
+        for(int f = 0; f < b.length() - i - 1; f ++){
+            flocal_result += "0";
+        }
+        result = addition_big_numbers(result, flocal_result);
+    }
+    return result;
 }
 ```
