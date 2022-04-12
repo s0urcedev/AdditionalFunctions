@@ -38,6 +38,8 @@ from additional_functions import factorials
 from additional_functions import combinatorics
 from additional_functions import roman_arabic_numerals
 from additional_functions import arithmetic
+from additional_functions.progressions import ArithmeticProgression
+from additional_functions.progressions import GeometricProgression
 ```
 
 `JavaScript`:
@@ -49,6 +51,8 @@ let factorials = require('additional_functions/factorials');
 let combinatorics = require('additional_functions/combinatorics');
 let romanArabicNumerals = require('additional_functions/roman-arabic-numerals');
 let arithmetic = require('additional_functions/arithmetic');
+let ArithmeticProgression = require('additional-functions/progressions').ArithmeticProgression;
+let GeometricProgression = require('additional-functions/progressions').GeometricProgression;
 ```
 
 ## Introduction / Вступ / Вступление
@@ -2717,6 +2721,8 @@ function arabRom(s){
 `C++`:
 
 ```cpp
+#include <string>
+
 int rom_arab(string p){
     int z = 0;
     try{
@@ -2785,8 +2791,8 @@ int rom_arab(string p){
     return z;
 }
 
-string arab_rom(int s){
-    string v = "";
+std::string arab_rom(int s){
+    std::string v = "";
     try{
         while(s > 0){
             if(s >= 1000){
@@ -2936,14 +2942,14 @@ function additionBigNumbers(a, b){
 ```cpp
 #include <string>
 
-string addition_big_numbers(string a, string b){
+std::string addition_big_numbers(string a, string b){
     while(b.length() < a.length()){
         b = "0" + b;
     }
     while(a.length() < b.length()){
         a = "0" + a;
     }
-    string result = "";
+    std::string result = "";
     int c = 0;
     for(int i = a.length() - 1; i >= 0; i --){
         int local_result = (a[i] - 48) + (b[i] - 48) + c;
@@ -2957,7 +2963,7 @@ string addition_big_numbers(string a, string b){
     if(c == 1){
         result += "1";
     }
-    string fresult = "";
+    std::string fresult = "";
     for(auto s: result){
         fresult = s + fresult;
     }
@@ -3052,19 +3058,19 @@ function substractionBigNumbers(a, b){
 #include <string>
 #include <sstream>
 
-string substraction_big_numbers(string a, string b){
-    stringstream ssa;
+std::string substraction_big_numbers(string a, string b){
+    std::stringstream ssa;
     ssa << a;
     long long n = 0;
     ssa >> n;
-    stringstream ssb;
+    std::stringstream ssb;
     ssb << b;
     long long m = 0;
     ssb >> m;
     bool k = false;
     if(n < m){
         k = true;
-        string swap = a;
+        std::string swap = a;
         a = b;
         b = swap;
     }
@@ -3074,7 +3080,7 @@ string substraction_big_numbers(string a, string b){
     while(a.length() < b.length()){
         a = "0" + a;
     }
-    string result = "";
+    std::string result = "";
     int c = 0;
     for(int i = a.length() - 1; i >= 0; i --){
         int local_result = (a[i] - 48) - (b[i] - 48) - c;
@@ -3091,7 +3097,7 @@ string substraction_big_numbers(string a, string b){
     while(result[result.length() - 1] == '0'){
         result = result.substr(0, result.length() - 1);
     }
-    string fresult = "";
+    std::string fresult = "";
     for(auto s: result){
         fresult = s + fresult;
     }
@@ -3220,14 +3226,14 @@ function multiplicationBigNumbers(a, b){
 ```cpp
 #include <string>
 
-string addition_big_numbers(string a, string b){
+std::string addition_big_numbers(string a, string b){
     while(b.length() < a.length()){
         b = "0" + b;
     }
     while(a.length() < b.length()){
         a = "0" + a;
     }
-    string result = "";
+    std::string result = "";
     int c = 0;
     for(int i = a.length() - 1; i >= 0; i --){
         int local_result = (a[i] - 48) + (b[i] - 48) + c;
@@ -3241,18 +3247,18 @@ string addition_big_numbers(string a, string b){
     if(c == 1){
         result += "1";
     }
-    string fresult = "";
+    std::string fresult = "";
     for(auto s: result){
         fresult = s + fresult;
     }
     return fresult;
 }
 
-string multiplication_big_numbers(string a, string b){
-    string result = "";
+std::string multiplication_big_numbers(string a, string b){
+    std::string result = "";
     int c = 0;
     for(int i = b.length() - 1; i >= 0; i --){
-        string local_result = "";
+        std::string local_result = "";
         c = 0;
         for(int j = a.length() - 1; j >= 0; j --){
             int local_local_result = (a[j] - 48) * (b[i] - 48) + c;
@@ -3267,7 +3273,7 @@ string multiplication_big_numbers(string a, string b){
             local_result += to_string(c);
             c = 0;
         }
-        string flocal_result = "";
+        std::string flocal_result = "";
         for(auto s: local_result){
             flocal_result = s + flocal_result;
         }
@@ -3278,4 +3284,267 @@ string multiplication_big_numbers(string a, string b){
     }
     return result;
 }
+```
+
+## Progressions / Прогресії / Прогрессии
+
+### Packages / Пакети / Пакеты
+
+`Python`:
+
+```python
+a = ArithmeticProgression(a0, d)
+a.get_nth(n)
+a.count_to_nth(n)
+a.get_to_nth(n)
+a.get_sum_to_nth(n)
+
+b = GeometricProgression(b0, q)
+b.get_nth(n)
+b.count_to_nth(n)
+b.get_to_nth(n)
+b.get_sum_to_nth(n)
+```
+
+`JavaScript`:
+
+```js
+let a = new ArithmeticProgression(a0, d);
+a.getNth(n);
+a.countToNth(n);
+a.getToNth(n);
+a.getSumToNth(n);
+
+let b = new GeometricProgression(b0, q);
+b.getNth(n);
+b.countToNth(n);
+b.getToNth(n);
+b.getSumToNth(n);
+```
+
+### Arithmetic progression / Арифметична прогресія / Арифметическая прогрессия
+
+<ins>***Wikipedia:***</ins> *[Arithmetic progression](https://en.wikipedia.org/wiki/Arithmetic_progression)*
+
+<ins>***Вікіпедія:***</ins> *[Арифметична прогресія](https://uk.wikipedia.org/wiki/Арифметична_прогресія)*
+
+<ins>***Википедия:***</ins> *[Арифметическая прогрессия](https://ru.wikipedia.org/wiki/Арифметическая_прогрессия)*
+
+`Python`:
+
+```python
+class ArithmeticProgression:
+
+    d = 0
+    a = []
+
+    def __init__(self, start, d):
+        self.a.append(start)
+        self.d = d
+
+    def get_nth(self, n):
+        return self.a[0] + (n - 1) * self.d
+    
+    def count_to_nth(self, n):
+        for _ in range(len(self.a), n):
+            self.a.append(self.a[-1] + self.d)
+
+    def get_to_nth(self, n):
+        self.count_to_nth(n)
+        return self.a
+
+    def get_sum_to_nth(self, n):
+        return n * (self.a[0] + self.get_nth(n)) // 2
+```
+
+`JavaScript`:
+
+```js
+class ArithmeticProgression{
+    
+    d = 0;
+    a = [];
+    
+    constructor(start, d){
+        this.a.push(start);
+        this.d = d;
+    }
+
+    getNth(n){
+        return this.a[0] + (n - 1) * this.d;
+    }
+
+    countToNth(n){
+        for(let _ = this.a.length; _ < n; _ ++){
+            this.a.push(this.a[this.a.length - 1] + this.d);
+        }
+    }
+
+    getToNth(n){
+        this.countToNth(n);
+        return this.a;
+    }
+
+    getSumToNth(n){
+        return ~~(n * (this.a[0] + this.getNth(n)) / 2);
+    }
+}
+```
+
+`C++`:
+
+```cpp
+#include <vector>
+
+class ArithmeticProgression{
+    public:
+
+        int d = 0;
+        std::vector <int> a;
+
+        void create(int start, int df){
+            a.push_back(start);
+            d = df;
+        }
+
+        int get_nth(int n){
+            return a[0] + (n - 1) * d;
+        }
+
+        void count_to_nth(int n){
+            for(int _ = a.size(); _ < n; _ ++){
+                a.push_back(a[a.size() - 1] + d);
+            }
+        }
+
+        std::vector <int> get_to_nth(int n){
+            count_to_nth(n);
+            return a;
+        }
+
+        int get_sum_to_nth(int n){
+            return n * (a[0] + get_nth(n)) / 2;
+        }
+};
+```
+
+### Geometric progression / Геометрична прогресія / Геометрическая прогрессия
+
+<ins>***Wikipedia:***</ins> *[Geometric progression](https://en.wikipedia.org/wiki/Geometric_progression)*
+
+<ins>***Вікіпедія:***</ins> *[Геометрична прогресія](https://uk.wikipedia.org/wiki/Геометрична_прогресія)*
+
+<ins>***Википедия:***</ins> *[Геометрическая прогрессия](https://ru.wikipedia.org/wiki/Геометрическая_прогрессия)*
+
+`Python`:
+
+```python
+class GeometricProgression:
+
+    q = 1
+    b = []
+
+    def __init__(self, start, q):
+        if start == 0 or q == 0:
+            print("b0 or q can't be 0")
+            return 
+        self.b.append(start)
+        self.q = q
+
+    def get_nth(self, n):
+        return self.b[0] * (self.q ** (n - 1))
+    
+    def count_to_nth(self, n):
+        for _ in range(len(self.b), n):
+            self.b.append(self.b[-1] * self.q)
+
+    def get_to_nth(self, n):
+        self.count_to_nth(n)
+        return self.b
+
+    def get_sum_to_nth(self, n):
+        if self.q == 1: return n * self.b[0]
+        return (self.b[0] * ((self.q ** n) - 1)) // (self.q - 1)
+```
+
+`JavaScript`:
+
+```js
+class GeometricProgression{
+    
+    q = 1;
+    b = [];
+    
+    constructor(start, q){
+        if(start == 0 || q == 0){
+            console.log("b0 or q can't be 0");
+            return; 
+        }
+        this.b.push(start);
+        this.q = q;
+    }
+
+    getNth(n){
+        return this.b[0] * (this.q ** (n - 1));
+    }
+
+    countToNth(n){
+        for(let _ = this.b.length; _ < n; _ ++){
+            this.b.push(this.b[this.b.length - 1] * this.q);
+        }
+    }
+
+    getToNth(n){
+        this.countToNth(n);
+        return this.b;
+    }
+
+    getSumToNth(n){
+        if(this.q == 1) return n * this.b[0];
+        return ~~((this.b[0] * ((this.q ** n) - 1)) / (this.q - 1));
+    }
+}
+```
+
+`C++`:
+
+```cpp
+#include <vector>
+#include <math.h>
+
+class GeometricProgression{
+    public:
+
+        int q = 1;
+        std::vector <int> b;
+
+        void create(int start, int qr){
+            if(start == 0 || qr == 0){
+                std::cout << "b0 or q can't be 0" << std::endl;
+                return;
+            }
+            b.push_back(start);
+            q = qr;
+        }
+
+        int get_nth(int n){
+            return b[0] * std::pow(q, n - 1);
+        }
+
+        void count_to_nth(int n){
+            for(int _ = b.size(); _ < n; _ ++){
+                b.push_back(b[b.size() - 1] * q);
+            }
+        }
+
+        std::vector <int> get_to_nth(int n){
+            count_to_nth(n);
+            return b;
+        }
+
+        int get_sum_to_nth(int n){
+            if(q == 1) return n * b[0];
+            return (b[0] * (std::pow(q, n) - 1)) / (q - 1);
+        }
+};
 ```
