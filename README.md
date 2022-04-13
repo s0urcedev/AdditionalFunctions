@@ -3295,20 +3295,32 @@ std::string multiplication_big_numbers(string a, string b){
 `Python`:
 
 ```python
-a = ArithmeticProgression(a0, d)
+a = ArithmeticProgression(start_element, d)
+a.get_sequence()
+a.get_difference()
+a.set_start_element(start_element)
+a.set_difference(d)
 a.get_nth(n)
 a.count_to_nth(n)
 a.get_to_nth(n)
 a.get_sum_to_nth(n)
 
-b = GeometricProgression(b0, q)
+b = GeometricProgression(start_element, r)
+b.get_sequence()
+b.get_ratio()
+b.set_start_element(start_element)
+b.set_ratio(r)
 b.get_nth(n)
 b.count_to_nth(n)
 b.get_to_nth(n)
 b.get_sum_to_nth(n)
 b.get_prod_to_nth(n)
 
-c = HarmonicProgression(c0, d)
+c = HarmonicProgression(start_element, d)
+c.get_sequence()
+c.get_difference()
+c.set_start_element(start_element)
+c.set_difference(d)
 c.get_nth(n)
 c.count_to_nth(n)
 c.get_to_nth(n)
@@ -3317,20 +3329,29 @@ c.get_to_nth(n)
 `JavaScript`:
 
 ```js
-let a = new ArithmeticProgression(a0, d);
+let a = new ArithmeticProgression(startElement, difference);
+a.sequence; // get
+a.difference; // get/set
+a.startElement; // set
 a.getNth(n);
 a.countToNth(n);
 a.getToNth(n);
 a.getSumToNth(n);
 
-let b = new GeometricProgression(b0, q);
+let b = new GeometricProgression(startElement, ration);
+b.sequence; // get
+b.ratio; // get/set
+b.startElement; // set
 b.getNth(n);
 b.countToNth(n);
 b.getToNth(n);
 b.getSumToNth(n);
 b.getProdToNth(n);
 
-let c = new HarmonicProgression(c0, d);
+let c = new HarmonicProgression(startElement, difference);
+c.sequence; // get
+c.difference; // get/set
+c.startElement; // set
 c.getNth(n);
 c.countToNth(n);
 c.getToNth(n);
@@ -3349,26 +3370,39 @@ c.getToNth(n);
 ```python
 class ArithmeticProgression:
 
-    d = 0
-    a = []
+    __d = 0
+    __a = []
 
-    def __init__(self, start, d):
-        self.a.append(start)
-        self.d = d
+    def __init__(self, start = 0, d = 0):
+        self.__a.append(start)
+        self.__d = d
+
+    def get_sequence(self):
+        return self.__a
+
+    def get_difference(self):
+        return self.__d
+
+    def set_start_element(self, start):
+        self.__a = [start]
+
+    def set_difference(self, d):
+        self.__a = [self.__a[0]]
+        self.__d = d
 
     def get_nth(self, n):
-        return self.a[0] + (n - 1) * self.d
+        return self.__a[0] + (n - 1) * self.__d
     
     def count_to_nth(self, n):
-        for _ in range(len(self.a), n):
-            self.a.append(self.a[-1] + self.d)
+        for _ in range(len(self.__a), n):
+            self.__a.append(self.__a[-1] + self.__d)
 
     def get_to_nth(self, n):
         self.count_to_nth(n)
-        return self.a
+        return self.__a
 
     def get_sum_to_nth(self, n):
-        return n * (self.a[0] + self.get_nth(n)) // 2
+        return n * (self.__a[0] + self.get_nth(n)) // 2
 ```
 
 `JavaScript`:
@@ -3376,31 +3410,48 @@ class ArithmeticProgression:
 ```js
 class ArithmeticProgression{
     
-    d = 0;
-    a = [];
+    #d = 0;
+    #a = [];
     
-    constructor(start, d){
-        this.a.push(start);
-        this.d = d;
+    constructor(start = 0, d = 0){
+        this.#a.push(start);
+        this.#d = d;
+    }
+
+    get sequence(){
+        return this.#a;
+    }
+
+    get difference(){
+        return this.#d;
+    }
+
+    set startElement(start){
+        this.#a = [start];
+    }
+
+    set difference(d){
+        this.#a = [this.#a[0]];
+        this.#d = d;
     }
 
     getNth(n){
-        return this.a[0] + (n - 1) * this.d;
+        return this.#a[0] + (n - 1) * this.#d;
     }
 
     countToNth(n){
-        for(let _ = this.a.length; _ < n; _ ++){
-            this.a.push(this.a[this.a.length - 1] + this.d);
+        for(let _ = this.#a.length; _ < n; _ ++){
+            this.#a.push(this.#a[this.#a.length - 1] + this.#d);
         }
     }
 
     getToNth(n){
         this.countToNth(n);
-        return this.a;
+        return this.#a;
     }
 
     getSumToNth(n){
-        return ~~(n * (this.a[0] + this.getNth(n)) / 2);
+        return ~~(n * (this.#a[0] + this.getNth(n)) / 2);
     }
 }
 ```
@@ -3411,33 +3462,56 @@ class ArithmeticProgression{
 #include <vector>
 
 class ArithmeticProgression{
+
+    private:
+    
+        int d_ = 0;
+        std::vector <int> a_;
+
     public:
 
-        int d = 0;
-        std::vector <int> a;
-
-        void create(int start, int df){
-            a.push_back(start);
-            d = df;
+        void create(int start = 0, int d = 0){
+            a_.push_back(start);
+            d_ = d;
+        }
+        
+        std::vector <int> get_sequence(){
+            return a_;
+        }
+        
+        int get_difference(){
+            return d_;
+        }
+        
+        void set_start_element(int start){
+            a_.clear();
+            a_.push_back(start);
+        }
+        
+        void set_difference(int d){
+            int start = a_[0];
+            a_.clear();
+            a_.push_back(start);
+            d_ = d;
         }
 
         int get_nth(int n){
-            return a[0] + (n - 1) * d;
+            return a_[0] + (n - 1) * d_;
         }
 
         void count_to_nth(int n){
-            for(int _ = a.size(); _ < n; _ ++){
-                a.push_back(a[a.size() - 1] + d);
+            for(int _ = a_.size(); _ < n; _ ++){
+                a_.push_back(a_[a_.size() - 1] + d_);
             }
         }
 
         std::vector <int> get_to_nth(int n){
             count_to_nth(n);
-            return a;
+            return a_;
         }
 
         int get_sum_to_nth(int n){
-            return n * (a[0] + get_nth(n)) / 2;
+            return n * (a_[0] + get_nth(n)) / 2;
         }
 };
 ```
@@ -3455,33 +3529,52 @@ class ArithmeticProgression{
 ```python
 class GeometricProgression:
 
-    q = 1
-    b = []
+    __r = 1
+    __b = []
 
-    def __init__(self, start, q):
-        if start == 0 or q == 0:
-            print("b0 or q can't be 0")
+    def __init__(self, start = 1, r = 1):
+        if start == 0 or r == 0:
+            print("start_element or ratio can't be 0")
             return 
-        self.b.append(start)
-        self.q = q
+        self.__b.append(start)
+        self.__r = r
+
+    def get_sequence(self):
+        return self.__b
+
+    def get_ratio(self):
+        return self.__r
+
+    def set_start_element(self, start):
+        if start == 0:
+            print("start_element can't be 0")
+            return
+        self.__b = [start]
+
+    def set_ratio(self, r):
+        if r == 0:
+            print("ratio can't be 0")
+            return
+        self.__b = [self.__r[0]]
+        self.__r = r
 
     def get_nth(self, n):
-        return self.b[0] * (self.q ** (n - 1))
+        return self.__b[0] * (self.__r ** (n - 1))
     
     def count_to_nth(self, n):
-        for _ in range(len(self.b), n):
-            self.b.append(self.b[-1] * self.q)
+        for _ in range(len(self.__b), n):
+            self.__b.append(self.__b[-1] * self.__r)
 
     def get_to_nth(self, n):
         self.count_to_nth(n)
-        return self.b
+        return self.__b
 
     def get_sum_to_nth(self, n):
-        if self.q == 1: return n * self.b[0]
-        return (self.b[0] * ((self.q ** n) - 1)) // (self.q - 1)
-        
+        if self.__r == 1: return n * self.__b[0]
+        return (self.__b[0] * ((self.__r ** n) - 1)) // (self.__r - 1)
+
     def get_prod_to_nth(self, n):
-        return int((self.b[0] * self.get_nth(n)) ** (n / 2))
+        return int((self.__b[0] * self.get_nth(n)) ** (n / 2))
 ```
 
 `JavaScript`:
@@ -3489,40 +3582,65 @@ class GeometricProgression:
 ```js
 class GeometricProgression{
     
-    q = 1;
-    b = [];
+    #r = 1;
+    #b = [];
     
-    constructor(start, q){
-        if(start == 0 || q == 0){
-            console.log("b0 or q can't be 0");
+    constructor(start = 1, r = 1){
+        if(start == 0 || r == 0){
+            console.log("startElement or ratio can't be 0");
             return; 
         }
-        this.b.push(start);
-        this.q = q;
+        this.#b.push(start);
+        this.#r = r;
+    }
+
+    get sequence(){
+        return this.#b;
+    }
+
+    get ratio(){
+        return this.#r;
+    }
+
+    set startElement(start){
+        if(start == 0){
+            console.log("startElement can't be 0");
+            return; 
+        }
+        this.#b = [start];
+    }
+
+    set ratio(r){
+        if(r == 0){
+            console.log("ratio can't be 0");
+            return; 
+        }
+        this.#b = [this.#b[0]];
+        this.#r = r;
     }
 
     getNth(n){
-        return this.b[0] * (this.q ** (n - 1));
+        return this.#b[0] * (this.#r ** (n - 1));
     }
 
     countToNth(n){
-        for(let _ = this.b.length; _ < n; _ ++){
-            this.b.push(this.b[this.b.length - 1] * this.q);
+        for(let _ = this.#b.length; _ < n; _ ++){
+            this.#b.push(this.#b[this.#b.length - 1] * this.#r);
         }
     }
 
     getToNth(n){
         this.countToNth(n);
-        return this.b;
+        return this.#b;
     }
 
     getSumToNth(n){
-        if(this.q == 1) return n * this.b[0];
-        return ~~((this.b[0] * ((this.q ** n) - 1)) / (this.q - 1));
+        if(this.#r == 1) return n * this.#b[0];
+        return ~~((this.#b[0] * ((this.#r ** n) - 1)) / (this.#r - 1));
     }
-    
+
     getProdToNth(n){
-        return ~~((this.b[0] * this.get_nth(n)) ** (n / 2));
+        return ~~((this.#b[0] * this.get_nth(n)) ** (n / 2));
     }
 }
 ```
@@ -3534,38 +3652,69 @@ class GeometricProgression{
 #include <math.h>
 
 class GeometricProgression{
+
+    private:
+    
+        int r_ = 1;
+        std::vector <int> b_;
+    
     public:
 
-        int q = 1;
-        std::vector <int> b;
-
-        void create(int start, int qr){
-            if(start == 0 || qr == 0){
-                std::cout << "b0 or q can't be 0" << std::endl;
+        void create(int start = 1, int r = 1){
+            if(start == 0 || r == 0){
+                std::cout << "start_element or ratio can't be 0" << std::endl;
                 return;
             }
-            b.push_back(start);
-            q = qr;
+            b_.push_back(start);
+            r_ = r;
+        }
+        
+        std::vector <int> get_sequence(){
+            return b_;
+        }
+        
+        int get_ratio(){
+            return r_;
+        }
+        
+        void set_start_element(int start){
+            if(start == 0){
+                std::cout << "start_element can't be 0" << std::endl;
+                return; 
+            }
+            b_.clear();
+            b_.push_back(start);
+        }
+
+        void set_ratio(int r){
+            if(r == 0){
+                std::cout << "ratio can't be 0" << std::endl;
+                return; 
+            }
+            int start = b_[0];
+            b_.clear();
+            b_.push_back(start);
+            r_ = r;
         }
 
         int get_nth(int n){
-            return b[0] * std::pow(q, n - 1);
+            return b_[0] * std::pow(r_, n - 1);
         }
 
         void count_to_nth(int n){
-            for(int _ = b.size(); _ < n; _ ++){
-                b.push_back(b[b.size() - 1] * q);
+            for(int _ = b_.size(); _ < n; _ ++){
+                b_.push_back(b_[b_.size() - 1] * r_);
             }
         }
 
         std::vector <int> get_to_nth(int n){
             count_to_nth(n);
-            return b;
+            return b_;
         }
 
         int get_sum_to_nth(int n){
-            if(q == 1) return n * b[0];
-            return (b[0] * (std::pow(q, n) - 1)) / (q - 1);
+            if(r_ == 1) return n * b_[0];
+            return (b_[0] * (std::pow(r_, n) - 1)) / (r_ - 1);
         }
 };
 ```
@@ -3583,23 +3732,36 @@ class GeometricProgression{
 ```python
 class HarmonicProgression:
 
-    d = 0
-    c = []
+    __d = 0
+    __c = []
 
-    def __init__(self, start, d):
-        self.c.append(start)
-        self.d = d
+    def __init__(self, start = 1, d = 0):
+        self.__c.append(start)
+        self.__d = d
     
+    def get_sequence(self):
+        return self.__с
+
+    def get_difference(self):
+        return self.__d
+
+    def set_start_element(self, start):
+        self.__с = [start]
+
+    def set_difference(self, d):
+        self.__с = [self.__с[0]]
+        self.__d = d
+
     def get_nth(self, n):
-        return ((self.c[0] ** -1) + (n - 1) * self.d) ** -1
+        return ((self.__c[0] ** -1) + (n - 1) * self.__d) ** -1
 
     def count_to_nth(self, n):
-        for _ in range(len(self.c), n):
-            self.c.append(((self.c[-1] ** -1) + self.d) ** -1)
+        for _ in range(len(self.__c), n):
+            self.__c.append(((self.__c[-1] ** -1) + self.__d) ** -1)
 
     def get_to_nth(self, n):
         self.count_to_nth(n)
-        return self.c
+        return self.__c
 ```
 
 `JavaScript`:
@@ -3607,27 +3769,44 @@ class HarmonicProgression:
 ```js
 class HarmonicProgression{
     
-    d = 0;
-    c = [];
+    #d = 0;
+    #c = [];
     
-    constructor(start, d){
-        this.c.push(start);
-        this.d = d;
+    constructor(start = 1, d = 0){
+        this.#c.push(start);
+        this.#d = d;
+    }
+
+    get sequence(){
+        return this.#c;
+    }
+
+    get difference(){
+        return this.#d;
+    }
+
+    set startElement(start){
+        this.#c = [start];
+    }
+
+    set difference(d){
+        this.#c = [this.#c[0]];
+        this.#d = d;
     }
 
     getNth(n){
-        return ((this.c[0] ** -1) + (n - 1) * this.d) ** -1;
+        return ((this.#c[0] ** -1) + (n - 1) * this.#d) ** -1;
     }
 
     countToNth(n){
-        for(let _ = this.c.length; _ < n; _ ++){
-            this.c.push(((this.c[this.c.length - 1] ** -1) + this.d) ** -1);
+        for(let _ = this.#c.length; _ < n; _ ++){
+            this.#c.push(((this.#c[this.#c.length - 1] ** -1) + this.#d) ** -1);
         }
     }
 
     getToNth(n){
         this.countToNth(n);
-        return this.c;
+        return this.#c;
     }
 }
 ```
@@ -3639,29 +3818,52 @@ class HarmonicProgression{
 #include <math.h>
 
 class HarmonicProgression{
+
+    private:
+    
+        int d_ = 0;
+        std::vector <float> c_;
+    
     public:
-
-        int d = 0;
-        std::vector <float> c;
-
-        void create(float start, int df){
-            c.push_back(start);
-            d = df;
+        
+        void create(float start = 1.0, int d = 0){
+            c_.push_back(start);
+            d_ = d;
+        }
+        
+        std::vector <float> get_sequence(){
+            return c_;
+        }
+        
+        int get_difference(){
+            return d_;
+        }
+        
+        void set_start_element(float start){
+            c_.clear();
+            c_.push_back(start);
+        }
+        
+        void set_difference(int d){
+            float start = c_[0];
+            c_.clear();
+            c_.push_back(start);
+            d_ = d;
         }
 
         float get_nth(int n){
-            return std::pow((std::pow(c[0], -1) + (n - 1) * d), -1);
+            return std::pow((std::pow(c_[0], -1) + (n - 1) * d_), -1);
         }
 
         void count_to_nth(int n){
-            for(int _ = c.size(); _ < n; _ ++){
-                c.push_back(std::pow((std::pow(c[c.size() - 1], -1) + d), -1));
+            for(int _ = c_.size(); _ < n; _ ++){
+                c_.push_back(std::pow((std::pow(c_[c_.size() - 1], -1) + d_), -1));
             }
         }
 
         std::vector <float> get_to_nth(int n){
             count_to_nth(n);
-            return c;
+            return c_;
         }
 };
 ```
