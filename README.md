@@ -40,6 +40,7 @@ from additional_functions import roman_arabic_numerals
 from additional_functions import arithmetic
 from additional_functions.progressions import ArithmeticProgression
 from additional_functions.progressions import GeometricProgression
+from additional_functions.progressions import HarmonicProgression
 ```
 
 `JavaScript`:
@@ -53,6 +54,7 @@ let romanArabicNumerals = require('additional_functions/roman-arabic-numerals');
 let arithmetic = require('additional_functions/arithmetic');
 let ArithmeticProgression = require('additional-functions/progressions').ArithmeticProgression;
 let GeometricProgression = require('additional-functions/progressions').GeometricProgression;
+let HarmonicProgression = require('additional-functions/progressions').HarmonicProgression;
 ```
 
 ## Introduction / Вступ / Вступление
@@ -3304,6 +3306,12 @@ b.get_nth(n)
 b.count_to_nth(n)
 b.get_to_nth(n)
 b.get_sum_to_nth(n)
+b.get_prod_to_nth(n)
+
+c = HarmonicProgression(c0, d)
+c.get_nth(n)
+c.count_to_nth(n)
+c.get_to_nth(n)
 ```
 
 `JavaScript`:
@@ -3320,6 +3328,12 @@ b.getNth(n);
 b.countToNth(n);
 b.getToNth(n);
 b.getSumToNth(n);
+b.getProdToNth(n);
+
+let c = new HarmonicProgression(c0, d);
+c.getNth(n);
+c.countToNth(n);
+c.getToNth(n);
 ```
 
 ### Arithmetic progression / Арифметична прогресія / Арифметическая прогрессия
@@ -3465,6 +3479,9 @@ class GeometricProgression:
     def get_sum_to_nth(self, n):
         if self.q == 1: return n * self.b[0]
         return (self.b[0] * ((self.q ** n) - 1)) // (self.q - 1)
+        
+    def get_prod_to_nth(self, n):
+        return int((self.b[0] * self.get_nth(n)) ** (n / 2))
 ```
 
 `JavaScript`:
@@ -3502,6 +3519,10 @@ class GeometricProgression{
     getSumToNth(n){
         if(this.q == 1) return n * this.b[0];
         return ~~((this.b[0] * ((this.q ** n) - 1)) / (this.q - 1));
+    }
+    
+    getProdToNth(n){
+        return ~~((this.b[0] * this.get_nth(n)) ** (n / 2));
     }
 }
 ```
@@ -3545,6 +3566,102 @@ class GeometricProgression{
         int get_sum_to_nth(int n){
             if(q == 1) return n * b[0];
             return (b[0] * (std::pow(q, n) - 1)) / (q - 1);
+        }
+};
+```
+
+### Harmonic progression / Гармонічна прогресія / Гармоническая прогрессия
+
+<ins>***Wikipedia:***</ins> *[Harmonic progression](https://en.wikipedia.org/wiki/Harmonic_progression_(mathematics))*
+
+<ins>***Вікіпедія:***</ins> *[Гармонічна прогресія](https://ewikiuk.top/wiki/Harmonic_progression_(mathematics))*
+
+<ins>***Википедия:***</ins> *[Гармоническая прогрессия](https://ru.wikipedia.org/wiki/Гармоническая_прогрессия)*
+
+`Python`:
+
+```python
+class HarmonicProgression:
+
+    d = 0
+    c = []
+
+    def __init__(self, start, d):
+        self.c.append(start)
+        self.d = d
+    
+    def get_nth(self, n):
+        return ((self.c[0] ** -1) + (n - 1) * self.d) ** -1
+
+    def count_to_nth(self, n):
+        for _ in range(len(self.c), n):
+            self.c.append(((self.c[-1] ** -1) + self.d) ** -1)
+
+    def get_to_nth(self, n):
+        self.count_to_nth(n)
+        return self.c
+```
+
+`JavaScript`:
+
+```js
+class HarmonicProgression{
+    
+    d = 0;
+    c = [];
+    
+    constructor(start, d){
+        this.c.push(start);
+        this.d = d;
+    }
+
+    getNth(n){
+        return ((this.c[0] ** -1) + (n - 1) * this.d) ** -1;
+    }
+
+    countToNth(n){
+        for(let _ = this.c.length; _ < n; _ ++){
+            this.c.push(((this.c[this.c.length - 1] ** -1) + this.d) ** -1);
+        }
+    }
+
+    getToNth(n){
+        this.countToNth(n);
+        return this.c;
+    }
+}
+```
+
+`C++`:
+
+```cpp
+#include <vector>
+#include <math.h>
+
+class HarmonicProgression{
+    public:
+
+        int d = 0;
+        std::vector <float> c;
+
+        void create(float start, int df){
+            c.push_back(start);
+            d = df;
+        }
+
+        float get_nth(int n){
+            return std::pow((std::pow(c[0], -1) + (n - 1) * d), -1);
+        }
+
+        void count_to_nth(int n){
+            for(int _ = c.size(); _ < n; _ ++){
+                c.push_back(std::pow((std::pow(c[c.size() - 1], -1) + d), -1));
+            }
+        }
+
+        std::vector <float> get_to_nth(int n){
+            count_to_nth(n);
+            return c;
         }
 };
 ```
