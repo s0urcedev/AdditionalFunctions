@@ -830,19 +830,17 @@ for(let i = 0; i < a.length - 1; i ++){
 `C++`:
 
 ```cpp
-while(k < len - 1){
-    for(int i = 0; i < len - 1; i ++){
-        int imin = i;
-        for(int j = i + 1; j < len; j ++){
-            if(a[j] < a[imin]){
-                imin = j;
-            }
+for(int i = 0; i < len - 1; i ++){
+    int imin = i;
+    for(int j = i + 1; j < len; j ++){
+        if(a[j] < a[imin]){
+            imin = j;
         }
-        if(imin != i){
-            a[i] = a[i] + a[imin];
-            a[imin] = a[i] - a[imin];
-            a[i] = a[i] - a[imin];
-        }
+    }
+    if(imin != i){
+        a[i] = a[i] + a[imin];
+        a[imin] = a[i] - a[imin];
+        a[i] = a[i] - a[imin];
     }
 }
 ```
