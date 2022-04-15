@@ -41,6 +41,7 @@ from additional_functions import arithmetic
 from additional_functions.progressions import ArithmeticProgression
 from additional_functions.progressions import GeometricProgression
 from additional_functions.progressions import HarmonicProgression
+from additional_functions.binary_search_tree import Tree
 ```
 
 `JavaScript`:
@@ -55,6 +56,7 @@ let arithmetic = require('additional_functions/arithmetic');
 let ArithmeticProgression = require('additional-functions/progressions').ArithmeticProgression;
 let GeometricProgression = require('additional-functions/progressions').GeometricProgression;
 let HarmonicProgression = require('additional-functions/progressions').HarmonicProgression;
+let Tree = require('additional-functions/binary-search-tree').Tree;
 ```
 
 ## Introduction / Вступ / Вступление
@@ -3863,5 +3865,494 @@ class HarmonicProgression{
             count_to_nth(n);
             return c_;
         }
+};
+```
+
+## Binary search tree / Двійкове дерево пошуку / Двоичное дерево поиска
+
+### Packages / Пакети / Пакеты
+
+`Python`:
+
+```python
+tree = Tree()
+tree.add_node(v)
+tree.create(arr)
+tree.get_tree_by_levels()
+tree.get_tree_list()
+tree.get_tree_by_nodes()
+tree.get_tree_sorted()
+tree.get_min()
+tree.get_max()
+```
+
+`JavaScript`:
+
+```js
+let tree = new Tree()
+tree.addNode(v)
+tree.create(arr)
+tree.treeByLevels //get
+tree.treeList //get
+tree.treeByNodes //get
+tree.treeSorted //get
+tree.treeSortedReverse //get
+tree.min // get
+tree.max // get
+```
+
+`Python`:
+
+```python
+class Node:
+
+    value = None
+    left = None
+    right = None
+
+    def __init__(self, value: int = None, left = None, right = None) -> None:
+        self.value = value
+        self.left = left
+        self.right = right
+
+class Tree:
+
+    __head = None
+
+    def __init__(self, head: int = None) -> None:
+        if head != None:
+            self.__head = Node(head)
+
+    def add_node(self, v: int, node = None) -> None:
+        if self.__head == None:
+            self.__head = Node(v)
+        if node == None:
+            node = self.__head
+        if v < node.value:
+            if node.left == None:
+                node.left = Node(v)
+            else:
+                self.add_node(v, node.left)
+        else:
+            if node.right == None:
+                node.right = Node(v)
+            else:
+                self.add_node(v, node.right)
+
+    def create(self, arr: list) -> None:
+        self.__head = Node(arr[0])
+        for a in arr[1:]:
+            self.add_node(a, self.__head)
+
+    def __bfs(self) -> list:
+        q = [[self.__head, 0]]
+        p = []
+        while len(q) > 0:
+            v = q.pop()
+            p.append([v[0].value, v[1]])
+            if v[0].right != None:
+                q.append([v[0].right, v[1] + 1])
+            if v[0].left != None:
+                q.append([v[0].left, v[1] + 1])
+        return p
+
+    def get_tree_by_levels(self) -> list:
+        p = self.__bfs()
+        res = [[] for _ in range(0, p[-1][1] + 1)]
+        for n in p:
+            res[n[1]].append(n[0])
+        return res
+
+    def get_tree_list(self) -> list:
+        p = self.__bfs()
+        res = []
+        for n in p:
+            res.append(n[0])
+        return res
+
+    def __dfs_nodes(self, node: Node, p: dict) -> None:
+        p[node.value] = []
+        if node.left != None:
+            p[node.value].append(node.left.value)
+            self.__dfs_nodes(node.left, p)
+        if node.right != None:
+            p[node.value].append(node.right.value)
+            self.__dfs_nodes(node.right, p)
+
+    def get_tree_by_nodes(self) -> dict:
+        p = {}
+        self.__dfs_nodes(self.__head, p)
+        return p
+
+    def __dfs_plain(self, node: Node, p: list) -> None:
+        if node.left != None:
+            self.__dfs_plain(node.left, p)
+        p.append(node.value)
+        if node.right != None:
+            self.__dfs_plain(node.right, p)
+    
+    def __dfs_reverse(self, node: Node, p: list) -> None:
+        if node.right != None:
+            self.__dfs_reverse(node.right, p)
+        p.append(node.value)
+        if node.left != None:
+            self.__dfs_reverse(node.left, p)
+
+    def get_tree_sorted(self, reverse: bool = False) -> list:
+        p = []
+        if reverse:
+            self.__dfs_reverse(self.__head, p)
+        else:
+            self.__dfs_plain(self.__head, p)
+        return p
+
+    def get_min(self, node: Node = None) -> int:
+        if node == None:
+            node = self.__head
+        if node.left != None:
+            return self.get_min(node.left)
+        else:
+            return node.value
+
+    def get_max(self, node: Node = None) -> int:
+        if node == None:
+            node = self.__head
+        if node.right != None:
+            return self.get_min(node.right)
+        else:
+            return node.value
+```
+
+`JavaScript`:
+
+```js
+class Node{
+
+    value = undefined;
+    left = undefined;
+    right = undefined;
+
+    constructor(value = undefined, left = undefined, right = undefined){
+        this.value = value;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+class Tree{
+
+    #head = undefined;
+
+    constructor(head = undefined){
+        if(head != undefined){
+            this.#head = head;
+        }
+    }
+
+    addNode(v, node = undefined){
+        if(this.#head == undefined){
+            this.#head = new Node(v);
+        }
+        if(node == undefined){
+            node = this.#head;
+        }
+        if(v < node.value){
+            if(node.left == undefined){
+                node.left = new Node(v);
+            }
+            else{
+                this.addNode(v, node.left);
+            }
+        }
+        else{
+            if(node.right == undefined){
+                node.right = new Node(v);
+            }
+            else{
+                this.addNode(v, node.right);
+            }
+        }
+    }
+
+    create(arr){
+        this.#head = new Node(arr[0]);
+        for(let a of arr.slice(1, arr.length)){
+            this.addNode(a, this.#head);
+        }
+    }
+
+    #bfs(){
+        let q = [[this.#head, 0]];
+        let p = [];
+        while(q.length > 0){
+            let v = q.pop();
+            p.push([v[0].value, v[1]]);
+            if(v[0].right != undefined){
+                q.push([v[0].right, v[1] + 1]);
+            }
+            if(v[0].left != undefined){
+                q.push([v[0].left, v[1] + 1]);
+            }
+        }
+        return p;
+    }
+
+    get treeByLevels(){
+        let p = this.#bfs();
+        let res = [];
+        for(let _ = 0; _ < p[p.length - 1][1] + 1; _ ++){
+            res.push([]);
+        }
+        for(let n of p){
+            res[n[1]].push(n[0]);
+        }
+        return res;
+    }
+
+    get treeList(){
+        let p = this.#bfs();
+        let res = [];
+        for(let n of p){
+            res.push(n[0]);
+        }
+        return res;
+    }
+
+    #dfsNodes(node, p){
+        p[node.value] = [];
+        if(node.left != undefined){
+            p[node.value].push(node.left.value);
+            this.#dfsNodes(node.left, p);
+        }
+        if(node.right != undefined){
+            p[node.value].push(node.right.value);
+            this.#dfsNodes(node.right, p);
+        }
+    }
+
+    get treeByNodes(){
+        let p = {};
+        this.#dfsNodes(this.#head, p);
+        return p;
+    }
+
+    #dfsPlain(node, p){
+        if(node.left != undefined){
+            this.#dfsPlain(node.left, p);
+        }
+        p.push(node.value);
+        if(node.right != undefined){
+            this.#dfsPlain(node.right, p);
+        }
+    }
+
+    #dfsReverse(node, p){
+        if(node.right != undefined){
+            this.#dfsReverse(node.right, p);
+        }
+        p.push(node.value);
+        if(node.left != undefined){
+            this.#dfsReverse(node.left, p);
+        }
+    }
+
+    get treeSorted(){
+        let p = [];
+        this.#dfsPlain(this.#head, p);
+        return p;
+    }
+
+    get treeSortedReverse(){
+        let p = [];
+        this.#dfsReverse(this.#head, p);
+        return p;
+    }
+
+    #getMin(node){
+        if(node.left != undefined){
+            return this.#getMin(node.left);
+        }
+        else{
+            return node.value;
+        }
+    }
+
+    get min(){
+        return this.#getMin(this.#head);
+    }
+
+    #getMax(node){
+        if(node.right != undefined){
+            return this.#getMax(node.right);
+        }
+        else{
+            return node.value;
+        }
+    }
+
+    get max(){
+        return this.#getMax(this.#head);
+    }
+}
+```
+
+`C++`:
+
+```cpp
+#include <vector>
+
+class Node{
+
+    public:
+
+        int value;
+        Node* left;
+        Node* right;
+        Node(int d){
+            value = d;
+            left = NULL;
+            right = NULL;
+        }
+};
+
+class Tree{
+
+    private:
+
+        Node* head_;
+
+        std::vector <std::pair <int, int>> bfs_(){
+            std::vector <std::pair <Node*, int>> q = {std::pair <Node*, int> {head_, 0}};
+            std::vector <std::pair <int, int>> p;
+            while(q.size() > 0){
+                std::pair <Node*, int> v = q[q.size() - 1];
+                q.pop_back();
+                p.push_back(std::pair <int, int> {v.first->value, v.second});
+                if(v.first->right != NULL){
+                    q.push_back(std::pair <Node*, int> {v.first->right, v.second + 1});
+                }
+                if(v.first->left != NULL){
+                    q.push_back(std::pair <Node*, int> {v.first->left, v.second + 1});
+                }
+            }
+            return p;
+        }
+
+        void dfs_plain_(Node* node, std::vector <int> &p){
+            if(node->left != NULL){
+                dfs_plain_(node->left, p);
+            }
+            p.push_back(node->value);
+            if(node->right != NULL){
+                dfs_plain_(node->right, p);
+            }
+        }
+
+        void dfs_reverse_(Node* node, std::vector <int> &p){
+            if(node->right != NULL){
+                dfs_reverse_(node->right, p);
+            }
+            p.push_back(node->value);
+            if(node->left != NULL){
+                dfs_reverse_(node->left, p);
+            }
+        }
+
+    public:
+
+        Tree(){
+            head_ = NULL;
+        }
+
+        void add_node(int v, Node* node = NULL){
+            if(head_ == NULL){
+                head_ = new Node(v);
+            }
+            if(node == NULL){
+                node = head_;
+            }
+            if(v < node->value){
+                if(node->left == NULL){
+                    node->left = new Node(v); 
+                }
+                else{
+                    add_node(v, node->left);
+                }
+            }
+            else{
+                if(node->right == NULL){
+                    node->right = new Node(v);
+                }
+                else{
+                    add_node(v, node->right);
+                }
+            }
+        }
+
+        void create(std::vector <int> arr){
+            head_ = new Node(arr[0]);
+            for(int i = 1; i < arr.size(); i ++){
+                add_node(arr[i], head_);
+            }
+        }
+
+        std::vector <std::vector <int>> get_tree_by_levels(){
+            std::vector <std::pair <int, int>> p = bfs_();
+            std::vector <std::vector <int>> res;
+            for(int _ = 0; _ <= p[p.size() - 1].second; _ ++){
+                res.push_back(std::vector<int> {});
+            }
+            for(auto n: p){
+                res[n.second].push_back(n.first);
+            }
+            return res;
+        }
+
+        std::vector <int> get_tree_list(){
+            std::vector <std::pair <int, int>> p = bfs_();
+            std::vector <int> res;
+            for(auto n: p){
+                res.push_back(n.first);
+            }
+            return res;
+        }
+
+        std::vector <int> get_tree_sorted(bool reverse = false){
+            std::vector <int> p;
+            if(reverse){
+                dfs_reverse_(head_, p);
+            }
+            else{
+                dfs_plain_(head_, p);
+            }
+            return p;
+        }
+
+        int get_min(Node* node = NULL){
+            if(node == NULL){
+                node = head_;
+            }
+            if(node->left != NULL){
+                return get_min(node->left);
+            }
+            else{
+                return node->value;
+            }
+            return 0;
+        }
+
+        int get_max(Node* node = NULL){
+            if(node == NULL){
+                node = head_;
+            }
+            if(node->right != NULL){
+                return get_max(node->right);
+            }
+            else{
+                return node->value;
+            }
+            return 0;
+        }
+
 };
 ```
