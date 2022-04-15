@@ -3901,6 +3901,13 @@ tree.min // get
 tree.max // get
 ```
 
+
+<ins>***Wikipedia:***</ins> *[Binary search tree](https://en.wikipedia.org/wiki/Binary_search_tree)*
+
+<ins>***Вікіпедія:***</ins> *[Двійкове дерево пошуку](https://uk.wikipedia.org/wiki/Двійкове_дерево_пошуку)*
+
+<ins>***Википедия:***</ins> *[Двоичное дерево поиска](https://ru.wikipedia.org/wiki/Двоичное_дерево_поиска)*
+
 `Python`:
 
 ```python
