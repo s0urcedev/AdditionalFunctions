@@ -675,9 +675,113 @@ a.emplace(iter + y, x);
 
 `y` — element index / індекс елемента / индекс элемента
 
+### Min | Max subarray sum / Мінімальна | Максимальна сума підмасива / Минимальная | Максимальная сумма подмассива
+
+`Python`:
+
+```python
+def min_subarray_sum(a):
+    min = q = a[0]
+    for i in range(1, len(a)):
+        if q < 0:
+            q += a[i]
+        elif a[i] < q:
+            q = a[i]
+        if min > q:
+            min = q
+    return min
+
+def max_subarray_sum(a):
+    max = q = a[0]
+    for i in range(1, len(a)):
+        if q > 0:
+            q += a[i]
+        else:
+            q = a[i]
+        if max < q:
+            max = q
+    return max
+```
+
+`JavaScript`:
+
+```js
+function minSubarraySum(a){
+    let min = a[0];
+    let q = a[0];
+    for(let i = 1; i < a.length; i ++){
+        if(q < 0){
+            q += a[i];
+        }
+        else if(a[i] < q){
+            q = a[i];
+        }
+        if(min > q){
+            min = q;
+        }
+    }
+    return min;
+}
+
+function maxSubarraySum(a){
+    let max = a[0];
+    let q = a[0];
+    for(let i = 1; i < a.length; i ++){
+        if(q > 0){
+            q += a[i];
+        }
+        else{
+            q = a[i];
+        }
+        if(max < q){
+            max = q;
+        }
+    }
+    return max;
+}
+```
+
+`C++`:
+
+```cpp
+#include <vector>
+
+int min_subarray_sum(std::vector <int> a){
+    int min = a[0];
+    int q = a[0];
+    for(int i = 1; i < a.size(); i ++){
+        if(q < 0){
+            q += a[i];
+        }
+        else if(a[i] < q){
+            q = a[i];
+        }
+        if(min > q){
+            min = q;
+        }
+    }
+    return min;
+}
+
+int max_subarray_sum(std::vector <int> a){
+    int max = a[0];
+    int q = a[0];
+    for(int i = 1; i < a.size(); i ++){
+        if(q > 0){
+            q += a[i];
+        }
+        else{
+            q = a[i];
+        }
+        if(max < q){
+            max = q;
+        }
+    }
+    return max;
+}
+```
 
 ## Sorting / Сортування / Сотрировка
-
 
 ### Packages / Пакети / Пакеты
 
