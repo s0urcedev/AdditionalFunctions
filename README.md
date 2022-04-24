@@ -4476,7 +4476,7 @@ class Tree{
 >
 > *Линейный – временная сложность* ***O(n)***
 
-### Max | Min subarray sum / Максимальна | Мінімальна сума підмасива / Максимальная | Минимальная сумма
+### Max | Min subarray sum / Максимальна | Мінімальна сума підмасива / Максимальная | Минимальная сумма подмассива
 
 `Python`:
 
@@ -4494,9 +4494,16 @@ def max_subarray_sum(arr):
     return result
 
 def min_subarray_sum(arr):
-    for i in range(0, len(arr)):
-        arr[i] = -arr[i]
-    return -max_subarray_sum(arr)
+    result = arr[0]
+    local_result = arr[0]
+    for i in range(1, len(arr)):
+        if local_result < 0:
+            local_result += arr[i]
+        else:
+            local_result = arr[i]
+        if local_result < result:
+            result = local_result
+    return result
 ```
 
 `JavaScript`:
@@ -4520,10 +4527,20 @@ function maxSubarraySum(arr){
 }
 
 function minSubarraySum(arr){
-    for(let i = 0; i < arr.length; i ++){
-        arr[i] = -arr[i];
+    let result = arr[0];
+    let localResult = arr[0];
+    for(let i = 1; i < arr.length; i ++){
+        if(localResult < 0){
+            localResult += arr[i];
+        }
+        else{
+            localResult = arr[i];
+        }
+        if(localResult < result){
+            result = localResult;
+        }
     }
-    return -maxSubarraySum(arr)
+    return result;
 }
 ```
 
@@ -4550,14 +4567,24 @@ int max_subarray_sum(std::vector <int> arr){
 }
 
 int min_subarray_sum(std::vector <int> arr){
-    for(int i = 0; i < arr.size(); i ++){
-        arr[i] = -arr[i];
+    int result = arr[0];
+    int local_result = arr[0];
+    for(int i = 1; i < arr.size(); i ++){
+        if(local_result < 0){
+            local_result += arr[i];
+        }
+        else{
+            local_result = arr[i];
+        }
+        if(local_result < result){
+            result = local_result;
+        }
     }
-    return -max_subarray_sum(arr);
+    return result;
 }
 ```
 
-### Max | Min subarray prod / Максимальний | Мінімальний добуток підмасива / Максимальное | Минимальное произведение
+### Max | Min subarray prod / Максимальний | Мінімальний добуток підмасива / Максимальное | Минимальное произведение подмассива
 
 `Python`:
 
@@ -4746,5 +4773,233 @@ int min_subarray_prod(std::vector <int> arr){
         }
     }
     return result;
+}
+```
+
+### Max | Min circular subarray sum / Максимальна | Мінімальна сума циклічного підмасива / Максимальная | Минимальная сумма циклического подмассива
+
+`Python`:
+
+```python
+def max_subarray_sum(arr):
+    result = arr[0]
+    local_result = arr[0]
+    for i in range(1, len(arr)):
+        if local_result > 0:
+            local_result += arr[i]
+        else:
+            local_result = arr[i]
+        if local_result > result:
+            result = local_result
+    return result
+
+def min_subarray_sum(arr):
+    result = arr[0]
+    local_result = arr[0]
+    for i in range(1, len(arr)):
+        if local_result < 0:
+            local_result += arr[i]
+        else:
+            local_result = arr[i]
+        if local_result < result:
+            result = local_result
+    return result
+
+def max_circular_subarray_sum(arr):
+    max_elem = arr[0]
+    arr_sum = 0
+    for i in range(0, len(arr)):
+        if arr[i] > max_elem:
+            max_elem = arr[i]
+        arr_sum += arr[i]
+    if max_elem < 0:
+        return max_elem
+    max_simple_sum = max_subarray_sum(arr)
+    max_cicle_sum = arr_sum - min_subarray_sum(arr)
+    if max_simple_sum > max_cicle_sum:
+        return max_simple_sum
+    else:
+        return max_cicle_sum
+
+def min_circular_subarray_sum(arr):
+    min_elem = arr[0]
+    arr_sum = 0
+    for i in range(0, len(arr)):
+        if arr[i] < min_elem:
+            min_elem = arr[i]
+        arr_sum += arr[i]
+    if min_elem > 0:
+        return min_elem
+    min_simple_sum = min_subarray_sum(arr)
+    min_cicle_sum = arr_sum - max_subarray_sum(arr)
+    if min_simple_sum < min_cicle_sum:
+        return min_simple_sum
+    else:
+        return min_cicle_sum
+```
+
+`JavaScript`:
+
+```js
+function maxSubarraySum(arr){
+    let result = arr[0];
+    let localResult = arr[0];
+    for(let i = 1; i < arr.length; i ++){
+        if(localResult > 0){
+            localResult += arr[i];
+        }
+        else{
+            localResult = arr[i];
+        }
+        if(localResult > result){
+            result = localResult;
+        }
+    }
+    return result;
+}
+
+function minSubarraySum(arr){
+    let result = arr[0];
+    let localResult = arr[0];
+    for(let i = 1; i < arr.length; i ++){
+        if(localResult < 0){
+            localResult += arr[i];
+        }
+        else{
+            localResult = arr[i];
+        }
+        if(localResult < result){
+            result = localResult;
+        }
+    }
+    return result;
+}
+
+function maxCircularSubarraySum(arr){
+    let max_elem = arr[0];
+    let arr_sum = 0;
+    for(let i = 0; i < arr.length; i ++){
+        if(arr[i] > max_elem){
+            max_elem = arr[i];
+        }
+        arr_sum += arr[i];
+    }
+    if(max_elem < 0){
+        return max_elem;
+    }
+    let max_simple_sum = maxSubarraySum(arr);
+    let max_cicle_sum = arr_sum - minSubarraySum(arr);
+    if(max_simple_sum > max_cicle_sum){
+        return max_simple_sum;
+    }
+    else{
+        return max_cicle_sum;
+    }
+}
+
+function minCircularSubarraySum(arr){
+    let min_elem = arr[0];
+    let arr_sum = 0;
+    for(let i = 0; i < arr.length; i ++){
+        if(arr[i] < min_elem){
+            min_elem = arr[i];
+        }
+        arr_sum += arr[i];
+    }
+    if(min_elem > 0){
+        return min_elem;
+    }
+    let min_simple_sum = minSubarraySum(arr);
+    let min_cicle_sum = arr_sum - maxSubarraySum(arr);
+    if(min_simple_sum < min_cicle_sum){
+        return min_simple_sum;
+    }
+    else{
+        return min_cicle_sum;
+    }
+}
+```
+
+`C++`:
+
+```cpp
+#include <vector>
+
+int max_subarray_sum(std::vector <int> arr){
+    int result = arr[0];
+    int local_result = arr[0];
+    for(int i = 1; i < arr.size(); i ++){
+        if(local_result > 0){
+            local_result += arr[i];
+        }
+        else{
+            local_result = arr[i];
+        }
+        if(local_result > result){
+            result = local_result;
+        }
+    }
+    return result;
+}
+
+int min_subarray_sum(std::vector <int> arr){
+    int result = arr[0];
+    int local_result = arr[0];
+    for(int i = 1; i < arr.size(); i ++){
+        if(local_result < 0){
+            local_result += arr[i];
+        }
+        else{
+            local_result = arr[i];
+        }
+        if(local_result < result){
+            result = local_result;
+        }
+    }
+    return result;
+}
+
+int max_circular_subarray_sum(std::vector <int> arr){
+    int max_elem = arr[0];
+    int arr_sum = 0;
+    for(int i = 0; i < arr.size(); i ++){
+        if(arr[i] > max_elem){
+            max_elem = arr[i];
+        }
+        arr_sum += arr[i];
+    }
+    if(max_elem < 0){
+        return max_elem;
+    }
+    int max_simple_sum = max_subarray_sum(arr);
+    int max_cicle_sum = arr_sum - min_subarray_sum(arr);
+    if(max_simple_sum > max_cicle_sum){
+        return max_simple_sum;
+    }
+    else{
+        return max_cicle_sum;
+    }
+}
+
+int max_circular_subarray_sum(std::vector <int> arr){
+    int min_elem = arr[0];
+    int arr_sum = 0;
+    for(int i = 0; i < arr.size(); i ++){
+        if(arr[i] < min_elem){
+            min_elem = arr[i];
+        }
+        arr_sum += arr[i];
+    }
+    if(min_elem > 0){
+        return min_elem;
+    }
+    int min_simple_sum = min_subarray_sum(arr);
+    int min_cicle_sum = arr_sum - max_subarray_sum(arr);
+    if(min_simple_sum < min_cicle_sum){
+        return min_simple_sum;
+    }
+    else{
+        return min_cicle_sum;
+    }
 }
 ```
