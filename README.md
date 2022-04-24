@@ -4467,3 +4467,284 @@ class Tree{
 
 };
 ```
+
+## Subarray linear algorithms / Лінійні алгоритми підмасивів / Линейные алгоритмы подмассивов
+
+> *Linear – time complexity* ***O(n)***
+>
+> *Лінійний – часова складність* ***O(n)***
+>
+> *Линейный – временная сложность* ***O(n)***
+
+### Max | Min subarray sum / Максимальна | Мінімальна сума підмасива / Максимальная | Минимальная сумма
+
+`Python`:
+
+```python
+def max_subarray_sum(arr):
+    result = arr[0]
+    local_result = arr[0]
+    for i in range(1, len(arr)):
+        if local_result > 0:
+            local_result += arr[i]
+        else:
+            local_result = arr[i]
+        if local_result > result:
+            result = local_result
+    return result
+
+def min_subarray_sum(arr):
+    for i in range(0, len(arr)):
+        arr[i] = -arr[i]
+    return -max_subarray_sum(arr)
+```
+
+`JavaScript`:
+
+```js 
+function maxSubarraySum(arr){
+    let result = arr[0];
+    let localResult = arr[0];
+    for(let i = 1; i < arr.length; i ++){
+        if(localResult > 0){
+            localResult += arr[i];
+        }
+        else{
+            localResult = arr[i];
+        }
+        if(localResult > result){
+            result = localResult;
+        }
+    }
+    return result;
+}
+
+function minSubarraySum(arr){
+    for(let i = 0; i < arr.length; i ++){
+        arr[i] = -arr[i];
+    }
+    return -maxSubarraySum(arr)
+}
+```
+
+`C++`:
+
+```cpp
+#include <vector>
+
+int max_subarray_sum(std::vector <int> arr){
+    int result = arr[0];
+    int local_result = arr[0];
+    for(int i = 1; i < arr.size(); i ++){
+        if(local_result > 0){
+            local_result += arr[i];
+        }
+        else{
+            local_result = arr[i];
+        }
+        if(local_result > result){
+            result = local_result;
+        }
+    }
+    return result;
+}
+
+int min_subarray_sum(std::vector <int> arr){
+    for(int i = 0; i < arr.size(); i ++){
+        arr[i] = -arr[i];
+    }
+    return -max_subarray_sum(arr);
+}
+```
+
+### Max | Min subarray prod / Максимальний | Мінімальний добуток підмасива / Максимальное | Минимальное произведение
+
+`Python`:
+
+```python
+def max_subarray_prod(arr):
+    result = arr[0]
+    local_result_pos = arr[0]
+    local_result_neg = arr[0]
+    for i in range(1, len(arr)):
+        if local_result_pos * arr[i] > local_result_neg * arr[i]:
+            local_result_max = local_result_pos * arr[i]
+            local_result_min = local_result_neg * arr[i]
+        else:
+            local_result_max = local_result_neg * arr[i]
+            local_result_min = local_result_pos * arr[i]
+        if arr[i] > local_result_max:
+            local_result_pos = arr[i]
+        else:
+            local_result_pos = local_result_max
+        if arr[i] < local_result_min:
+            local_result_neg = arr[i]
+        else:
+            local_result_neg = local_result_min
+        if local_result_pos > result:
+            result = local_result_pos
+    return result
+        
+def min_subarray_prod(arr):
+    result = arr[0]
+    local_result_pos = arr[0]
+    local_result_neg = arr[0]
+    for i in range(1, len(arr)):
+        if local_result_pos * arr[i] > local_result_neg * arr[i]:
+            local_result_max = local_result_pos * arr[i]
+            local_result_min = local_result_neg * arr[i]
+        else:
+            local_result_max = local_result_neg * arr[i]
+            local_result_min = local_result_pos * arr[i]
+        if arr[i] > local_result_max:
+            local_result_pos = arr[i]
+        else:
+            local_result_pos = local_result_max
+        if arr[i] < local_result_min:
+            local_result_neg = arr[i]
+        else:
+            local_result_neg = local_result_min
+        if local_result_neg < result:
+            result = local_result_neg
+    return result
+```
+
+`JavaScript`:
+
+```js 
+function maxSubarrayProd(arr){
+    let result = arr[0];
+    let localResultPos = arr[0];
+    let localResultNeg = arr[0];
+    for(let i = 1; i < arr.length; i ++){
+        let localResultMax, localResultMin;
+        if(localResultPos * arr[i] > localResultNeg * arr[i]){
+            localResultMax = localResultPos * arr[i];
+            localResultMin = localResultNeg * arr[i];
+        }
+        else{
+            localResultMax = localResultNeg * arr[i];
+            localResultMin = localResultPos * arr[i];
+        }
+        if(arr[i] > localResultMax){
+            localResultPos = arr[i];
+        }
+        else{
+            localResultPos = localResultMax;
+        }
+        if(arr[i] < localResultMin){
+            localResultNeg = arr[i];
+        }
+        else{
+            localResultNeg = localResultMin;
+        }
+        if(localResultPos > result){
+            result = localResultPos;
+        }
+    }
+    return result;
+}
+
+function minSubarrayProd(arr){
+    let result = arr[0];
+    let localResultPos = arr[0];
+    let localResultNeg = arr[0];
+    for(let i = 1; i < arr.length; i ++){
+        let localResultMax, localResultMin;
+        if(localResultPos * arr[i] > localResultNeg * arr[i]){
+            localResultMax = localResultPos * arr[i];
+            localResultMin = localResultNeg * arr[i];
+        }
+        else{
+            localResultMax = localResultNeg * arr[i];
+            localResultMin = localResultPos * arr[i];
+        }
+        if(arr[i] > localResultMax){
+            localResultPos = arr[i];
+        }
+        else{
+            localResultPos = localResultMax;
+        }
+        if(arr[i] < localResultMin){
+            localResultNeg = arr[i];
+        }
+        else{
+            localResultNeg = localResultMin;
+        }
+        if(localResultNeg < result){
+            result = localResultNeg;
+        }
+    }
+    return result;
+}
+```
+
+`C++`:
+
+```cpp
+int max_subarray_prod(std::vector <int> arr){
+    int result = arr[0];
+    int local_result_pos = arr[0];
+    int local_result_neg = arr[0];
+    for(int i = 1; i < arr.size(); i ++){
+        int local_result_max, local_result_min;
+        if(local_result_pos * arr[i] > local_result_neg * arr[i]){
+            local_result_max = local_result_pos * arr[i];
+            local_result_min = local_result_neg * arr[i];
+        }
+        else{
+            local_result_max = local_result_neg * arr[i];
+            local_result_min = local_result_pos * arr[i];
+        }
+        if(arr[i] > local_result_max){
+            local_result_pos = arr[i];
+        }
+        else{
+            local_result_pos = local_result_max;
+        }
+        if(arr[i] < local_result_min){
+            local_result_neg = arr[i];
+        }
+        else{
+            local_result_neg = local_result_min;
+        }
+        if(local_result_pos > result){
+            result = local_result_pos;
+        }
+    }
+    return result;
+}
+
+int min_subarray_prod(std::vector <int> arr){
+    int result = arr[0];
+    int local_result_pos = arr[0];
+    int local_result_neg = arr[0];
+    for(int i = 1; i < arr.size(); i ++){
+        int local_result_max, local_result_min;
+        if(local_result_pos * arr[i] > local_result_neg * arr[i]){
+            local_result_max = local_result_pos * arr[i];
+            local_result_min = local_result_neg * arr[i];
+        }
+        else{
+            local_result_max = local_result_neg * arr[i];
+            local_result_min = local_result_pos * arr[i];
+        }
+        if(arr[i] > local_result_max){
+            local_result_pos = arr[i];
+        }
+        else{
+            local_result_pos = local_result_max;
+        }
+        if(arr[i] < local_result_min){
+            local_result_neg = arr[i];
+        }
+        else{
+            local_result_neg = local_result_min;
+        }
+        if(local_result_neg < result){
+            result = local_result_neg;
+        }
+    }
+    return result;
+}
+```
