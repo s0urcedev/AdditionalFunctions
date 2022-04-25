@@ -1,7 +1,7 @@
 class Test{
     
-    #function = null;
-    #arguments = [];
+    #func = null;
+    #params = [];
     #results = [];
 
     constructor(){
@@ -9,19 +9,19 @@ class Test{
     }
 
     set function(func){
-        this.#function = func;
+        this.#func = func;
     }
 
     addTestCases(){
         for(let a of arguments){
-            this.#arguments.push(a[0]);
+            this.#params.push(a[0]);
             this.#results.push(a[1]);
         }
     }
 
     testAll(){
-        for(let i = 0; i < this.#arguments.length; i ++){
-            if(this.#function(...this.#arguments[i]) != this.#results[i]){
+        for(let i = 0; i < this.#params.length; i ++){
+            if(this.#func(...this.#params[i]) != this.#results[i]){
                 return false;
             }
         }
@@ -34,10 +34,10 @@ class Test{
 
     findValid(){
         let result = [];
-        for(let i = 0; i < this.#arguments; i ++){
+        for(let i = 0; i < this.#params; i ++){
             try{
-                if(this.#function(...this.#arguments[i]) == this.#results[i]){
-                    result.push([[...this.#arguments[i]], this.#results[i]]);
+                if(this.#func(...this.#params[i]) == this.#results[i]){
+                    result.push([[...this.#params[i]], this.#results[i]]);
                 }
             }
             catch(err){
@@ -49,10 +49,10 @@ class Test{
 
     findInvalid(){
         let result = [];
-        for(let i = 0; i < this.#arguments; i ++){
+        for(let i = 0; i < this.#params; i ++){
             try{
-                if(this.#function(...this.#arguments[i]) != this.#results[i]){
-                    result.push([[...this.#arguments[i]], this.#results[i]]);
+                if(this.#func(...this.#params[i]) != this.#results[i]){
+                    result.push([[...this.#params[i]], this.#results[i]]);
                 }
             }
             catch(err){
@@ -64,33 +64,33 @@ class Test{
 
     findFailed(){
         let result = [];
-        for(let i = 0; i < this.#arguments; i ++){
+        for(let i = 0; i < this.#params; i ++){
             try{
-                this.#function(...this.#arguments[i]);
+                this.#func(...this.#params[i]);
             }
             catch(err){
-                result.push([[...this.#arguments[i]], this.#results[i]]);
+                result.push([[...this.#params[i]], this.#results[i]]);
             }
         }
         return result;
     }
 
     printResults(){
-        console.log(`Function: ${this.#function.name}`);
+        console.log(`Function: ${this.#func.name}`);
         let totaly = {"valid": 0, "invalid": 0, "failed": 0};
-        for(let i = 0; i < this.#arguments.length; i ++){
+        for(let i = 0; i < this.#params.length; i ++){
             try{
-                if(this.#function(...this.#arguments[i]) != this.#results[i]){
-                    console.log(`Arguments: [${[...this.#arguments[i]]}], Correct result: ${this.#results[i]}, Desicion: INVALID`);
+                if(this.#func(...this.#params[i]) != this.#results[i]){
+                    console.log(`Arguments: [${[...this.#params[i]]}], Correct result: ${this.#results[i]}, Desicion: INVALID`);
                     totaly["invalid"] ++;
                 }
                 else{
-                    console.log(`Arguments: [${[...this.#arguments[i]]}], Correct result: ${this.#results[i]}, Desicion: VALID`);
+                    console.log(`Arguments: [${[...this.#params[i]]}], Correct result: ${this.#results[i]}, Desicion: VALID`);
                     totaly["valid"] ++;
                 }
             }
             catch(err){
-                console.log(`Arguments: [${[...this.#arguments[i]]}], Correct result: ${this.#results[i]}, Desicion: FAILED ( ${err} )`);
+                console.log(`Arguments: [${[...this.#params[i]]}], Correct result: ${this.#results[i]}, Desicion: FAILED ( ${err} )`);
                 totaly["failed"] ++;
             }
         }
