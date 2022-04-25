@@ -42,6 +42,7 @@ from additional_functions.progressions import ArithmeticProgression
 from additional_functions.progressions import GeometricProgression
 from additional_functions.progressions import HarmonicProgression
 from additional_functions.binary_search_tree import Tree
+from additional_functions import subarrays
 ```
 
 `JavaScript`:
@@ -57,6 +58,7 @@ let ArithmeticProgression = require('additional-functions/progressions').Arithme
 let GeometricProgression = require('additional-functions/progressions').GeometricProgression;
 let HarmonicProgression = require('additional-functions/progressions').HarmonicProgression;
 let Tree = require('additional-functions/binary-search-tree').Tree;
+let subarrays = require('additional_functions/subarrays');
 ```
 
 ## Introduction / Вступ / Вступление
@@ -4469,6 +4471,30 @@ class Tree{
 ```
 
 ## Subarray linear algorithms / Лінійні алгоритми підмасивів / Линейные алгоритмы подмассивов
+
+### Packages / Пакети / Пакеты
+
+`Python`:
+
+```python
+subarrays.max_subarray_sum(arr)
+subarrays.min_subarray_sum(arr)
+subarrays.max_subarray_prod(arr)
+subarrays.min_subarray_prod(arr)
+subarrays.max_circular_subarray_sum(arr)
+subarrays.min_circular_subarray_sum(arr)
+```
+
+`JavaScript`:
+
+```js
+subarrays.maxSubarraySum(arr);
+subarrays.minSubarraySum(arr);
+subarrays.maxSubarrayProd(arr);
+subarrays.minSubarrayProd(arr);
+subarrays.maxCircularSubarraySum(arr);
+subarrays.minCircularSubarraySum(arr);
+```
 
 > *Linear – time complexity* ***O(n)***
 >
