@@ -4735,6 +4735,8 @@ function minSubarrayProd(arr){
 `C++`:
 
 ```cpp
+#include <vector>
+
 int max_subarray_prod(std::vector <int> arr){
     int result = arr[0];
     int local_result_pos = arr[0];
