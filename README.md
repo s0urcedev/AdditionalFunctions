@@ -43,6 +43,7 @@ from additional_functions.progressions import GeometricProgression
 from additional_functions.progressions import HarmonicProgression
 from additional_functions.binary_search_tree import Tree
 from additional_functions import subarrays
+from additional_functions.testing import Test
 ```
 
 `JavaScript`:
@@ -59,6 +60,7 @@ let GeometricProgression = require('additional-functions/progressions').Geometri
 let HarmonicProgression = require('additional-functions/progressions').HarmonicProgression;
 let Tree = require('additional-functions/binary-search-tree').Tree;
 let subarrays = require('additional_functions/subarrays');
+let Test = require('additional_functions/testing').Test;
 ```
 
 ## Introduction / Вступ / Вступление
@@ -5029,5 +5031,219 @@ int max_circular_subarray_sum(std::vector <int> arr){
     else{
         return min_cicle_sum;
     }
+}
+```
+
+## Testing / Тестування / Тестирование
+
+### Packages / Пакети / Пакеты
+
+`Python`:
+
+```python
+test = Test()
+test.set_function(func)
+test.add_test_cases([params, results])
+test.test_all()
+test.test(func, params, result)
+test.find_valid()
+test.find_invalid()
+test.find_failed()
+test.print_results()
+```
+
+`JavaScript`:
+
+```js
+let test = new Test();
+test.function = func; // set
+test.addTestCases([params, results]);
+test.testAll();
+test.test(func, params, result);
+test.findValid();
+test.findInvalid();
+test.findFailed();
+test.printResults();
+```
+
+`Python`:
+
+```python
+from typing import Any, Callable
+
+class Test:
+    
+    __func: Callable[..., Any] = None
+    __params: list = []
+    __results: list = []
+
+    def __init__(self) -> None:
+        pass
+
+    def set_funcion(self, func: Callable[..., Any]) -> None:
+        self.__func = func
+
+    def add_test_cases(self, *args: list) -> None:
+        for a in args:
+            self.__params.append(a[0])
+            self.__results.append(a[1])
+    
+    def test_all(self) -> bool:
+        for i in range(0, len(self.__params)):
+            if self.__func(*self.__params[i]) != self.__results[i]:
+                return False
+        return True
+
+    def test(self, func: Callable[..., Any], args: list, res: Any) -> bool:
+        return func(*args) == res
+
+    def find_valid(self) -> list:
+        result: list = []
+        for i in range(0, len(self.__params)):
+            try:
+                if self.__func(*self.__params[i]) == self.__results[i]:
+                    result.append([[*self.__params[i]], self.__results[i]])
+            except:
+                pass
+        return result
+
+    def find_invalid(self) -> list:
+        result: list = []
+        for i in range(0, len(self.__params)):
+            try:
+                if self.__func(*self.__params[i]) != self.__results[i]:
+                    result.append([[*self.__params[i]], self.__results[i]])
+            except:
+                pass
+        return result
+
+    def find_failed(self) -> list:
+        result: list = []
+        for i in range(0, len(self.__params)):
+            try:
+                self.__func(*self.__params[i])
+            except:
+                result.append([[*self.__params[i]], self.__results[i]])
+        return result
+
+    def print_results(self) -> None:
+        print("Function: {}".format(self.__func.__name__))
+        totaly: dict = {"valid": 0, "invalid": 0, "failed": 0}
+        for i in range(0, len(self.__params)):
+            try:
+                if self.__func(*self.__params[i]) != self.__results[i]:
+                    print("Arguments: {}, Correct result: {}, Desicion: INVALID".format([*self.__params[i]], self.__results[i]))
+                    totaly["invalid"] += 1
+                else:
+                    print("Arguments: {}, Correct result: {}, Desicion: VALID".format([*self.__params[i]], self.__results[i]))
+                    totaly["valid"] += 1
+            except Exception as err:
+                    print("Arguments: {}, Correct result: {}, Desicion: FAILED ( {} )".format([*self.__params[i]], self.__results[i], err))
+                    totaly["failed"] += 1
+        print("Totaly: {} VALID, {} INVALID, {} FAILED".format(totaly["valid"], totaly["invalid"], totaly["failed"]))
+```
+
+`JavaScript`:
+
+```js
+class Test{
+    
+    #func = null;
+    #params = [];
+    #results = [];
+
+    constructor(){
+
+    }
+
+    set function(func){
+        this.#func = func;
+    }
+
+    addTestCases(){
+        for(let a of arguments){
+            this.#params.push(a[0]);
+            this.#results.push(a[1]);
+        }
+    }
+
+    testAll(){
+        for(let i = 0; i < this.#params.length; i ++){
+            if(this.#func(...this.#params[i]) != this.#results[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    test(func, args, res){
+        return func(...args) == res;
+    }
+
+    findValid(){
+        let result = [];
+        for(let i = 0; i < this.#params; i ++){
+            try{
+                if(this.#func(...this.#params[i]) == this.#results[i]){
+                    result.push([[...this.#params[i]], this.#results[i]]);
+                }
+            }
+            catch(err){
+
+            }
+        }
+        return result;
+    }
+
+    findInvalid(){
+        let result = [];
+        for(let i = 0; i < this.#params; i ++){
+            try{
+                if(this.#func(...this.#params[i]) != this.#results[i]){
+                    result.push([[...this.#params[i]], this.#results[i]]);
+                }
+            }
+            catch(err){
+
+            }
+        }
+        return result;
+    }
+
+    findFailed(){
+        let result = [];
+        for(let i = 0; i < this.#params; i ++){
+            try{
+                this.#func(...this.#params[i]);
+            }
+            catch(err){
+                result.push([[...this.#params[i]], this.#results[i]]);
+            }
+        }
+        return result;
+    }
+
+    printResults(){
+        console.log(`Function: ${this.#func.name}`);
+        let totaly = {"valid": 0, "invalid": 0, "failed": 0};
+        for(let i = 0; i < this.#params.length; i ++){
+            try{
+                if(this.#func(...this.#params[i]) != this.#results[i]){
+                    console.log(`Arguments: [${[...this.#params[i]]}], Correct result: ${this.#results[i]}, Desicion: INVALID`);
+                    totaly["invalid"] ++;
+                }
+                else{
+                    console.log(`Arguments: [${[...this.#params[i]]}], Correct result: ${this.#results[i]}, Desicion: VALID`);
+                    totaly["valid"] ++;
+                }
+            }
+            catch(err){
+                console.log(`Arguments: [${[...this.#params[i]]}], Correct result: ${this.#results[i]}, Desicion: FAILED ( ${err} )`);
+                totaly["failed"] ++;
+            }
+        }
+        console.log(`Totaly: ${totaly["valid"]} VALID, ${totaly["invalid"]} INVALID, ${totaly["failed"]} FAILED`);
+    }
+
 }
 ```
