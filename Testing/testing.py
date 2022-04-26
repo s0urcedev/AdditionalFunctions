@@ -33,7 +33,7 @@ class Test:
             self.__results.append(a[1])
     
     def show_test_cases(self) -> None:
-        if(len(self.__params) == 0):
+        if len(self.__params) == 0:
             print("No test cases")
         for i in range(0, len(self.__params)):
             print("Arguments: {}, Correct result: {}".format([*self.__params[i]], self.__results[i]))
