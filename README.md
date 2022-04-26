@@ -5043,9 +5043,12 @@ int max_circular_subarray_sum(std::vector <int> arr){
 ```python
 test = Test()
 test.set_function(func)
-test.add_test_cases([params, results])
-test.test_all()
+test.get_function(func)
 test.test(func, params, result)
+test.add_test_cases([params, results])
+test.show_test_cases()
+test.clear_test_cases()
+test.test_all()
 test.find_valid()
 test.find_invalid()
 test.find_failed()
@@ -5056,10 +5059,12 @@ test.print_results()
 
 ```js
 let test = new Test();
-test.function = func; // set
-test.addTestCases([params, results]);
-test.testAll();
+test.function = func; // get/set
 test.test(func, params, result);
+test.addTestCases([params, results]);
+test.showTestCases();
+test.clearTestCases();
+test.testAll();
 test.findValid();
 test.findInvalid();
 test.findFailed();
@@ -5077,27 +5082,55 @@ class Test:
     __params: list = []
     __results: list = []
 
-    def __init__(self) -> None:
-        pass
-
-    def set_funcion(self, func: Callable[..., Any]) -> None:
+    def __init__(self, func: Callable[..., Any] = None) -> None:
         self.__func = func
+
+    def set_func(self, func: Callable[..., Any]) -> None:
+        self.__func = func
+
+    def get_func(self) -> Callable[..., Any]:
+        return self.__func
+
+    def test(self, *args: list) -> bool:
+        if len(args) == 2:
+            if self.__func == None:
+                print("No function set")
+                return
+            return self.__func(*args[0]) == args[1]
+        elif len(args) == 3:
+            return args[0](*args[1]) == args[2]
+        else:
+            print("Invalid number of arguments");
+            return
 
     def add_test_cases(self, *args: list) -> None:
         for a in args:
             self.__params.append(a[0])
             self.__results.append(a[1])
     
+    def show_test_cases(self) -> None:
+        if(len(self.__params) == 0):
+            print("No test cases")
+        for i in range(0, len(self.__params)):
+            print("Arguments: {}, Correct result: {}".format([*self.__params[i]], self.__results[i]))
+
+    def clear_test_cases(self) -> None:
+        self.__params = []
+        self.__results = []
+
     def test_all(self) -> bool:
+        if self.__func == None:
+            print("No function set")
+            return
         for i in range(0, len(self.__params)):
             if self.__func(*self.__params[i]) != self.__results[i]:
                 return False
         return True
 
-    def test(self, func: Callable[..., Any], args: list, res: Any) -> bool:
-        return func(*args) == res
-
     def find_valid(self) -> list:
+        if self.__func == None:
+            print("No function set")
+            return
         result: list = []
         for i in range(0, len(self.__params)):
             try:
@@ -5108,6 +5141,9 @@ class Test:
         return result
 
     def find_invalid(self) -> list:
+        if self.__func == None:
+            print("No function set")
+            return
         result: list = []
         for i in range(0, len(self.__params)):
             try:
@@ -5118,6 +5154,9 @@ class Test:
         return result
 
     def find_failed(self) -> list:
+        if self.__func == None:
+            print("No function set")
+            return
         result: list = []
         for i in range(0, len(self.__params)):
             try:
@@ -5127,6 +5166,9 @@ class Test:
         return result
 
     def print_results(self) -> None:
+        if self.__func == None:
+            print("No function set")
+            return
         print("Function: {}".format(self.__func.__name__))
         totaly: dict = {"valid": 0, "invalid": 0, "failed": 0}
         for i in range(0, len(self.__params)):
@@ -5152,12 +5194,39 @@ class Test{
     #params = [];
     #results = [];
 
-    constructor(){
+    /**
+     * @param {Function} func;
+     * @param {Array} params;
+     * @param {Array} results;
+     */
 
+    constructor(func = null){
+        this.#func = func;
     }
 
-    set function(func){
+    set func(func){
         this.#func = func;
+    }
+
+    get func(){
+        return this.#func;
+    }
+    
+    test(){
+        if(arguments.length === 2){
+            if(this.#func === null){
+                console.log("No function set");
+                return;
+            }
+            return this.#func(...arguments[0]) === arguments[1];
+        }
+        else if(arguments.length === 3){
+            return arguments[0](...arguments[1]) === arguments[2];
+        }
+        else{
+            console.log("Invalid number of arguments");
+            return;
+        }
     }
 
     addTestCases(){
@@ -5167,24 +5236,42 @@ class Test{
         }
     }
 
-    testAll(){
+    showTestCases(){
+        if(this.#params.length === 0){
+            console.log("No test cases");
+        }
         for(let i = 0; i < this.#params.length; i ++){
-            if(this.#func(...this.#params[i]) != this.#results[i]){
+            console.log(`Arguments: [${[...this.#params[i]]}], Correct result: ${this.#results[i]}`);
+        }
+    }
+
+    clearTestCases(){
+        this.#params = [];
+        this.#results = [];
+    }
+
+    testAll(){
+        if(this.#func == null){
+            console.log("No function set"); 
+            return;
+        }
+        for(let i = 0; i < this.#params.length; i ++){
+            if(this.#func(...this.#params[i]) !== this.#results[i]){
                 return false;
             }
         }
         return true;
     }
 
-    test(func, args, res){
-        return func(...args) == res;
-    }
-
     findValid(){
+        if(this.#func == null){
+            console.log("No function set"); 
+            return;
+        }
         let result = [];
         for(let i = 0; i < this.#params; i ++){
             try{
-                if(this.#func(...this.#params[i]) == this.#results[i]){
+                if(this.#func(...this.#params[i]) === this.#results[i]){
                     result.push([[...this.#params[i]], this.#results[i]]);
                 }
             }
@@ -5196,10 +5283,14 @@ class Test{
     }
 
     findInvalid(){
+        if(this.#func == null){
+            console.log("No function set"); 
+            return;
+        }
         let result = [];
         for(let i = 0; i < this.#params; i ++){
             try{
-                if(this.#func(...this.#params[i]) != this.#results[i]){
+                if(this.#func(...this.#params[i]) !== this.#results[i]){
                     result.push([[...this.#params[i]], this.#results[i]]);
                 }
             }
@@ -5211,6 +5302,10 @@ class Test{
     }
 
     findFailed(){
+        if(this.#func == null){
+            console.log("No function set"); 
+            return;
+        }
         let result = [];
         for(let i = 0; i < this.#params; i ++){
             try{
@@ -5224,11 +5319,15 @@ class Test{
     }
 
     printResults(){
+        if(this.#func == null){
+            console.log("No function set"); 
+            return;
+        }
         console.log(`Function: ${this.#func.name}`);
         let totaly = {"valid": 0, "invalid": 0, "failed": 0};
         for(let i = 0; i < this.#params.length; i ++){
             try{
-                if(this.#func(...this.#params[i]) != this.#results[i]){
+                if(this.#func(...this.#params[i]) !== this.#results[i]){
                     console.log(`Arguments: [${[...this.#params[i]]}], Correct result: ${this.#results[i]}, Desicion: INVALID`);
                     totaly["invalid"] ++;
                 }
