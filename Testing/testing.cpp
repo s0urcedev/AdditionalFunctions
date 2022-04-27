@@ -62,6 +62,34 @@ class Test{
             return true;
         }
 
+        std::vector <std::pair <arg_type, type> > find_valid(){
+            if(func_ == NULL){
+                std::cout << "No function set" << std::endl;
+                return std::vector <std::pair <arg_type, type> > {{}};
+            }
+            std::vector <std::pair <arg_type, type> > result = {};
+            for(int i = 0; i < params_.size(); i ++){
+                if(func_(params_[i]) == results_[i]){
+                    result.push_back(std::pair <arg_type, type> {params_[i], results_[i]});
+                }
+            }
+            return result;
+        }
+
+        std::vector <std::pair <arg_type, type> > find_invalid(){
+            if(func_ == NULL){
+                std::cout << "No function set" << std::endl;
+                return std::vector <std::pair <arg_type, type> > {{}};
+            }
+            std::vector <std::pair <arg_type, type> > result = {};
+            for(int i = 0; i < params_.size(); i ++){
+                if(func_(params_[i]) != results_[i]){
+                    result.push_back(std::pair <arg_type, type> {params_[i], results_[i]});
+                }
+            }
+            return result;
+        }
+
         void print_results(){
             if(func_ == NULL){
                 std::cout << "No function set" << std::endl;
