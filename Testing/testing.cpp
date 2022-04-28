@@ -30,7 +30,7 @@ class Test{
             return func_(param) == result;
         }
 
-        void add_test_cases(arg_type param, type result){
+        void add_test_case(arg_type param, type result){
             params_.push_back(param);
             results_.push_back(result);
         }
