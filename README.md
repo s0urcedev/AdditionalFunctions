@@ -3618,7 +3618,7 @@ std::string arab_rom(int s){
     }
     catch(...){
         std::cout << "Uncorrect input" << std::endl;
-        return 0;
+        return "";
     }
     return v;
 }
