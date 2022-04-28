@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-#define type int //choose your function type
+#define type int // choose your function type
 #define arg_type int // choose your arguments type
 
 class Test{
