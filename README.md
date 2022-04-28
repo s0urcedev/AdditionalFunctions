@@ -65,11 +65,11 @@ let Test = require('additional_functions/testing').Test;
 
 ## Introduction / Вступ / Вступление
 
-<ins>***English:***</ins> I have some experience in programming olympics. I think that it could help other people with preparing to competitions and get some working algorithms. There you will find algorithms on Python, JavaScript and C++, but you also can easily rewrite then on your language. I'ill give link to all ideas and text descriptions of algorithms. I believe that this repo could help you :)
+<ins>***English:***</ins> I have some experience in programming olympics. I think that it could help other people with preparing to competitions and get some working algorithms. There you will find algorithms on Python, JavaScript, C++ and C#, but you also can easily rewrite then on your language. I'ill give link to all ideas and text descriptions of algorithms. I believe that this repo could help you :)
 
-<ins>***Українська:***</ins> У мене є деякий досвід в олімпіадах з програмування. Я вважаю, що він може допомогти іншим людям підготуватися до змагань та отримати деякі робочі алгоритми. Тут ти знайдеш алгоритми на Python, JavaScript та C++, але ти завжди можешь з легкістю переписати їх на свою мову. Я додам посилання на усі ідеї та текстові описи алгоритмів. Я вірю, що цей репозиторій допоможе тобі :)
+<ins>***Українська:***</ins> У мене є деякий досвід в олімпіадах з програмування. Я вважаю, що він може допомогти іншим людям підготуватися до змагань та отримати деякі робочі алгоритми. Тут ти знайдеш алгоритми на Python, JavaScript, C++ та C#, але ти завжди можешь з легкістю переписати їх на свою мову. Я додам посилання на усі ідеї та текстові описи алгоритмів. Я вірю, що цей репозиторій допоможе тобі :)
 
-<ins>***Русский:***</ins> У меня есть некоторый опыт в олимпиадах по программированию. Я считаю, что он моджет помочь другим людям подготовится к соревнованиям и получить некоторые рабочие алгоритмы. Тут ты найдёшь алгоритмы на Python, JavaScript и C++, но ты всегда можешь с лёгкостью переписать их на свой язык. Я добавлю ссылки на все идеи и текстовые описания алгоритмов. Я верю что этот репозиторий поможет тебе :)
+<ins>***Русский:***</ins> У меня есть некоторый опыт в олимпиадах по программированию. Я считаю, что он моджет помочь другим людям подготовится к соревнованиям и получить некоторые рабочие алгоритмы. Тут ты найдёшь алгоритмы на Python, JavaScript, C++ и C#, но ты всегда можешь с лёгкостью переписать их на свой язык. Я добавлю ссылки на все идеи и текстовые описания алгоритмов. Я верю что этот репозиторий поможет тебе :)
 
 ## Swap / Заміна / Замена
 
@@ -87,7 +87,7 @@ x = x - y
 x, y = y, x
 ```
 
-`JavaScript`(For numbers) or `C++`(For numbers):
+`JavaScript`(For numbers), `C++`(For numbers) or `C#`(For nummbers):
 
 ```js
 x = x + y;
@@ -97,7 +97,7 @@ x = x - y;
 
 `Or`(For all):
 
-```python
+```js
 swap = y;
 y = x;
 x = swap;
@@ -191,6 +191,29 @@ for(auto n: a){
 }
 ```
 
+`C#`:
+
+
+```cs
+for(int i = 0; i < len; i++)
+{
+    //do something with a[i]
+    //роби щось з a[i]
+    //делай что-то с a[i]
+}
+```
+
+`Or`:
+
+```cs
+foreach(int n in a)
+{
+    //do something with n
+    //роби щось з n
+    //делай что-то с n
+}
+```
+
 `a` — array / масив / массив
 
 `len` — array length / довжина масива / длина массива
@@ -239,6 +262,21 @@ void print_vector(std::vector <int> a){
 }
 ```
 
+`C#`:
+
+```cs
+void print_array(ref int a, int len)
+{
+    Console.Write("[ ");
+    for(int i = 0; i < len; i ++)
+    {
+        Console.Write(a[i]);
+        Console.Write(" ");
+    }
+    Console.Write("]");
+}
+```
+
 `a` — array / масив / массив
 
 `len` — array length / довжина масива / длина массива
@@ -264,6 +302,12 @@ int b[end - start];
 for(int i = start; i < end; i ++){
     b[i - start] = a[i];
 }
+```
+
+`C#`:
+
+```cs
+ArraySegment<int> b = new ArraySegment<int> (a, start, end - start);
 ```
 
 `a` — old array / старий масив / старый массив
@@ -297,6 +341,12 @@ for(int i = 0; i < len; i ++){
         counter ++;
     }
 }
+```
+
+`C#`:
+
+```cs
+a.Count(i => i == x);
 ```
 
 `a` — array / масив / массив
@@ -333,6 +383,12 @@ for(int i = 0; i < len; i ++){
 }
 ```
 
+`C#`:
+
+```cs
+bool result = a.Contains(x);
+```
+
 `a` — array / масив / массив
 
 `len` — array length / довжина масива / длина массива
@@ -367,6 +423,12 @@ for(int i = 0; i < len; i ++){
 }
 ```
 
+`C#`:
+
+```cs
+int result = Array.IndexOf(a, x);
+```
+
 `a` — array / масив / массив
 
 `len` — array length / довжина масива / длина массива
@@ -399,6 +461,12 @@ for(int i = len - 1; i >= 0; i --){
         break;
     }
 }
+```
+
+`C#`:
+
+```cs
+int result = Array.LastIndexOf(a, x);
 ```
 
 `a` — array / масив / массив
@@ -445,6 +513,12 @@ auto iter = a.cbegin();
 a.erase(iter);
 ```
 
+`C#`(Using List):
+
+```cs
+a.RemoveAt(b.First());
+```
+
 `a` — array / масив / массив
 
 `len` — array length / довжина масива / длина массива
@@ -487,6 +561,12 @@ a.erase(iter);
 a.pop_back();
 ```
 
+`C#`(Using List):
+
+```cs
+a.RemoveAt(b.Last());
+```
+
 `a` — array / масив / массив
 
 `len` — array length / довжина масива / длина массива
@@ -527,6 +607,12 @@ auto iter = a.cbegin();
 a.erase(iter + x);
 ```
 
+`C#`(Using List):
+
+```cs
+a.RemoveAt(x);
+```
+
 `a` — array / масив / массив
 
 `len` — array length / довжина масива / длина массива
@@ -538,7 +624,7 @@ a.erase(iter + x);
 `Python`:
 
 ```python
-a.insert(0, x);
+a.insert(0, x)
 ```
 
 `JavaScript`:
@@ -570,6 +656,12 @@ auto iter = a.cbegin();
 a.emplace(iter, x);
 ```
 
+`C#`(Using List):
+
+```cs
+a.Insert(0, x);
+```
+
 `a` — old array / старий масив / старый массив
 
 `b` — new array / новий масив / новый массив
@@ -583,7 +675,7 @@ a.emplace(iter, x);
 `Python`:
 
 ```python
-a.append(x);
+a.append(x)
 ```
 
 `JavaScript`:
@@ -621,6 +713,12 @@ a.emplace(iter, x);
 a.push_back(x);
 ```
 
+`C#`(Using List):
+
+```cs
+a.Add(x);
+```
+
 `a` — old array / старий масив / старый массив
 
 `b` — new array / новий масив / новый массив
@@ -634,7 +732,7 @@ a.push_back(x);
 `Python`:
 
 ```python
-a.insert(y, x);
+a.insert(y, x)
 ```
 
 `JavaScript`:
@@ -669,6 +767,12 @@ auto iter = a.cbegin();
 a.emplace(iter + y, x);
 ```
 
+`C#`(Using List):
+
+```cs
+a.Insert(y, x);
+```
+
 `a` — old array / старий масив / старый массив
 
 `b` — new array / новий масив / новый массив
@@ -678,112 +782,6 @@ a.emplace(iter + y, x);
 `x` — element / елемент / элемент
 
 `y` — element index / індекс елемента / индекс элемента
-
-### Min | Max subarray sum / Мінімальна | Максимальна сума підмасива / Минимальная | Максимальная сумма подмассива
-
-`Python`:
-
-```python
-def min_subarray_sum(a):
-    min = q = a[0]
-    for i in range(1, len(a)):
-        if q < 0:
-            q += a[i]
-        elif a[i] < q:
-            q = a[i]
-        if min > q:
-            min = q
-    return min
-
-def max_subarray_sum(a):
-    max = q = a[0]
-    for i in range(1, len(a)):
-        if q > 0:
-            q += a[i]
-        else:
-            q = a[i]
-        if max < q:
-            max = q
-    return max
-```
-
-`JavaScript`:
-
-```js
-function minSubarraySum(a){
-    let min = a[0];
-    let q = a[0];
-    for(let i = 1; i < a.length; i ++){
-        if(q < 0){
-            q += a[i];
-        }
-        else if(a[i] < q){
-            q = a[i];
-        }
-        if(min > q){
-            min = q;
-        }
-    }
-    return min;
-}
-
-function maxSubarraySum(a){
-    let max = a[0];
-    let q = a[0];
-    for(let i = 1; i < a.length; i ++){
-        if(q > 0){
-            q += a[i];
-        }
-        else{
-            q = a[i];
-        }
-        if(max < q){
-            max = q;
-        }
-    }
-    return max;
-}
-```
-
-`C++`:
-
-```cpp
-#include <vector>
-
-int min_subarray_sum(std::vector <int> a){
-    int min = a[0];
-    int q = a[0];
-    for(int i = 1; i < a.size(); i ++){
-        if(q < 0){
-            q += a[i];
-        }
-        else if(a[i] < q){
-            q = a[i];
-        }
-        if(min > q){
-            min = q;
-        }
-    }
-    return min;
-}
-
-int max_subarray_sum(std::vector <int> a){
-    int max = a[0];
-    int q = a[0];
-    for(int i = 1; i < a.size(); i ++){
-        if(q > 0){
-            q += a[i];
-        }
-        else{
-            q = a[i];
-        }
-        if(max < q){
-            max = q;
-        }
-    }
-    return max;
-}
-```
 
 ## Sorting / Сортування / Сотрировка
 
@@ -870,6 +868,7 @@ while(k < a.length - 1){
 `C++`:
 
 ```cpp
+int k = 0;
 while(k < len - 1){
     k = 0;
     for(int j = 0; j < len - 1; j ++){
@@ -886,6 +885,33 @@ while(k < len - 1){
 ```
 
 <ins>***File:***</ins> *[Bubble_Sort.cpp](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Bubble_Sort.cpp)*
+
+
+`C#`:
+
+```cs
+int k = 0;
+while(k < a.Length - 1)
+{
+    k = 0;
+    for(int j = 0; j < a.Length - 1; j ++)
+    {
+        if(a[j] > a[j + 1])
+        {
+            a[j] = a[j] + a[j+1];
+            a[j+1] = a[j] - a[j+1];
+            a[j] = a[j] - a[j+1];
+        }
+        else
+        {
+            k ++;
+        }
+    }
+}
+```
+
+<ins>***File:***</ins> *[Bubble_Sort.cs](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Bubble_Sort.cs)*
+
 
 ### Selection sort / Сортування вибором / Сортировка выбором
 
@@ -957,6 +983,30 @@ for(int i = 0; i < len - 1; i ++){
 
 <ins>***File:***</ins> *[Selection_Sort.cpp](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Selection_Sort.cpp)*
 
+`C#`:
+
+```cs
+for(int i = 0; i < a.Length; i ++)
+{
+    int imin = i;
+    for(int j = i + 1; j < a.Length; j ++)
+    {
+        if(a[j] < a[imin])
+        {
+            imin = j;
+        }
+    }
+    if(imin != i)
+    {
+        a[i] = a[i] + a[imin];
+        a[imin] = a[i] - a[imin];
+        a[i] = a[i] - a[imin];
+    }
+}
+```
+
+<ins>***File:***</ins> *[Selection_Sort.cs](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Selection_Sort.cs)*
+
 ### Insertion sort / Сортування включенням / Сортировка вставками
 
 **Time complexity / Часова складність / Временная сложность :** *O(n<sup>2</sup>)*.
@@ -1016,6 +1066,24 @@ for(int j = 1; j < len; j ++){
 ```
 
 <ins>***File:***</ins> *[Insertion_Sort.cpp](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Insertion_Sort.cpp)*
+
+`C#`:
+
+```cs
+for(int j = 0; j < a.Length; j ++)
+{
+    int key = a[j];
+    int i = j - 1;
+    while (i >= 0 && a[i] > key)
+    {
+        a[i+1] = a[i];
+        i --;
+    }
+    a[i+1] = key;
+}
+```
+
+<ins>***File:***</ins> *[Insertion_Sort.cs](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Insertion_Sort.cs)*
 
 ### Quick sort / Швидке сортування / Быстрая сортировка
 
@@ -1133,6 +1201,51 @@ sort(a, 0, len - 1);
 ```
 
 <ins>***File:***</ins> *[Quick_Sort.cpp](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Quick_Sort.cpp)*
+
+`C#`:
+
+```cs
+void Sort(ref int[] array, int b, int e)
+{
+    int l = b;
+    int r = e;
+    int p = array[(l + r) / 2];
+    while(l <= r)
+    {
+        while(array[l] < p)
+        {
+            l ++;
+        }
+        while(array[r] > p)
+        {
+            r --;
+        }
+        if(l <= r)
+        {
+            if(l < r)
+            {
+                array[l] = array[l] + array[r];
+                array[r] = array[l] - array[r];
+                array[l] = array[l] - array[r];
+            }
+            l ++;
+            r --;
+        }
+    }
+    if(b < r)
+    {
+        Sort(ref array, b, r);
+    }
+    if(e > l)
+    {
+        Sort(ref array, l, e);
+    }
+}
+
+Sort(ref a, 0, a.Length - 1);
+```
+
+<ins>***File:***</ins> *[Quick_Sort.cs](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Quick_Sort.cs)*
 
 ### Merge sort / Сортування злиттям / Сортировка слиянием
 
@@ -1299,6 +1412,69 @@ sort(a, len);
 ```
 
 <ins>***File:***</ins> *[Merge_Sort.cpp](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Merge_Sort.cpp)*
+
+`C#`:
+
+```cs
+void Sort(ref int[] array, int m)
+{
+    int[] mass = new int[m];
+    for(int i = 0; i < m; i ++)
+    {
+        mass[i] = array[i];
+    }
+    if(m <= 1)
+    {
+        array[0] = mass[0];
+    }
+    else
+    {
+        int[] L = new int[m/2];
+        int[] R = new int[m-(m/2)];
+        for(int i = 0; i < m; i ++)
+        {
+            if(i < m/2) L[i] = mass[i];
+            else R[i-(m/2)] = mass[i];
+        }
+        Sort(ref L, m/2);
+        Sort(ref R, m - (m/2));
+        int h = 0, f = 0, k = 0;
+        int[] C = new int[m];
+        while(h < m/2 && f < m - (m/2))
+        {
+            if(L[h] < R[f]){
+                C[k] = L[h];
+                h ++;
+            }
+            else{
+                C[k] = R[f];
+                f ++;
+            }
+            k ++;
+        }
+        while(h < m/2)
+        {
+            C[k] = L[h];
+            h ++;
+            k ++;
+        }
+        while(f < m - (m/2))
+        {
+            C[k] = R[f];
+            f ++;
+            k ++;
+        }
+        for(int i = 0; i < m; i ++)
+        {
+            array[i] = C[i];
+        }
+    }
+}
+
+Sort(ref a, a.Length);
+```
+
+<ins>***File:***</ins> *[Merge_Sort.cs](https://github.com/s0urce18/OlympHelper/blob/main/Sort/Merge_Sort.cs)*
 
 ## GCD | LCM / НСД | НСК / НОД | НОК
 
