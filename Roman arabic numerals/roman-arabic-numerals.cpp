@@ -130,7 +130,7 @@ string arab_rom(int s){
     }
     catch(...){
         cout << "Uncorrect input" << endl;
-        return 0;
+        return "";
     }
     return v;
 }
