@@ -1546,6 +1546,26 @@ int gcd(int a, int b){
 }
 ```
 
+`C#`:
+
+```cs
+int GCD(int a, int b)
+{
+    while(a != 0 && b != 0)
+    {
+        if(a > b)
+        {
+            a = a % b;
+        }
+        else
+        {
+            b = b % a;
+        }
+    }
+    return a + b;
+}
+```
+
 
 ### LCM / НСК / НОК
 
@@ -1607,6 +1627,31 @@ int gcd(int a, int b){
 
 int lcm(int a, int b){
     return (a * b) / gcd(a, b);
+}
+```
+
+`C#`:
+
+```cs
+int GCD(int a, int b)
+{
+    while(a != 0 && b != 0)
+    {
+        if(a > b)
+        {
+            a = a % b;
+        }
+        else
+        {
+            b = b % a;
+        }
+    }
+    return a + b;
+}
+
+int LCM(int a, int b)
+{
+    return (a * b) / GCD(a, b);
 }
 ```
 
@@ -1696,6 +1741,34 @@ bool isprime(int n){
 }
 ```
 
+`C#`:
+
+```cs
+bool Isprime(int n)
+{
+    List<int> result = new List<int>(){};
+    int d = 2;
+    while(d * d <= n)
+    {
+        if(n % d == 0)
+        {
+            result.Add(d);
+            n = n / d;
+        }
+        else
+        {
+            d ++;
+        }
+    }
+    if(n > 1)
+    {
+        result.Add(n);
+    }
+    if(result.Count() > 1) return false;
+    else return true;
+}
+```
+
 ### Finding n prime numbers / Пошук n простих чисел / Поиск n простых чисел
 
 `Python`:
@@ -1770,6 +1843,36 @@ std::vector <int> n_primes(a){
 }
 ```
 
+`C#`:
+
+```cs
+List<int> NPrimes(int n)
+{
+    List<int> result = new List<int>(){};
+    int i = 0;
+    int m = 1;
+    bool k;
+    while(i < n)
+    {
+        m ++;
+        k = true;
+        foreach(int j in result)
+        {
+            if(m % j == 0){
+                k = false;
+                break;
+            }
+        }
+        if(k)
+        {
+            result.Add(m);
+            i ++;
+        }
+    }
+    return result;
+}
+```
+
 ### Finding prime factors of a number / Пошук простих множників числа / Поиск простых множителей числа
 
 `Python`:
@@ -1833,6 +1936,33 @@ std::vector <int> prime_factors(a){
 }
 ```
 
+`C#`:
+
+```cs
+List<int> PrimeFactors(int a)
+{
+    List<int> result = new List<int>(){};
+    int d = 2;
+    while(d * d <= a)
+    {
+        if(a % d == 0)
+        {
+            result.Add(d);
+            a = a / d;
+        }
+        else
+        {
+            d ++;
+        }
+    }
+    if(a > 1)
+    {
+        result.Add(a);
+    }
+    return result;
+}
+```
+
 ## Fibonacci number / Послідовність Фібоначчі / Числа Фибоначчи
 
 ### Packages / Пакети / Пакеты
@@ -1887,6 +2017,22 @@ int fibo(int n){
     }
     else{
         return fibo(n - 1) + fibo(n - 2);
+    }
+}
+```
+
+`C#`:
+
+```cs
+int Fibo(int n)
+{
+    if(n <= 1)
+    {
+        return n;
+    }
+    else
+    {
+        return Fibo(n - 1) + Fibo(n - 2);
     }
 }
 ```
@@ -1987,11 +2133,39 @@ int factorial(int n){
 }
 ```
 
+`C#`:
+
+```cs
+int Factorial(int n)
+{
+    int result = 1;
+    for(int m = 1; m <= n; m ++)
+    {
+        result *= m;
+    }
+    return result;
+}
+```
+
+`Or`:
+
+```cs
+int Factorial(int n)
+{
+    if(n == 0) return 1;
+    else return n * Factorial(n - 1);
+}
+```
+
 ### Counting double factorial / Підрахунок подвійного факторіалу / Вычисление двойного факториала
 
 `Python`:
 
 ```python
+def factorial(n):
+    if n == 0: return 1
+    else: return n * factorial(n - 1)
+
 def double_factorial(n):
     if n == 0: return 1
     else: return n * factorial(n - 2)
@@ -2000,6 +2174,11 @@ def double_factorial(n):
 `JavaScript`:
 
 ```js
+function factorial(n){
+    if(n == 0) return 1;
+    else return n * factorial(n - 1);
+}
+
 function doubleFactorial(n){
     if(n == 0) return 1;
     else return n * factorial(n - 2);
@@ -2009,9 +2188,30 @@ function doubleFactorial(n){
 `C++`:
 
 ```cpp
+int factorial(int n){
+    if(n == 0) return 1;
+    else return n * factorial(n - 1);
+}
+
 int double_factorial(int n){
     if(n == 0) return 1;
     else return n * factorial(n - 2);
+}
+```
+
+`C#`:
+
+```cs
+int Factorial(int n)
+{
+    if(n == 0) return 1;
+    else return n * Factorial(n - 1);
+}
+
+int DoubleFactorial(int n)
+{
+    if(n == 0) return 1;
+    else return n * Factorial(n - 2);
 }
 ```
 
@@ -2129,6 +2329,51 @@ int factorial(int n){
 
 int subfactorial(int n){
     return round(factorial(n) / 2.718);
+}
+```
+
+`C#`:
+
+```cs
+int Factorial(int n)
+{
+    if(n == 0) return 1;
+    else return n * Factorial(n - 1);
+}
+
+int SubFactorial(int n)
+{
+    double result = 1;
+    bool k = true;
+    for(int m = 1; m <= n; m ++)
+    {
+        if(k)
+        {
+            result -= 1.0 / Factorial(m);
+            k = false;
+        }
+        else
+        {
+            result += 1.0 / Factorial(m);
+            k = true;
+        }
+    }
+    return result * Factorial(n);
+}
+```
+
+`Or`:
+
+```cs
+int Factorial(int n)
+{
+    if(n == 0) return 1;
+    else return n * Factorial(n - 1);
+}
+
+int SubFactorial(int n)
+{
+    return Math.Round(Factorial(n) / 2.718);
 }
 ```
 
@@ -2310,6 +2555,79 @@ int p_primorial(int n){
 }
 ```
 
+`C#`:
+
+```cs
+bool Isprime(int n)
+{
+    List<int> result = new List<int>(){};
+    int d = 2;
+    while(d * d <= n)
+    {
+        if(n % d == 0)
+        {
+            result.Add(d);
+            n = n / d;
+        }
+        else
+        {
+            d ++;
+        }
+    }
+    if(n > 1)
+    {
+        result.Add(n);
+    }
+    if(result.Count() > 1) return false;
+    else return true;
+}
+
+int P(int n)
+{
+    List<int> result = new List<int>(){};
+    int i = 0;
+    int m = 1;
+    bool k;
+    while(i < n)
+    {
+        m ++;
+        k = true;
+        for(auto j: result)
+        {
+            if(m % j == 0)
+            {
+                k = false;
+                break;
+            }
+        }
+        if(k)
+        {
+            result.Add(m);
+            i ++;
+        }
+    }
+    return result[^1];
+}
+
+//primorial less than n
+//пріморіал меньше n
+//примориал меньше n
+int Primorial(int n)
+{
+    if(n == 1) return 1;
+    else if(Isprime(n)) return n * Primorial(n - 1);
+    else return Primorial(n - 1);
+}
+
+//primorial for first n primes
+//пріморіал для перших n простих
+//примориал первых n простых
+int PPrimorial(int n)
+{
+    return Primorial(P(n));
+}
+```
+
 ### Counting superfactorial / Підрахунок суперфакторіалу / Вычисление суперфакториала
 
 `Python`:
@@ -2349,6 +2667,22 @@ int factorial(int n){
 int superfactorial(int n){
     if(n == 0) return 1;
     else return factorial(n) * superfactorial(n - 1);
+}
+```
+
+`C#`:
+
+```cs
+int Factorial(int n)
+{
+    if(n == 0) return 1;
+    else return n * Factorial(n - 1);
+}
+
+int SuperFactorial(int n)
+{
+    if(n == 0) return 1;
+    else return Factorial(n) * SuperFactorial(n - 1);
 }
 ```
 
@@ -2405,6 +2739,27 @@ int superfactorial(int n){
 int superduperfactorial(int n){
     if(n == 0) return 1;
     else return superfactorial(n) * superduperfactorial(n - 1);
+}
+```
+
+`C#`:
+
+```cpp
+int Factorial(int n)
+{
+    if(n == 0) return 1;
+    else return n * Factorial(n - 1);
+}
+
+int SuperFactorial(int n)
+{
+    if(n == 0) return 1;
+    else return Factorial(n) * SuperFactorial(n - 1);
+}
+
+int SuperDuperFactorial(int n){
+    if(n == 0) return 1;
+    else return SuperFactorial(n) * SuperDuperFactorial(n - 1);
 }
 ```
 
