@@ -265,7 +265,7 @@ void print_vector(std::vector <int> a){
 `C#`:
 
 ```cs
-void print_array(ref int a, int len)
+void PrintArray(ref int a, int len)
 {
     Console.Write("[ ");
     for(int i = 0; i < len; i ++)
@@ -2897,6 +2897,47 @@ std::vector <vector <int>> generate_combinations(vector <int> arr, int k){
 }
 ```
 
+`C#`:
+
+```cs
+int Factorial(int n)
+{
+    if(n == 0) return 1;
+    else return n * Factorial(n - 1);
+}
+
+int CountCombinations(int n, int k)
+{
+    return Factorial(n) / (Factorial(k) * Factorial(n - k));
+}
+
+List<List <int>> GenerateCombinations(List<int> arr, int k)
+{
+    List<List <int>> result = new List<List <int>>(){};
+    for(int i = 0; i < CountCombinations(arr.Count(), k); i ++)
+    {
+        List<int> localResult = new List<int>(1){0};
+        int n = arr.Count();
+        int s = 0;
+        for(int j = 1; j <= k; j ++)
+        {
+            int t = localResult[j - 1] + 1;
+            while((t < (n - k + j)) && ((s + CountCombinations(n - t, k - j)) <= i))
+            {
+                s += CountCombinations(n - t, k - j);
+                t ++;
+            }
+            localResult.Add(t);
+        }
+        for(int l = 1; l < localResult.Count(); l ++){
+            localResult[l] = arr[localResult[l] - 1];
+        }
+        result.Add(localResult.GetRange(1, localResult.Count() - 1));
+    }
+    return result;
+}
+```
+
 ### Permutations / Розміщення / Размещения
 
 `Python`:
@@ -3101,6 +3142,91 @@ std::vector <vector <int>> generate_permutations(std::vector <int> arr, int k){
         }
         for(auto u: local_result){
             result.push_back(u);
+        }
+    }
+    return result;
+}
+```
+
+`C#`:
+
+```cs
+int Factorial(int n)
+{
+    if(n == 0) return 1;
+    else return n * Factorial(n - 1);
+}
+
+int CountCombinations(int n, int k)
+{
+    return Factorial(n) / (Factorial(k) * Factorial(n - k));
+}
+
+int CountPermutations(int n, int k)
+{
+    return Factorial(n) / Factorial(n - k);
+}
+
+List<List <int>> GenerateCombinations(List<int> arr, int k)
+{
+    List<List <int>> result = new List<List <int>>(){};
+    for(int i = 0; i < CountCombinations(arr.Count(), k); i ++)
+    {
+        List<int> localResult = new List<int>(1){0};
+        int n = arr.Count();
+        int s = 0;
+        for(int j = 1; j <= k; j ++)
+        {
+            int t = localResult[j - 1] + 1;
+            while((t < (n - k + j)) && ((s + CountCombinations(n - t, k - j)) <= i))
+            {
+                s += CountCombinations(n - t, k - j);
+                t ++;
+            }
+            localResult.Add(t);
+        }
+        for(int l = 1; l < localResult.Count(); l ++){
+            localResult[l] = arr[localResult[l] - 1];
+        }
+        result.Add(localResult.GetRange(1, localResult.Count() - 1));
+    }
+    return result;
+}
+
+List<List <int>> GeneratePermutations(List<int> arr, int k)
+{
+    List<List <int>> result = new List<List <int>>(){};
+    List<List <int>> m = GenerateCombinations(arr, k);
+    foreach(List <int> a in m)
+    {
+        List<List <int>> localResult = new List<List <int>>(){};
+        for(int i = 0; i < Factorial(a.Count()); i ++)
+        {
+            int ind = i + 1;
+            List <int> localLocalResult = new List <int>(){};
+            List <int> localLocalArr = new List <int>(){};
+            foreach(int r in a)
+            {
+                localLocalArr.Add(r);
+            }
+            int n = localLocalArr.Count();
+            for(int j = 1; j <= n; j ++)
+            {
+                int f = Factorial(n - j);
+                int g = (ind + f - 1) / f;
+                localLocalResult.Add(localLocalArr[g - 1]);
+                localLocalArr.RemoveAt(g - 1);
+                ind -= (g - 1) * f; 
+            }
+            if(localLocalArr.Count() > 0)
+            {
+                localLocalResult.Add(localLocalArr[0]);
+            }
+            localResult.Add(localLocalResult);
+        }
+        foreach(List <int> u in localResult)
+        {
+            result.Add(u);
         }
     }
     return result;
