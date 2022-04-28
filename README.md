@@ -6255,9 +6255,12 @@ class Test{
             }
             std::vector <std::pair <arg_type, type> > result = {};
             for(int i = 0; i < params_.size(); i ++){
-                if(func_(params_[i]) == results_[i]){
-                    result.push_back(std::pair <arg_type, type> {params_[i], results_[i]});
+                try{
+                    if(func_(params_[i]) == results_[i]){
+                        result.push_back(std::pair <arg_type, type> {params_[i], results_[i]});
+                    }
                 }
+                catch(...){};
             }
             return result;
         }
@@ -6269,7 +6272,27 @@ class Test{
             }
             std::vector <std::pair <arg_type, type> > result = {};
             for(int i = 0; i < params_.size(); i ++){
-                if(func_(params_[i]) != results_[i]){
+                try{
+                    if(func_(params_[i]) != results_[i]){
+                        result.push_back(std::pair <arg_type, type> {params_[i], results_[i]});
+                    }
+                }
+                catch(...){}
+            }
+            return result;
+        }
+
+        std::vector <std::pair <arg_type, type> > find_failed(){
+            if(func_ == NULL){
+                std::cout << "No function set" << std::endl;
+                return std::vector <std::pair <arg_type, type> > {{}};
+            }
+            std::vector <std::pair <arg_type, type> > result = {};
+            for(int i = 0; i < params_.size(); i ++){
+                try{
+                    func_(params_[i]);
+                }
+                catch(...){
                     result.push_back(std::pair <arg_type, type> {params_[i], results_[i]});
                 }
             }
@@ -6283,18 +6306,25 @@ class Test{
             }
             int totaly_valid = 0;
             int totaly_invalid = 0;
+            int totaly_failed = 0;
             for(int i = 0; i < params_.size(); i ++){
                 std::cout << "Arguments: " << params_[i] << ", Correct result: " << results_[i] << ", Desicion: ";
-                if(func_(params_[i]) != results_[i]){
-                    std::cout << "INVALID" << std::endl;
-                    totaly_invalid ++;
+                try{
+                    if(func_(params_[i]) != results_[i]){
+                        std::cout << "INVALID" << std::endl;
+                        totaly_invalid ++;
+                    }
+                    else{
+                        std::cout << "VALID" << std::endl;
+                        totaly_valid ++;
+                    }
                 }
-                else{
-                    std::cout << "VALID" << std::endl;
-                    totaly_valid ++;
+                catch(...){
+                    std::cout << "FAILED" << std::endl;
+                    totaly_failed ++;
                 }
             }
-            std::cout << "Totaly: " << totaly_valid << " Valid, " << totaly_invalid << " INVALID" << std::endl;
+            std::cout << "Totaly: " << totaly_valid << " Valid, " << totaly_invalid << " INVALID" << totaly_failed << " FAILED" << std::endl;
         }
 };
 ```
