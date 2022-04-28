@@ -6324,7 +6324,7 @@ class Test{
                     totaly_failed ++;
                 }
             }
-            std::cout << "Totaly: " << totaly_valid << " Valid, " << totaly_invalid << " INVALID" << totaly_failed << " FAILED" << std::endl;
+            std::cout << "Totaly: " << totaly_valid << " VALID, " << totaly_invalid << " INVALID" << totaly_failed << " FAILED" << std::endl;
         }
 };
 ```
