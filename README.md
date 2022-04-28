@@ -764,6 +764,7 @@ while(k < a.length - 1){
 `C++`:
 
 ```cpp
+int k = 0;
 while(k < len - 1){
     k = 0;
     for(int j = 0; j < len - 1; j ++){
