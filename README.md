@@ -5139,6 +5139,52 @@ int min_subarray_sum(std::vector <int> arr){
 }
 ```
 
+`C#`:
+
+```cs
+int MaxSubarraySum(List<int> arr)
+{
+    int result = arr[0];
+    int localResult = arr[0];
+    for(int i = 1; i < arr.Count(); i ++)
+    {
+        if(localResult > 0)
+        {
+            localResult += arr[i];
+        }
+        else{
+            localResult = arr[i];
+        }
+        if(localResult > result)
+        {
+            result = localResult;
+        }
+    }
+    return result;
+}
+
+int MinSubarraySum(List<int> arr)
+{
+    int result = arr[0];
+    int localResult = arr[0];
+    for(int i = 1; i < arr.Count(); i ++)
+    {
+        if(localResult < 0)
+        {
+            localResult += arr[i];
+        }
+        else{
+            localResult = arr[i];
+        }
+        if(localResult < result)
+        {
+            result = localResult;
+        }
+    }
+    return result;
+}
+```
+
 ### Max | Min subarray prod / Максимальний | Мінімальний добуток підмасива / Максимальное | Минимальное произведение подмассива
 
 `Python`:
@@ -5333,6 +5379,94 @@ int min_subarray_prod(std::vector <int> arr){
 }
 ```
 
+`C#`:
+
+```cs
+int MaxSubarrayProd(List<int> arr)
+{
+    int result = arr[0];
+    int localResultPos = arr[0];
+    int localResultNeg = arr[0];
+    for(int i = 1; i < arr.Count(); i ++)
+    {
+        int localResultMax, localResultMin;
+        if(localResultPos * arr[i] > localResultNeg * arr[i])
+        {
+            localResultMax = localResultPos * arr[i];
+            localResultMin = localResultNeg * arr[i];
+        }
+        else
+        {
+            localResultMax = localResultNeg * arr[i];
+            localResultMin = localResultPos * arr[i];
+        }
+        if(arr[i] > localResultMax)
+        {
+            localResultPos = arr[i];
+        }
+        else
+        {
+            localResultPos = localResultMax;
+        }
+        if(arr[i] < localResultMin)
+        {
+            localResultNeg = arr[i];
+        }
+        else
+        {
+            localResultNeg = localResultMin;
+        }
+        if(localResultPos > result)
+        {
+            result = localResultPos;
+        }
+    }
+    return result;
+}
+
+int MinSubarrayProd(List<int> arr)
+{
+    int result = arr[0];
+    int localResultPos = arr[0];
+    int localResultNeg = arr[0];
+    for(int i = 1; i < arr.Count(); i ++)
+    {
+        int localResultMax, localResultMin;
+        if(localResultPos * arr[i] > localResultNeg * arr[i])
+        {
+            localResultMax = localResultPos * arr[i];
+            localResultMin = localResultNeg * arr[i];
+        }
+        else
+        {
+            localResultMax = localResultNeg * arr[i];
+            localResultMin = localResultPos * arr[i];
+        }
+        if(arr[i] > localResultMax)
+        {
+            localResultPos = arr[i];
+        }
+        else
+        {
+            localResultPos = localResultMax;
+        }
+        if(arr[i] < localResultMin)
+        {
+            localResultNeg = arr[i];
+        }
+        else
+        {
+            localResultNeg = localResultMin;
+        }
+        if(localResultNeg < result)
+        {
+            result = localResultNeg;
+        }
+    }
+    return result;
+}
+```
+
 ### Max | Min circular subarray sum / Максимальна | Мінімальна сума циклічного підмасива / Максимальная | Минимальная сумма циклического подмассива
 
 `Python`:
@@ -5372,11 +5506,11 @@ def max_circular_subarray_sum(arr):
     if max_elem < 0:
         return max_elem
     max_simple_sum = max_subarray_sum(arr)
-    max_cicle_sum = arr_sum - min_subarray_sum(arr)
-    if max_simple_sum > max_cicle_sum:
+    max_circle_sum = arr_sum - min_subarray_sum(arr)
+    if max_simple_sum > max_circle_sum:
         return max_simple_sum
     else:
-        return max_cicle_sum
+        return max_circle_sum
 
 def min_circular_subarray_sum(arr):
     min_elem = arr[0]
@@ -5388,11 +5522,11 @@ def min_circular_subarray_sum(arr):
     if min_elem > 0:
         return min_elem
     min_simple_sum = min_subarray_sum(arr)
-    min_cicle_sum = arr_sum - max_subarray_sum(arr)
-    if min_simple_sum < min_cicle_sum:
+    min_circle_sum = arr_sum - max_subarray_sum(arr)
+    if min_simple_sum < min_circle_sum:
         return min_simple_sum
     else:
-        return min_cicle_sum
+        return min_circle_sum
 ```
 
 `JavaScript`:
@@ -5433,46 +5567,46 @@ function minSubarraySum(arr){
 }
 
 function maxCircularSubarraySum(arr){
-    let max_elem = arr[0];
-    let arr_sum = 0;
+    let maxElem = arr[0];
+    let arrSum = 0;
     for(let i = 0; i < arr.length; i ++){
-        if(arr[i] > max_elem){
-            max_elem = arr[i];
+        if(arr[i] > maxElem){
+            maxElem = arr[i];
         }
-        arr_sum += arr[i];
+        arrSum += arr[i];
     }
-    if(max_elem < 0){
-        return max_elem;
+    if(maxElem < 0){
+        return maxElem;
     }
-    let max_simple_sum = maxSubarraySum(arr);
-    let max_cicle_sum = arr_sum - minSubarraySum(arr);
-    if(max_simple_sum > max_cicle_sum){
-        return max_simple_sum;
+    let maxSimpleSum = maxSubarraySum(arr);
+    let maxCircleSum = arrSum - minSubarraySum(arr);
+    if(maxSimpleSum > maxCircleSum){
+        return maxSimpleSum;
     }
     else{
-        return max_cicle_sum;
+        return maxCircleSum;
     }
 }
 
 function minCircularSubarraySum(arr){
-    let min_elem = arr[0];
-    let arr_sum = 0;
+    let minElem = arr[0];
+    let arrSum = 0;
     for(let i = 0; i < arr.length; i ++){
-        if(arr[i] < min_elem){
-            min_elem = arr[i];
+        if(arr[i] < minElem){
+            minElem = arr[i];
         }
-        arr_sum += arr[i];
+        arrSum += arr[i];
     }
-    if(min_elem > 0){
-        return min_elem;
+    if(minElem > 0){
+        return minElem;
     }
-    let min_simple_sum = minSubarraySum(arr);
-    let min_cicle_sum = arr_sum - maxSubarraySum(arr);
-    if(min_simple_sum < min_cicle_sum){
-        return min_simple_sum;
+    let minSimpleSum = minSubarraySum(arr);
+    let minCircleSum = arrSum - maxSubarraySum(arr);
+    if(minSimpleSum < minCircleSum){
+        return minSimpleSum;
     }
     else{
-        return min_cicle_sum;
+        return minCircleSum;
     }
 }
 ```
@@ -5529,12 +5663,12 @@ int max_circular_subarray_sum(std::vector <int> arr){
         return max_elem;
     }
     int max_simple_sum = max_subarray_sum(arr);
-    int max_cicle_sum = arr_sum - min_subarray_sum(arr);
-    if(max_simple_sum > max_cicle_sum){
+    int max_circle_sum = arr_sum - min_subarray_sum(arr);
+    if(max_simple_sum > max_circle_sum){
         return max_simple_sum;
     }
     else{
-        return max_cicle_sum;
+        return max_circle_sum;
     }
 }
 
@@ -5551,12 +5685,114 @@ int max_circular_subarray_sum(std::vector <int> arr){
         return min_elem;
     }
     int min_simple_sum = min_subarray_sum(arr);
-    int min_cicle_sum = arr_sum - max_subarray_sum(arr);
-    if(min_simple_sum < min_cicle_sum){
+    int min_circle_sum = arr_sum - max_subarray_sum(arr);
+    if(min_simple_sum < min_circle_sum){
         return min_simple_sum;
     }
     else{
-        return min_cicle_sum;
+        return min_circle_sum;
+    }
+}
+```
+
+`C#`:
+
+```cs
+int MaxSubarraySum(List<int> arr)
+{
+    int result = arr[0];
+    int localResult = arr[0];
+    for(int i = 1; i < arr.Count(); i ++)
+    {
+        if(localResult > 0)
+        {
+            localResult += arr[i];
+        }
+        else{
+            localResult = arr[i];
+        }
+        if(localResult > result)
+        {
+            result = localResult;
+        }
+    }
+    return result;
+}
+
+int MinSubarraySum(List<int> arr)
+{
+    int result = arr[0];
+    int localResult = arr[0];
+    for(int i = 1; i < arr.Count(); i ++)
+    {
+        if(localResult < 0)
+        {
+            localResult += arr[i];
+        }
+        else{
+            localResult = arr[i];
+        }
+        if(localResult < result)
+        {
+            result = localResult;
+        }
+    }
+    return result;
+}
+
+int MaxCircularSubarraySum(List<int> arr)
+{
+    int maxElem = arr[0];
+    int arrSum = 0;
+    for(int i = 0; i < arr.Count(); i ++)
+    {
+        if(arr[i] > maxElem)
+        {
+            maxElem = arr[i];
+        }
+        arrSum += arr[i];
+    }
+    if(maxElem < 0)
+    {
+        return maxElem;
+    }
+    int maxSimpleSum = MaxSubarraySum(arr);
+    int maxCircleSum = arrSum - MinSubarraySum(arr);
+    if(maxSimpleSum > maxCircleSum)
+    {
+        return maxSimpleSum;
+    }
+    else
+    {
+        return maxCircleSum;
+    }
+}
+
+int MinCircularSubarraySum(List<int> arr)
+{
+    int minElem = arr[0];
+    int arrSum = 0;
+    for(int i = 0; i < arr.Count(); i ++)
+    {
+        if(arr[i] < minElem)
+        {
+            minElem = arr[i];
+        }
+        arrSum += arr[i];
+    }
+    if(minElem < 0)
+    {
+        return minElem;
+    }
+    int minSimpleSum = MinSubarraySum(arr);
+    int minCircleSum = arrSum - MaxSubarraySum(arr);
+    if(minSimpleSum < minCircleSum)
+    {
+        return minSimpleSum;
+    }
+    else
+    {
+        return minCircleSum;
     }
 }
 ```
