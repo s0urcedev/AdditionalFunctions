@@ -71,718 +71,6 @@ let Test = require('additional_functions/testing').Test;
 
 <ins>***Русский:***</ins> У меня есть некоторый опыт в олимпиадах по программированию. Я считаю, что он моджет помочь другим людям подготовится к соревнованиям и получить некоторые рабочие алгоритмы. Тут ты найдёшь алгоритмы на Python, JavaScript, C++ и C#, но ты всегда можешь с лёгкостью переписать их на свой язык. Я добавлю ссылки на все идеи и текстовые описания алгоритмов. Я верю что этот репозиторий поможет тебе :)
 
-## Swap / Заміна / Замена
-
-`Python`(For numbers):
-
-```python
-x = x + y
-y = x - y
-x = x - y
-```
-
-`Or`(For all):
-
-```python
-x, y = y, x
-```
-
-`JavaScript`(For numbers), `C++`(For numbers) or `C#`(For nummbers):
-
-```js
-x = x + y;
-y = x - y;
-x = x - y;
-```
-
-`Or`(For all):
-
-```js
-swap = y;
-y = x;
-x = swap;
-```
-
-## Working with arrays / Робота с масивами / Работа с массивами
-
-<ins>***English:***</ins> Array — one of the frequently used data structure in programming. In dynamic programming languages like Python or JavaScript there are built functions for working with arrays in most ways: from slicing to sorting, but in static languages like C or C++ there aren't as a lot of functions as in dynamic. So in this part I'ill show you some ways how you can edit arrays on most languages without any problems.
-
-<ins>***Українська***</ins> Масив — одина зі структур данний, яку частіше за все використовують у програмуванні. У динамічних мовах програмування по типу Python або JavaScript є вбудовані функції для роботи з масивами з більшості сторін: від вирізання до сортування, але у статичних мовах программування по типу C або C++ немає такої ж кількості функцій як у динамічних. Тому у цій частині я покажу тобі декілька способів, як ти можешь редагувати масиви на більшості мов без проблем.
-
-<ins>***Русский***</ins> Массив — одна из структур данный, которую чаще всего используют в программировании. В динамических языках программирования на подобии Python или JavaScript есть встроенные функции дря работы с массивами с большинства сторон: от вирезания до сортировки, но в статическихм якыках программирования на подобии C или C++ нету такого же количтва функций как в динамических. По-этому в этой части я покажу тебе несколько способов, как ты можешь редактировать массив на большинстве языков программирования.
-
-### Iteration / Ітерація / Итерация
-
-`Python`:
-
-```python
-for i in range(0, len(a)):
-    #do something with a[i]
-    #роби щось з a[i]
-    #делай что-то с a[i]
-```
-
-`Or`:
-
-```python 
-for n in a:
-    #do something with n
-    #роби щось з n
-    #делай что-то с n
-```
-
-`JavaScript`:
-
-```js
-for(let i = 0; i < a.length; i ++){
-    //do something with a[i]
-    //роби щось з a[i]
-    //делай что-то с a[i]
-}
-```
-
-`Or`:
-
-```js
-a.forEach(n => {
-    //do something with n
-    //роби щось з n
-    //делай что-то с n
-});
-```
-
-`Or`:
-
-```js
-for(let i in a){
-    //do something with a[i]
-    //роби щось з a[i]
-    //делай что-то с a[i]
-}
-```
-
-`Or`:
-
-```js
-for(let n of a){
-    //do something with n
-    //роби щось з n
-    //делай что-то с n
-}
-```
-
-`C++`:
-
-```cpp
-for(int i = 0; i < len; i++){
-    //do something with a[i]
-    //роби щось з a[i]
-    //делай что-то с a[i]
-}
-```
-
-`Or`:
-
-```cpp
-for(auto n: a){
-    //do something with n
-    //роби щось з n
-    //делай что-то с n
-}
-```
-
-`C#`:
-
-
-```cs
-for(int i = 0; i < len; i++)
-{
-    //do something with a[i]
-    //роби щось з a[i]
-    //делай что-то с a[i]
-}
-```
-
-`Or`:
-
-```cs
-foreach(int n in a)
-{
-    //do something with n
-    //роби щось з n
-    //делай что-то с n
-}
-```
-
-`a` — array / масив / массив
-
-`len` — array length / довжина масива / длина массива
-
-### Print array / Вивід масива / Вывод массива
-
-`Python`:
-
-```python
-print(a)
-```
-
-`JavaScript`:
-
-```js
-console.log(a);
-```
-
-`C++`:
-
-```cpp
-//change type like you need
-//змінюй тип як тобі треба
-//изменяй тип как тебе надо
-void print_array(int *a, int len){
-    cout << "[ ";
-    for(int i = 0; i < len; i ++){
-        cout << a[i]<< ' ';
-    }
-    cout << "]";
-}
-```
-
-`C++`(Using vectors):
-
-```cpp
-//change type like you need
-//змінюй тип як тобі треба
-//изменяй тип как тебе надо
-void print_vector(std::vector <int> a){
-    cout << "{ ";
-    for(auto i: a){
-        cout << i << ' ';
-    }
-    cout << "}";
-}
-```
-
-`C#`:
-
-```cs
-void PrintArray(ref int a, int len)
-{
-    Console.Write("[ ");
-    for(int i = 0; i < len; i ++)
-    {
-        Console.Write(a[i]);
-        Console.Write(" ");
-    }
-    Console.Write("]");
-}
-```
-
-`a` — array / масив / массив
-
-`len` — array length / довжина масива / длина массива
-
-### Make a slice / вирізати / вырезать
-
-`Python`:
-
-```python
-b = a[start : end]
-```
-
-`JavaScript`:
-
-```js
-let b = a.slice(start, end);
-```
-
-`C++`:
-
-```cpp
-int b[end - start];
-for(int i = start; i < end; i ++){
-    b[i - start] = a[i];
-}
-```
-
-`C#`:
-
-```cs
-ArraySegment<int> b = new ArraySegment<int> (a, start, end - start);
-```
-
-`a` — old array / старий масив / старый массив
-
-`b` — new array / новий масив / новый массив
-
-`start` — slice start (included) / початок вирізу (включно) / начало выреза (включительно)
-
-`end` — slice end (not included) / кінець вирізу (не включно) / коцец выреза (не включительно)
-
-### Count element repetition / Підрахувати повторення елементу / Подсчитать повторения элемента
-
-`Python`:
-
-```python
-counter = a.count(x)
-```
-
-`JavaScript`:
-
-```js
-let counter = a.filter(i => i == x).length;
-```
-
-`C++`:
-
-```cpp
-int counter = 0;
-for(int i = 0; i < len; i ++){
-    if(a[i] == x){
-        counter ++;
-    }
-}
-```
-
-`C#`:
-
-```cs
-a.Count(i => i == x);
-```
-
-`a` — array / масив / массив
-
-`len` — array length / довжина масива / длина массива
-
-`x` — element / елемент / элемент
-
-`counter` — counter / лічильник / счётчик
-
-### Does array include element? / Чи включає в себе масив елемент? / Включает ли в себя массив элемент?
-
-`Python`:
-
-```python
-result = x in a
-```
-
-`JavaScript`:
-
-```js
-let result = a.includes(x);
-```
-
-`C++`:
-
-```cpp
-bool result = false;
-for(int i = 0; i < len; i ++){
-    if(a[i] == x){
-        result = true;
-        break;
-    }
-}
-```
-
-`C#`:
-
-```cs
-bool result = a.Contains(x);
-```
-
-`a` — array / масив / массив
-
-`len` — array length / довжина масива / длина массива
-
-`x` — element / елемент / элемент
-
-`result` — result / результат / результат
-
-### Find first element index / Пошук першого індекса елементу / Поиск первого индекса элемента
-
-`Python`:
-
-```python
-result = a.find(x)
-```
-
-`JavaScript`:
-
-```js
-result = a.indexOf(x);
-```
-
-`C++`:
-
-```cpp
-int result = -1;
-for(int i = 0; i < len; i ++){
-    if(a[i] == x){
-        result = i;
-        break;
-    }
-}
-```
-
-`C#`:
-
-```cs
-int result = Array.IndexOf(a, x);
-```
-
-`a` — array / масив / массив
-
-`len` — array length / довжина масива / длина массива
-
-`x` — element / елемент / элемент
-
-`result` — result / результат / результат
-
-### Find last element index / Пошук останнього індекса елементу / Поиск последнего индекса элемента
-
-`Python`:
-
-```python
-result = a.rfind(x)
-```
-
-`JavaScript`:
-
-```js
-result = a.lastIndexOf(x);
-```
-
-`C++`:
-
-```cpp
-int result = -1;
-for(int i = len - 1; i >= 0; i --){
-    if(a[i] == x){
-        result = i;
-        break;
-    }
-}
-```
-
-`C#`:
-
-```cs
-int result = Array.LastIndexOf(a, x);
-```
-
-`a` — array / масив / массив
-
-`len` — array length / довжина масива / длина массива
-
-`x` — element / елемент / элемент
-
-`result` — result / результат / результат
-
-### Delete first element / Видалили перший елемент / Удилть первый элемент
-
-`Python`:
-
-```python
-a.pop(0)
-```
-
-`JavaScript`:
-
-```js
-a.shift();
-```
-
-`C++`:
-
-> *In C++ you can't changing number of static array elemnts, so in real your array will collect some elemеnts in the end after operations, but making `len` less deal with this problem when you iterate array*
-> 
-> *У С++ ти не можешь змінювати кількість елементів статичного масива, в реальності твій масив буде накопичувати елементи у кінці після операцій, але зменшування `len` вирішує цю проблему коли ти ітеруешь масив*
-> 
-> *В С++ ты не можешь изменять количество элементов статического массива, по-этому в реальности твой массив будет накапливать элементы в концу после оперций, но уменьшение  `len` решает эту проблему когда ты итерируешь массив*
-
-```cpp
-len --;
-for(int i = 0; i < len; i ++){
-    a[i] = a[i + 1];
-}
-```
-
-`C++`(Using vectors):
-
-```cpp
-auto iter = a.cbegin();
-a.erase(iter);
-```
-
-`C#`(Using List):
-
-```cs
-a.RemoveAt(b.First());
-```
-
-`a` — array / масив / массив
-
-`len` — array length / довжина масива / длина массива
-
-### Delete last element / Видалили останній елемент / Удилть последний элемент
-
-`Python`:
-
-```python
-a.pop()
-```
-
-`JavaScript`:
-
-```js
-a.pop();
-```
-
-`C++`:
-
-> *In C++ you can't changing number of static array elemnts, so in real your array will collect some elemеnts in the end after operations, but making `len` less deal with this problem when you iterate array*
-> 
-> *У С++ ти не можешь змінювати кількість елементів статичного масива, в реальності твій масив буде накопичувати елементи у кінці після операцій, але зменшування `len` вирішує цю проблему коли ти ітеруешь масив*
-> 
-> *В С++ ты не можешь изменять количество элементов статического массива, по-этому в реальности твой массив будет накапливать элементы в концу после оперций, но уменьшение  `len` решает эту проблему когда ты итерируешь массив*
-
-```cpp
-len --;
-```
-`C++`(Using vectors):
-
-```cpp
-auto iter = a.cend();
-a.erase(iter);
-```
-
-`Or`(Using vectors):
-
-```cpp
-a.pop_back();
-```
-
-`C#`(Using List):
-
-```cs
-a.RemoveAt(b.Last());
-```
-
-`a` — array / масив / массив
-
-`len` — array length / довжина масива / длина массива
-
-### Delete element by index / Видалили елемент по індексу / Удилть элемент по индексу
-
-`Python`:
-
-```python
-a.pop(x)
-```
-
-`JavaScript`:
-
-```js
-a.splice(x, 1);
-```
-
-`C++`:
-
-> *In C++ you can't changing number of static array elemnts, so in real your array will collect some elemеnts in the end after operations, but making `len` less deal with this problem when you iterate array*
-> 
-> *У С++ ти не можешь змінювати кількість елементів статичного масива, в реальності твій масив буде накопичувати елементи у кінці після операцій, але зменшування `len` вирішує цю проблему коли ти ітеруешь масив*
-> 
-> *В С++ ты не можешь изменять количество элементов статического массива, по-этому в реальности твой массив будет накапливать элементы в концу после оперций, но уменьшение  `len` решает эту проблему когда ты итерируешь массив*
-
-```cpp
-for(int i = x; i < len; i ++){
-    a[i] = a[i + 1];
-}
-len --;
-```
-
-`C++`(Using vectors):
-
-```cpp
-auto iter = a.cbegin();
-a.erase(iter + x);
-```
-
-`C#`(Using List):
-
-```cs
-a.RemoveAt(x);
-```
-
-`a` — array / масив / массив
-
-`len` — array length / довжина масива / длина массива
-
-`x` — element / елемент / элемент
-
-### Add element to start / Додавання елемента у початок / Добавление элемента в начало
-
-`Python`:
-
-```python
-a.insert(0, x)
-```
-
-`JavaScript`:
-
-```js
-a.splice(0, 0, x);
-```
-
-`C++`:
-
-> *In C++ you can't changing number of static array elemnts, so you have to create new one*
-> 
-> *У С++ ти не можешь змінювати кількість елементів статичного масива, тому ти повинен створити новий*
-> 
-> *В С++ ты не можешь изменять количество элементов статического массива, по-этому ти должен создать новый*
-
-```cpp
-int b[len + 1];
-b[0] = x;
-for(int i = 0; i < len; i ++){
-    b[i + 1] = a[i];
-}
-```
-
-`C++`(Using vectors):
-
-```cpp
-auto iter = a.cbegin();
-a.emplace(iter, x);
-```
-
-`C#`(Using List):
-
-```cs
-a.Insert(0, x);
-```
-
-`a` — old array / старий масив / старый массив
-
-`b` — new array / новий масив / новый массив
-
-`len` — array length / довжина масива / длина массива
-
-`x` — element / елемент / элемент
-
-### Add element to end / Додавання елемента у кінець / Добавление элемента в конец
-
-`Python`:
-
-```python
-a.append(x)
-```
-
-`JavaScript`:
-
-```js
-a.push(x);
-```
-
-`C++`:
-
-> *In C++ you can't changing number of static array elemnts, so you have to create new one*
-> 
-> *У С++ ти не можешь змінювати кількість елементів статичного масива, тому ти повинен створити новий*
-> 
-> *В С++ ты не можешь изменять количество элементов статического массива, по-этому ти должен создать новый*
-
-```cpp
-int b[len + 1];
-for(int i = 0; i < len; i ++){
-    b[i] = a[i];
-}
-b[len] = x;
-```
-
-`C++`(Using vectors):
-
-```cpp
-auto iter = a.cend();
-a.emplace(iter, x);
-```
-
-`Or`(Using vectors):
-
-```cpp
-a.push_back(x);
-```
-
-`C#`(Using List):
-
-```cs
-a.Add(x);
-```
-
-`a` — old array / старий масив / старый массив
-
-`b` — new array / новий масив / новый массив
-
-`len` — array length / довжина масива / длина массива
-
-`x` — element / елемент / элемент
-
-### Add element by index / Додавання елемента по індексу / Добавление элемента по индексу
-
-`Python`:
-
-```python
-a.insert(y, x)
-```
-
-`JavaScript`:
-
-```js
-a.splice(y, 0, x);
-```
-
-`C++`:
-
-> *In C++ you can't changing number of static array elemnts, so you have to create new one*
-> 
-> *У С++ ти не можешь змінювати кількість елементів статичного масива, тому ти повинен створити новий*
-> 
-> *В С++ ты не можешь изменять количество элементов статического массива, по-этому ти должен создать новый*
-
-```cpp
-int b[len + 1];
-for(int i = 0; i < y; i ++){
-    b[i] = a[i];
-}
-b[y] = x;
-for(int i = y; i < len; i ++){
-    b[i + 1] = a[i];
-}
-```
-
-`C++`(Using vectors):
-
-```cpp
-auto iter = a.cbegin();
-a.emplace(iter + y, x);
-```
-
-`C#`(Using List):
-
-```cs
-a.Insert(y, x);
-```
-
-`a` — old array / старий масив / старый массив
-
-`b` — new array / новий масив / новый массив
-
-`len` — array length / довжина масива / длина массива
-
-`x` — element / елемент / элемент
-
-`y` — element index / індекс елемента / индекс элемента
-
 ## Sorting / Сортування / Сотрировка
 
 ### Packages / Пакети / Пакеты
@@ -5078,6 +4366,7 @@ class Tree:
     def add_node(self, v: int, node = None) -> None:
         if self.__head == None:
             self.__head = Node(v)
+            return
         if node == None:
             node = self.__head
         if v < node.value:
@@ -5204,6 +4493,7 @@ class Tree{
     addNode(v, node = undefined){
         if(this.#head == undefined){
             this.#head = new Node(v);
+            return;
         }
         if(node == undefined){
             node = this.#head;
@@ -5419,6 +4709,7 @@ class Tree{
         void add_node(int v, Node* node = NULL){
             if(head_ == NULL){
                 head_ = new Node(v);
+                return;
             }
             if(node == NULL){
                 node = head_;
@@ -5507,6 +4798,205 @@ class Tree{
         }
 
 };
+```
+
+`C#`:
+
+```cs
+class Node
+{
+    public int value;
+    public Node left;
+    public Node right;
+
+    public Node(int d)
+    {
+        value = d;
+        left = null;
+        right = null;
+    }
+
+}
+
+class Tree
+{
+    private Node _head;
+
+    public Tree()
+    {
+        _head = null;
+    }
+
+    public void AddNode(int v, Node node = null)
+    {
+        if(_head == null)
+        {
+            _head = new Node(v);
+            return;
+        }
+        if(node == null)
+        {
+            node = _head;
+        }
+        if(v < node.value)
+        {
+            if(node.left == null)
+            {
+                node.left = new Node(v);
+            }
+            else
+            {
+                AddNode(v, node.left);
+            }
+        }
+        else
+        {
+            if(node.right == null)
+            {
+                node.right = new Node(v);
+            }
+            else
+            {
+                AddNode(v, node.right);
+            }
+        }
+    }
+
+    public void Create(List<int> arr)
+    {
+        _head = new Node(arr[0]);
+        for(int i = 1; i < arr.Count(); i ++)
+        {
+            AddNode(arr[i], _head);
+        }
+    }
+
+    private List<(int, int)> _Bfs()
+    {
+        List<(Node, int)> q = new List<(Node, int)>(1){(_head, 0)};
+        List<(int, int)> p = new List<(int, int)>(){};
+        while(q.Count() > 0)
+        {
+            (Node, int) v = q[^1];
+            q.RemoveAt(q.Count() - 1);
+            p.Add((v.Item1.value, v.Item2));
+            if(v.Item1.right != null)
+            {
+                q.Add((v.Item1.right, v.Item2 + 1));
+            }
+            if(v.Item1.left != null)
+            {
+                q.Add((v.Item1.left, v.Item2 + 1));
+            }
+        }
+        return p;
+    }
+
+    public List<List<int>> GetTreeByLevels()
+    {
+        List<(int, int)> p = _Bfs();
+        List<List<int>> res = new List<List<int>>(){};
+        int max = 0;
+        foreach((int, int) n in p)
+        {
+            if(max < n.Item2)
+            {
+                max = n.Item2;
+            }
+        }
+        for(int _ = 0; _ <= max; _ ++)
+        {
+            res.Add(new List<int>(){});
+        }
+        foreach((int, int) n in p)
+        {
+            res[n.Item2].Add(n.Item1);
+        }
+        return res;
+    }
+
+    public List<int> GetTreeList()
+    {
+        List<(int, int)> p = _Bfs();
+        List<int> res = new List<int>(){};
+        foreach((int, int) n in p)
+        {
+            res.Add(n.Item1);
+        }
+        return res;
+    }
+
+    private void _DfsPlain(Node node, ref List<int> p)
+    {
+        if(node.left != null)
+        {
+            _DfsPlain(node.left, ref p);
+        }
+        p.Add(node.value);
+        if(node.right != null)
+        {
+            _DfsPlain(node.right, ref p);
+        }
+    }
+
+    private void _DfsReverse(Node node, ref List<int> p)
+    {
+        if(node.right != null)
+        {
+            _DfsReverse(node.right, ref p);
+        }p.Add(node.value);
+        if(node.left != null)
+        {
+            _DfsReverse(node.left, ref p);
+        }
+    }
+
+    public List<int> GetTreeSorted(bool reverse = false)
+    {
+        List<int> p = new List<int>(){};
+        if(reverse)
+        {
+            _DfsReverse(_head, ref p);
+        }
+        else
+        {
+            _DfsPlain(_head, ref p);
+        }
+        return p;
+    }
+
+    public int GetMin(Node node = null)
+    {
+        if(node == null)
+        {
+            node = _head;
+        }
+        if(node.left != null)
+        {
+            return GetMin(node.left);
+        }
+        else
+        {
+            return node.value;
+        }
+    }
+
+    public int GetMax(Node node = null)
+    {
+        if(node == null)
+        {
+            node = _head;
+        }
+        if(node.right != null)
+        {
+            return GetMax(node.right);
+        }
+        else
+        {
+            return node.value;
+        }
+    }
+}
 ```
 
 ## Subarray linear algorithms / Лінійні алгоритми підмасивів / Линейные алгоритмы подмассивов
