@@ -114,12 +114,12 @@ int max_circular_subarray_sum(std::vector <int> arr){
         return max_elem;
     }
     int max_simple_sum = max_subarray_sum(arr);
-    int max_cicle_sum = arr_sum - min_subarray_sum(arr);
-    if(max_simple_sum > max_cicle_sum){
+    int max_circle_sum = arr_sum - min_subarray_sum(arr);
+    if(max_simple_sum > max_circle_sum){
         return max_simple_sum;
     }
     else{
-        return max_cicle_sum;
+        return max_circle_sum;
     }
 }
 
@@ -136,11 +136,11 @@ int max_circular_subarray_sum(std::vector <int> arr){
         return min_elem;
     }
     int min_simple_sum = min_subarray_sum(arr);
-    int min_cicle_sum = arr_sum - max_subarray_sum(arr);
-    if(min_simple_sum < min_cicle_sum){
+    int min_circle_sum = arr_sum - max_subarray_sum(arr);
+    if(min_simple_sum < min_circle_sum){
         return min_simple_sum;
     }
     else{
-        return min_cicle_sum;
+        return min_circle_sum;
     }
 }

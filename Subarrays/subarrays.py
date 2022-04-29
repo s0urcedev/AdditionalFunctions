@@ -78,11 +78,11 @@ def max_circular_subarray_sum(arr):
     if max_elem < 0:
         return max_elem
     max_simple_sum = max_subarray_sum(arr)
-    max_cicle_sum = arr_sum - min_subarray_sum(arr)
-    if max_simple_sum > max_cicle_sum:
+    max_circle_sum = arr_sum - min_subarray_sum(arr)
+    if max_simple_sum > max_circle_sum:
         return max_simple_sum
     else:
-        return max_cicle_sum
+        return max_circle_sum
 
 def min_circular_subarray_sum(arr):
     min_elem = arr[0]
@@ -94,8 +94,8 @@ def min_circular_subarray_sum(arr):
     if min_elem > 0:
         return min_elem
     min_simple_sum = min_subarray_sum(arr)
-    min_cicle_sum = arr_sum - max_subarray_sum(arr)
-    if min_simple_sum < min_cicle_sum:
+    min_circle_sum = arr_sum - max_subarray_sum(arr)
+    if min_simple_sum < min_circle_sum:
         return min_simple_sum
     else:
-        return min_cicle_sum
+        return min_circle_sum

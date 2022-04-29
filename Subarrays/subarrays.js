@@ -99,45 +99,45 @@ function minSubarrayProd(arr){
 }
 
 function maxCircularSubarraySum(arr){
-    let max_elem = arr[0];
-    let arr_sum = 0;
+    let maxElem = arr[0];
+    let arrSum = 0;
     for(let i = 0; i < arr.length; i ++){
-        if(arr[i] > max_elem){
-            max_elem = arr[i];
+        if(arr[i] > maxElem){
+            maxElem = arr[i];
         }
-        arr_sum += arr[i];
+        arrSum += arr[i];
     }
-    if(max_elem < 0){
-        return max_elem;
+    if(maxElem < 0){
+        return maxElem;
     }
-    let max_simple_sum = maxSubarraySum(arr);
-    let max_cicle_sum = arr_sum - minSubarraySum(arr);
-    if(max_simple_sum > max_cicle_sum){
-        return max_simple_sum;
+    let maxSimpleSum = maxSubarraySum(arr);
+    let maxCircleSum = arrSum - minSubarraySum(arr);
+    if(maxSimpleSum > maxCircleSum){
+        return maxSimpleSum;
     }
     else{
-        return max_cicle_sum;
+        return maxCircleSum;
     }
 }
 
 function minCircularSubarraySum(arr){
-    let min_elem = arr[0];
-    let arr_sum = 0;
+    let minElem = arr[0];
+    let arrSum = 0;
     for(let i = 0; i < arr.length; i ++){
-        if(arr[i] < min_elem){
-            min_elem = arr[i];
+        if(arr[i] < minElem){
+            minElem = arr[i];
         }
-        arr_sum += arr[i];
+        arrSum += arr[i];
     }
-    if(min_elem > 0){
-        return min_elem;
+    if(minElem > 0){
+        return minElem;
     }
-    let min_simple_sum = minSubarraySum(arr);
-    let min_cicle_sum = arr_sum - maxSubarraySum(arr);
-    if(min_simple_sum < min_cicle_sum){
-        return min_simple_sum;
+    let minSimpleSum = minSubarraySum(arr);
+    let minCircleSum = arrSum - maxSubarraySum(arr);
+    if(minSimpleSum < minCircleSum){
+        return minSimpleSum;
     }
     else{
-        return min_cicle_sum;
+        return minCircleSum;
     }
 }
