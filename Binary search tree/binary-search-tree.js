@@ -24,6 +24,7 @@ class Tree{
     addNode(v, node = undefined){
         if(this.#head == undefined){
             this.#head = new Node(v);
+            return;
         }
         if(node == undefined){
             node = this.#head;

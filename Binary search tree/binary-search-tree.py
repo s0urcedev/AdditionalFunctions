@@ -20,6 +20,7 @@ class Tree:
     def add_node(self, v: int, node = None) -> None:
         if self.__head == None:
             self.__head = Node(v)
+            return
         if node == None:
             node = self.__head
         if v < node.value:
@@ -115,3 +116,9 @@ class Tree:
             return self.get_min(node.right)
         else:
             return node.value
+
+
+t = Tree()
+t.create([1, 4, 2, 3, 5])
+print(t.get_tree_list())
+print(t.get_tree_by_levels())

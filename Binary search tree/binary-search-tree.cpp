@@ -67,6 +67,7 @@ class Tree{
         void add_node(int v, Node* node = NULL){
             if(head_ == NULL){
                 head_ = new Node(v);
+                return;
             }
             if(node == NULL){
                 node = head_;
