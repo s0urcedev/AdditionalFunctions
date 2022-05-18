@@ -5841,7 +5841,7 @@ int max_circular_subarray_sum(std::vector <int> arr){
     }
 }
 
-int max_circular_subarray_sum(std::vector <int> arr){
+int min_circular_subarray_sum(std::vector <int> arr){
     int min_elem = arr[0];
     int arr_sum = 0;
     for(int i = 0; i < arr.size(); i ++){
