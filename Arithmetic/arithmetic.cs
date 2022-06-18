@@ -40,7 +40,7 @@ namespace Base
             return fresult;
         }
 
-        public static string SubstractionBigNumbers(string a, string b)
+        public static string SubtractionBigNumbers(string a, string b)
         {
             bool k = false;
             if(Convert.ToInt32(a) < Convert.ToInt32(b))
