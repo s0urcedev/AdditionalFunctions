@@ -156,14 +156,14 @@ while(k < a.length - 1){
 ```go
 k := 0
 for k < len(a)-1 {
-	k = 0
-	for j := 0; j < len(a)-1; j++ {
-		if a[j] > a[j+1] {
-			a[j], a[j+1] = a[j+1], a[j]
-		} else {
-			k++
-		}
-	}
+    k = 0
+    for j := 0; j < len(a)-1; j++ {
+        if a[j] > a[j+1] {
+            a[j], a[j+1] = a[j+1], a[j]
+        } else {
+            k++
+        }
+    }
 }
 ```
 
@@ -271,15 +271,15 @@ for(let i = 0; i < a.length - 1; i ++){
 
 ```go
 for i := 0; i < len(a)-1; i++ {
-	imin := i
-	for j := i + 1; j < len(a); j++ {
-		if a[j] < a[imin] {
-			imin = j
-		}
-	}
-	if imin != i {
-		a[i], a[imin] = a[imin], a[i]
-	}
+    imin := i
+    for j := i + 1; j < len(a); j++ {
+        if a[j] < a[imin] {
+            imin = j
+        }
+    }
+    if imin != i {
+        a[i], a[imin] = a[imin], a[i]
+    }
 }
 ```
 
@@ -377,13 +377,13 @@ for(let j = 1; j < a.length; j ++){
 
 ```go
 for j := 1; j < len(a); j++ {
-	key := a[j]
-	i := j - 1
-	for i >= 0 && a[i] > key {
-		a[i+1] = a[i]
-		i--
-	}
-	a[i+1] = key
+    key := a[j]
+    i := j - 1
+    for i >= 0 && a[i] > key {
+        a[i+1] = a[i]
+        i--
+    }
+    a[i+1] = key
 }
 ```
 
@@ -507,30 +507,30 @@ sort(a, 0, a.length - 1);
 
 ```go
 func Sort(array []int, b int, e int) {
-	l := b
-	r := e
-	p := array[int((l+r)/2)]
-	for l <= r {
-		for array[l] < p {
-			l++
-		}
-		for array[r] > p {
-			r--
-		}
-		if l <= r {
-			if l < r {
-				array[l], array[r] = array[r], array[l]
-			}
-		}
-		l++
-		r--
-	}
-	if b < r {
-		Sort(array, b, r)
-	}
-	if e > l {
-		Sort(array, l, e)
-	}
+    l := b
+    r := e
+    p := array[int((l+r)/2)]
+    for l <= r {
+        for array[l] < p {
+            l++
+        }
+        for array[r] > p {
+            r--
+        }
+        if l <= r {
+            if l < r {
+                array[l], array[r] = array[r], array[l]
+            }
+        }
+        l++
+        r--
+    }
+    if b < r {
+        Sort(array, b, r)
+    }
+    if e > l {
+        Sort(array, l, e)
+    }
 }
 
 Sort(a, 0, len(a)-1)
@@ -737,48 +737,48 @@ sort(a, a.length);
 
 ```go
 func Sort(array []int, m int) {
-	mass := []int{}
-	for i := 0; i < m; i++ {
-		mass = append(mass, array[i])
-	}
-	if m <= 1 {
-		array[0] = mass[0]
-	} else {
-		var l []int
-		var r []int
-		for i := 0; i < m; i++ {
-			if i < m/2 {
-				l = append(l, mass[i])
-			} else {
-				r = append(r, mass[i])
-			}
-		}
-		Sort(l, m/2)
-		Sort(r, m-(m/2))
-		h := 0
-		f := 0
-		var c []int
-		for h < m/2 && f < m-(m/2) {
-			if l[h] < r[f] {
-				c = append(c, l[h])
-				h++
-			} else {
-				c = append(c, r[f])
-				f++
-			}
-		}
-		for h < m/2 {
-			c = append(c, l[h])
-			h++
-		}
-		for f < m-(m/2) {
-			c = append(c, r[f])
-			f++
-		}
-		for i := 0; i < m; i++ {
-			array[i] = c[i]
-		}
-	}
+    mass := []int{}
+    for i := 0; i < m; i++ {
+        mass = append(mass, array[i])
+    }
+    if m <= 1 {
+        array[0] = mass[0]
+    } else {
+        var l []int
+        var r []int
+        for i := 0; i < m; i++ {
+            if i < m/2 {
+                l = append(l, mass[i])
+            } else {
+                r = append(r, mass[i])
+            }
+        }
+        Sort(l, m/2)
+        Sort(r, m-(m/2))
+        h := 0
+        f := 0
+        var c []int
+        for h < m/2 && f < m-(m/2) {
+            if l[h] < r[f] {
+                c = append(c, l[h])
+                h++
+            } else {
+                c = append(c, r[f])
+                f++
+            }
+        }
+        for h < m/2 {
+            c = append(c, l[h])
+            h++
+        }
+        for f < m-(m/2) {
+            c = append(c, r[f])
+            f++
+        }
+        for i := 0; i < m; i++ {
+            array[i] = c[i]
+        }
+    }
 }
 
 Sort(a, len(a))
@@ -960,14 +960,14 @@ function gcd(a, b){
 
 ```go
 func GCD(a int, b int) int {
-	for a != 0 && b != 0 {
-		if a > b {
-			a = a % b
-		} else {
-			b = b % a
-		}
-	}
-	return a + b
+    for a != 0 && b != 0 {
+        if a > b {
+            a = a % b
+        } else {
+            b = b % a
+        }
+    }
+    return a + b
 }
 ```
 
@@ -1055,18 +1055,18 @@ function lcm(a, b){
 
 ```go
 func GCD(a int, b int) int {
-	for a != 0 && b != 0 {
-		if a > b {
-			a = a % b
-		} else {
-			b = b % a
-		}
-	}
-	return a + b
+    for a != 0 && b != 0 {
+        if a > b {
+            a = a % b
+        } else {
+            b = b % a
+        }
+    }
+    return a + b
 }
 
 func LCM(a int, b int) int {
-	return int((a * b) / GCD(a, b))
+    return int((a * b) / GCD(a, b))
 }
 ```
 
@@ -1182,24 +1182,24 @@ function isPrime(n){
 
 ```go
 func IsPrime(n int) bool {
-	result := []int{}
-	d := 2
-	for d*d <= n {
-		if n%d == 0 {
-			result = append(result, d)
-			n = int(n / d)
-		} else {
-			d++
-		}
-	}
-	if n > 1 {
-		result = append(result, n)
-	}
-	if len(result) > 1 {
-		return false
-	} else {
-		return true
-	}
+    result := []int{}
+    d := 2
+    for d*d <= n {
+        if n%d == 0 {
+            result = append(result, d)
+            n = int(n / d)
+        } else {
+            d++
+        }
+    }
+    if n > 1 {
+        result = append(result, n)
+    }
+    if len(result) > 1 {
+        return false
+    } else {
+        return true
+    }
 }
 ```
 
@@ -1306,25 +1306,25 @@ function nPrimes(n){
 
 ```go
 func NPrimes(n int) []int {
-	result := []int{}
-	i := 0
-	m := 1
-	var k bool
-	for i <= n {
-		m++
-		k = true
-		for _, j := range result {
-			if m%j == 0 {
-				k = false
-				break
-			}
-		}
-		if k {
-			result = append(result, m)
-			i++
-		}
-	}
-	return result
+    result := []int{}
+    i := 0
+    m := 1
+    var k bool
+    for i <= n {
+        m++
+        k = true
+        for _, j := range result {
+            if m%j == 0 {
+                k = false
+                break
+            }
+        }
+        if k {
+            result = append(result, m)
+            i++
+        }
+    }
+    return result
 }
 ```
 
@@ -1429,20 +1429,20 @@ function primeFactors(a){
 
 ```go
 func PrimeFactors(a int) []int {
-	result := []int{}
-	d := 2
-	for d*d <= a {
-		if a%d == 0 {
-			result = append(result, d)
-			a = int(a / d)
-		} else {
-			d++
-		}
-	}
-	if a > 1 {
-		result = append(result, a)
-	}
-	return result
+    result := []int{}
+    d := 2
+    for d*d <= a {
+        if a%d == 0 {
+            result = append(result, d)
+            a = int(a / d)
+        } else {
+            d++
+        }
+    }
+    if a > 1 {
+        result = append(result, a)
+    }
+    return result
 }
 ```
 
@@ -1544,11 +1544,11 @@ function fibo(n){
 
 ```go
 func Fibo(n int) int {
-	if n <= 1 {
-		return n
-	} else {
-		return Fibo(n-1) + Fibo(n-2)
-	}
+    if n <= 1 {
+        return n
+    } else {
+        return Fibo(n-1) + Fibo(n-2)
+    }
 }
 ```
 
@@ -1660,11 +1660,11 @@ function factorial(n){
 
 ```go
 func Factorial(n int) int {
-	result := 1
-	for m := 1; m <= n; m++ {
-		result *= m
-	}
-	return result
+    result := 1
+    for m := 1; m <= n; m++ {
+        result *= m
+    }
+    return result
 }
 ```
 
@@ -1748,11 +1748,11 @@ function doubleFactorial(n){
 
 ```go
 func DoubleFactorial(n int) int {
-	if n <= 0 {
-		return 1
-	} else {
-		return n * DoubleFactorial(n-2)
-	}
+    if n <= 0 {
+        return 1
+    } else {
+        return n * DoubleFactorial(n-2)
+    }
 }
 ```
 
@@ -1858,26 +1858,26 @@ function subfactorial(n){
 import "math"
 
 func Factorial(n int) int {
-	if n == 0 {
-		return 1
-	} else {
-		return n * Factorial(n-1)
-	}
+    if n == 0 {
+        return 1
+    } else {
+        return n * Factorial(n-1)
+    }
 }
 
 func Subfactorial(n int) int {
-	result := 1.0
-	k := true
-	for m := 1; m <= n; m++ {
-		if k {
-			result -= 1.0 / float64(Factorial(m))
-			k = false
-		} else {
-			result += 1.0 / float64(Factorial(m))
-			k = true
-		}
-	}
-	return int(math.Round(result * float64(Factorial(n))))
+    result := 1.0
+    k := true
+    for m := 1; m <= n; m++ {
+        if k {
+            result -= 1.0 / float64(Factorial(m))
+            k = false
+        } else {
+            result += 1.0 / float64(Factorial(m))
+            k = true
+        }
+    }
+    return int(math.Round(result * float64(Factorial(n))))
 }
 ```
 
@@ -1887,15 +1887,15 @@ func Subfactorial(n int) int {
 import "math"
 
 func Factorial(n int) int {
-	if n == 0 {
-		return 1
-	} else {
-		return n * Factorial(n-1)
-	}
+    if n == 0 {
+        return 1
+    } else {
+        return n * Factorial(n-1)
+    }
 }
 
 func Subfactorial(n int) int {
-	return int(math.Round(float64(Factorial(n)) / 2.718))
+    return int(math.Round(float64(Factorial(n)) / 2.718))
 }
 ```
 
@@ -2105,66 +2105,66 @@ function pPrimorial(n){
 
 ```go
 func IsPrime(n int) bool {
-	result := []int{}
-	d := 2
-	for d*d <= n {
-		if n%d == 0 {
-			result = append(result, d)
-			n = int(n / d)
-		} else {
-			d++
-		}
-	}
-	if n > 1 {
-		result = append(result, n)
-	}
-	if len(result) > 1 {
-		return false
-	} else {
-		return true
-	}
+    result := []int{}
+    d := 2
+    for d*d <= n {
+        if n%d == 0 {
+            result = append(result, d)
+            n = int(n / d)
+        } else {
+            d++
+        }
+    }
+    if n > 1 {
+        result = append(result, n)
+    }
+    if len(result) > 1 {
+        return false
+    } else {
+        return true
+    }
 }
 
 func P(n int) int {
-	result := []int{}
-	i := 0
-	m := 1
-	var k bool
-	for i < n {
-		m++
-		k = true
-		for _, j := range result {
-			if m%j == 0 {
-				k = false
-				break
-			}
-		}
-		if k {
-			result = append(result, m)
-			i++
-		}
-	}
-	return result[len(result)-1]
+    result := []int{}
+    i := 0
+    m := 1
+    var k bool
+    for i < n {
+        m++
+        k = true
+        for _, j := range result {
+            if m%j == 0 {
+                k = false
+                break
+            }
+        }
+        if k {
+            result = append(result, m)
+            i++
+        }
+    }
+    return result[len(result)-1]
 }
 
 //primorial less than n
 //пріморіал меньше n
 //примориал меньше n
 func Primorial(n int) int {
-	if n == 1 {
-		return 1
-	} else if IsPrime(n) {
-		return n * Primorial(n-1)
-	} else {
-		return Primorial(n - 1)
-	}
+    if n == 1 {
+        return 1
+    } else if IsPrime(n) {
+        return n * Primorial(n-1)
+    } else {
+        return Primorial(n - 1)
+    }
 }
 
 //primorial for first n primes
 //пріморіал для перших n простих
 //примориал первых n простых
 func PPrimorial(n int) int {
-	return Primorial(P(n))
+    return Primorial(P(n))
 }
 ```
 
@@ -2334,19 +2334,19 @@ function superfactorial(n){
 
 ```go
 func Factorial(n int) int {
-	if n == 0 {
-		return 1
-	} else {
-		return n * Factorial(n-1)
-	}
+    if n == 0 {
+        return 1
+    } else {
+        return n * Factorial(n-1)
+    }
 }
 
 func SuperFactorial(n int) int {
-	if n == 0 {
-		return 1
-	} else {
-		return Factorial(n) * SuperFactorial(n-1)
-	}
+    if n == 0 {
+        return 1
+    } else {
+        return Factorial(n) * SuperFactorial(n-1)
+    }
 }
 ```
 
@@ -2421,27 +2421,27 @@ function superduperfactorial(n){
 
 ```go
 func Factorial(n int) int {
-	if n == 0 {
-		return 1
-	} else {
-		return n * Factorial(n-1)
-	}
+    if n == 0 {
+        return 1
+    } else {
+        return n * Factorial(n-1)
+    }
 }
 
 func SuperFactorial(n int) int {
-	if n == 0 {
-		return 1
-	} else {
-		return Factorial(n) * SuperFactorial(n-1)
-	}
+    if n == 0 {
+        return 1
+    } else {
+        return Factorial(n) * SuperFactorial(n-1)
+    }
 }
 
 func SuperDuperFactorial(n int) int {
-	if n == 0 {
-		return 1
-	} else {
-		return SuperFactorial(n) * SuperDuperFactorial(n-1)
-	}
+    if n == 0 {
+        return 1
+    } else {
+        return SuperFactorial(n) * SuperDuperFactorial(n-1)
+    }
 }
 ```
 
