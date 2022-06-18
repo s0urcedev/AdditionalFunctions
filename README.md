@@ -3733,7 +3733,7 @@ string ArabRom(int s)
 
 ```python
 arithmetic.addition_big_numbers(a, b)
-arithmetic.substraction_big_numbers(a, b)
+arithmetic.subtraction_big_numbers(a, b)
 arithmetic.multiplication_big_numbers(a, b)
 ```
 
@@ -3741,7 +3741,7 @@ arithmetic.multiplication_big_numbers(a, b)
 
 ```js
 arithmetic.additionBigNumbers(a, b);
-arithmetic.substractionBigNumbers(a, b);
+arithmetic.subtractionBigNumbers(a, b);
 arithmetic.multiplicationBigNumbers(a, b);
 ```
 
@@ -3877,12 +3877,12 @@ string AdditionBigNumbers(string a, string b)
 }
 ```
 
-### Subsctraction / Віднімання / Вычетание
+### Subtraction / Віднімання / Вычетание
 
 `Python`:
 
 ```python
-def substraction_big_numbers(a, b):
+def subtraction_big_numbers(a, b):
     k = False
     if int(a) > int(b):
         a = str(a)[::-1]
@@ -3917,7 +3917,7 @@ def substraction_big_numbers(a, b):
 `JavaScript`:
 
 ```js
-function substractionBigNumbers(a, b){
+function subtractionBigNumbers(a, b){
     let k = false;
     if(Number(a) > Number(b)){
         a = String(a).split("").reverse().join("");
@@ -3964,7 +3964,7 @@ function substractionBigNumbers(a, b){
 #include <string>
 #include <sstream>
 
-std::string substraction_big_numbers(string a, string b){
+std::string subtraction_big_numbers(string a, string b){
     std::stringstream ssa;
     ssa << a;
     long long n = 0;
@@ -4017,7 +4017,7 @@ std::string substraction_big_numbers(string a, string b){
 `C#`:
 
 ```cs
-string SubstractionBigNumbers(string a, string b)
+string SubtractionBigNumbers(string a, string b)
 {
     bool k = false;
     if(Convert.ToInt32(a) < Convert.ToInt32(b))
