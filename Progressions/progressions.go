@@ -66,7 +66,7 @@ func (hp HarmonicProgression) Nth(n int) float64 {
 }
 
 func (hp HarmonicProgression) ToNth(n int) []float64 {
-	c := []float64{}
+	c := []float64{hp.Start}
 	for i := 1; i < n; i++ {
 		c = append(c, math.Pow((math.Pow(c[len(c)-1], -1)+float64(n-1)*hp.Difference), -1))
 	}
