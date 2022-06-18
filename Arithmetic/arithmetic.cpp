@@ -31,7 +31,7 @@ string addition_big_numbers(string a, string b){
     return fresult;
 }
 
-string substraction_big_numbers(string a, string b){
+string subtraction_big_numbers(string a, string b){
     stringstream ssa;
     ssa << a;
     long long n = 0;
@@ -112,6 +112,5 @@ string multiplication_big_numbers(string a, string b){
 }
 
 int main(){
-    cout << substraction_big_numbers("762055", "2229849264") << endl;
     system("pause");
 }
