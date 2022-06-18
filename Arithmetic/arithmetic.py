@@ -20,7 +20,7 @@ def addition_big_numbers(a, b):
         result += '1'
     return result[::-1]
 
-def substraction_big_numbers(a, b):
+def subtraction_big_numbers(a, b):
     k = False
     if int(a) > int(b):
         a = str(a)[::-1]
