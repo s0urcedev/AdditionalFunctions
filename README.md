@@ -156,14 +156,14 @@ while(k < a.length - 1){
 ```go
 k := 0
 for k < len(a)-1 {
-    k = 0
-    for j := 0; j < len(a)-1; j++ {
-        if a[j] > a[j+1] {
-            a[j], a[j+1] = a[j+1], a[j]
-        } else {
-            k++
-        }
-    }
+	k = 0
+	for j := 0; j < len(a)-1; j++ {
+		if a[j] > a[j+1] {
+			a[j], a[j+1] = a[j+1], a[j]
+		} else {
+			k++
+		}
+	}
 }
 ```
 
@@ -271,15 +271,15 @@ for(let i = 0; i < a.length - 1; i ++){
 
 ```go
 for i := 0; i < len(a)-1; i++ {
-    imin := i
-    for j := i + 1; j < len(a); j++ {
-        if a[j] < a[imin] {
-            imin = j
-        }
-    }
-    if imin != i {
-        a[i], a[imin] = a[imin], a[i]
-    }
+	imin := i
+	for j := i + 1; j < len(a); j++ {
+		if a[j] < a[imin] {
+			imin = j
+		}
+	}
+	if imin != i {
+		a[i], a[imin] = a[imin], a[i]
+	}
 }
 ```
 
@@ -377,13 +377,13 @@ for(let j = 1; j < a.length; j ++){
 
 ```go
 for j := 1; j < len(a); j++ {
-    key := a[j]
-    i := j - 1
-    for i >= 0 && a[i] > key {
-        a[i+1] = a[i]
-        i--
-    }
-    a[i+1] = key
+	key := a[j]
+	i := j - 1
+	for i >= 0 && a[i] > key {
+		a[i+1] = a[i]
+		i--
+	}
+	a[i+1] = key
 }
 ```
 
@@ -960,14 +960,14 @@ function gcd(a, b){
 
 ```go
 func GCD(a int, b int) int {
-    for a != 0 && b != 0 {
-        if a > b {
-            a = a % b
-        } else {
-            b = b % a
-        }
-    }
-    return a + b
+	for a != 0 && b != 0 {
+		if a > b {
+			a = a % b
+		} else {
+			b = b % a
+		}
+	}
+	return a + b
 }
 ```
 
@@ -2342,7 +2342,7 @@ func Factorial(n int) int {
 }
 
 func SuperFactorial(n int) int {
-    if n == 0 {
+	if n == 0 {
 		return 1
 	} else {
 		return Factorial(n) * SuperFactorial(n-1)
@@ -2429,7 +2429,7 @@ func Factorial(n int) int {
 }
 
 func SuperFactorial(n int) int {
-    if n == 0 {
+	if n == 0 {
 		return 1
 	} else {
 		return Factorial(n) * SuperFactorial(n-1)
@@ -2437,7 +2437,7 @@ func SuperFactorial(n int) int {
 }
 
 func SuperDuperFactorial(n int) int {
-    if n == 0 {
+	if n == 0 {
 		return 1
 	} else {
 		return SuperFactorial(n) * SuperDuperFactorial(n-1)
