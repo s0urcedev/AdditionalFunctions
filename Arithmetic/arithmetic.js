@@ -26,7 +26,7 @@ function additionBigNumbers(a, b){
     return result.split("").reverse().join("");
 }
 
-function substractionBigNumbers(a, b){
+function subtractionBigNumbers(a, b){
     let k = false;
     if(Number(a) > Number(b)){
         a = String(a).split("").reverse().join("");
