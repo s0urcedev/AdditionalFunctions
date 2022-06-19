@@ -5449,7 +5449,11 @@ class Tree:
 
     def get_tree_by_levels(self) -> list:
         p = self.__bfs()
-        res = [[] for _ in range(0, p[-1][1] + 1)]
+        max_p = -1
+        for m in p:
+            if max_p < m[1]:
+                max_p = m[1]
+        res = [[] for _ in range(0, max_p + 1)]
         for n in p:
             res[n[1]].append(n[0])
         return res
@@ -5592,7 +5596,13 @@ class Tree{
     get treeByLevels(){
         let p = this.#bfs();
         let res = [];
-        for(let _ = 0; _ < p[p.length - 1][1] + 1; _ ++){
+        let maxP = -1;
+        for(let n of p){
+            if(maxP < n[1]){
+                maxP = n[1]
+            }
+        }
+        for(let _ = 0; _ <= maxP; _ ++){
             res.push([]);
         }
         for(let n of p){
@@ -5685,6 +5695,155 @@ class Tree{
     get max(){
         return this.#getMax(this.#head);
     }
+}
+```
+
+`Go`:
+
+```go
+type Pair[T1 any, T2 any] struct {
+	First  T1
+	Second T2
+}
+
+type Number interface {
+	int | int8 | int16 | int32 | int64 | uint | uint8 | uint16 | uint32 | uint64 | float32 | float64
+}
+
+type Node[T Number] struct {
+	Value T
+	Left  *Node[T]
+	Right *Node[T]
+}
+
+type Tree[T Number] struct {
+	Head *Node[T]
+}
+
+func NewTree[T Number]() Tree[T] {
+	t := Tree[T]{nil}
+	return t
+}
+
+func NewHeadTree[T Number](head *Node[T]) Tree[T] {
+	t := Tree[T]{head}
+	return t
+}
+
+func (t Tree[T]) AddNode(v T, node *Node[T]) {
+	if v < node.Value {
+		if node.Left == nil {
+			node.Left = &Node[T]{v, nil, nil}
+		} else {
+			t.AddNode(v, node.Left)
+		}
+	} else {
+		if node.Right == nil {
+			node.Right = &Node[T]{v, nil, nil}
+		} else {
+			t.AddNode(v, node.Right)
+		}
+	}
+}
+
+func NewArrTree[T Number](arr []T) Tree[T] {
+	t := Tree[T]{&Node[T]{arr[0], nil, nil}}
+	for i := 1; i < len(arr); i++ {
+		t.AddNode(arr[i], t.Head)
+	}
+	return t
+}
+
+func (t Tree[T]) BFS() []Pair[T, int] {
+	q := []Pair[*Node[T], int]{{t.Head, 0}}
+	p := []Pair[T, int]{{}}
+	for len(q) > 0 {
+		v := q[len(q)-1]
+		q = q[:len(q)-1]
+		p = append(p, Pair[T, int]{v.First.Value, v.Second})
+		if v.First.Right != nil {
+			q = append(q, Pair[*Node[T], int]{v.First.Right, v.Second + 1})
+		}
+		if v.First.Left != nil {
+			q = append(q, Pair[*Node[T], int]{v.First.Left, v.Second + 1})
+		}
+	}
+	return p
+}
+
+func (t Tree[T]) TreeByLevels() [][]T {
+	p := t.BFS()
+	res := [][]T{{}}
+	maxP := -1
+	for _, m := range p {
+		if maxP < m.Second {
+			maxP = m.Second
+		}
+	}
+	for i := 0; i <= maxP; i++ {
+		res = append(res, []T{})
+	}
+	for _, n := range p {
+		res[n.Second] = append(res[n.Second], n.First)
+	}
+	return res
+}
+
+func (t Tree[T]) TreeList() []T {
+	p := t.BFS()
+	res := []T{}
+	for _, n := range p {
+		res = append(res, n.First)
+	}
+	return res
+}
+
+func (t Tree[T]) DFSPlain(node *Node[T], p []T) {
+	if node.Left != nil {
+		t.DFSPlain(node.Left, p)
+	}
+	p = append(p, node.Value)
+	if node.Right != nil {
+		t.DFSPlain(node.Right, p)
+	}
+}
+
+func (t Tree[T]) DFSReverse(node *Node[T], p []T) {
+	if node.Right != nil {
+		t.DFSPlain(node.Right, p)
+	}
+	p = append(p, node.Value)
+	if node.Left != nil {
+		t.DFSPlain(node.Left, p)
+	}
+}
+
+func (t Tree[T]) TreeSorted() []T {
+	p := []T{}
+	t.DFSPlain(t.Head, p)
+	return p
+}
+
+func (t Tree[T]) TreeSortedReverse() []T {
+	p := []T{}
+	t.DFSReverse(t.Head, p)
+	return p
+}
+
+func (t Tree[T]) Min(node *Node[T]) T {
+	if node.Left != nil {
+		return t.Min(node.Left)
+	} else {
+		return node.Value
+	}
+}
+
+func (t Tree[T]) Max(node *Node[T]) T {
+	if node.Right != nil {
+		return t.Min(node.Right)
+	} else {
+		return node.Value
+	}
 }
 ```
 
@@ -5792,7 +5951,13 @@ class Tree{
         std::vector <std::vector <int>> get_tree_by_levels(){
             std::vector <std::pair <int, int>> p = bfs_();
             std::vector <std::vector <int>> res;
-            for(int _ = 0; _ <= p[p.size() - 1].second; _ ++){
+            int max_p = -1;
+            for(auto m: p){
+                if(max_p < m.second){
+                    max_p = m.second;
+                }
+            }
+            for(int _ = 0; _ <= max_p; _ ++){
                 res.push_back(std::vector<int> {});
             }
             for(auto n: p){
@@ -5946,15 +6111,15 @@ class Tree
     {
         List<(int, int)> p = _Bfs();
         List<List<int>> res = new List<List<int>>(){};
-        int max = 0;
+        int maxP = -1;
         foreach((int, int) n in p)
         {
-            if(max < n.Item2)
+            if(maxP < n.Item2)
             {
-                max = n.Item2;
+                maxP = n.Item2;
             }
         }
-        for(int _ = 0; _ <= max; _ ++)
+        for(int _ = 0; _ <= maxP; _ ++)
         {
             res.Add(new List<int>(){});
         }
