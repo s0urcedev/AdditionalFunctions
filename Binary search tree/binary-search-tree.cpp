@@ -100,7 +100,13 @@ class Tree{
         std::vector <std::vector <int>> get_tree_by_levels(){
             std::vector <std::pair <int, int>> p = bfs_();
             std::vector <std::vector <int>> res;
-            for(int _ = 0; _ <= p[p.size() - 1].second; _ ++){
+            int max_p = -1;
+            for(auto m: p){
+                if(max_p < m.second){
+                    max_p = m.second;
+                }
+            }
+            for(int _ = 0; _ <= max_p; _ ++){
                 res.push_back(std::vector<int> {});
             }
             for(auto n: p){
