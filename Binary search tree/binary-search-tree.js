@@ -73,7 +73,13 @@ class Tree{
     get treeByLevels(){
         let p = this.#bfs();
         let res = [];
-        for(let _ = 0; _ < p[p.length - 1][1] + 1; _ ++){
+        let maxP = -1;
+        for(let n of p){
+            if(maxP < n[1]){
+                maxP = n[1]
+            }
+        }
+        for(let _ = 0; _ <= maxP; _ ++){
             res.push([]);
         }
         for(let n of p){
