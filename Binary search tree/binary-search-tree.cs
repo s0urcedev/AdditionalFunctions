@@ -96,15 +96,15 @@ namespace Base
         {
             List<(int, int)> p = _Bfs();
             List<List<int>> res = new List<List<int>>(){};
-            int max = 0;
+            int maxP = -1;
             foreach((int, int) n in p)
             {
-                if(max < n.Item2)
+                if(maxP < n.Item2)
                 {
-                    max = n.Item2;
+                    maxP = n.Item2;
                 }
             }
-            for(int _ = 0; _ <= max; _ ++)
+            for(int _ = 0; _ <= maxP; _ ++)
             {
                 res.Add(new List<int>(){});
             }
