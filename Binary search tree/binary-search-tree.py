@@ -53,7 +53,11 @@ class Tree:
 
     def get_tree_by_levels(self) -> list:
         p = self.__bfs()
-        res = [[] for _ in range(0, p[-1][1] + 1)]
+        max_p = -1
+        for m in p:
+            if max_p < m[1]:
+                max_p = m[1]
+        res = [[] for _ in range(0, max_p + 1)]
         for n in p:
             res[n[1]].append(n[0])
         return res
@@ -116,9 +120,3 @@ class Tree:
             return self.get_min(node.right)
         else:
             return node.value
-
-
-t = Tree()
-t.create([1, 4, 2, 3, 5])
-print(t.get_tree_list())
-print(t.get_tree_by_levels())
