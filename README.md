@@ -2513,6 +2513,18 @@ combinatorics.generatePermutations(arr, k);
 
 <ins>***Википедия:***</ins> *[Комбинаторика](https://ru.wikipedia.org/wiki/Комбинаторика)*
 
+### Files / Файли / Файлы
+
+<ins>***Python:***</ins> *[combinatorics.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Combinatorics/combinatorics.py)*
+
+<ins>***JavaScript:***</ins> *[combinatorics.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Combinatorics/combinatorics.js)*
+
+<ins>***Go:***</ins> *[combinatorics.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Combinatorics/combinatorics.go)*
+
+<ins>***C++:***</ins> *[combinatorics.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Combinatorics/combinatorics.cpp)*
+
+<ins>***C#:***</ins> *[combinatorics.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Combinatorics/combinatorics.cs)*
+
 ### Combinations / Комбінації / Сочетания
 
 `Python`:
@@ -3084,6 +3096,20 @@ roman_arabic_numerals.arab_rom(s)
 romanArabicNumerals.romArab(p);
 romanArabicNumerals.arabRom(s);
 ```
+
+### Files / Файли / Файлы
+
+<ins>***Python:***</ins> *[roman-arabic-numerals.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Roman%20arabic%20numerals/roman-arabic-numerals.py)*
+
+<ins>***JavaScript:***</ins> *[roman-arabic-numerals.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Roman%20arabic%20numerals/roman-arabic-numerals.js)*
+
+<ins>***Go:***</ins> *[roman-arabic-numerals.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Roman%20arabic%20numerals/roman-arabic-numerals.go)*
+
+
+<ins>***C++:***</ins> *[roman-arabic-numerals.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Roman%20arabic%20numerals/roman-arabic-numerals.cpp)*
+
+
+<ins>***C#:***</ins> *[roman-arabic-numerals.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Roman%20arabic%20numerals/roman-arabic-numerals.cs)*
 
 `Python`:
 
@@ -3744,6 +3770,18 @@ arithmetic.additionBigNumbers(a, b);
 arithmetic.subtractionBigNumbers(a, b);
 arithmetic.multiplicationBigNumbers(a, b);
 ```
+
+### Files / Файли / Файлы
+
+<ins>***Python:***</ins> *[arithmetic.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Arithmetic/arithmetic.py)*
+
+<ins>***JavaScript:***</ins> *[arithmetic.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Arithmetic/arithmetic.js)*
+
+<ins>***Go:***</ins> *[arithmetic.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Arithmetic/arithmetic.go)*
+
+<ins>***C++:***</ins> *[arithmetic.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Arithmetic/arithmetic.cpp)*
+
+<ins>***C#:***</ins> *[arithmetic.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Arithmetic/arithmetic.cs)*
 
 ### Addition / Додавання / Прибавление
 
@@ -4535,6 +4573,18 @@ c.getNth(n);
 c.countToNth(n);
 c.getToNth(n);
 ```
+
+### Files / Файли / Файлы
+
+<ins>***Python:***</ins> *[progressions.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Progressions/progressions.py)*
+
+<ins>***JavaScript:***</ins> *[progressions.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Progressions/progressions.js)*
+
+<ins>***Go:***</ins> *[progressions.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Progressions/progressions.go)*
+
+<ins>***C++:***</ins> *[progressions.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Progressions/progressions.cpp)*
+
+<ins>***C#:***</ins> *[progressions.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Progressions/progressions.cs)*
 
 ### Arithmetic progression / Арифметична прогресія / Арифметическая прогрессия
 
@@ -5384,12 +5434,23 @@ tree.min // get
 tree.max // get
 ```
 
-
 <ins>***Wikipedia:***</ins> *[Binary search tree](https://en.wikipedia.org/wiki/Binary_search_tree)*
 
 <ins>***Вікіпедія:***</ins> *[Двійкове дерево пошуку](https://uk.wikipedia.org/wiki/Двійкове_дерево_пошуку)*
 
 <ins>***Википедия:***</ins> *[Двоичное дерево поиска](https://ru.wikipedia.org/wiki/Двоичное_дерево_поиска)*
+
+### Files / Файли / Файлы
+
+<ins>***Python:***</ins> *[binary-search-tree.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Binary%20search%20tree/binary-search-tree.py)*
+
+<ins>***JavaScript:***</ins> *[binary-search-tree.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Binary%20search%20tree/binary-search-tree.js)*
+
+<ins>***Go:***</ins> *[binary-search-tree.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Binary%20search%20tree/binary-search-tree.go)*
+
+<ins>***C++:***</ins> *[binary-search-tree.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Binary%20search%20tree/binary-search-tree.cpp)*
+
+<ins>***C#:***</ins> *[binary-search-tree.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Binary%20search%20tree/binary-search-tree.cs)*
 
 `Python`:
 
@@ -6245,6 +6306,18 @@ subarrays.minCircularSubarraySum(arr);
 > *Лінійний – часова складність* ***O(n)***
 >
 > *Линейный – временная сложность* ***O(n)***
+
+### Files / Файли / Файлы
+
+<ins>***Python:***</ins> *[subarrays.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Subarrays/subarrays.py)*
+
+<ins>***JavaScript:***</ins> *[subarrays.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Subarrays/subarrays.js)*
+
+<ins>***Go:***</ins> *[subarrays.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Subarrays/subarrays.go)*
+
+<ins>***C++:***</ins> *[subarrays.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Subarrays/subarrays.cpp)*
+
+<ins>***C#:***</ins> *[subarrays.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Subarrays/subarrays.cs)*
 
 ### Max | Min subarray sum / Максимальна | Мінімальна сума підмасива / Максимальная | Минимальная сумма подмассива
 
