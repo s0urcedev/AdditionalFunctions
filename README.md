@@ -5702,148 +5702,148 @@ class Tree{
 
 ```go
 type Pair[T1 any, T2 any] struct {
-	First  T1
-	Second T2
+    First  T1
+    Second T2
 }
 
 type Number interface {
-	int | int8 | int16 | int32 | int64 | uint | uint8 | uint16 | uint32 | uint64 | float32 | float64
+    int | int8 | int16 | int32 | int64 | uint | uint8 | uint16 | uint32 | uint64 | float32 | float64
 }
 
 type Node[T Number] struct {
-	Value T
-	Left  *Node[T]
-	Right *Node[T]
+    Value T
+    Left  *Node[T]
+    Right *Node[T]
 }
 
 type Tree[T Number] struct {
-	Head *Node[T]
+    Head *Node[T]
 }
 
 func NewTree[T Number]() Tree[T] {
-	t := Tree[T]{nil}
-	return t
+    t := Tree[T]{nil}
+    return t
 }
 
 func NewHeadTree[T Number](head *Node[T]) Tree[T] {
-	t := Tree[T]{head}
-	return t
+    t := Tree[T]{head}
+    return t
 }
 
 func (t Tree[T]) AddNode(v T, node *Node[T]) {
-	if v < node.Value {
-		if node.Left == nil {
-			node.Left = &Node[T]{v, nil, nil}
-		} else {
-			t.AddNode(v, node.Left)
-		}
-	} else {
-		if node.Right == nil {
-			node.Right = &Node[T]{v, nil, nil}
-		} else {
-			t.AddNode(v, node.Right)
-		}
-	}
+    if v < node.Value {
+        if node.Left == nil {
+            node.Left = &Node[T]{v, nil, nil}
+        } else {
+            t.AddNode(v, node.Left)
+        }
+    } else {
+        if node.Right == nil {
+            node.Right = &Node[T]{v, nil, nil}
+        } else {
+            t.AddNode(v, node.Right)
+        }
+    }
 }
 
 func NewArrTree[T Number](arr []T) Tree[T] {
-	t := Tree[T]{&Node[T]{arr[0], nil, nil}}
-	for i := 1; i < len(arr); i++ {
-		t.AddNode(arr[i], t.Head)
-	}
-	return t
+    t := Tree[T]{&Node[T]{arr[0], nil, nil}}
+    for i := 1; i < len(arr); i++ {
+        t.AddNode(arr[i], t.Head)
+    }
+    return t
 }
 
 func (t Tree[T]) BFS() []Pair[T, int] {
-	q := []Pair[*Node[T], int]{{t.Head, 0}}
-	p := []Pair[T, int]{{}}
-	for len(q) > 0 {
-		v := q[len(q)-1]
-		q = q[:len(q)-1]
-		p = append(p, Pair[T, int]{v.First.Value, v.Second})
-		if v.First.Right != nil {
-			q = append(q, Pair[*Node[T], int]{v.First.Right, v.Second + 1})
-		}
-		if v.First.Left != nil {
-			q = append(q, Pair[*Node[T], int]{v.First.Left, v.Second + 1})
-		}
-	}
-	return p
+    q := []Pair[*Node[T], int]{{t.Head, 0}}
+    p := []Pair[T, int]{{}}
+    for len(q) > 0 {
+        v := q[len(q)-1]
+        q = q[:len(q)-1]
+        p = append(p, Pair[T, int]{v.First.Value, v.Second})
+        if v.First.Right != nil {
+            q = append(q, Pair[*Node[T], int]{v.First.Right, v.Second + 1})
+        }
+        if v.First.Left != nil {
+            q = append(q, Pair[*Node[T], int]{v.First.Left, v.Second + 1})
+        }
+    }
+    return p
 }
 
 func (t Tree[T]) TreeByLevels() [][]T {
-	p := t.BFS()
-	res := [][]T{{}}
-	maxP := -1
-	for _, m := range p {
-		if maxP < m.Second {
-			maxP = m.Second
-		}
-	}
-	for i := 0; i <= maxP; i++ {
-		res = append(res, []T{})
-	}
-	for _, n := range p {
-		res[n.Second] = append(res[n.Second], n.First)
-	}
-	return res
+    p := t.BFS()
+    res := [][]T{{}}
+    maxP := -1
+    for _, m := range p {
+        if maxP < m.Second {
+            maxP = m.Second
+        }
+    }
+    for i := 0; i <= maxP; i++ {
+        res = append(res, []T{})
+    }
+    for _, n := range p {
+        res[n.Second] = append(res[n.Second], n.First)
+    }
+    return res
 }
 
 func (t Tree[T]) TreeList() []T {
-	p := t.BFS()
-	res := []T{}
-	for _, n := range p {
-		res = append(res, n.First)
-	}
-	return res
+    p := t.BFS()
+    res := []T{}
+    for _, n := range p {
+        res = append(res, n.First)
+    }
+    return res
 }
 
 func (t Tree[T]) DFSPlain(node *Node[T], p []T) {
-	if node.Left != nil {
-		t.DFSPlain(node.Left, p)
-	}
-	p = append(p, node.Value)
-	if node.Right != nil {
-		t.DFSPlain(node.Right, p)
-	}
+    if node.Left != nil {
+        t.DFSPlain(node.Left, p)
+    }
+    p = append(p, node.Value)
+    if node.Right != nil {
+        t.DFSPlain(node.Right, p)
+    }
 }
 
 func (t Tree[T]) DFSReverse(node *Node[T], p []T) {
-	if node.Right != nil {
-		t.DFSPlain(node.Right, p)
-	}
-	p = append(p, node.Value)
-	if node.Left != nil {
-		t.DFSPlain(node.Left, p)
-	}
+    if node.Right != nil {
+        t.DFSPlain(node.Right, p)
+    }
+    p = append(p, node.Value)
+    if node.Left != nil {
+        t.DFSPlain(node.Left, p)
+    }
 }
 
 func (t Tree[T]) TreeSorted() []T {
-	p := []T{}
-	t.DFSPlain(t.Head, p)
-	return p
+    p := []T{}
+    t.DFSPlain(t.Head, p)
+    return p
 }
 
 func (t Tree[T]) TreeSortedReverse() []T {
-	p := []T{}
-	t.DFSReverse(t.Head, p)
-	return p
+    p := []T{}
+    t.DFSReverse(t.Head, p)
+    return p
 }
 
 func (t Tree[T]) Min(node *Node[T]) T {
-	if node.Left != nil {
-		return t.Min(node.Left)
-	} else {
-		return node.Value
-	}
+    if node.Left != nil {
+        return t.Min(node.Left)
+    } else {
+        return node.Value
+    }
 }
 
 func (t Tree[T]) Max(node *Node[T]) T {
-	if node.Right != nil {
-		return t.Min(node.Right)
-	} else {
-		return node.Value
-	}
+    if node.Right != nil {
+        return t.Min(node.Right)
+    } else {
+        return node.Value
+    }
 }
 ```
 
@@ -6314,6 +6314,42 @@ function minSubarraySum(arr){
 }
 ```
 
+`Go`:
+
+```go
+func maxSubarraySum(arr []int) int {
+    result := arr[0]
+    localResult := arr[0]
+    for i := 1; i < len(arr); i++ {
+        if localResult > 0 {
+            localResult += arr[i]
+        } else {
+            localResult = arr[i]
+        }
+        if localResult > result {
+            result = localResult
+        }
+    }
+    return result
+}
+
+func minSubarraySum(arr []int) int {
+    result := arr[0]
+    localResult := arr[0]
+    for i := 1; i < len(arr); i++ {
+        if localResult < 0 {
+            localResult += arr[i]
+        } else {
+            localResult = arr[i]
+        }
+        if localResult < result {
+            result = localResult
+        }
+    }
+    return result
+}
+```
+
 `C++`:
 
 ```cpp
@@ -6519,6 +6555,70 @@ function minSubarrayProd(arr){
         }
     }
     return result;
+}
+```
+
+`Go`:
+
+```go
+func maxSubarrayProd(arr []int) int {
+    result := arr[0]
+    localResultPos := arr[0]
+    localResultNeg := arr[0]
+    for i := 1; i < len(arr); i++ {
+        var localResultMax, localResultMin int
+        if localResultPos*arr[i] > localResultNeg*arr[i] {
+            localResultMax = localResultPos * arr[i]
+            localResultMin = localResultNeg * arr[i]
+        } else {
+            localResultMax = localResultNeg * arr[i]
+            localResultMin = localResultPos * arr[i]
+        }
+        if arr[i] > localResultMax {
+            localResultPos = arr[i]
+        } else {
+            localResultPos = localResultMax
+        }
+        if arr[i] < localResultMin {
+            localResultNeg = arr[i]
+        } else {
+            localResultNeg = localResultMin
+        }
+        if localResultPos > result {
+            result = localResultPos
+        }
+    }
+    return result
+}
+
+func minSubarrayProd(arr []int) int {
+    result := arr[0]
+    localResultPos := arr[0]
+    localResultNeg := arr[0]
+    for i := 1; i < len(arr); i++ {
+        var localResultMax, localResultMin int
+        if localResultPos*arr[i] > localResultNeg*arr[i] {
+            localResultMax = localResultPos * arr[i]
+            localResultMin = localResultNeg * arr[i]
+        } else {
+            localResultMax = localResultNeg * arr[i]
+            localResultMin = localResultPos * arr[i]
+        }
+        if arr[i] > localResultMax {
+            localResultPos = arr[i]
+        } else {
+            localResultPos = localResultMax
+        }
+        if arr[i] < localResultMin {
+            localResultNeg = arr[i]
+        } else {
+            localResultNeg = localResultMin
+        }
+        if localResultNeg < result {
+            result = localResultNeg
+        }
+    }
+    return result
 }
 ```
 
@@ -6822,6 +6922,84 @@ function minCircularSubarraySum(arr){
     }
     else{
         return minCircleSum;
+    }
+}
+```
+
+`Go`:
+
+```go
+func maxSubarraySum(arr []int) int {
+    result := arr[0]
+    localResult := arr[0]
+    for i := 1; i < len(arr); i++ {
+        if localResult > 0 {
+            localResult += arr[i]
+        } else {
+            localResult = arr[i]
+        }
+        if localResult > result {
+            result = localResult
+        }
+    }
+    return result
+}
+
+func minSubarraySum(arr []int) int {
+    result := arr[0]
+    localResult := arr[0]
+    for i := 1; i < len(arr); i++ {
+        if localResult < 0 {
+            localResult += arr[i]
+        } else {
+            localResult = arr[i]
+        }
+        if localResult < result {
+            result = localResult
+        }
+    }
+    return result
+}
+
+func maxCircularSubarraySum(arr []int) int {
+    maxElem := arr[0]
+    arrSum := 0
+    for i := 0; i < len(arr); i++ {
+        if arr[i] > maxElem {
+            maxElem = arr[i]
+        }
+        arrSum += arr[i]
+    }
+    if maxElem < 0 {
+        return maxElem
+    }
+    maxSimpleSum := maxSubarraySum(arr)
+    maxCircleSum := arrSum - minSubarraySum(arr)
+    if maxSimpleSum > maxCircleSum {
+        return maxSimpleSum
+    } else {
+        return maxCircleSum
+    }
+}
+
+func minCircularSubarraySum(arr []int) int {
+    minElem := arr[0]
+    arrSum := 0
+    for i := 0; i < len(arr); i++ {
+        if arr[i] < minElem {
+            minElem = arr[i]
+        }
+        arrSum += arr[i]
+    }
+    if minElem > 0 {
+        return minElem
+    }
+    minSimpleSum := minSubarraySum(arr)
+    minCircleSum := arrSum - minSubarraySum(arr)
+    if minSimpleSum < minCircleSum {
+        return minSimpleSum
+    } else {
+        return minCircleSum
     }
 }
 ```
