@@ -5458,11 +5458,13 @@ tree.max // get
 class Node:
 
     value = None
+    height = None
     left = None
     right = None
 
-    def __init__(self, value: int = None, left = None, right = None) -> None:
+    def __init__(self, value: int = None, height: int = 1, left = None, right = None) -> None:
         self.value = value
+        self.height = height
         self.left = left
         self.right = right
 
@@ -5474,27 +5476,121 @@ class Tree:
         if head != None:
             self.__head = Node(head)
 
-    def add_node(self, v: int, node = None) -> None:
-        if self.__head == None:
-            self.__head = Node(v)
-            return
-        if node == None:
-            node = self.__head
-        if v < node.value:
-            if node.left == None:
-                node.left = Node(v)
-            else:
-                self.add_node(v, node.left)
+    def __fix_height(self, node: Node) -> None:
+        hl = node.left.height if node.left != None else 0
+        hr = node.right.height if node.right != None else 0 
+        node.height = (hl if hl > hr else hr) + 1
+
+    def __rotate_right(self, node: Node) -> Node:
+        v = node.left
+        node.left = v.right
+        v.right = node
+        self.__fix_height(node)
+        self.__fix_height(v)
+        return v
+
+    def __rotate_left(self, node: Node) -> Node:
+        v = node.right
+        node.right = v.left
+        v.left = node
+        self.__fix_height(node)
+        self.__fix_height(v)
+        return v
+
+    def __b_factor(self, node: Node) -> int:
+        return (node.right.height if node.right != None else 0) - (node.left.height if node.left != None else 0)
+
+    def __balance(self, node: Node) -> Node:
+        self.__fix_height(node)
+        if self.__b_factor(node) == 2:
+            if self.__b_factor(node.right) < 0:
+                node.right = self.__rotate_right(node.right)
+            return self.__rotate_left(node)
+        elif self.__b_factor(node) == -2:
+            if self.__b_factor(node.left) > 0:
+                node.left = self.__rotate_left(node.left)
+            return self.__rotate_right(node)
+        return node
+
+    def __get_min_node(self, node: Node) -> Node:
+        if node.left != None:
+            return self.__get_min_node(node.left)
         else:
-            if node.right == None:
-                node.right = Node(v)
-            else:
-                self.add_node(v, node.right)
+            return node
+
+    def get_min(self) -> int:
+        if self.__head.left != None:
+            return self.__get_min_node(self.__head.left)
+        else:
+            return self.__head.value
+
+    def __get_max_node(self, node: Node) -> Node:
+        if node.right != None:
+            return self.__get_max_node(node.right)
+        else:
+            return node
+
+    def get_max(self) -> int:
+        if self.__head.right != None:
+            return self.__get_max_node(self.__head.right)
+        else:
+            return self.__head.value
+
+    def __add_node(self, v: int, node: Node) -> None:
+        if node == None:
+            return Node(v)
+        if v < node.value:
+            node.left = self.__add_node(v, node.left)
+        else:
+            node.right = self.__add_node(v, node.right)
+        return self.__balance(node)
+
+    def add(self, v: int) -> None:
+        self.__head = self.__add_node(v, self.__head)
+
+    def __remove_min_node(self, node: Node) -> Node:
+        if node.left == None:
+            return node.right
+        node.left = self.__remove_min_node(node.left)
+        return self.__balance(node)
+
+    def remove_min(self) -> None:
+        self.__head = self.__remove_min_node(self.__head)
+
+    def __remove_max_node(self, node: Node) -> Node:
+        if node.right == None:
+            return node.left
+        node.right = self.__remove_max_node(node.right)
+        return self.__balance(node)
+
+    def remove_max(self) -> None:
+        self.__head = self.__remove_max_node(self.__head)
+
+    def __remove_node(self, v: int, node: Node) -> Node:
+        if node == None:
+            return None
+        if v < node.value:
+            node.left = self.__remove_node(v, node.left)
+        elif v > node.value:
+            node.right = self.__remove_node(v, node.right)
+        else:
+            l = node.left
+            r = node.right
+            if r == None:
+                return l
+            min = self.__get_min_node(r)
+            min.right = self.__remove_min_node(r)
+            min.left = l
+            return self.__balance(min)
+        return self.__balance(node)
+
+    def remove(self, v: int) -> Node:
+        self.__head = self.__remove_node(v, self.__head)
 
     def create(self, arr: list) -> None:
         self.__head = Node(arr[0])
         for a in arr[1:]:
-            self.add_node(a, self.__head)
+            self.add(a)
 
     def __bfs(self) -> list:
         q = [[self.__head, 0]]
@@ -5561,22 +5657,6 @@ class Tree:
         else:
             self.__dfs_plain(self.__head, p)
         return p
-
-    def get_min(self, node: Node = None) -> int:
-        if node == None:
-            node = self.__head
-        if node.left != None:
-            return self.get_min(node.left)
-        else:
-            return node.value
-
-    def get_max(self, node: Node = None) -> int:
-        if node == None:
-            node = self.__head
-        if node.right != None:
-            return self.get_min(node.right)
-        else:
-            return node.value
 ```
 
 `JavaScript`:
@@ -5585,11 +5665,13 @@ class Tree:
 class Node{
 
     value = undefined;
+    height = undefined;
     left = undefined;
     right = undefined;
 
-    constructor(value = undefined, left = undefined, right = undefined){
+    constructor(value = undefined, height = 1, left = undefined, right = undefined){
         this.value = value;
+        this.height = height;
         this.left = left;
         this.right = right;
     }
@@ -5605,36 +5687,160 @@ class Tree{
         }
     }
 
-    addNode(v, node = undefined){
-        if(this.#head == undefined){
-            this.#head = new Node(v);
-            return;
-        }
-        if(node == undefined){
-            node = this.#head;
-        }
-        if(v < node.value){
-            if(node.left == undefined){
-                node.left = new Node(v);
+    #fixHeight(node){
+        let hl = node.left != undefined ? node.left.height : 0;
+        let hr = node.right != undefined ? node.right.height : 0;
+        node.height = (hl > hr ? hl : hr) + 1;
+    }
+
+    #rotateRight(node){
+        let v = node.left;
+        node.left = v.right;
+        v.right = node;
+        this.#fixHeight(node);
+        this.#fixHeight(v);
+        return v;
+    }
+
+    #rotateLeft(node){
+        let v = node.right;
+        node.right = v.left;
+        v.left = node;
+        this.#fixHeight(node);
+        this.#fixHeight(v);
+        return v;
+    }
+
+    #bFactor(node){
+        return (node.right != undefined ? node.right.height : 0) - (node.left != undefined ? node.left.height : 0);
+    }
+
+    #balance(node){
+        this.#fixHeight(node);
+        if(this.#bFactor(node) == 2){
+            if(this.#bFactor(node.right) < 0){
+                node.right = this.#rotateRight(node.right);
             }
-            else{
-                this.addNode(v, node.left);
+            return this.#rotateLeft(node);
+        }
+        else if(this.#bFactor(node) == -2){
+            if(this.#bFactor(node.left) > 0){
+                node.left = this.#rotateLeft(node.left);
             }
+            return this.#rotateRight(node);
+        }
+        return node;
+    }
+
+    #getMinNode(node){
+        if(node.left != undefined){
+            return this.#getMinNode(node.left);
         }
         else{
-            if(node.right == undefined){
-                node.right = new Node(v);
-            }
-            else{
-                this.addNode(v, node.right);
-            }
+            return node;
         }
+    }
+
+    get min(){
+        if(this.#head.left != undefined){
+            return this.#getMinNode(this.#head.left);
+        }
+        else{
+            return this.#head.value;
+        }
+    }
+
+    #getMaxNode(node){
+        if(node.right != undefined){
+            return this.#getMaxNode(node.right);
+        }
+        else{
+            return node;
+        }
+    }
+
+    get max(){
+        if(this.#head.right != undefined){
+            return this.#getMaxNode(this.#head.right);
+        }
+        else{
+            return this.#head.value;
+        }
+    }
+
+    #addNode(v, node){
+        if(node == undefined){
+            return new Node(v);
+        }
+        if(v < node.value){
+            node.left = this.#addNode(v, node.left);
+        }
+        else{
+            node.right = this.#addNode(v, node.right);
+        }
+        return this.#balance(node);
+    }
+
+    add(v){
+        this.#head = this.#addNode(v, this.#head);
+    }
+
+    #removeMinNode(node){
+        if(node.left == undefined){
+            return node.right;
+        }
+        node.left = this.#removeMinNode(node.left);
+        return this.#balance(node);
+    }
+
+    removeMin(){
+        this.#head = this.#removeMinNode(this.#head);
+    }
+
+    #removeMaxNode(node){
+        if(node.right == undefined){
+            return node.left;
+        }
+        node.right = this.#removeMaxNode(node.right);
+        return this.#balance(node);
+    }
+
+    removeMax(){
+        this.#head = this.#removeMaxNode(this.#head);
+    }
+
+    #removeNode(v, node){
+        if(node == undefined){
+            return undefined;
+        }
+        if(v < node.value){
+            node.left = this.#removeNode(v, node.left);
+        }
+        else if(v > node.value){
+            node.right = this.#removeNode(v, node.right);
+        }
+        else{
+            let l = node.left;
+            let r = node.right;
+            if(r == undefined){
+                return l;
+            }
+            let min = this.#getMinNode(r);
+            min.right = this.#removeMinNode(r);
+            min.left = l;
+            return this.#balance(min);
+        }
+        return this.#balance(node);
+    }
+
+    remove(v){
+        this.#head = this.#removeNode(v, this.#head);
     }
 
     create(arr){
         this.#head = new Node(arr[0]);
         for(let a of arr.slice(1, arr.length)){
-            this.addNode(a, this.#head);
+            this.add(a);
         }
     }
 
@@ -5730,32 +5936,6 @@ class Tree{
         this.#dfsReverse(this.#head, p);
         return p;
     }
-
-    #getMin(node){
-        if(node.left != undefined){
-            return this.#getMin(node.left);
-        }
-        else{
-            return node.value;
-        }
-    }
-
-    get min(){
-        return this.#getMin(this.#head);
-    }
-
-    #getMax(node){
-        if(node.right != undefined){
-            return this.#getMax(node.right);
-        }
-        else{
-            return node.value;
-        }
-    }
-
-    get max(){
-        return this.#getMax(this.#head);
-    }
 }
 ```
 
@@ -5772,9 +5952,10 @@ type Number interface {
 }
 
 type Node[T Number] struct {
-    Value T
-    Left  *Node[T]
-    Right *Node[T]
+    Value  T
+    Left   *Node[T]
+    Right  *Node[T]
+    Height uint
 }
 
 type Tree[T Number] struct {
@@ -5791,33 +5972,179 @@ func NewHeadTree[T Number](head *Node[T]) Tree[T] {
     return t
 }
 
-func (t Tree[T]) AddNode(v T, node *Node[T]) {
-    if v < node.Value {
-        if node.Left == nil {
-            node.Left = &Node[T]{v, nil, nil}
-        } else {
-            t.AddNode(v, node.Left)
-        }
+func (t Tree[T]) FixHeight(node *Node[T]) {
+    var hl, hr uint
+    if node.Left != nil {
+        hl = node.Left.Height
     } else {
-        if node.Right == nil {
-            node.Right = &Node[T]{v, nil, nil}
-        } else {
-            t.AddNode(v, node.Right)
-        }
+        hl = 0
+    }
+    if node.Right != nil {
+        hr = node.Right.Height
+    } else {
+        hr = 0
+    }
+    if hl > hr {
+        node.Height = hl + 1
+    } else {
+        node.Height = hr + 1
     }
 }
 
+func (t Tree[T]) RotateRight(node *Node[T]) *Node[T] {
+    v := node.Left
+    node.Left = v.Right
+    v.Right = node
+    t.FixHeight(node)
+    t.FixHeight(v)
+    return v
+}
+
+func (t Tree[T]) RotateLeft(node *Node[T]) *Node[T] {
+    v := node.Right
+    node.Right = v.Left
+    v.Left = node
+    t.FixHeight(node)
+    t.FixHeight(v)
+    return v
+}
+
+func (t Tree[T]) BFactor(node *Node[T]) int {
+    if node.Left != nil && node.Right != nil {
+        return int(node.Right.Height) - int(node.Left.Height)
+    } else if node.Left != nil {
+        return -int(node.Left.Height)
+    } else if node.Right != nil {
+        return int(node.Right.Height)
+    }
+    return 0
+}
+
+func (t Tree[T]) Balance(node *Node[T]) *Node[T] {
+    t.FixHeight(node)
+    if t.BFactor(node) == 2 {
+        if t.BFactor(node.Right) < 0 {
+            node.Right = t.RotateRight(node.Right)
+        }
+        return t.RotateLeft(node)
+    } else if t.BFactor(node) == -2 {
+        if t.BFactor(node.Left) > 0 {
+            node.Left = t.RotateLeft(node.Left)
+        }
+        return t.RotateRight(node)
+    }
+    return node
+}
+
+func (t Tree[T]) MinNode(node *Node[T]) *Node[T] {
+    if node.Left != nil {
+        return t.MinNode(node.Left)
+    } else {
+        return node
+    }
+}
+
+func (t Tree[T]) Min() T {
+    if t.Head.Left != nil {
+        return t.MinNode(t.Head.Left).Value
+    } else {
+        return t.Head.Value
+    }
+}
+
+func (t Tree[T]) MaxNode(node *Node[T]) *Node[T] {
+    if node.Right != nil {
+        return t.MinNode(node.Right)
+    } else {
+        return node
+    }
+}
+
+func (t Tree[T]) Max() T {
+    if t.Head.Right != nil {
+        return t.MinNode(t.Head.Right).Value
+    } else {
+        return t.Head.Value
+    }
+}
+
+func (t Tree[T]) AddNode(v T, node *Node[T]) *Node[T] {
+    if node == nil {
+        return &Node[T]{v, nil, nil, 1}
+    }
+    if v < node.Value {
+        node.Left = t.AddNode(v, node.Left)
+    } else {
+        node.Right = t.AddNode(v, node.Right)
+    }
+    return t.Balance(node)
+}
+
+func (t *Tree[T]) Add(v T) {
+    t.Head = t.AddNode(v, t.Head)
+}
+
+func (t Tree[T]) RemoveMinNode(node *Node[T]) *Node[T] {
+    if node.Left == nil {
+        return node.Right
+    }
+    node.Left = t.RemoveMinNode(node.Left)
+    return t.Balance(node)
+}
+
+func (t *Tree[T]) RemoveMin() {
+    t.Head = t.RemoveMinNode(t.Head)
+}
+
+func (t Tree[T]) RemoveMaxNode(node *Node[T]) *Node[T] {
+    if node.Right == nil {
+        return node.Left
+    }
+    node.Left = t.RemoveMaxNode(node.Left)
+    return t.Balance(node)
+}
+
+func (t *Tree[T]) RemoveMax() {
+    t.Head = t.RemoveMaxNode(t.Head)
+}
+
+func (t Tree[T]) RemoveNode(v T, node *Node[T]) *Node[T] {
+    if node == nil {
+        return nil
+    }
+    if v < node.Value {
+        node.Left = t.RemoveNode(v, node.Left)
+    } else if v > node.Value {
+        node.Right = t.RemoveNode(v, node.Right)
+    } else {
+        l := node.Left
+        r := node.Right
+        if r == nil {
+            return l
+        }
+        min := t.MinNode(r)
+        min.Right = t.RemoveMinNode(r)
+        min.Left = l
+        return t.Balance(min)
+    }
+    return t.Balance(node)
+}
+
+func (t *Tree[T]) Remove(v T) {
+    t.Head = t.RemoveNode(v, t.Head)
+}
+
 func NewArrTree[T Number](arr []T) Tree[T] {
-    t := Tree[T]{&Node[T]{arr[0], nil, nil}}
+    t := Tree[T]{&Node[T]{arr[0], nil, nil, 1}}
     for i := 1; i < len(arr); i++ {
-        t.AddNode(arr[i], t.Head)
+        t.Add(arr[i])
     }
     return t
 }
 
 func (t Tree[T]) BFS() []Pair[T, int] {
     q := []Pair[*Node[T], int]{{t.Head, 0}}
-    p := []Pair[T, int]{{}}
+    p := []Pair[T, int]{}
     for len(q) > 0 {
         v := q[len(q)-1]
         q = q[:len(q)-1]
@@ -5859,52 +6186,36 @@ func (t Tree[T]) TreeList() []T {
     return res
 }
 
-func (t Tree[T]) DFSPlain(node *Node[T], p []T) {
+func (t Tree[T]) DFSPlain(node *Node[T], p *[]T) {
     if node.Left != nil {
         t.DFSPlain(node.Left, p)
     }
-    p = append(p, node.Value)
+    *p = append(*p, node.Value)
     if node.Right != nil {
         t.DFSPlain(node.Right, p)
     }
 }
 
-func (t Tree[T]) DFSReverse(node *Node[T], p []T) {
+func (t Tree[T]) DFSReverse(node *Node[T], p *[]T) {
     if node.Right != nil {
-        t.DFSPlain(node.Right, p)
+        t.DFSReverse(node.Right, p)
     }
-    p = append(p, node.Value)
+    *p = append(*p, node.Value)
     if node.Left != nil {
-        t.DFSPlain(node.Left, p)
+        t.DFSReverse(node.Left, p)
     }
 }
 
 func (t Tree[T]) TreeSorted() []T {
     p := []T{}
-    t.DFSPlain(t.Head, p)
+    t.DFSPlain(t.Head, &p)
     return p
 }
 
 func (t Tree[T]) TreeSortedReverse() []T {
     p := []T{}
-    t.DFSReverse(t.Head, p)
+    t.DFSReverse(t.Head, &p)
     return p
-}
-
-func (t Tree[T]) Min(node *Node[T]) T {
-    if node.Left != nil {
-        return t.Min(node.Left)
-    } else {
-        return node.Value
-    }
-}
-
-func (t Tree[T]) Max(node *Node[T]) T {
-    if node.Right != nil {
-        return t.Min(node.Right)
-    } else {
-        return node.Value
-    }
 }
 ```
 
@@ -5918,10 +6229,12 @@ class Node{
     public:
 
         int value;
+        unsigned int height;
         Node* left;
         Node* right;
         Node(int d){
             value = d;
+            height = 1;
             left = NULL;
             right = NULL;
         }
@@ -5932,6 +6245,122 @@ class Tree{
     private:
 
         Node* head_;
+
+        void fix_height_(Node* node){
+            unsigned int hl = node->left != NULL ? node->left->height : 0;
+            unsigned int hr = node->right != NULL ? node->right->height : 0;
+            node->height = (hl > hr ? hl : hr) + 1;
+        }
+
+        Node* rotate_right_(Node* node){
+            Node* v = node->left;
+            node->left = v->right;
+            v->right = node;
+            fix_height_(node);
+            fix_height_(v);
+            return v;
+        }
+
+        Node* rotate_left_(Node* node){
+            Node* v = node->right;
+            node->right = v->left;
+            v->left = node;
+            fix_height_(node);
+            fix_height_(v);
+            return v;
+        }
+
+        int b_factor_(Node* node){
+            return (node->right != NULL ? node->right->height : 0) - (node->left != NULL ? node->left->height : 0);
+        }
+
+        Node* balance_(Node* node){
+            fix_height_(node);
+            if(b_factor_(node) == 2){
+                if(b_factor_(node->right) < 0){
+                    node->right = rotate_right_(node->right);
+                }
+                return rotate_left_(node);
+            }
+            else if(b_factor_(node) == -2){
+                if(b_factor_(node->left) > 0){
+                    node->left = rotate_left_(node->left);
+                }
+                return rotate_right_(node);
+            }
+            return node;
+        }
+
+        Node* get_min_node_(Node* node){
+            if(node->left != NULL){
+                return get_min_node_(node->left);
+            }
+            else{
+                return node;
+            }
+        }
+
+        Node* get_max_node_(Node* node){
+            if(node->right == NULL){
+                return get_max_node_(node->right);
+            }
+            else{
+                return node;
+            }
+        }
+
+        Node* add_node_(int v, Node* node) {
+            if(node == NULL) {
+                return new Node(v);
+            }
+            if(v < node->value){
+                node->left = add_node_(v, node->left); 
+            }
+            else{
+                node->right = add_node_(v, node->right);
+            }
+            return balance_(node);
+        }
+
+        Node* remove_min_node_(Node* node){
+            if(node->left == NULL){
+                return node->right;
+            }
+            node->left = remove_min_node_(node->left);
+            return balance_(node);
+        }
+
+        Node* remove_max_node_(Node* node){
+            if(node->right != NULL){
+                return node->left;
+            }
+            node->right = remove_max_node_(node->right);
+            return balance_(node);
+        }
+
+        Node* remove_node_(int v, Node* node){
+            if(node == NULL){
+                return NULL;
+            }
+            if(v < node->value){
+                node->left = remove_node_(v, node->left);
+            }
+            else if(v > node->value){
+                node->right = remove_node_(v, node->right);
+            }
+            else{
+                Node* l = node->left;
+                Node* r = node->right;
+                if(r == NULL){
+                    return l;
+                }
+                Node* min = get_min_node_(r);
+                min->right = remove_min_node_(r);
+                min->left = l;
+                return balance_(min);
+            }
+            return balance_(node);
+        }
 
         std::vector <std::pair <int, int>> bfs_(){
             std::vector <std::pair <Node*, int>> q = {std::pair <Node*, int> {head_, 0}};
@@ -5976,36 +6405,44 @@ class Tree{
             head_ = NULL;
         }
 
-        void add_node(int v, Node* node = NULL){
-            if(head_ == NULL){
-                head_ = new Node(v);
-                return;
-            }
-            if(node == NULL){
-                node = head_;
-            }
-            if(v < node->value){
-                if(node->left == NULL){
-                    node->left = new Node(v); 
-                }
-                else{
-                    add_node(v, node->left);
-                }
+        int get_min(){
+            if(head_->left != NULL){
+                return get_min_node_(head_->left)->value;
             }
             else{
-                if(node->right == NULL){
-                    node->right = new Node(v);
-                }
-                else{
-                    add_node(v, node->right);
-                }
+                return head_->value;
             }
+        }
+
+        int get_max(){
+            if(head_->right != NULL){
+                return get_max_node_(head_->right)->value;
+            }
+            else{
+                return head_->value;
+            }
+        }
+
+        void add(int v){
+            head_ = add_node_(v, head_);
+        }
+
+        void remove_min(){
+            head_ = remove_min_node_(head_);
+        }
+
+        void remove_max(){
+            head_ = remove_max_node_(head_);
+        }
+
+        void remove(int v){
+            head_ = remove_node_(v, head_);
         }
 
         void create(std::vector <int> arr){
             head_ = new Node(arr[0]);
             for(int i = 1; i < arr.size(); i ++){
-                add_node(arr[i], head_);
+                add(arr[i]);
             }
         }
 
@@ -6047,32 +6484,6 @@ class Tree{
             return p;
         }
 
-        int get_min(Node* node = NULL){
-            if(node == NULL){
-                node = head_;
-            }
-            if(node->left != NULL){
-                return get_min(node->left);
-            }
-            else{
-                return node->value;
-            }
-            return 0;
-        }
-
-        int get_max(Node* node = NULL){
-            if(node == NULL){
-                node = head_;
-            }
-            if(node->right != NULL){
-                return get_max(node->right);
-            }
-            else{
-                return node->value;
-            }
-            return 0;
-        }
-
 };
 ```
 
@@ -6082,12 +6493,14 @@ class Tree{
 class Node
 {
     public int value;
+    public uint height;
     public Node left;
     public Node right;
 
     public Node(int d)
     {
         value = d;
+        height = 1;
         left = null;
         right = null;
     }
@@ -6103,39 +6516,193 @@ class Tree
         _head = null;
     }
 
-    public void AddNode(int v, Node node = null)
+    private void _FixHeight(Node node)
     {
-        if(_head == null)
+        uint hl = node.left != null ? node.left.height : 0;
+        uint hr = node.right != null ? node.right.height : 0;            
+        node.height = (hl > hr ? hl : hr) + 1;
+    }
+
+    private Node _RotateRight(Node node)
+    {
+        Node v = node.left;
+        node.left = v.right;
+        v.right = node;
+        this._FixHeight(node);
+        this._FixHeight(v);
+        return v;
+    }
+
+    private Node _RotateLeft(Node node)
+    {
+        Node v = node.right;
+        node.right = v.left;
+        v.left = node;
+        this._FixHeight(node);
+        this._FixHeight(v);
+        return v;
+    }
+
+    private int _BFactor(Node node)
+    {
+        return (node.right != null ? node.right.height : 0) - (node.left != null ? node.left.height : 0);
+    }
+
+    private Node _Balance(Node node)
+    {
+        this._FixHeight(node);
+        if(this._BFactor(node) == 2)
         {
-            _head = new Node(v);
-            return;
-        }
-        if(node == null)
-        {
-            node = _head;
-        }
-        if(v < node.value)
-        {
-            if(node.left == null)
+            if(this._BFactor(node.right) < 0)
             {
-                node.left = new Node(v);
+                node.right = this._RotateRight(node.right);
             }
-            else
+            return this._RotateLeft(node);
+        }
+        else if(this._BFactor(node) == -2)
+        {
+            if(this._BFactor(node.left) > 0)
             {
-                AddNode(v, node.left);
+                node.left = this._RotateLeft(node.left);
             }
+            return _RotateRight(node);
+        }
+        return node;
+    }
+
+    private Node _GetMinNode(Node node)
+    {
+        if(node.left != null)
+        {
+            return _GetMinNode(node.left);
         }
         else
         {
-            if(node.right == null)
-            {
-                node.right = new Node(v);
-            }
-            else
-            {
-                AddNode(v, node.right);
-            }
+            return node;
         }
+    }
+
+    public int GetMin()
+    {
+        if(this._head.left != null)
+        {
+            return this._GetMinNode(this._head).value;
+        }
+        else
+        {
+            return this._head.value;
+        }
+    }
+
+    private Node _GetMaxNode(Node node)
+    {
+        if(node.right != null)
+        {
+            return _GetMaxNode(node.right);
+        }
+        else
+        {
+            return node;
+        }
+    }
+
+    public int GetMax()
+    {
+        if(this._head.left != null)
+        {
+            return this._GetMaxNode(this._head).value;
+        }
+        else
+        {
+            return this._head.value;
+        }
+    }
+
+    private void _AddNode(int v, Node node = null)
+    {
+        if(node == null)
+        {
+            return new Node(v);
+        }
+        if(v < node.value)
+        {
+            node.left = _AddNode(v, node.left);
+        }
+        else
+        {
+            node.right = _AddNode(v, node.right);
+        }
+        return this._Balance(node);
+    }
+
+    public void Add(int v)
+    {
+        this._head = this._AddNode(v, this._head);
+    }
+
+    private Node _RemoveMinNode(Node node)
+    {
+        if(node.left == null)
+        {
+            return node.right;
+        }
+        node.left = this._RemoveMinNode(node.left);
+        return this._Balance(node);
+    }
+
+    public void RemoveMin()
+    {
+        this._head = this._RemoveMinNode(this._head);
+    }
+
+    private Node _RemoveMaxNode(Node node)
+    {
+        if(node.right == null)
+        {
+            return node.left;
+        }
+        node.right = this._RemoveMaxNode(node.left);
+        return this._Balance(node);
+    }
+
+    public void RemoveMax()
+    {
+        this._head = this._RemoveMaxNode(this._head);
+    }
+
+    private Node _RemoveNode(int v, Node node)
+    {
+        if(node == null)
+        {
+            return null;
+        }
+        if(v < node.value)
+        {
+            node.left = this._RemoveNode(v, node.left);
+        }
+        else if(v > node.value)
+        {
+            node.right = this._RemoveNode(v, node.right);
+        }
+        else
+        {
+            Node l = node.left;
+            Node r = node.right;
+            if(r == null)
+            {
+                return l;
+            }
+            Node min = this._GetMinNode(r);
+            min.right = this._RemoveMinNode(r);
+            min.left = l;
+            return this._Balance(min);
+        }
+        return this._Balance(node);
+    }
+
+    public void Remove(int v)
+    {
+        this._head = this._RemoveNode(v, this._head);
     }
 
     public void Create(List<int> arr)
@@ -6239,38 +6806,6 @@ class Tree
             _DfsPlain(_head, ref p);
         }
         return p;
-    }
-
-    public int GetMin(Node node = null)
-    {
-        if(node == null)
-        {
-            node = _head;
-        }
-        if(node.left != null)
-        {
-            return GetMin(node.left);
-        }
-        else
-        {
-            return node.value;
-        }
-    }
-
-    public int GetMax(Node node = null)
-    {
-        if(node == null)
-        {
-            node = _head;
-        }
-        if(node.right != null)
-        {
-            return GetMax(node.right);
-        }
-        else
-        {
-            return node.value;
-        }
     }
 }
 ```
