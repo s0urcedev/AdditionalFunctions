@@ -6,12 +6,14 @@ namespace Base
     class Node
     {
         public int value;
+        public uint height;
         public Node left;
         public Node right;
 
         public Node(int d)
         {
             value = d;
+            height = 1;
             left = null;
             right = null;
         }
@@ -27,39 +29,193 @@ namespace Base
             _head = null;
         }
 
-        public void AddNode(int v, Node node = null)
+        private void _FixHeight(Node node)
         {
-            if(_head == null)
+            uint hl = node.left != null ? node.left.height : 0;
+            uint hr = node.right != null ? node.right.height : 0;            
+            node.height = (hl > hr ? hl : hr) + 1;
+        }
+
+        private Node _RotateRight(Node node)
+        {
+            Node v = node.left;
+            node.left = v.right;
+            v.right = node;
+            this._FixHeight(node);
+            this._FixHeight(v);
+            return v;
+        }
+
+        private Node _RotateLeft(Node node)
+        {
+            Node v = node.right;
+            node.right = v.left;
+            v.left = node;
+            this._FixHeight(node);
+            this._FixHeight(v);
+            return v;
+        }
+
+        private int _BFactor(Node node)
+        {
+            return (node.right != null ? node.right.height : 0) - (node.left != null ? node.left.height : 0);
+        }
+
+        private Node _Balance(Node node)
+        {
+            this._FixHeight(node);
+            if(this._BFactor(node) == 2)
             {
-                _head = new Node(v);
-                return;
-            }
-            if(node == null)
-            {
-                node = _head;
-            }
-            if(v < node.value)
-            {
-                if(node.left == null)
+                if(this._BFactor(node.right) < 0)
                 {
-                    node.left = new Node(v);
+                    node.right = this._RotateRight(node.right);
                 }
-                else
+                return this._RotateLeft(node);
+            }
+            else if(this._BFactor(node) == -2)
+            {
+                if(this._BFactor(node.left) > 0)
                 {
-                    AddNode(v, node.left);
+                    node.left = this._RotateLeft(node.left);
                 }
+                return _RotateRight(node);
+            }
+            return node;
+        }
+
+        private Node _GetMinNode(Node node)
+        {
+            if(node.left != null)
+            {
+                return _GetMinNode(node.left);
             }
             else
             {
-                if(node.right == null)
-                {
-                    node.right = new Node(v);
-                }
-                else
-                {
-                    AddNode(v, node.right);
-                }
+                return node;
             }
+        }
+
+        public int GetMin()
+        {
+            if(this._head.left != null)
+            {
+                return this._GetMinNode(this._head).value;
+            }
+            else
+            {
+                return this._head.value;
+            }
+        }
+
+        private Node _GetMaxNode(Node node)
+        {
+            if(node.right != null)
+            {
+                return _GetMaxNode(node.right);
+            }
+            else
+            {
+                return node;
+            }
+        }
+
+        public int GetMax()
+        {
+            if(this._head.left != null)
+            {
+                return this._GetMaxNode(this._head).value;
+            }
+            else
+            {
+                return this._head.value;
+            }
+        }
+
+        private void _AddNode(int v, Node node = null)
+        {
+            if(node == null)
+            {
+                return new Node(v);
+            }
+            if(v < node.value)
+            {
+                node.left = _AddNode(v, node.left);
+            }
+            else
+            {
+                node.right = _AddNode(v, node.right);
+            }
+            return this._Balance(node);
+        }
+
+        public void Add(int v)
+        {
+            this._head = this._AddNode(v, this._head);
+        }
+
+        private Node _RemoveMinNode(Node node)
+        {
+            if(node.left == null)
+            {
+                return node.right;
+            }
+            node.left = this._RemoveMinNode(node.left);
+            return this._Balance(node);
+        }
+
+        public void RemoveMin()
+        {
+            this._head = this._RemoveMinNode(this._head);
+        }
+
+        private Node _RemoveMaxNode(Node node)
+        {
+            if(node.right == null)
+            {
+                return node.left;
+            }
+            node.right = this._RemoveMaxNode(node.left);
+            return this._Balance(node);
+        }
+
+        public void RemoveMax()
+        {
+            this._head = this._RemoveMaxNode(this._head);
+        }
+
+        private Node _RemoveNode(int v, Node node)
+        {
+            if(node == null)
+            {
+                return null;
+            }
+            if(v < node.value)
+            {
+                node.left = this._RemoveNode(v, node.left);
+            }
+            else if(v > node.value)
+            {
+                node.right = this._RemoveNode(v, node.right);
+            }
+            else
+            {
+                Node l = node.left;
+                Node r = node.right;
+                if(r == null)
+                {
+                    return l;
+                }
+                Node min = this._GetMinNode(r);
+                min.right = this._RemoveMinNode(r);
+                min.left = l;
+                return this._Balance(min);
+            }
+            return this._Balance(node);
+        }
+
+        public void Remove(int v)
+        {
+            this._head = this._RemoveNode(v, this._head);
         }
 
         public void Create(List<int> arr)
@@ -163,38 +319,6 @@ namespace Base
                 _DfsPlain(_head, ref p);
             }
             return p;
-        }
-
-        public int GetMin(Node node = null)
-        {
-            if(node == null)
-            {
-                node = _head;
-            }
-            if(node.left != null)
-            {
-                return GetMin(node.left);
-            }
-            else
-            {
-                return node.value;
-            }
-        }
-
-        public int GetMax(Node node = null)
-        {
-            if(node == null)
-            {
-                node = _head;
-            }
-            if(node.right != null)
-            {
-                return GetMax(node.right);
-            }
-            else
-            {
-                return node.value;
-            }
         }
     }
 
