@@ -1,11 +1,13 @@
 class Node:
 
     value = None
+    height = None
     left = None
     right = None
 
-    def __init__(self, value: int = None, left = None, right = None) -> None:
+    def __init__(self, value: int = None, height: int = 1, left = None, right = None) -> None:
         self.value = value
+        self.height = height
         self.left = left
         self.right = right
 
@@ -17,27 +19,121 @@ class Tree:
         if head != None:
             self.__head = Node(head)
 
-    def add_node(self, v: int, node = None) -> None:
-        if self.__head == None:
-            self.__head = Node(v)
-            return
-        if node == None:
-            node = self.__head
-        if v < node.value:
-            if node.left == None:
-                node.left = Node(v)
-            else:
-                self.add_node(v, node.left)
+    def __fix_height(self, node: Node) -> None:
+        hl = node.left.height if node.left != None else 0
+        hr = node.right.height if node.right != None else 0 
+        node.height = (hl if hl > hr else hr) + 1
+
+    def __rotate_right(self, node: Node) -> Node:
+        v = node.left
+        node.left = v.right
+        v.right = node
+        self.__fix_height(node)
+        self.__fix_height(v)
+        return v
+
+    def __rotate_left(self, node: Node) -> Node:
+        v = node.right
+        node.right = v.left
+        v.left = node
+        self.__fix_height(node)
+        self.__fix_height(v)
+        return v
+
+    def __b_factor(self, node: Node) -> int:
+        return (node.right.height if node.right != None else 0) - (node.left.height if node.left != None else 0)
+
+    def __balance(self, node: Node) -> Node:
+        self.__fix_height(node)
+        if self.__b_factor(node) == 2:
+            if self.__b_factor(node.right) < 0:
+                node.right = self.__rotate_right(node.right)
+            return self.__rotate_left(node)
+        elif self.__b_factor(node) == -2:
+            if self.__b_factor(node.left) > 0:
+                node.left = self.__rotate_left(node.left)
+            return self.__rotate_right(node)
+        return node
+
+    def __get_min_node(self, node: Node) -> Node:
+        if node.left != None:
+            return self.__get_min_node(node.left)
         else:
-            if node.right == None:
-                node.right = Node(v)
-            else:
-                self.add_node(v, node.right)
+            return node
+
+    def get_min(self) -> int:
+        if self.__head.left != None:
+            return self.__get_min_node(self.__head.left)
+        else:
+            return self.__head.value
+
+    def __get_max_node(self, node: Node) -> Node:
+        if node.right != None:
+            return self.__get_max_node(node.right)
+        else:
+            return node
+
+    def get_max(self) -> int:
+        if self.__head.right != None:
+            return self.__get_max_node(self.__head.right)
+        else:
+            return self.__head.value
+
+    def __add_node(self, v: int, node: Node) -> None:
+        if node == None:
+            return Node(v)
+        if v < node.value:
+            node.left = self.__add_node(v, node.left)
+        else:
+            node.right = self.__add_node(v, node.right)
+        return self.__balance(node)
+
+    def add(self, v: int) -> None:
+        self.__head = self.__add_node(v, self.__head)
+
+    def __remove_min_node(self, node: Node) -> Node:
+        if node.left == None:
+            return node.right
+        node.left = self.__remove_min_node(node.left)
+        return self.__balance(node)
+
+    def remove_min(self) -> None:
+        self.__head = self.__remove_min_node(self.__head)
+
+    def __remove_max_node(self, node: Node) -> Node:
+        if node.right == None:
+            return node.left
+        node.right = self.__remove_max_node(node.right)
+        return self.__balance(node)
+
+    def remove_max(self) -> None:
+        self.__head = self.__remove_max_node(self.__head)
+
+    def __remove_node(self, v: int, node: Node) -> Node:
+        if node == None:
+            return None
+        if v < node.value:
+            node.left = self.__remove_node(v, node.left)
+        elif v > node.value:
+            node.right = self.__remove_node(v, node.right)
+        else:
+            l = node.left
+            r = node.right
+            if r == None:
+                return l
+            min = self.__get_min_node(r)
+            min.right = self.__remove_min_node(r)
+            min.left = l
+            return self.__balance(min)
+        return self.__balance(node)
+
+    def remove(self, v: int) -> Node:
+        self.__head = self.__remove_node(v, self.__head)
 
     def create(self, arr: list) -> None:
         self.__head = Node(arr[0])
         for a in arr[1:]:
-            self.add_node(a, self.__head)
+            self.add(a)
 
     def __bfs(self) -> list:
         q = [[self.__head, 0]]
@@ -104,19 +200,3 @@ class Tree:
         else:
             self.__dfs_plain(self.__head, p)
         return p
-
-    def get_min(self, node: Node = None) -> int:
-        if node == None:
-            node = self.__head
-        if node.left != None:
-            return self.get_min(node.left)
-        else:
-            return node.value
-
-    def get_max(self, node: Node = None) -> int:
-        if node == None:
-            node = self.__head
-        if node.right != None:
-            return self.get_min(node.right)
-        else:
-            return node.value
