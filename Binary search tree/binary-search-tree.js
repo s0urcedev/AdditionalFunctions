@@ -1,11 +1,13 @@
 class Node{
 
     value = undefined;
+    height = undefined;
     left = undefined;
     right = undefined;
 
-    constructor(value = undefined, left = undefined, right = undefined){
+    constructor(value = undefined, height = 1, left = undefined, right = undefined){
         this.value = value;
+        this.height = height;
         this.left = left;
         this.right = right;
     }
@@ -21,36 +23,160 @@ class Tree{
         }
     }
 
-    addNode(v, node = undefined){
-        if(this.#head == undefined){
-            this.#head = new Node(v);
-            return;
-        }
-        if(node == undefined){
-            node = this.#head;
-        }
-        if(v < node.value){
-            if(node.left == undefined){
-                node.left = new Node(v);
+    #fixHeight(node){
+        let hl = node.left != undefined ? node.left.height : 0;
+        let hr = node.right != undefined ? node.right.height : 0;
+        node.height = (hl > hr ? hl : hr) + 1;
+    }
+
+    #rotateRight(node){
+        let v = node.left;
+        node.left = v.right;
+        v.right = node;
+        this.#fixHeight(node);
+        this.#fixHeight(v);
+        return v;
+    }
+
+    #rotateLeft(node){
+        let v = node.right;
+        node.right = v.left;
+        v.left = node;
+        this.#fixHeight(node);
+        this.#fixHeight(v);
+        return v;
+    }
+
+    #bFactor(node){
+        return (node.right != undefined ? node.right.height : 0) - (node.left != undefined ? node.left.height : 0);
+    }
+
+    #balance(node){
+        this.#fixHeight(node);
+        if(this.#bFactor(node) == 2){
+            if(this.#bFactor(node.right) < 0){
+                node.right = this.#rotateRight(node.right);
             }
-            else{
-                this.addNode(v, node.left);
+            return this.#rotateLeft(node);
+        }
+        else if(this.#bFactor(node) == -2){
+            if(this.#bFactor(node.left) > 0){
+                node.left = this.#rotateLeft(node.left);
             }
+            return this.#rotateRight(node);
+        }
+        return node;
+    }
+
+    #getMinNode(node){
+        if(node.left != undefined){
+            return this.#getMinNode(node.left);
         }
         else{
-            if(node.right == undefined){
-                node.right = new Node(v);
-            }
-            else{
-                this.addNode(v, node.right);
-            }
+            return node;
         }
+    }
+
+    get min(){
+        if(this.#head.left != undefined){
+            return this.#getMinNode(this.#head.left);
+        }
+        else{
+            return this.#head.value;
+        }
+    }
+
+    #getMaxNode(node){
+        if(node.right != undefined){
+            return this.#getMaxNode(node.right);
+        }
+        else{
+            return node;
+        }
+    }
+
+    get max(){
+        if(this.#head.right != undefined){
+            return this.#getMaxNode(this.#head.right);
+        }
+        else{
+            return this.#head.value;
+        }
+    }
+
+    #addNode(v, node){
+        if(node == undefined){
+            return new Node(v);
+        }
+        if(v < node.value){
+            node.left = this.#addNode(v, node.left);
+        }
+        else{
+            node.right = this.#addNode(v, node.right);
+        }
+        return this.#balance(node);
+    }
+
+    add(v){
+        this.#head = this.#addNode(v, this.#head);
+    }
+
+    #removeMinNode(node){
+        if(node.left == undefined){
+            return node.right;
+        }
+        node.left = this.#removeMinNode(node.left);
+        return this.#balance(node);
+    }
+
+    removeMin(){
+        this.#head = this.#removeMinNode(this.#head);
+    }
+
+    #removeMaxNode(node){
+        if(node.right == undefined){
+            return node.left;
+        }
+        node.right = this.#removeMaxNode(node.right);
+        return this.#balance(node);
+    }
+
+    removeMax(){
+        this.#head = this.#removeMaxNode(this.#head);
+    }
+
+    #removeNode(v, node){
+        if(node == undefined){
+            return undefined;
+        }
+        if(v < node.value){
+            node.left = this.#removeNode(v, node.left);
+        }
+        else if(v > node.value){
+            node.right = this.#removeNode(v, node.right);
+        }
+        else{
+            let l = node.left;
+            let r = node.right;
+            if(r == undefined){
+                return l;
+            }
+            let min = this.#getMinNode(r);
+            min.right = this.#removeMinNode(r);
+            min.left = l;
+            return this.#balance(min);
+        }
+        return this.#balance(node);
+    }
+
+    remove(v){
+        this.#head = this.#removeNode(v, this.#head);
     }
 
     create(arr){
         this.#head = new Node(arr[0]);
         for(let a of arr.slice(1, arr.length)){
-            this.addNode(a, this.#head);
+            this.add(a);
         }
     }
 
@@ -145,31 +271,5 @@ class Tree{
         let p = [];
         this.#dfsReverse(this.#head, p);
         return p;
-    }
-
-    #getMin(node){
-        if(node.left != undefined){
-            return this.#getMin(node.left);
-        }
-        else{
-            return node.value;
-        }
-    }
-
-    get min(){
-        return this.#getMin(this.#head);
-    }
-
-    #getMax(node){
-        if(node.right != undefined){
-            return this.#getMax(node.right);
-        }
-        else{
-            return node.value;
-        }
-    }
-
-    get max(){
-        return this.#getMax(this.#head);
     }
 }
