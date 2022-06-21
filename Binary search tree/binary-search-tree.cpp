@@ -6,10 +6,12 @@ class Node{
     public:
 
         int value;
+        unsigned int height;
         Node* left;
         Node* right;
         Node(int d){
             value = d;
+            height = 1;
             left = NULL;
             right = NULL;
         }
@@ -20,6 +22,122 @@ class Tree{
     private:
 
         Node* head_;
+
+        void fix_height_(Node* node){
+            unsigned int hl = node->left != NULL ? node->left->height : 0;
+            unsigned int hr = node->right != NULL ? node->right->height : 0;
+            node->height = (hl > hr ? hl : hr) + 1;
+        }
+
+        Node* rotate_right_(Node* node){
+            Node* v = node->left;
+            node->left = v->right;
+            v->right = node;
+            fix_height_(node);
+            fix_height_(v);
+            return v;
+        }
+
+        Node* rotate_left_(Node* node){
+            Node* v = node->right;
+            node->right = v->left;
+            v->left = node;
+            fix_height_(node);
+            fix_height_(v);
+            return v;
+        }
+
+        int b_factor_(Node* node){
+            return (node->right != NULL ? node->right->height : 0) - (node->left != NULL ? node->left->height : 0);
+        }
+
+        Node* balance_(Node* node){
+            fix_height_(node);
+            if(b_factor_(node) == 2){
+                if(b_factor_(node->right) < 0){
+                    node->right = rotate_right_(node->right);
+                }
+                return rotate_left_(node);
+            }
+            else if(b_factor_(node) == -2){
+                if(b_factor_(node->left) > 0){
+                    node->left = rotate_left_(node->left);
+                }
+                return rotate_right_(node);
+            }
+            return node;
+        }
+
+        Node* get_min_node_(Node* node){
+            if(node->left != NULL){
+                return get_min_node_(node->left);
+            }
+            else{
+                return node;
+            }
+        }
+
+        Node* get_max_node_(Node* node){
+            if(node->right == NULL){
+                return get_max_node_(node->right);
+            }
+            else{
+                return node;
+            }
+        }
+
+        Node* add_node_(int v, Node* node) {
+            if(node == NULL) {
+                return new Node(v);
+            }
+            if(v < node->value){
+                node->left = add_node_(v, node->left); 
+            }
+            else{
+                node->right = add_node_(v, node->right);
+            }
+            return balance_(node);
+        }
+
+        Node* remove_min_node_(Node* node){
+            if(node->left == NULL){
+                return node->right;
+            }
+            node->left = remove_min_node_(node->left);
+            return balance_(node);
+        }
+
+        Node* remove_max_node_(Node* node){
+            if(node->right != NULL){
+                return node->left;
+            }
+            node->right = remove_max_node_(node->right);
+            return balance_(node);
+        }
+
+        Node* remove_node_(int v, Node* node){
+            if(node == NULL){
+                return NULL;
+            }
+            if(v < node->value){
+                node->left = remove_node_(v, node->left);
+            }
+            else if(v > node->value){
+                node->right = remove_node_(v, node->right);
+            }
+            else{
+                Node* l = node->left;
+                Node* r = node->right;
+                if(r == NULL){
+                    return l;
+                }
+                Node* min = get_min_node_(r);
+                min->right = remove_min_node_(r);
+                min->left = l;
+                return balance_(min);
+            }
+            return balance_(node);
+        }
 
         std::vector <std::pair <int, int>> bfs_(){
             std::vector <std::pair <Node*, int>> q = {std::pair <Node*, int> {head_, 0}};
@@ -64,36 +182,44 @@ class Tree{
             head_ = NULL;
         }
 
-        void add_node(int v, Node* node = NULL){
-            if(head_ == NULL){
-                head_ = new Node(v);
-                return;
-            }
-            if(node == NULL){
-                node = head_;
-            }
-            if(v < node->value){
-                if(node->left == NULL){
-                    node->left = new Node(v); 
-                }
-                else{
-                    add_node(v, node->left);
-                }
+        int get_min(){
+            if(head_->left != NULL){
+                return get_min_node_(head_->left)->value;
             }
             else{
-                if(node->right == NULL){
-                    node->right = new Node(v);
-                }
-                else{
-                    add_node(v, node->right);
-                }
+                return head_->value;
             }
+        }
+
+        int get_max(){
+            if(head_->right != NULL){
+                return get_max_node_(head_->right)->value;
+            }
+            else{
+                return head_->value;
+            }
+        }
+
+        void add(int v){
+            head_ = add_node_(v, head_);
+        }
+
+        void remove_min(){
+            head_ = remove_min_node_(head_);
+        }
+
+        void remove_max(){
+            head_ = remove_max_node_(head_);
+        }
+
+        void remove(int v){
+            head_ = remove_node_(v, head_);
         }
 
         void create(std::vector <int> arr){
             head_ = new Node(arr[0]);
             for(int i = 1; i < arr.size(); i ++){
-                add_node(arr[i], head_);
+                add(arr[i]);
             }
         }
 
@@ -135,30 +261,7 @@ class Tree{
             return p;
         }
 
-        int get_min(Node* node = NULL){
-            if(node == NULL){
-                node = head_;
-            }
-            if(node->left != NULL){
-                return get_min(node->left);
-            }
-            else{
-                return node->value;
-            }
-            return 0;
-        }
-
-        int get_max(Node* node = NULL){
-            if(node == NULL){
-                node = head_;
-            }
-            if(node->right != NULL){
-                return get_max(node->right);
-            }
-            else{
-                return node->value;
-            }
-            return 0;
-        }
-
 };
+
+int main(){
+}
