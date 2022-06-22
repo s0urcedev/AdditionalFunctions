@@ -10,7 +10,7 @@ function sort(array, m){
         let l = [];
         let r = [];
         for(let i = 0; i < m; i ++){
-            if(i < Math.floor(m/2)){
+            if(i < Math.floor(m / 2)){
                 l.push(mass[i]);
             }
             else{

@@ -8,7 +8,7 @@ def sort(array, m):
         l = []
         r = []
         for i in range(0, m):
-            if i < int(m/2):
+            if i < int(m / 2):
                 l.append(mass[i])
             else:
                 r.append(mass[i])

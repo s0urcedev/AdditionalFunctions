@@ -10,16 +10,16 @@ void sort(int *array, int m){
         array[0] = mass[0];
     }
     else{
-        int L[m/2], R[m-(m/2)];
+        int L[m / 2], R[m - (m / 2)];
         for(int i = 0; i < m; i ++){
-            if(i < m/2) L[i] = mass[i];
-            else R[i-(m/2)] = mass[i];
+            if(i < m / 2) L[i] = mass[i];
+            else R[i - (m / 2)] = mass[i];
         }
-        sort(L, m/2);
-        sort(R, m - (m/2));
+        sort(L, m / 2);
+        sort(R, m - (m / 2));
         int h = 0, f = 0, k = 0;
         int C[m];
-        while(h < m/2 && f < m - (m/2)){
+        while(h < m / 2 && f < m - (m / 2)){
             if(L[h] < R[f]){
                 C[k] = L[h];
                 h ++;
@@ -30,12 +30,12 @@ void sort(int *array, int m){
             }
             k ++;
         }
-        while(h < m/2){
+        while(h < m / 2){
             C[k] = L[h];
             h ++;
             k ++;
         }
-        while(f < m - (m/2)){
+        while(f < m - (m / 2)){
             C[k] = R[f];
             f ++;
             k ++;

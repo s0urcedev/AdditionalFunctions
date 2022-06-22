@@ -17,18 +17,18 @@ namespace Base
             }
             else
             {
-                int[] L = new int[m/2];
-                int[] R = new int[m-(m/2)];
+                int[] L = new int[m / 2];
+                int[] R = new int[m - (m / 2)];
                 for(int i = 0; i < m; i ++)
                 {
-                    if(i < m/2) L[i] = mass[i];
-                    else R[i-(m/2)] = mass[i];
+                    if(i < m / 2) L[i] = mass[i];
+                    else R[i - (m / 2)] = mass[i];
                 }
-                Sort(ref L, m/2);
-                Sort(ref R, m - (m/2));
+                Sort(ref L, m / 2);
+                Sort(ref R, m - (m / 2));
                 int h = 0, f = 0, k = 0;
                 int[] C = new int[m];
-                while(h < m/2 && f < m - (m/2))
+                while(h < m / 2 && f < m - (m / 2))
                 {
                     if(L[h] < R[f]){
                         C[k] = L[h];
@@ -40,13 +40,13 @@ namespace Base
                     }
                     k ++;
                 }
-                while(h < m/2)
+                while(h < m / 2)
                 {
                     C[k] = L[h];
                     h ++;
                     k ++;
                 }
-                while(f < m - (m/2))
+                while(f < m - (m / 2))
                 {
                     C[k] = R[f];
                     f ++;
