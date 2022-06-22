@@ -12,10 +12,10 @@ int main(){
         int key = a[j];
         int i = j - 1;
         while (i >= 0 && a[i] > key){
-            a[i+1] = a[i];
+            a[i + 1] = a[i];
             i --;
         }
-        a[i+1] = key;
+        a[i + 1] = key;
     }
     for(int i = 0; i < len; i ++){
         cout << a[i] << " ";

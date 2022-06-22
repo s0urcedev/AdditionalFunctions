@@ -18,10 +18,10 @@ namespace Base
                 int i = j - 1;
                 while (i >= 0 && a[i] > key)
                 {
-                    a[i+1] = a[i];
+                    a[i + 1] = a[i];
                     i --;
                 }
-                a[i+1] = key;
+                a[i + 1] = key;
             }
             foreach(int i in a)
             {
