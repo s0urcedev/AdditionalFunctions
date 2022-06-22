@@ -9,9 +9,7 @@ def sort(array, b, e):
             r -= 1
         if l <= r:
             if l < r:
-                array[l] = array[l] + array[r]
-                array[r] = array[l] - array[r]
-                array[l] = array[l] - array[r]
+                array[l], array[r] = array[r], array[l]
             l += 1
             r -= 1
     if b < r:
