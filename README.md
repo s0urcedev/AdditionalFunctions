@@ -120,10 +120,8 @@ k = 0
 while k < len(a) - 1:
     k = 0
     for j in range(0, len(a)-1):
-        if a[j] > a[j+1]:
-            a[j] = a[j] + a[j+1]
-            a[j+1] = a[j] - a[j+1]
-            a[j] = a[j] - a[j+1]
+        if a[j] > a[j + 1]:
+            a[j], a[j + 1] = a[j + 1], a[j]
         else:
             k += 1
 ```
@@ -137,10 +135,10 @@ let k = 0;
 while(k < a.length - 1){
     k = 0;
     for(let j = 0; j < a.length - 1; j ++){
-        if(a[j] > a[j+1]){
-            a[j] = a[j] + a[j+1];
-            a[j+1] = a[j] - a[j+1];
-            a[j] = a[j] - a[j+1];
+        if(a[j] > a[j + 1]){
+            a[j] = a[j] + a[j + 1];
+            a[j+1] = a[j] - a[j + 1];
+            a[j] = a[j] - a[j + 1];
         }
         else{
             k ++;
@@ -176,10 +174,10 @@ int k = 0;
 while(k < len - 1){
     k = 0;
     for(int j = 0; j < len - 1; j ++){
-        if(a[j] > a[j+1]){
-            a[j] = a[j] + a[j+1];
-            a[j+1] = a[j] - a[j+1];
-            a[j] = a[j] - a[j+1];
+        if(a[j] > a[j + 1]){
+            a[j] = a[j] + a[j + 1];
+            a[j + 1] = a[j] - a[j + 1];
+            a[j] = a[j] - a[j + 1];
         }
         else{
             k ++;
@@ -202,9 +200,9 @@ while(k < a.Length - 1)
     {
         if(a[j] > a[j + 1])
         {
-            a[j] = a[j] + a[j+1];
-            a[j+1] = a[j] - a[j+1];
-            a[j] = a[j] - a[j+1];
+            a[j] = a[j] + a[j + 1];
+            a[j + 1] = a[j] - a[j + 1];
+            a[j] = a[j] - a[j + 1];
         }
         else
         {
@@ -240,9 +238,7 @@ for i in range(0, len(a) - 1):
         if a[j] < a[imin]:
             imin = j
     if imin != i:
-        a[i] = a[i] + a[imin]
-        a[imin] = a[i] - a[imin]
-        a[i] = a[i] - a[imin]
+        a[i], a[imin] = a[imin], a[i]
 ```
 
 <ins>***File:***</ins> *[selection-sort.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/selection-sort.py)*
@@ -350,9 +346,9 @@ for j in range(1, len(a)):
     key = a[j]
     i = j - 1
     while i >= 0 and a[i] > key:
-        a[i+1] = a[i]
+        a[i + 1] = a[i]
         i -= 1
-    a[i+1] = key
+    a[i + 1] = key
 ```
 
 <ins>***File:***</ins> *[insertion-sort.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/insertion-sort.py)*
@@ -364,10 +360,10 @@ for(let j = 1; j < a.length; j ++){
     key = a[j];
     i = j - 1;
     while(i >= 0 && a[i] > key){
-        a[i+1] = a[i];
+        a[i + 1] = a[i];
         i --;
     } 
-    a[i+1] = key;
+    a[i + 1] = key;
 }
 ```
 
@@ -396,10 +392,10 @@ for(int j = 1; j < len; j ++){
     int key = a[j];
     int i = j - 1;
     while (i >= 0 && a[i] > key){
-        a[i+1] = a[i];
+        a[i + 1] = a[i];
         i --;
     }
-    a[i+1] = key;
+    a[i + 1] = key;
 }
 ```
 
@@ -414,10 +410,10 @@ for(int j = 0; j < a.Length; j ++)
     int i = j - 1;
     while (i >= 0 && a[i] > key)
     {
-        a[i+1] = a[i];
+        a[i + 1] = a[i];
         i --;
     }
-    a[i+1] = key;
+    a[i + 1] = key;
 }
 ```
 
@@ -451,9 +447,7 @@ def sort(array, b, e):
             r -= 1
         if l <= r:
             if l < r:
-                array[l] = array[l] + array[r]
-                array[r] = array[l] - array[r]
-                array[l] = array[l] - array[r]
+                array[l], array[r] = array[r], array[l]
             l += 1
             r -= 1
     if b < r:
@@ -469,31 +463,50 @@ sort(a, 0, len(a) - 1)
 `JavaScript`:
 
 ```js
-function sort(array, b, e){
-    let l = b;
-    let r = e;
-    let p = array[Math.floor((l + r) / 2)];
-    while(l <= r){
-        while(array[l] < p){
-            l ++;
-        }
-        while(array[r] > p){
-            r --;
-        }
-        if(l <= r){
-            if(l < r){
-                array[l] = array[l] + array[r];
-                array[r] = array[l] - array[r];
-                array[l] = array[l] - array[r];
+function sort(array, m){
+    let mass = [];
+    for(let i = 0; i < m; i ++){
+        mass.push(array[i]);
+    }
+    if(m <= 1){
+        array[0] = mass[0];
+    }
+    else{
+        let l = [];
+        let r = [];
+        for(let i = 0; i < m; i ++){
+            if(i < Math.floor(m / 2)){
+                l.push(mass[i]);
             }
-            l ++;
-            r --;
+            else{
+                r.push(mass[i]);
+            }
         }
-        if(b < r){
-            sort(array, b, r);
+        sort(l, l.length);
+        sort(r, r.length);
+        let h = 0;
+        let f = 0;
+        let c = [];
+        while(h < l.length && f < r.length){
+            if(l[h] < r[f]){
+                c.push(l[h]);
+                h += 1;
+            }
+            else{
+                c.push(r[f]);
+                f += 1;
+            }
         }
-        if(e > l){
-            sort(array, l, e);
+        while(h < l.length){
+            c.push(l[h]);
+            h += 1;
+        }
+        while(f < r.length){
+            c.push(r[f]);
+            f += 1;
+        }
+        for(let i = 0; i < m; i++){
+            array[i] = c[i];
         }
     }
 }
@@ -647,7 +660,7 @@ def sort(array, m):
         l = []
         r = []
         for i in range(0, m):
-            if i < int(m/2):
+            if i < int(m / 2):
                 l.append(mass[i])
             else:
                 r.append(mass[i])
@@ -798,16 +811,16 @@ void sort(int *array, int m){
         array[0] = mass[0];
     }
     else{
-        int L[m/2], R[m-(m/2)];
+        int L[m / 2], R[m - (m / 2)];
         for(int i = 0; i < m; i ++){
-            if(i < m/2) L[i] = mass[i];
-            else R[i-(m/2)] = mass[i];
+            if(i < m / 2) L[i] = mass[i];
+            else R[i - (m / 2)] = mass[i];
         }
-        sort(L, m/2);
-        sort(R, m - (m/2));
+        sort(L, m / 2);
+        sort(R, m - (m / 2));
         int h = 0, f = 0, k = 0;
         int C[m];
-        while(h < m/2 && f < m - (m/2)){
+        while(h < m / 2 && f < m - (m / 2)){
             if(L[h] < R[f]){
                 C[k] = L[h];
                 h ++;
@@ -818,12 +831,12 @@ void sort(int *array, int m){
             }
             k ++;
         }
-        while(h < m/2){
+        while(h < m / 2){
             C[k] = L[h];
             h ++;
             k ++;
         }
-        while(f < m - (m/2)){
+        while(f < m - (m / 2)){
             C[k] = R[f];
             f ++;
             k ++;
@@ -855,18 +868,18 @@ void Sort(ref int[] array, int m)
     }
     else
     {
-        int[] L = new int[m/2];
-        int[] R = new int[m-(m/2)];
+        int[] L = new int[m / 2];
+        int[] R = new int[m - (m / 2)];
         for(int i = 0; i < m; i ++)
         {
-            if(i < m/2) L[i] = mass[i];
-            else R[i-(m/2)] = mass[i];
+            if(i < m / 2) L[i] = mass[i];
+            else R[i - (m / 2)] = mass[i];
         }
-        Sort(ref L, m/2);
-        Sort(ref R, m - (m/2));
+        Sort(ref L, m / 2);
+        Sort(ref R, m - (m / 2));
         int h = 0, f = 0, k = 0;
         int[] C = new int[m];
-        while(h < m/2 && f < m - (m/2))
+        while(h < m / 2 && f < m - (m / 2))
         {
             if(L[h] < R[f]){
                 C[k] = L[h];
@@ -878,13 +891,13 @@ void Sort(ref int[] array, int m)
             }
             k ++;
         }
-        while(h < m/2)
+        while(h < m / 2)
         {
             C[k] = L[h];
             h ++;
             k ++;
         }
-        while(f < m - (m/2))
+        while(f < m - (m / 2))
         {
             C[k] = R[f];
             f ++;
@@ -901,6 +914,202 @@ Sort(ref a, a.Length);
 ```
 
 <ins>***File:***</ins> *[merge-sort.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/merge-sort.cs)*
+
+### Heap sort / Пірамідальне сортування / Пирамидальная сортировка
+
+**Time complexity / Часова складність / Временная сложность :** *O(n log n)*.
+
+**Pluses / Плюси / Плюсы :** *Fast, stable and don't need additional memory / Швидка, стабільна та не потребує додаткової пам'яті / Быстрая, стабильная и не требует дополнительной памяти*
+
+**Minuses / Мінуси / Минусы :** *Difficult in coding / Важка в програмуванні / Сложная в прогаммировании*
+
+<ins>***Wikipedia:***</ins> *[Heap sort](https://en.wikipedia.org/wiki/Heapsort)*
+
+<ins>***Вікіпедія:***</ins> *[Пірамідальне сортування](https://uk.wikipedia.org/wiki/Пірамідальне_сортування)*
+
+<ins>***Википедия:***</ins> *[Пирамидальная сортировка](https://ru.wikipedia.org/wiki/Пирамидальная_сортировка)*
+
+`Python`:
+
+```python
+def heapify(array, n, i):
+    largest = i
+    l = 2 * i + 1
+    r = 2 * i + 2
+    if l < n and array[i] < array[l]:
+        largest = l
+    if r < n and array[largest] < array[r]:
+        largest = r
+    if largest != i:
+        array[i], array[largest] = array[largest], array[i]
+        heapify(array, n, largest)
+
+def sort(array):
+    for i in range(len(array) // 2, -1, -1):
+        heapify(array, len(array), i)
+    for j in range(len(array) - 1, 0, -1):
+        array[j], array[0] = array[0], array[j]
+        heapify(array, j, 0)
+
+sort(a)
+```
+
+<ins>***File:***</ins> *[heap-sort.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/heap-sort.py)*
+
+`JavaScript`:
+
+```js
+function heapify(array, n, i){
+    let largest = i;
+    let l = 2 * i + 1;
+    let r = 2 * i + 2;
+    if(l < n && array[i] < array[l]){
+        largest = l;
+    }
+    if(r < n && array[largest] < array[r]){
+        largest = r;
+    }
+    if(largest != i){
+        array[i] = array[i] + array[largest];
+        array[largest] = array[i] - array[largest];
+        array[i] = array[i] - array[largest];
+        heapify(array, n, largest);
+    }
+}
+
+function sort(array){
+    for(let i = Math.floor(array.length / 2); i > -1; i --){
+        heapify(array, array.length, i);
+    }
+    for(let j = array.length - 1; j > 0; j --){
+        array[j] = array[j] + array[0];
+        array[0] = array[j] - array[0];
+        array[j] = array[j] - array[0];
+        heapify(array, j, 0);
+    }
+}
+
+sort(a);
+```
+
+<ins>***File:***</ins> *[heap-sort.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/heap-sort.js)*
+
+`Go`:
+
+```go
+func Heapify(array []int, n int, i int) {
+    largest := i
+    l := 2*i + 1
+    r := 2*i + 2
+    if l < n && array[i] < array[l] {
+        largest = l
+    }
+    if r < n && array[largest] < array[r] {
+        largest = r
+    }
+    if largest != i {
+        array[i], array[largest] = array[largest], array[i]
+        Heapify(array, n, largest)
+    }
+}
+
+func Sort(array []int) {
+    for i := int(math.Floor(float64(len(array) / 2))); i > -1; i-- {
+        Heapify(array, len(array), i)
+    }
+    for j := len(array) - 1; j > 0; j-- {
+        array[j], array[0] = array[0], array[j]
+        Heapify(array, j, 0)
+    }
+}
+
+Sort(a)
+```
+
+<ins>***File:***</ins> *[heap-sort.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/heap-sort.go)*
+
+`C++`:
+
+```cpp
+void heapify(int *array, int n, int i){
+    int largest = i;
+    int l = 2 * i + 1;
+    int r = 2 * i + 2;
+    if(l < n && array[i] < array[l]){
+        largest = l;
+    }
+    if(r < n && array[largest] < array[r]){
+        largest = r;
+    }
+    if(largest != i){
+        array[i] = array[i] + array[largest];
+        array[largest] = array[i] - array[largest];
+        array[i] = array[i] - array[largest];
+        heapify(array, n, largest);
+    }
+}
+
+void sort(int *array, int len){
+    for(int i = len / 2; i > -1; i --){
+        heapify(array, len, i);
+    }
+    for(int j = len - 1; j > 0; j --){
+        array[j] = array[j] + array[0];
+        array[0] = array[j] - array[0];
+        array[j] = array[j] - array[0];
+        heapify(array, j, 0);
+    }
+}
+
+sort(a, len);
+```
+
+<ins>***File:***</ins> *[heap-sort.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/heap-sort.cpp)*
+
+`C#`:
+
+```cs
+void Heapify(ref int[] array, int n, int i)
+{
+    int largest = i;
+    int l = 2 * i + 1;
+    int r = 2 * i + 2;
+    if(l < n && array[i] < array[l])
+    {
+        largest = l;
+    }
+    if(r < n && array[largest] < array[r])
+    {
+        largest = r;
+    }
+    if(largest != i)
+    {
+        array[i] = array[i] + array[largest];
+        array[largest] = array[i] - array[largest];
+        array[i] = array[i] - array[largest];
+        Heapify(ref array, n, largest);
+    }
+}
+
+void Sort(ref int[] array)
+{
+    for(int i = array.Length / 2; i > -1; i --)
+    {
+        Heapify(ref array, array.Length, i);
+    }
+    for(int j = array.Length - 1; j > 0; j --)
+    {
+        array[j] = array[j] + array[0];
+        array[0] = array[j] - array[0];
+        array[j] = array[j] - array[0];
+        Heapify(ref array, j, 0);
+    }
+}
+
+Sort(ref a);
+```
+
+<ins>***File:***</ins> *[heap-sort.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/heap-sort.cs)*
 
 ## GCD | LCM / НСД | НСК / НОД | НОК
 
