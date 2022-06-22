@@ -12,10 +12,10 @@ int main(){
     while(k < len - 1){
         k = 0;
         for(int j = 0; j < len - 1; j ++){
-            if(a[j] > a[j+1]){
-                a[j] = a[j] + a[j+1];
-                a[j+1] = a[j] - a[j+1];
-                a[j] = a[j] - a[j+1];
+            if(a[j] > a[j + 1]){
+                a[j] = a[j] + a[j + 1];
+                a[j + 1] = a[j] - a[j + 1];
+                a[j] = a[j] - a[j + 1];
             }
             else{
                 k ++;
