@@ -5633,13 +5633,13 @@ linkedList.get(n)
 `JavaScript`:
 
 ```js
-let linkedList = LinkedList()
-linkedList.add(value)
-linkedList.shift()
-linkedList.pop()
-linkedList.remove(n)
-linkedList.getNode(n)
-linkedList.get(n)
+let linkedList = LinkedList();
+linkedList.add(value);
+linkedList.shift();
+linkedList.pop();
+linkedList.remove(n);
+linkedList.getNode(n);
+linkedList.get(n);
 ```
 
 <ins>***Wikipedia:***</ins> *[Linked list](https://en.wikipedia.org/wiki/Linked_list)*
@@ -6370,19 +6370,19 @@ tree.get_tree_sorted()
 `JavaScript`:
 
 ```js
-let tree = new Tree()
-tree.min // get
-tree.max // get
-tree.add(v)
-tree.removeMin()
-tree.removeMax()
-tree.remove(v)
-tree.create(arr)
-tree.treeByLevels //get
-tree.treeList //get
-tree.treeByNodes //get
-tree.treeSorted //get
-tree.treeSortedReverse //get
+let tree = new Tree();
+tree.min; // get
+tree.max; // get
+tree.add(v);
+tree.removeMin();
+tree.removeMax();
+tree.remove(v);
+tree.create(arr);
+tree.treeByLevels; //get
+tree.treeList; //get
+tree.treeByNodes; //get
+tree.treeSorted; //get
+tree.treeSortedReverse; //get
 ```
 
 <ins>***Wikipedia:***</ins> *[Binary search tree](https://en.wikipedia.org/wiki/Binary_search_tree)*
