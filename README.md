@@ -42,6 +42,7 @@ from additional_functions.progressions import ArithmeticProgression
 from additional_functions.progressions import GeometricProgression
 from additional_functions.progressions import HarmonicProgression
 from additional_functions.binary_search_tree import Tree
+from additional_functions.linked_list import LinkedList
 from additional_functions import subarrays
 ```
 
@@ -58,6 +59,7 @@ let ArithmeticProgression = require('additional-functions/progressions').Arithme
 let GeometricProgression = require('additional-functions/progressions').GeometricProgression;
 let HarmonicProgression = require('additional-functions/progressions').HarmonicProgression;
 let Tree = require('additional-functions/binary-search-tree').Tree;
+let LinkedList = require('additional-functions/linked-list').LinkedList;
 let subarrays = require('additional_functions/subarrays');
 ```
 
@@ -5610,6 +5612,736 @@ class HarmonicProgression
 }
 ```
 
+## Linked list / Зв'язаний список / Связный список
+
+### Packages / Пакети / Пакеты
+
+`Python`:
+
+```python
+linkedList = LinkedList()
+linkedList.add(value)
+linkedList.shift()
+linkedList.pop()
+linkedList.remove(n)
+linkedList.get_node(n)
+linkedList.get(n)
+```
+
+`JavaScript`:
+
+```js
+let linkedList = LinkedList()
+linkedList.add(value)
+linkedList.shift()
+linkedList.pop()
+linkedList.remove(n)
+linkedList.getNode(n)
+linkedList.get(n)
+```
+
+<ins>***Wikipedia:***</ins> *[Linked list](https://en.wikipedia.org/wiki/Linked_list)*
+
+<ins>***Вікіпедія:***</ins> *[Зв'язаний список](https://uk.wikipedia.org/wiki/Зв%27язаний_список)*
+
+<ins>***Википедия:***</ins> *[Связный список](https://ru.wikipedia.org/wiki/Связный_список)*
+
+### Files / Файли / Файлы
+
+<ins>***Python:***</ins> *[linked-list.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Linked%20list/linked-list.py)*
+
+<ins>***JavaScript:***</ins> *[linked-list.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Linked%20list/linked-list.js)*
+
+<ins>***Go:***</ins> *[linked-list.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Linked%20list/linked-list.go)*
+
+<ins>***C++:***</ins> *[linked-list.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Linked%20list/linked-list.cpp)*
+
+<ins>***C#:***</ins> *[linked-list.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Linked%20list/linked-list.cs)*
+
+`Python`:
+
+```python
+from typing import Any
+
+class Node:
+
+    value = None
+    prev = None
+    next = None
+
+    def __init__(self, value, prev = None, next = None) -> None:
+        self.value = value
+        self.prev = prev
+        self.next = next
+
+class LinkedList:
+
+    head: Node = None
+    tail: Node = None
+    length: int = 0
+
+    def __init__(self, value: int = None) -> None:
+        if value != None:
+            self.head = Node(value, None, None)
+            self.length = 1
+        else:
+            self.head = None
+            self.length = 0
+        self.tail = None
+
+    def add(self, value: int) -> None:
+        if self.head == None:
+            self.head = Node(value, None, None)
+        elif self.tail == None:
+            self.tail = Node(value, self.head, None)
+            self.head.next = self.tail
+        else:
+            self.tail.next = Node(value, self.tail, None)
+            self.tail = self.tail.next
+        self.length += 1
+
+    def shift(self) -> None:
+        self.head = self.head.next
+        self.length -= 1
+
+    def pop(self) -> None:
+        if self.length == 1:
+            self.shift()
+        else:
+            self.tail.prev = None
+            self.tail = self.tail.prev
+            self.length -= 1
+
+    def remove(self, n: int) -> None:
+        if n < 0:
+            n = self.length + n
+        if self.length == 0:
+            raise "List is empty"
+        if n >= self.length:
+            raise "Index is bigger than length"
+        if n == 0:
+            self.shift()
+        elif n == self.length - 1:
+            self.pop()
+        elif n < self.length / 2:
+            node = self.head
+            for _ in range(0, n):
+                node = node.next
+            node.next.prev = node.prev
+            node.prev.next = node.next
+            self.length -= 1
+        else:
+            node = self.tail
+            for _ in range(self.length - 1, n, -1):
+                node = node.prev
+            node.next.prev = node.prev
+            node.prev.next = node.next
+            self.length -= 1
+    
+    def get_node(self, n: int) -> Node:
+        if n < 0:
+            n = self.length + n
+        if self.length == 0:
+            raise "List is empty"
+        if n >= self.length:
+            raise "Index is bigger than length"
+        if n == 0:
+            return self.head
+        elif n == self.length - 1:
+            return self.tail
+        elif n < self.length / 2:
+            node = self.head
+            for _ in range(0, n):
+                node = node.next
+            return node
+        else:
+            node = self.tail
+            for _ in range(self.length - 1, n, -1):
+                node = node.prev
+            return node
+    
+    def get(self, n: int) -> Any:
+        return self.get_node(n)
+```
+
+`JavaScript`:
+
+```js
+class Node{
+    
+    value = undefined;
+    prev = undefined;
+    next = undefined;
+
+    constructor(value, prev = undefined, next = undefined){
+        this.value = value;
+        this.prev = prev;
+        this.next = next;
+    }
+
+}
+
+class LinkedList{
+
+    head = undefined;
+    tail = undefined;
+    length = 0;
+
+    constructor(value = undefined){
+        if(value != undefined){
+            this.head = new Node(value, undefined, undefined);
+            this.length = 1;
+        }
+        else{
+            this.head = undefined;
+            this.length = 0;
+        }
+        this.tail = undefined;
+    }
+
+    add(value){
+        if(this.head == undefined){
+            this.head = new Node(value, undefined, undefined);
+        }
+        else if(this.tail == undefined){
+            this.tail = new Node(value, this.head, undefined);
+            this.head.next = this.tail;
+        }
+        else{
+            this.tail.next = new Node(value, this.tail, undefined);
+            this.tail = this.tail.next;
+        }
+        this.length ++;
+    }
+
+    shift(){
+        this.head = this.head.next;
+        this.length --;
+    }
+
+    pop(){
+        if(this.length == 1){
+            this.shift();
+        }
+        else{
+            this.tail.prev = undefined;
+            this.tail = this.tail.prev;
+            this.length --;
+        }
+    }
+
+    remove(n){
+        if(n < 0){
+            n = this.length + n;
+        }
+        if(this.length == 0){
+            throw "List is empty";
+        }
+        if(n >= this.length){
+            throw "Index is bigger than length";
+        }
+        if(n == 0){
+            this.shift();
+        }
+        else if(n == this.length - 1){
+            this.pop();
+        }
+        else if(n < this.length / 2){
+            let node = this.head;
+            for(let _ = 0; _ < n; _ ++){
+                node = node.next;
+            }
+            node.next.prev = node.prev;
+            node.prev.next = node.next;
+            this.length --;
+        }
+        else{
+            let node = this.tail;
+            for(let _ = this.length - 1; _ > n; _ --){
+                node = node.prev;
+            }
+            node.next.prev = node.prev;
+            node.prev.next = node.next;
+            this.length --;
+        }
+    }
+
+    getNode(n){
+        if(n < 0){
+            n = this.length + n;
+        }
+        if(this.length == 0){
+            throw "List is empty";
+        }
+        if(n >= this.length){
+            throw "Index is bigger than length";
+        }
+        if(n == 0){
+            return this.head;
+        }
+        else if(n == this.length - 1){
+            return this.tail;
+        }
+        else if(n < this.length / 2){
+            let node = this.head;
+            for(let _ = 0; _ < n; _ ++){
+                node = node.next;
+            }
+            return node;
+        }
+        else{
+            let node = this.tail;
+            for(let _ = this.length - 1; _ > n; _ --){
+                node = node.prev;
+            }
+            return node;
+        }
+    }
+
+    get(n){
+        return this.getNode(n);
+    }
+
+}
+```
+
+`Go`:
+
+```go
+type Node[T any] struct {
+	Value T
+	Prev  *Node[T]
+	Next  *Node[T]
+}
+
+type LinkedList[T any] struct {
+	Head   *Node[T]
+	Tail   *Node[T]
+	Length uint
+}
+
+func NewEmptyLinkedList[T any]() LinkedList[T] {
+	return LinkedList[T]{nil, nil, 0}
+}
+
+func NewLinkedList[T any](value T) LinkedList[T] {
+	return LinkedList[T]{&Node[T]{value, nil, nil}, nil, 1}
+}
+
+func (ll *LinkedList[T]) Add(value T) {
+	if ll.Head == nil {
+		ll.Head = &Node[T]{value, nil, nil}
+	} else if ll.Tail == nil {
+		ll.Tail = &Node[T]{value, ll.Head, nil}
+		ll.Head.Next = ll.Tail
+	} else {
+		ll.Tail.Next = &Node[T]{value, ll.Tail, nil}
+		ll.Tail = ll.Tail.Next
+	}
+	ll.Length++
+}
+
+func (ll *LinkedList[T]) Shift() {
+	ll.Head = ll.Head.Next
+	ll.Length--
+}
+
+func (ll *LinkedList[T]) Pop() {
+	if ll.Length == 1 {
+		ll.Shift()
+	} else {
+		ll.Tail.Prev.Next = nil
+		ll.Tail = ll.Tail.Prev
+		ll.Length--
+	}
+}
+
+func (ll *LinkedList[T]) Remove(n int) {
+	if n < 0 {
+		n = int(ll.Length) + n
+	}
+	if ll.Length == 0 {
+		panic("List is empty")
+	}
+	if n >= int(ll.Length) {
+		panic("Index is bigger than length")
+	}
+	if n == 0 {
+		ll.Shift()
+	} else if n == int(ll.Length)-1 {
+		ll.Pop()
+	} else if n < int(ll.Length)/2 {
+		node := ll.Head
+		for i := 0; i < n; i++ {
+			node = node.Next
+		}
+		node.Next.Prev = node.Prev
+		node.Prev.Next = node.Next
+		ll.Length--
+	} else {
+		node := ll.Tail
+		for i := int(ll.Length) - 1; i > n; i-- {
+			node = node.Prev
+		}
+		node.Next.Prev = node.Prev
+		node.Prev.Next = node.Next
+		ll.Length--
+	}
+}
+
+func (ll *LinkedList[T]) GetNode(n int) *Node[T] {
+	if n < 0 {
+		n = int(ll.Length) + n
+	}
+	if ll.Length == 0 {
+		panic("List is empty")
+	}
+	if n >= int(ll.Length) {
+		panic("Index is bigger than length")
+	}
+	if n == 0 {
+		return ll.Head
+	} else if n == int(ll.Length)-1 {
+		return ll.Tail
+	} else if n < int(ll.Length)/2 {
+		node := ll.Head
+		for i := 0; i < n; i++ {
+			node = node.Next
+		}
+		return node
+	} else {
+		node := ll.Tail
+		for i := int(ll.Length) - 1; i > n; i-- {
+			node = node.Prev
+		}
+		return node
+	}
+}
+
+func (ll *LinkedList[T]) Get(n int) T {
+	return ll.GetNode(n).Value
+}
+```
+
+`C++`
+
+```cpp
+template <typename T>
+
+class Node{
+
+    public:
+
+        T value;
+        Node<T>* prev = NULL;
+        Node<T>* next = NULL;
+        Node(T v, Node<T>* p = NULL, Node<T>* n = NULL){
+            value = v;
+            prev = p;
+            next = n;
+        }
+};
+
+template <typename T>
+
+class LinkedList{
+    
+    public:
+
+        Node<T>* head = NULL;
+        Node<T>* tail = NULL;
+        unsigned int length = 0;
+
+        LinkedList(){
+            head = NULL;
+            length = 0;
+            tail = NULL;
+        }
+
+        LinkedList(T value){
+            head = new Node<T>(value);
+            length = 1;
+            tail = NULL;
+        }
+
+        void add(T value){
+            if(head == NULL){
+                head = new Node(value);
+            }
+            else if(tail == NULL){
+                tail = new Node(value, head);
+                head->next = tail;
+            }
+            else{
+                tail->next = new Node(value, tail);
+                tail = tail->next;
+            }
+            length ++;
+        }
+
+        void shift(){
+            head = head->next;
+            length --;
+        }
+
+        void pop(){
+            if(length == 1){
+                shift();
+            }
+            else{
+                tail->prev = NULL;
+                tail = tail->prev;
+                length --;
+            }
+        }
+
+        void remove(int n){
+            if(n < 0){
+                n = length + n;
+            }
+            if(length == 0){
+                throw "List is empty";
+            }
+            if(n >= length){
+                throw "Index is bigger than length";
+            }
+            if(n == 0){
+                shift();
+            }
+            else if(n == length - 1){
+                pop();
+            }
+            else if(n < length / 2){
+                Node<T>* node = head;
+                for(int _ = 0; _ < n; _ ++){
+                    node = node->next;
+                }
+                node->next->prev = node->prev;
+                node->prev->next = node->next;
+                length --;
+            }
+            else{
+                Node<T>* node = tail;
+                for(int _ = length - 1; _ > n; _ --){
+                    node = node->prev;
+                }
+                node->next->prev = node->prev;
+                node->prev->next = node->next;
+                length --;
+            }
+        }
+
+        Node<T>* getNode(int n){
+            if(n < 0){
+                n = length + n;
+            }
+            if(length == 0){
+                throw "List is empty";
+            }
+            if(n >= length){
+                throw "Index is bigger than length";
+            }
+            if(n == 0){
+                return head;
+            }
+            else if(n == length - 1){
+                return tail;
+            }
+            else if(n < length / 2){
+                Node<T>* node = head;
+                for(int _ = 0; _ < n; _ ++){
+                    node = node->next;
+                }
+                return node;
+            }
+            else{
+                Node<T>* node = tail;
+                for(int _ = length - 1; _ > n; _ --){
+                    node = node->prev;
+                }
+                return node;
+            }
+        }
+
+        T get(int n){
+            return getNode(n);
+        }
+
+};
+```
+
+`C#`:
+
+```cs
+class Node<T>
+{
+    public T value;
+    public Node<T> next;
+    public Node<T> prev;
+
+    public Node(T v, Node<T> p = null, Node<T> n = null)
+    {
+        this.value = v;
+        this.prev = p;
+        this.next = n;
+    }
+
+}
+
+class LinkedList<T>
+{
+    public Node<T> head;
+    public Node<T> tail;
+    public uint length;
+
+    public LinkedList()
+    {
+        this.head = null;
+        this.length = 0;
+        this.tail = null;
+    }
+
+    public LinkedList(T value)
+    {
+        this.head = new Node<T>(value);
+        this.length = 1;
+        this.tail = null;
+    }
+
+    public void Add(T value)
+    {
+        if(this.head == null)
+        {
+            this.head = new Node(value);
+        }
+        else if(this.tail == NULL)
+        {
+            this.tail = new Node(value, this.head);
+            this.head.next = this.tail;
+        }
+        else
+        {
+            this.tail.next = new Node(value, this.tail);
+            this.tail = this.tail.next;
+        }
+        this.length ++;
+    }
+
+    public void Shift()
+    {
+        this.head = this.head.next;
+        this.length --;
+    }
+
+    public void Pop()
+    {
+        if(this.length == 1)
+        {
+            this.Shift();
+        }
+        else
+        {
+            this.tail.prev = null;
+            this.tail = this.tail.prev;
+            this.length --;
+        }
+    }
+
+    public void Remove(int n)
+    {
+        if(n < 0)
+        {
+            n = this.length + n;
+        }
+        if(this.length == 0)
+        {
+            throw new Exception("List is empty");
+        }
+        if(n >= this.length)
+        {
+            throw new Exception("Index is bigger than length");
+        }
+        if(n == 0)
+        {
+            this.Shift();
+        }
+        else if(n == this.length - 1)
+        {
+            this.Pop();
+        }
+        else if(n < this.length / 2)
+        {
+            Node<T> node = this.head;
+            for(int _ = 0; _ < n; _ ++)
+            {
+                node = node.next;
+            }
+            node.next.prev = node.prev;
+            node.prev.next = node.next;
+            this.length --;
+        }
+        else
+        {
+            Node<T> node = this.tail;
+            for(int _ = this.length - 1; _ > n; _ --)
+            {
+                node = node.prev;
+            }
+            node.next.prev = node.prev;
+            node.prev.next = node.next;
+            this.length --;
+        }
+    }
+
+    public void GetNode(int n)
+    {
+        if(n < 0)
+        {
+            n = this.length + n;
+        }
+        if(this.length == 0)
+        {
+            throw new Exception("List is empty");
+        }
+        if(n >= this.length)
+        {
+            throw new Exception("Index is bigger than length");
+        }
+        if(n == 0)
+        {
+            return this.head;
+        }
+        else if(n == this.length - 1)
+        {
+            return this.tail;
+        }
+        else if(n < this.length / 2)
+        {
+            Node<T> node = this.head;
+            for(int _ = 0; _ < n; _ ++)
+            {
+                node = node.next;
+            }
+            return node;
+        }
+        else
+        {
+            Node<T> node = this.tail;
+            for(int _ = this.length - 1; _ > n; _ --)
+            {
+                node = node.prev;
+            }
+            return node;
+        }
+    }
+
+    public void Get(int n)
+    {
+        return this.GetNode(n);
+    }
+}
+```
+
 ## Binary search tree / Двійкове дерево пошуку / Двоичное дерево поиска
 
 ### Packages / Пакети / Пакеты
@@ -5618,29 +6350,35 @@ class HarmonicProgression
 
 ```python
 tree = Tree()
-tree.add_node(v)
+tree.get_min()
+tree.get_max()
+tree.add(v)
+tree.remove_min()
+tree.remove_max()
+tree.remove(v)
 tree.create(arr)
 tree.get_tree_by_levels()
 tree.get_tree_list()
 tree.get_tree_by_nodes()
 tree.get_tree_sorted()
-tree.get_min()
-tree.get_max()
 ```
 
 `JavaScript`:
 
 ```js
 let tree = new Tree()
-tree.addNode(v)
+tree.min // get
+tree.max // get
+tree.add(v)
+tree.removeMin()
+tree.removeMax()
+tree.remove(v)
 tree.create(arr)
 tree.treeByLevels //get
 tree.treeList //get
 tree.treeByNodes //get
 tree.treeSorted //get
 tree.treeSortedReverse //get
-tree.min // get
-tree.max // get
 ```
 
 <ins>***Wikipedia:***</ins> *[Binary search tree](https://en.wikipedia.org/wiki/Binary_search_tree)*
