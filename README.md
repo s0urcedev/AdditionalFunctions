@@ -1,9 +1,9 @@
 # AdditionalFunctions
 ## Page / Сторінка / Страница
 
-[github.com/s0urce18/AdditionalFunctions](https://github.com/s0urce18/AdditionalFunctions)
+[github.com/s0urcedev/AdditionalFunctions](https://github.com/s0urcedev/AdditionalFunctions)
 
-[s0urce18.github.io/AdditionalFunctions](https://s0urce18.github.io/AdditionalFunctions/)
+[s0urcedev.github.io/AdditionalFunctions](https://s0urcedev.github.io/AdditionalFunctions/)
 
 ## Packages / Пакети / Пакеты
 
@@ -128,7 +128,7 @@ while k < len(a) - 1:
             k += 1
 ```
 
-<ins>***File:***</ins> *[bubble-sort.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/bubble-sort.py)*
+<ins>***File:***</ins> *[bubble-sort.py](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/bubble-sort.py)*
 
 `JavaScript`:
 
@@ -149,7 +149,7 @@ while(k < a.length - 1){
 }
 ```
 
-<ins>***File:***</ins> *[bubble-sort.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/bubble-sort.js)*
+<ins>***File:***</ins> *[bubble-sort.js](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/bubble-sort.js)*
 
 `Go`:
 
@@ -167,7 +167,7 @@ for k < len(a)-1 {
 }
 ```
 
-<ins>***File:***</ins> *[bubble-sort.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/bubble-sort.go)*
+<ins>***File:***</ins> *[bubble-sort.go](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/bubble-sort.go)*
 
 `C++`:
 
@@ -188,7 +188,7 @@ while(k < len - 1){
 }
 ```
 
-<ins>***File:***</ins> *[bubble-sort.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/bubble-sort.cpp)*
+<ins>***File:***</ins> *[bubble-sort.cpp](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/bubble-sort.cpp)*
 
 
 `C#`:
@@ -214,7 +214,7 @@ while(k < a.Length - 1)
 }
 ```
 
-<ins>***File:***</ins> *[bubble-sort.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/bubble-sort.cs)*
+<ins>***File:***</ins> *[bubble-sort.cs](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/bubble-sort.cs)*
 
 
 ### Selection sort / Сортування вибором / Сортировка выбором
@@ -243,7 +243,7 @@ for i in range(0, len(a) - 1):
         a[i], a[imin] = a[imin], a[i]
 ```
 
-<ins>***File:***</ins> *[selection-sort.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/selection-sort.py)*
+<ins>***File:***</ins> *[selection-sort.py](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/selection-sort.py)*
 
 `JavaScript`:
 
@@ -263,7 +263,7 @@ for(let i = 0; i < a.length - 1; i ++){
 }
 ```
 
-<ins>***File:***</ins> *[selection-sort.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/selection-sort.js)*
+<ins>***File:***</ins> *[selection-sort.js](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/selection-sort.js)*
 
 `Go`:
 
@@ -281,7 +281,7 @@ for i := 0; i < len(a)-1; i++ {
 }
 ```
 
-<ins>***File:***</ins> *[selection-sort.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/selection-sort.go)*
+<ins>***File:***</ins> *[selection-sort.go](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/selection-sort.go)*
 
 `C++`:
 
@@ -301,7 +301,7 @@ for(int i = 0; i < len - 1; i ++){
 }
 ```
 
-<ins>***File:***</ins> *[selection-sort.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/selection-sort.cpp)*
+<ins>***File:***</ins> *[selection-sort.cpp](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/selection-sort.cpp)*
 
 `C#`:
 
@@ -325,7 +325,7 @@ for(int i = 0; i < a.Length; i ++)
 }
 ```
 
-<ins>***File:***</ins> *[selection-sort.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/selection-sort.cs)*
+<ins>***File:***</ins> *[selection-sort.cs](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/selection-sort.cs)*
 
 ### Insertion sort / Сортування включенням / Сортировка вставками
 
@@ -353,7 +353,7 @@ for j in range(1, len(a)):
     a[i + 1] = key
 ```
 
-<ins>***File:***</ins> *[insertion-sort.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/insertion-sort.py)*
+<ins>***File:***</ins> *[insertion-sort.py](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/insertion-sort.py)*
 
 `JavaScript`:
 
@@ -369,7 +369,7 @@ for(let j = 1; j < a.length; j ++){
 }
 ```
 
-<ins>***File:***</ins> *[insertion-sort.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/insertion-sort.js)*
+<ins>***File:***</ins> *[insertion-sort.js](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/insertion-sort.js)*
 
 `Go`:
 
@@ -385,7 +385,7 @@ for j := 1; j < len(a); j++ {
 }
 ```
 
-<ins>***File:***</ins> *[insertion-sort.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/insertion-sort.go)*
+<ins>***File:***</ins> *[insertion-sort.go](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/insertion-sort.go)*
 
 `C++`:
 
@@ -401,7 +401,7 @@ for(int j = 1; j < len; j ++){
 }
 ```
 
-<ins>***File:***</ins> *[insertion-sort.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/insertion-sort.cpp)*
+<ins>***File:***</ins> *[insertion-sort.cpp](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/insertion-sort.cpp)*
 
 `C#`:
 
@@ -419,7 +419,7 @@ for(int j = 0; j < a.Length; j ++)
 }
 ```
 
-<ins>***File:***</ins> *[insertion-sort.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/insertion-sort.cs)*
+<ins>***File:***</ins> *[insertion-sort.cs](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/insertion-sort.cs)*
 
 ### Quick sort / Швидке сортування / Быстрая сортировка
 
@@ -460,7 +460,7 @@ def sort(array, b, e):
 sort(a, 0, len(a) - 1)
 ```
 
-<ins>***File:***</ins> *[quick-sort.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/quick-sort.py)*
+<ins>***File:***</ins> *[quick-sort.py](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/quick-sort.py)*
 
 `JavaScript`:
 
@@ -516,7 +516,7 @@ function sort(array, m){
 sort(a, 0, a.length - 1);
 ```
 
-<ins>***File:***</ins> *[quick-sort.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/quick-sort.js)*
+<ins>***File:***</ins> *[quick-sort.js](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/quick-sort.js)*
 
 `Go`:
 
@@ -551,7 +551,7 @@ func Sort(array []int, b int, e int) {
 Sort(a, 0, len(a)-1)
 ```
 
-<ins>***File:***</ins> *[quick-sort.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/quick-sort.go)*
+<ins>***File:***</ins> *[quick-sort.go](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/quick-sort.go)*
 
 `C++`:
 
@@ -588,7 +588,7 @@ void sort(int *array, int b, int e){
 sort(a, 0, len - 1);
 ```
 
-<ins>***File:***</ins> *[quick-sort.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/quick-sort.cpp)*
+<ins>***File:***</ins> *[quick-sort.cpp](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/quick-sort.cpp)*
 
 `C#`:
 
@@ -633,7 +633,7 @@ void Sort(ref int[] array, int b, int e)
 Sort(ref a, 0, a.Length - 1);
 ```
 
-<ins>***File:***</ins> *[quick-sort.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/quick-sort.cs)*
+<ins>***File:***</ins> *[quick-sort.cs](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/quick-sort.cs)*
 
 ### Merge sort / Сортування злиттям / Сортировка слиянием
 
@@ -690,7 +690,7 @@ def sort(array, m):
 sort(a, len(a))
 ```
 
-<ins>***File:***</ins> *[merge-sort.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/merge-sort.py)*
+<ins>***File:***</ins> *[merge-sort.py](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/merge-sort.py)*
 
 `JavaScript`:
 
@@ -746,7 +746,7 @@ function sort(array, m){
 sort(a, a.length);
 ```
 
-<ins>***File:***</ins> *[merge-sort.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/merge-sort.js)*
+<ins>***File:***</ins> *[merge-sort.js](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/merge-sort.js)*
 
 `Go`:
 
@@ -799,7 +799,7 @@ func Sort(array []int, m int) {
 Sort(a, len(a))
 ```
 
-<ins>***File:***</ins> *[merge-sort.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/merge-sort.go)*
+<ins>***File:***</ins> *[merge-sort.go](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/merge-sort.go)*
 
 `C++`:
 
@@ -852,7 +852,7 @@ void sort(int *array, int m){
 sort(a, len);
 ```
 
-<ins>***File:***</ins> *[merge-sort.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/merge-sort.cpp)*
+<ins>***File:***</ins> *[merge-sort.cpp](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/merge-sort.cpp)*
 
 `C#`:
 
@@ -915,7 +915,7 @@ void Sort(ref int[] array, int m)
 Sort(ref a, a.Length);
 ```
 
-<ins>***File:***</ins> *[merge-sort.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/merge-sort.cs)*
+<ins>***File:***</ins> *[merge-sort.cs](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/merge-sort.cs)*
 
 ### Heap sort / Пірамідальне сортування / Пирамидальная сортировка
 
@@ -956,7 +956,7 @@ def sort(array):
 sort(a)
 ```
 
-<ins>***File:***</ins> *[heap-sort.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/heap-sort.py)*
+<ins>***File:***</ins> *[heap-sort.py](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/heap-sort.py)*
 
 `JavaScript`:
 
@@ -994,7 +994,7 @@ function sort(array){
 sort(a);
 ```
 
-<ins>***File:***</ins> *[heap-sort.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/heap-sort.js)*
+<ins>***File:***</ins> *[heap-sort.js](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/heap-sort.js)*
 
 `Go`:
 
@@ -1028,7 +1028,7 @@ func Sort(array []int) {
 Sort(a)
 ```
 
-<ins>***File:***</ins> *[heap-sort.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/heap-sort.go)*
+<ins>***File:***</ins> *[heap-sort.go](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/heap-sort.go)*
 
 `C++`:
 
@@ -1066,7 +1066,7 @@ void sort(int *array, int len){
 sort(a, len);
 ```
 
-<ins>***File:***</ins> *[heap-sort.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/heap-sort.cpp)*
+<ins>***File:***</ins> *[heap-sort.cpp](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/heap-sort.cpp)*
 
 `C#`:
 
@@ -1111,7 +1111,7 @@ void Sort(ref int[] array)
 Sort(ref a);
 ```
 
-<ins>***File:***</ins> *[heap-sort.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Sort/heap-sort.cs)*
+<ins>***File:***</ins> *[heap-sort.cs](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Sort/heap-sort.cs)*
 
 ## GCD | LCM / НСД | НСК / НОД | НОК
 
@@ -2726,15 +2726,15 @@ combinatorics.generatePermutations(arr, k);
 
 ### Files / Файли / Файлы
 
-<ins>***Python:***</ins> *[combinatorics.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Combinatorics/combinatorics.py)*
+<ins>***Python:***</ins> *[combinatorics.py](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Combinatorics/combinatorics.py)*
 
-<ins>***JavaScript:***</ins> *[combinatorics.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Combinatorics/combinatorics.js)*
+<ins>***JavaScript:***</ins> *[combinatorics.js](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Combinatorics/combinatorics.js)*
 
-<ins>***Go:***</ins> *[combinatorics.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Combinatorics/combinatorics.go)*
+<ins>***Go:***</ins> *[combinatorics.go](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Combinatorics/combinatorics.go)*
 
-<ins>***C++:***</ins> *[combinatorics.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Combinatorics/combinatorics.cpp)*
+<ins>***C++:***</ins> *[combinatorics.cpp](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Combinatorics/combinatorics.cpp)*
 
-<ins>***C#:***</ins> *[combinatorics.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Combinatorics/combinatorics.cs)*
+<ins>***C#:***</ins> *[combinatorics.cs](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Combinatorics/combinatorics.cs)*
 
 ### Combinations / Комбінації / Сочетания
 
@@ -3310,17 +3310,17 @@ romanArabicNumerals.arabRom(s);
 
 ### Files / Файли / Файлы
 
-<ins>***Python:***</ins> *[roman-arabic-numerals.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Roman%20arabic%20numerals/roman-arabic-numerals.py)*
+<ins>***Python:***</ins> *[roman-arabic-numerals.py](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Roman%20arabic%20numerals/roman-arabic-numerals.py)*
 
-<ins>***JavaScript:***</ins> *[roman-arabic-numerals.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Roman%20arabic%20numerals/roman-arabic-numerals.js)*
+<ins>***JavaScript:***</ins> *[roman-arabic-numerals.js](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Roman%20arabic%20numerals/roman-arabic-numerals.js)*
 
-<ins>***Go:***</ins> *[roman-arabic-numerals.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Roman%20arabic%20numerals/roman-arabic-numerals.go)*
-
-
-<ins>***C++:***</ins> *[roman-arabic-numerals.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Roman%20arabic%20numerals/roman-arabic-numerals.cpp)*
+<ins>***Go:***</ins> *[roman-arabic-numerals.go](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Roman%20arabic%20numerals/roman-arabic-numerals.go)*
 
 
-<ins>***C#:***</ins> *[roman-arabic-numerals.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Roman%20arabic%20numerals/roman-arabic-numerals.cs)*
+<ins>***C++:***</ins> *[roman-arabic-numerals.cpp](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Roman%20arabic%20numerals/roman-arabic-numerals.cpp)*
+
+
+<ins>***C#:***</ins> *[roman-arabic-numerals.cs](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Roman%20arabic%20numerals/roman-arabic-numerals.cs)*
 
 ### Code / Код / Код
 
@@ -3986,15 +3986,15 @@ arithmetic.multiplicationBigNumbers(a, b);
 
 ### Files / Файли / Файлы
 
-<ins>***Python:***</ins> *[arithmetic.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Arithmetic/arithmetic.py)*
+<ins>***Python:***</ins> *[arithmetic.py](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Arithmetic/arithmetic.py)*
 
-<ins>***JavaScript:***</ins> *[arithmetic.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Arithmetic/arithmetic.js)*
+<ins>***JavaScript:***</ins> *[arithmetic.js](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Arithmetic/arithmetic.js)*
 
-<ins>***Go:***</ins> *[arithmetic.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Arithmetic/arithmetic.go)*
+<ins>***Go:***</ins> *[arithmetic.go](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Arithmetic/arithmetic.go)*
 
-<ins>***C++:***</ins> *[arithmetic.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Arithmetic/arithmetic.cpp)*
+<ins>***C++:***</ins> *[arithmetic.cpp](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Arithmetic/arithmetic.cpp)*
 
-<ins>***C#:***</ins> *[arithmetic.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Arithmetic/arithmetic.cs)*
+<ins>***C#:***</ins> *[arithmetic.cs](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Arithmetic/arithmetic.cs)*
 
 ### Addition / Додавання / Прибавление
 
@@ -4789,15 +4789,15 @@ c.getToNth(n);
 
 ### Files / Файли / Файлы
 
-<ins>***Python:***</ins> *[progressions.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Progressions/progressions.py)*
+<ins>***Python:***</ins> *[progressions.py](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Progressions/progressions.py)*
 
-<ins>***JavaScript:***</ins> *[progressions.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Progressions/progressions.js)*
+<ins>***JavaScript:***</ins> *[progressions.js](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Progressions/progressions.js)*
 
-<ins>***Go:***</ins> *[progressions.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Progressions/progressions.go)*
+<ins>***Go:***</ins> *[progressions.go](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Progressions/progressions.go)*
 
-<ins>***C++:***</ins> *[progressions.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Progressions/progressions.cpp)*
+<ins>***C++:***</ins> *[progressions.cpp](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Progressions/progressions.cpp)*
 
-<ins>***C#:***</ins> *[progressions.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Progressions/progressions.cs)*
+<ins>***C#:***</ins> *[progressions.cs](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Progressions/progressions.cs)*
 
 ### Arithmetic progression / Арифметична прогресія / Арифметическая прогрессия
 
@@ -5650,15 +5650,15 @@ linkedList.get(n);
 
 ### Files / Файли / Файлы
 
-<ins>***Python:***</ins> *[linked-list.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Linked%20list/linked-list.py)*
+<ins>***Python:***</ins> *[linked-list.py](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Linked%20list/linked-list.py)*
 
-<ins>***JavaScript:***</ins> *[linked-list.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Linked%20list/linked-list.js)*
+<ins>***JavaScript:***</ins> *[linked-list.js](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Linked%20list/linked-list.js)*
 
-<ins>***Go:***</ins> *[linked-list.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Linked%20list/linked-list.go)*
+<ins>***Go:***</ins> *[linked-list.go](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Linked%20list/linked-list.go)*
 
-<ins>***C++:***</ins> *[linked-list.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Linked%20list/linked-list.cpp)*
+<ins>***C++:***</ins> *[linked-list.cpp](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Linked%20list/linked-list.cpp)*
 
-<ins>***C#:***</ins> *[linked-list.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Linked%20list/linked-list.cs)*
+<ins>***C#:***</ins> *[linked-list.cs](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Linked%20list/linked-list.cs)*
 
 ### Code / Код / Код
 
@@ -6393,15 +6393,15 @@ tree.treeSortedReverse; //get
 
 ### Files / Файли / Файлы
 
-<ins>***Python:***</ins> *[binary-search-tree.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Binary%20search%20tree/binary-search-tree.py)*
+<ins>***Python:***</ins> *[binary-search-tree.py](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Binary%20search%20tree/binary-search-tree.py)*
 
-<ins>***JavaScript:***</ins> *[binary-search-tree.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Binary%20search%20tree/binary-search-tree.js)*
+<ins>***JavaScript:***</ins> *[binary-search-tree.js](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Binary%20search%20tree/binary-search-tree.js)*
 
-<ins>***Go:***</ins> *[binary-search-tree.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Binary%20search%20tree/binary-search-tree.go)*
+<ins>***Go:***</ins> *[binary-search-tree.go](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Binary%20search%20tree/binary-search-tree.go)*
 
-<ins>***C++:***</ins> *[binary-search-tree.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Binary%20search%20tree/binary-search-tree.cpp)*
+<ins>***C++:***</ins> *[binary-search-tree.cpp](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Binary%20search%20tree/binary-search-tree.cpp)*
 
-<ins>***C#:***</ins> *[binary-search-tree.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Binary%20search%20tree/binary-search-tree.cs)*
+<ins>***C#:***</ins> *[binary-search-tree.cs](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Binary%20search%20tree/binary-search-tree.cs)*
 
 ### Code / Код / Код
 
@@ -7797,15 +7797,15 @@ subarrays.minCircularSubarraySum(arr);
 
 ### Files / Файли / Файлы
 
-<ins>***Python:***</ins> *[subarrays.py](https://github.com/s0urce18/AdditionalFunctions/blob/main/Subarrays/subarrays.py)*
+<ins>***Python:***</ins> *[subarrays.py](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Subarrays/subarrays.py)*
 
-<ins>***JavaScript:***</ins> *[subarrays.js](https://github.com/s0urce18/AdditionalFunctions/blob/main/Subarrays/subarrays.js)*
+<ins>***JavaScript:***</ins> *[subarrays.js](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Subarrays/subarrays.js)*
 
-<ins>***Go:***</ins> *[subarrays.go](https://github.com/s0urce18/AdditionalFunctions/blob/main/Subarrays/subarrays.go)*
+<ins>***Go:***</ins> *[subarrays.go](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Subarrays/subarrays.go)*
 
-<ins>***C++:***</ins> *[subarrays.cpp](https://github.com/s0urce18/AdditionalFunctions/blob/main/Subarrays/subarrays.cpp)*
+<ins>***C++:***</ins> *[subarrays.cpp](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Subarrays/subarrays.cpp)*
 
-<ins>***C#:***</ins> *[subarrays.cs](https://github.com/s0urce18/AdditionalFunctions/blob/main/Subarrays/subarrays.cs)*
+<ins>***C#:***</ins> *[subarrays.cs](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Subarrays/subarrays.cs)*
 
 ### Max | Min subarray sum / Максимальна | Мінімальна сума підмасива / Максимальная | Минимальная сумма подмассива
 
