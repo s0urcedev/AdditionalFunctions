@@ -6346,6 +6346,156 @@ class LinkedList<T>
 }
 ```
 
+## Binary search / Двійковий пошук / Двоичный поиск
+
+### Packages / Пакети / Пакеты
+
+`Python`:
+
+```python
+main.binary_search(arr, value)
+```
+
+`JavaScript`:
+
+```js
+main.binarySearch(arr, value);
+```
+
+<ins>***Wikipedia:***</ins> *[Binary search](https://en.wikipedia.org/wiki/Binary_search_algorithm)*
+
+<ins>***Вікіпедія:***</ins> *[Двійковий пошук](https://uk.wikipedia.org/wiki/Двійковий_пошук)*
+
+<ins>***Википедия:***</ins> *[Двоичный поиск](https://ru.wikipedia.org/wiki/Двоичный_поиск)*
+
+### Files / Файли / Файлы
+
+<ins>***Python:***</ins> *[binary-search.py](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Binary%20search/binary-search.py)*
+
+<ins>***JavaScript:***</ins> *[binary-search.js](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Binary%20search/binary-search.js)*
+
+<ins>***Go:***</ins> *[binary-search.go](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Binary%20search/binary-search.go)*
+
+<ins>***C++:***</ins> *[binary-search.cpp](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Binary%20search/binary-search.cpp)*
+
+<ins>***C#:***</ins> *[binary-search.cs](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Binary%20search/binary-search.cs)*
+
+### Code / Код / Код
+
+`Python`:
+
+```python
+def binary_search(arr, value):
+    first = 0
+    last = len(arr) - 1
+    while first <= last:
+        middle = (first + last) // 2
+        if value < arr[middle]:
+            last = middle - 1
+        elif value > arr[middle]:
+            first = middle + 1
+        else:
+            return middle
+    return -1
+```
+
+`JavaScript`:
+
+```js
+function binarySearch(arr, value){
+    let first = 0;
+    let last = arr.length - 1;
+    let middle;
+    while(first <= last){
+        middle = Math.floor((first + last) / 2);
+        if(value < arr[middle]){
+            last = middle - 1;
+        }
+        else if(value > arr[middle]){
+            first = middle + 1;
+        }
+        else{
+            return middle;
+        }
+    }
+    return -1;
+}
+```
+
+`Go`:
+
+```go
+import "math"
+
+func BinarySearch(arr []int, value int) int {
+	first := 0
+	last := len(arr) - 1
+	var middle int
+	for first <= last {
+		middle = int(math.Floor((float64(first) + float64(last)) / 2))
+		if value < arr[middle] {
+			last = middle - 1
+		} else if value > arr[middle] {
+			first = middle + 1
+		} else {
+			return middle
+		}
+	}
+	return -1
+}
+```
+
+`C++`:
+
+```cpp
+int binary_search(int *arr, int len, int value){
+    int first = 0;
+    int last = len - 1;
+    int middle;
+    while(first <= last){
+        middle = (first + last) / 2;
+        if(value < arr[middle]){
+            last = middle - 1;
+        }
+        else if(value > arr[middle]){
+            first = middle + 1;
+        }
+        else{
+            return middle;
+        }
+    }
+    return -1;
+}
+```
+
+`C#`:
+
+```cs
+int BinarySearch(ref int[] arr, int value)
+{
+    int first = 0;
+    int last = arr.Length - 1;
+    int middle;
+    while(first <= last)
+    {
+        middle = Math.Floor((first + last) / 2);
+        if(value < arr[middle])
+        {
+            last = middle - 1;
+        }
+        else if(value > arr[middle])
+        {
+            first = middle + 1;
+        }
+        else
+        {
+            return middle;
+        }
+    }
+    return -1;
+}
+```
+
 ## Binary search tree / Двійкове дерево пошуку / Двоичное дерево поиска
 
 ### Packages / Пакети / Пакеты
