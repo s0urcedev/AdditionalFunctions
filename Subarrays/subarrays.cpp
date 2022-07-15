@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
+using namespace std;
 
-int max_subarray_sum(std::vector <int> arr){
+int max_subarray_sum(vector <int> arr){
     int result = arr[0];
     int local_result = arr[0];
     for(int i = 1; i < arr.size(); i ++){
@@ -18,7 +19,7 @@ int max_subarray_sum(std::vector <int> arr){
     return result;
 }
 
-int min_subarray_sum(std::vector <int> arr){
+int min_subarray_sum(vector <int> arr){
     int result = arr[0];
     int local_result = arr[0];
     for(int i = 1; i < arr.size(); i ++){
@@ -35,7 +36,7 @@ int min_subarray_sum(std::vector <int> arr){
     return result;
 }
 
-int max_subarray_prod(std::vector <int> arr){
+int max_subarray_prod(vector <int> arr){
     int result = arr[0];
     int local_result_pos = arr[0];
     int local_result_neg = arr[0];
@@ -68,7 +69,7 @@ int max_subarray_prod(std::vector <int> arr){
     return result;
 }
 
-int min_subarray_prod(std::vector <int> arr){
+int min_subarray_prod(vector <int> arr){
     int result = arr[0];
     int local_result_pos = arr[0];
     int local_result_neg = arr[0];
@@ -101,7 +102,7 @@ int min_subarray_prod(std::vector <int> arr){
     return result;
 }
 
-int max_circular_subarray_sum(std::vector <int> arr){
+int max_circular_subarray_sum(vector <int> arr){
     int max_elem = arr[0];
     int arr_sum = 0;
     for(int i = 0; i < arr.size(); i ++){
@@ -123,7 +124,7 @@ int max_circular_subarray_sum(std::vector <int> arr){
     }
 }
 
-int min_circular_subarray_sum(std::vector <int> arr){
+int min_circular_subarray_sum(vector <int> arr){
     int min_elem = arr[0];
     int arr_sum = 0;
     for(int i = 0; i < arr.size(); i ++){

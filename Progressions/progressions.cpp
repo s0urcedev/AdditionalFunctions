@@ -1,14 +1,14 @@
 #include <iostream>
 #include <vector>
 #include <math.h>
-
+using namespace std;
 
 class ArithmeticProgression{
 
     private:
     
         int d_ = 0;
-        std::vector <int> a_;
+        vector <int> a_;
 
     public:
 
@@ -17,7 +17,7 @@ class ArithmeticProgression{
             d_ = d;
         }
         
-        std::vector <int> get_sequence(){
+        vector <int> get_sequence(){
             return a_;
         }
         
@@ -47,7 +47,7 @@ class ArithmeticProgression{
             }
         }
 
-        std::vector <int> get_to_nth(int n){
+        vector <int> get_to_nth(int n){
             count_to_nth(n);
             return a_;
         }
@@ -63,20 +63,20 @@ class GeometricProgression{
     private:
     
         int r_ = 1;
-        std::vector <int> b_;
+        vector <int> b_;
     
     public:
 
         void create(int start = 1, int r = 1){
             if(start == 0 || r == 0){
-                std::cout << "start_element or ratio can't be 0" << std::endl;
+                cout << "start_element or ratio can't be 0" << endl;
                 return;
             }
             b_.push_back(start);
             r_ = r;
         }
         
-        std::vector <int> get_sequence(){
+        vector <int> get_sequence(){
             return b_;
         }
         
@@ -86,7 +86,7 @@ class GeometricProgression{
         
         void set_start_element(int start){
             if(start == 0){
-                std::cout << "start_element can't be 0" << std::endl;
+                cout << "start_element can't be 0" << endl;
                 return; 
             }
             b_.clear();
@@ -95,7 +95,7 @@ class GeometricProgression{
 
         void set_ratio(int r){
             if(r == 0){
-                std::cout << "ratio can't be 0" << std::endl;
+                cout << "ratio can't be 0" << endl;
                 return; 
             }
             int start = b_[0];
@@ -105,7 +105,7 @@ class GeometricProgression{
         }
 
         int get_nth(int n){
-            return b_[0] * std::pow(r_, n - 1);
+            return b_[0] * pow(r_, n - 1);
         }
 
         void count_to_nth(int n){
@@ -114,14 +114,14 @@ class GeometricProgression{
             }
         }
 
-        std::vector <int> get_to_nth(int n){
+        vector <int> get_to_nth(int n){
             count_to_nth(n);
             return b_;
         }
 
         int get_sum_to_nth(int n){
             if(r_ == 1) return n * b_[0];
-            return (b_[0] * (std::pow(r_, n) - 1)) / (r_ - 1);
+            return (b_[0] * (pow(r_, n) - 1)) / (r_ - 1);
         }
 };
 
@@ -130,7 +130,7 @@ class HarmonicProgression{
     private:
     
         int d_ = 0;
-        std::vector <float> c_;
+        vector <float> c_;
     
     public:
         
@@ -139,7 +139,7 @@ class HarmonicProgression{
             d_ = d;
         }
         
-        std::vector <float> get_sequence(){
+        vector <float> get_sequence(){
             return c_;
         }
         
@@ -160,16 +160,16 @@ class HarmonicProgression{
         }
 
         float get_nth(int n){
-            return std::pow((std::pow(c_[0], -1) + (n - 1) * d_), -1);
+            return pow((pow(c_[0], -1) + (n - 1) * d_), -1);
         }
 
         void count_to_nth(int n){
             for(int _ = c_.size(); _ < n; _ ++){
-                c_.push_back(std::pow((std::pow(c_[c_.size() - 1], -1) + d_), -1));
+                c_.push_back(pow((pow(c_[c_.size() - 1], -1) + d_), -1));
             }
         }
 
-        std::vector <float> get_to_nth(int n){
+        vector <float> get_to_nth(int n){
             count_to_nth(n);
             return c_;
         }

@@ -1418,7 +1418,7 @@ func IsPrime(n int) bool {
 
 ```cpp
 bool isprime(int n){
-    std::vector<int> result;
+    vector<int> result;
     int d = 2;
     while(d * d <= n){
         if(n % d == 0){
@@ -1542,8 +1542,8 @@ func NPrimes(n int) []int {
 `C++`:
 
 ```cpp
-std::vector <int> n_primes(a){
-    std::vector <int> result;
+vector <int> n_primes(a){
+    vector <int> result;
     int i = 0;
     int m = 1;
     bool k;
@@ -1660,8 +1660,8 @@ func PrimeFactors(a int) []int {
 `C++`:
 
 ```cpp
-std::vector <int> prime_factors(a){
-    std::vector <int> result;
+vector <int> prime_factors(a){
+    vector <int> result;
     int d = 2;
     while(d * d <= a){
         if(a % d == 0){
@@ -2383,7 +2383,7 @@ func PPrimorial(n int) int {
 
 ```cpp
 bool isprime(int n){
-    std::vector <int> result;
+    vector <int> result;
     int d = 2;
     while(d * d <= n){
         if(n % d == 0){
@@ -2402,7 +2402,7 @@ bool isprime(int n){
 }
 
 int p(int n){
-    std::vector <int> result;
+    vector <int> result;
     int i = 0;
     int m = 1;
     bool k;
@@ -2857,10 +2857,10 @@ int count_combinations(int n, int k){
     return factorial(n) / (factorial(k) * factorial(n - k));
 }
 
-std::vector <vector <int>> generate_combinations(vector <int> arr, int k){
-    std::vector <vector <int>> result;
+vector <vector <int>> generate_combinations(vector <int> arr, int k){
+    vector <vector <int>> result;
     for(int i = 0; i < count_combinations(arr.size(), k); i ++){
-        std::vector <int> local_result(1, 0);
+        vector <int> local_result(1, 0);
         int n = arr.size();
         int s = 0;
         for(int j = 1; j <= k; j++){
@@ -3149,10 +3149,10 @@ int count_permutations(int n, int k){
     return factorial(n) / factorial(n - k);
 }
 
-std::vector <vector <int>> generate_combinations(std::vector <int> arr, int k){
-    std::vector <vector <int>> result;
+vector <vector <int>> generate_combinations(vector <int> arr, int k){
+    vector <vector <int>> result;
     for(int i = 0; i < count_combinations(arr.size(), k); i ++){
-        std::vector <int> local_result(1, 0);
+        vector <int> local_result(1, 0);
         int n = arr.size();
         int s = 0;
         for(int j = 1; j <= k; j++){
@@ -3166,20 +3166,20 @@ std::vector <vector <int>> generate_combinations(std::vector <int> arr, int k){
         for(int l = 1; l < local_result.size(); l ++){
             local_result[l] = arr[local_result[l] - 1];
         }
-        result.push_back(std::vector <int>(local_result.begin() + 1, local_result.end()));
+        result.push_back(vector <int>(local_result.begin() + 1, local_result.end()));
     }
     return result;
 }
 
-std::vector <vector <int>> generate_permutations(std::vector <int> arr, int k){
-    std::vector <vector <int>> result;
-    std::vector <vector <int>> m = generate_combinations(arr, k);
+vector <vector <int>> generate_permutations(vector <int> arr, int k){
+    vector <vector <int>> result;
+    vector <vector <int>> m = generate_combinations(arr, k);
     for(auto a: m){
-        std::vector <vector <int>> local_result;
+        vector <vector <int>> local_result;
         for(int i = 0; i < factorial(a.size()); i ++){
             int ind = i + 1;
-            std::vector <int> local_local_result;
-            std::vector <int> local_local_arr;
+            vector <int> local_local_result;
+            vector <int> local_local_arr;
             for(auto r: a){
                 local_local_arr.push_back(r);
             }
@@ -3708,20 +3708,20 @@ int rom_arab(string p){
                 z += 1000;
             }
             else{
-                std::cout << "Uncorrect input" << std::endl;
+                cout << "Uncorrect input" << endl;
                 return 0;
             }
         }
     }
     catch(...){
-        std::cout << "Uncorrect input" << std::endl;
+        cout << "Uncorrect input" << endl;
         return 0;
     }
     return z;
 }
 
-std::string arab_rom(int s){
-    std::string v = "";
+string arab_rom(int s){
+    string v = "";
     try{
         while(s > 0){
             if(s >= 1000){
@@ -3779,7 +3779,7 @@ std::string arab_rom(int s){
         }
     }
     catch(...){
-        std::cout << "Uncorrect input" << std::endl;
+        cout << "Uncorrect input" << endl;
         return "";
     }
     return v;
@@ -4093,14 +4093,14 @@ func AdditionBigNumbers(a string, b string) string {
 ```cpp
 #include <string>
 
-std::string addition_big_numbers(string a, string b){
+string addition_big_numbers(string a, string b){
     while(b.length() < a.length()){
         b = "0" + b;
     }
     while(a.length() < b.length()){
         a = "0" + a;
     }
-    std::string result = "";
+    string result = "";
     int c = 0;
     for(int i = a.length() - 1; i >= 0; i --){
         int local_result = (a[i] - 48) + (b[i] - 48) + c;
@@ -4114,7 +4114,7 @@ std::string addition_big_numbers(string a, string b){
     if(c == 1){
         result += "1";
     }
-    std::string fresult = "";
+    string fresult = "";
     for(auto s: result){
         fresult = s + fresult;
     }
@@ -4296,19 +4296,19 @@ func SubtractionBigNumbers(a string, b string) string {
 #include <string>
 #include <sstream>
 
-std::string subtraction_big_numbers(string a, string b){
-    std::stringstream ssa;
+string subtraction_big_numbers(string a, string b){
+    stringstream ssa;
     ssa << a;
     long long n = 0;
     ssa >> n;
-    std::stringstream ssb;
+    stringstream ssb;
     ssb << b;
     long long m = 0;
     ssb >> m;
     bool k = false;
     if(n < m){
         k = true;
-        std::string swap = a;
+        string swap = a;
         a = b;
         b = swap;
     }
@@ -4318,7 +4318,7 @@ std::string subtraction_big_numbers(string a, string b){
     while(a.length() < b.length()){
         a = "0" + a;
     }
-    std::string result = "";
+    string result = "";
     int c = 0;
     for(int i = a.length() - 1; i >= 0; i --){
         int local_result = (a[i] - 48) - (b[i] - 48) - c;
@@ -4335,7 +4335,7 @@ std::string subtraction_big_numbers(string a, string b){
     while(result[result.length() - 1] == '0'){
         result = result.substr(0, result.length() - 1);
     }
-    std::string fresult = "";
+    string fresult = "";
     for(auto s: result){
         fresult = s + fresult;
     }
@@ -4582,14 +4582,14 @@ func MultiplicationBigNumbers(a string, b string) string {
 ```cpp
 #include <string>
 
-std::string addition_big_numbers(string a, string b){
+string addition_big_numbers(string a, string b){
     while(b.length() < a.length()){
         b = "0" + b;
     }
     while(a.length() < b.length()){
         a = "0" + a;
     }
-    std::string result = "";
+    string result = "";
     int c = 0;
     for(int i = a.length() - 1; i >= 0; i --){
         int local_result = (a[i] - 48) + (b[i] - 48) + c;
@@ -4603,18 +4603,18 @@ std::string addition_big_numbers(string a, string b){
     if(c == 1){
         result += "1";
     }
-    std::string fresult = "";
+    string fresult = "";
     for(auto s: result){
         fresult = s + fresult;
     }
     return fresult;
 }
 
-std::string multiplication_big_numbers(string a, string b){
-    std::string result = "";
+string multiplication_big_numbers(string a, string b){
+    string result = "";
     int c = 0;
     for(int i = b.length() - 1; i >= 0; i --){
-        std::string local_result = "";
+        string local_result = "";
         c = 0;
         for(int j = a.length() - 1; j >= 0; j --){
             int local_local_result = (a[j] - 48) * (b[i] - 48) + c;
@@ -4629,7 +4629,7 @@ std::string multiplication_big_numbers(string a, string b){
             local_result += to_string(c);
             c = 0;
         }
-        std::string flocal_result = "";
+        string flocal_result = "";
         for(auto s: local_result){
             flocal_result = s + flocal_result;
         }
@@ -4939,7 +4939,7 @@ class ArithmeticProgression{
     private:
     
         int d_ = 0;
-        std::vector <int> a_;
+        vector <int> a_;
 
     public:
 
@@ -4948,7 +4948,7 @@ class ArithmeticProgression{
             d_ = d;
         }
         
-        std::vector <int> get_sequence(){
+        vector <int> get_sequence(){
             return a_;
         }
         
@@ -4978,7 +4978,7 @@ class ArithmeticProgression{
             }
         }
 
-        std::vector <int> get_to_nth(int n){
+        vector <int> get_to_nth(int n){
             count_to_nth(n);
             return a_;
         }
@@ -5228,20 +5228,20 @@ class GeometricProgression{
     private:
     
         int r_ = 1;
-        std::vector <int> b_;
+        vector <int> b_;
     
     public:
 
         void create(int start = 1, int r = 1){
             if(start == 0 || r == 0){
-                std::cout << "start_element or ratio can't be 0" << std::endl;
+                cout << "start_element or ratio can't be 0" << endl;
                 return;
             }
             b_.push_back(start);
             r_ = r;
         }
         
-        std::vector <int> get_sequence(){
+        vector <int> get_sequence(){
             return b_;
         }
         
@@ -5251,7 +5251,7 @@ class GeometricProgression{
         
         void set_start_element(int start){
             if(start == 0){
-                std::cout << "start_element can't be 0" << std::endl;
+                cout << "start_element can't be 0" << endl;
                 return; 
             }
             b_.clear();
@@ -5260,7 +5260,7 @@ class GeometricProgression{
 
         void set_ratio(int r){
             if(r == 0){
-                std::cout << "ratio can't be 0" << std::endl;
+                cout << "ratio can't be 0" << endl;
                 return; 
             }
             int start = b_[0];
@@ -5270,7 +5270,7 @@ class GeometricProgression{
         }
 
         int get_nth(int n){
-            return b_[0] * std::pow(r_, n - 1);
+            return b_[0] * pow(r_, n - 1);
         }
 
         void count_to_nth(int n){
@@ -5279,14 +5279,14 @@ class GeometricProgression{
             }
         }
 
-        std::vector <int> get_to_nth(int n){
+        vector <int> get_to_nth(int n){
             count_to_nth(n);
             return b_;
         }
 
         int get_sum_to_nth(int n){
             if(r_ == 1) return n * b_[0];
-            return (b_[0] * (std::pow(r_, n) - 1)) / (r_ - 1);
+            return (b_[0] * (pow(r_, n) - 1)) / (r_ - 1);
         }
 };
 ```
@@ -5509,7 +5509,7 @@ class HarmonicProgression{
     private:
     
         int d_ = 0;
-        std::vector <float> c_;
+        vector <float> c_;
     
     public:
         
@@ -5518,7 +5518,7 @@ class HarmonicProgression{
             d_ = d;
         }
         
-        std::vector <float> get_sequence(){
+        vector <float> get_sequence(){
             return c_;
         }
         
@@ -5539,16 +5539,16 @@ class HarmonicProgression{
         }
 
         float get_nth(int n){
-            return std::pow((std::pow(c_[0], -1) + (n - 1) * d_), -1);
+            return pow((pow(c_[0], -1) + (n - 1) * d_), -1);
         }
 
         void count_to_nth(int n){
             for(int _ = c_.size(); _ < n; _ ++){
-                c_.push_back(std::pow((std::pow(c_[c_.size() - 1], -1) + d_), -1));
+                c_.push_back(pow((pow(c_[c_.size() - 1], -1) + d_), -1));
             }
         }
 
-        std::vector <float> get_to_nth(int n){
+        vector <float> get_to_nth(int n){
             count_to_nth(n);
             return c_;
         }
@@ -7465,24 +7465,24 @@ class Tree{
             return balance_(node);
         }
 
-        std::vector <std::pair <int, int>> bfs_(){
-            std::vector <std::pair <Node*, int>> q = {std::pair <Node*, int> {head_, 0}};
-            std::vector <std::pair <int, int>> p;
+        vector <pair <int, int>> bfs_(){
+            vector <pair <Node*, int>> q = {pair <Node*, int> {head_, 0}};
+            vector <pair <int, int>> p;
             while(q.size() > 0){
-                std::pair <Node*, int> v = q[q.size() - 1];
+                pair <Node*, int> v = q[q.size() - 1];
                 q.pop_back();
-                p.push_back(std::pair <int, int> {v.first->value, v.second});
+                p.push_back(pair <int, int> {v.first->value, v.second});
                 if(v.first->right != NULL){
-                    q.push_back(std::pair <Node*, int> {v.first->right, v.second + 1});
+                    q.push_back(pair <Node*, int> {v.first->right, v.second + 1});
                 }
                 if(v.first->left != NULL){
-                    q.push_back(std::pair <Node*, int> {v.first->left, v.second + 1});
+                    q.push_back(pair <Node*, int> {v.first->left, v.second + 1});
                 }
             }
             return p;
         }
 
-        void dfs_plain_(Node* node, std::vector <int> &p){
+        void dfs_plain_(Node* node, vector <int> &p){
             if(node->left != NULL){
                 dfs_plain_(node->left, p);
             }
@@ -7492,7 +7492,7 @@ class Tree{
             }
         }
 
-        void dfs_reverse_(Node* node, std::vector <int> &p){
+        void dfs_reverse_(Node* node, vector <int> &p){
             if(node->right != NULL){
                 dfs_reverse_(node->right, p);
             }
@@ -7542,16 +7542,16 @@ class Tree{
             head_ = remove_node_(v, head_);
         }
 
-        void create(std::vector <int> arr){
+        void create(vector <int> arr){
             head_ = new Node(arr[0]);
             for(int i = 1; i < arr.size(); i ++){
                 add(arr[i]);
             }
         }
 
-        std::vector <std::vector <int>> get_tree_by_levels(){
-            std::vector <std::pair <int, int>> p = bfs_();
-            std::vector <std::vector <int>> res;
+        vector <vector <int>> get_tree_by_levels(){
+            vector <pair <int, int>> p = bfs_();
+            vector <vector <int>> res;
             int max_p = -1;
             for(auto m: p){
                 if(max_p < m.second){
@@ -7559,7 +7559,7 @@ class Tree{
                 }
             }
             for(int _ = 0; _ <= max_p; _ ++){
-                res.push_back(std::vector<int> {});
+                res.push_back(vector<int> {});
             }
             for(auto n: p){
                 res[n.second].push_back(n.first);
@@ -7567,17 +7567,17 @@ class Tree{
             return res;
         }
 
-        std::vector <int> get_tree_list(){
-            std::vector <std::pair <int, int>> p = bfs_();
-            std::vector <int> res;
+        vector <int> get_tree_list(){
+            vector <pair <int, int>> p = bfs_();
+            vector <int> res;
             for(auto n: p){
                 res.push_back(n.first);
             }
             return res;
         }
 
-        std::vector <int> get_tree_sorted(bool reverse = false){
-            std::vector <int> p;
+        vector <int> get_tree_sorted(bool reverse = false){
+            vector <int> p;
             if(reverse){
                 dfs_reverse_(head_, p);
             }
@@ -8066,7 +8066,7 @@ func minSubarraySum(arr []int) int {
 ```cpp
 #include <vector>
 
-int max_subarray_sum(std::vector <int> arr){
+int max_subarray_sum(vector <int> arr){
     int result = arr[0];
     int local_result = arr[0];
     for(int i = 1; i < arr.size(); i ++){
@@ -8083,7 +8083,7 @@ int max_subarray_sum(std::vector <int> arr){
     return result;
 }
 
-int min_subarray_sum(std::vector <int> arr){
+int min_subarray_sum(vector <int> arr){
     int result = arr[0];
     int local_result = arr[0];
     for(int i = 1; i < arr.size(); i ++){
@@ -8338,7 +8338,7 @@ func minSubarrayProd(arr []int) int {
 ```cpp
 #include <vector>
 
-int max_subarray_prod(std::vector <int> arr){
+int max_subarray_prod(vector <int> arr){
     int result = arr[0];
     int local_result_pos = arr[0];
     int local_result_neg = arr[0];
@@ -8371,7 +8371,7 @@ int max_subarray_prod(std::vector <int> arr){
     return result;
 }
 
-int min_subarray_prod(std::vector <int> arr){
+int min_subarray_prod(vector <int> arr){
     int result = arr[0];
     int local_result_pos = arr[0];
     int local_result_neg = arr[0];
@@ -8720,7 +8720,7 @@ func minCircularSubarraySum(arr []int) int {
 ```cpp
 #include <vector>
 
-int max_subarray_sum(std::vector <int> arr){
+int max_subarray_sum(vector <int> arr){
     int result = arr[0];
     int local_result = arr[0];
     for(int i = 1; i < arr.size(); i ++){
@@ -8737,7 +8737,7 @@ int max_subarray_sum(std::vector <int> arr){
     return result;
 }
 
-int min_subarray_sum(std::vector <int> arr){
+int min_subarray_sum(vector <int> arr){
     int result = arr[0];
     int local_result = arr[0];
     for(int i = 1; i < arr.size(); i ++){
@@ -8754,7 +8754,7 @@ int min_subarray_sum(std::vector <int> arr){
     return result;
 }
 
-int max_circular_subarray_sum(std::vector <int> arr){
+int max_circular_subarray_sum(vector <int> arr){
     int max_elem = arr[0];
     int arr_sum = 0;
     for(int i = 0; i < arr.size(); i ++){
@@ -8776,7 +8776,7 @@ int max_circular_subarray_sum(std::vector <int> arr){
     }
 }
 
-int min_circular_subarray_sum(std::vector <int> arr){
+int min_circular_subarray_sum(vector <int> arr){
     int min_elem = arr[0];
     int arr_sum = 0;
     for(int i = 0; i < arr.size(); i ++){
