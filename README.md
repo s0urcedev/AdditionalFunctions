@@ -41,8 +41,9 @@ from additional_functions import arithmetic
 from additional_functions.progressions import ArithmeticProgression
 from additional_functions.progressions import GeometricProgression
 from additional_functions.progressions import HarmonicProgression
-from additional_functions.binary_search_tree import Tree
 from additional_functions.linked_list import LinkedList
+from additional_functions.binary_search_tree import Tree
+from additional_functions.hash_table import HashTable
 from additional_functions import subarrays
 ```
 
@@ -58,8 +59,9 @@ let arithmetic = require('additional_functions/arithmetic');
 let ArithmeticProgression = require('additional-functions/progressions').ArithmeticProgression;
 let GeometricProgression = require('additional-functions/progressions').GeometricProgression;
 let HarmonicProgression = require('additional-functions/progressions').HarmonicProgression;
-let Tree = require('additional-functions/binary-search-tree').Tree;
 let LinkedList = require('additional-functions/linked-list').LinkedList;
+let Tree = require('additional-functions/binary-search-tree').Tree;
+let HashTable = require('additional-functions/hash-table').HashTable;
 let subarrays = require('additional_functions/subarrays');
 ```
 
@@ -5621,13 +5623,13 @@ class HarmonicProgression
 `Python`:
 
 ```python
-linkedList = LinkedList()
-linkedList.add(value)
-linkedList.shift()
-linkedList.pop()
-linkedList.remove(n)
-linkedList.get_node(n)
-linkedList.get(n)
+linked_list = LinkedList()
+linked_list.add(value)
+linked_list.shift()
+linked_list.pop()
+linked_list.remove(n)
+linked_list.get_node(n)
+linked_list.get(n)
 ```
 
 `JavaScript`:
@@ -7910,6 +7912,399 @@ class Tree
         }
         return p;
     }
+}
+```
+
+## Hash table / Геш таблиця / Хеш таблица
+
+### Packages / Пакети / Пакеты
+
+`Python`:
+
+```python
+hash_table = HashTable(n)
+hash_table.search(key)
+hash_table.insert(key, value)
+hash_table.remove(key)
+```
+
+`JavaScript`:
+
+```js
+let hashTable = HashTable(n);
+hashTable.search(key);
+hashTable.insert(key, value);
+hashTable.remove(key);
+```
+
+<ins>***Wikipedia:***</ins> *[Hash table](https://en.wikipedia.org/wiki/Hash_table)*
+
+<ins>***Вікіпедія:***</ins> *[Геш таблиця](https://uk.wikipedia.org/wiki/Геш-таблиця)*
+
+<ins>***Википедия:***</ins> *[Хеш таблица](https://ru.wikipedia.org/wiki/Хеш-таблица)*
+
+### Files / Файли / Файлы
+
+<ins>***Python:***</ins> *[hash-table.py](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Hash%20table/hash-table.py)*
+
+<ins>***JavaScript:***</ins> *[hash-table.js](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Hash%20table/hash-table.js)*
+
+<ins>***Go:***</ins> *[hash-table.go](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Hash%20table/hash-table.go)*
+
+<ins>***C++:***</ins> *[hash-table.cpp](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Hash%20table/hash-table.cpp)*
+
+<ins>***C#:***</ins> *[hash-table.cs](https://github.com/s0urcedev/AdditionalFunctions/blob/main/Hash%20table/hash-table.cs)*
+
+### Code / Код / Код
+
+`Python`:
+
+```python
+from math import sqrt
+from typing import Any
+
+class HashTable:
+
+    __size: int = 0
+    __table: list = []
+
+    def __isprime(self, n: int) -> bool:
+        result: list = []
+        d: int = 2
+        while d * d <= n:
+            if n % d == 0:
+                result.append(d)
+                n //= d
+            else:
+                d += 1
+        if n > 1:
+            result.append(n)
+        if len(result) > 1: return False
+        else: return True
+
+    def __nearest_prime(self, n: int) -> int:
+        if n % 2 == 0:
+            n += 1
+        while not self.__isprime(n):
+            n += 2
+        return n
+
+    def __count_hash(self, s: str) -> int:
+        n: int = 7
+        for c in s:
+            n = n * 31 + ord(c)
+        return int(self.__size * (n * ((sqrt(5) - 1) / 2) % 1))
+
+    def __init__(self, size: int) -> None:
+        self.__size = self.__nearest_prime(size)
+        self.__table = [None for _ in range(0, self.__size)]
+
+    def search(self, key: str) -> Any:
+        return self.__table[self.__count_hash(key)]
+
+    def insert(self, key: str, value: Any) -> None:
+        self.__table[self.__count_hash(key)] = value
+
+    def remove(self, key: str) -> None:
+        self.__table[self.__count_hash(key)] = None
+```
+
+`JavaScript`:
+
+```js
+class HashTable{
+
+    #size = 0;
+    #table = [];
+
+    #isPrime(n){
+        let result = [];
+        let d = 2;
+        while(d * d <= n){
+            if(n % d == 0){
+                result.push(d);
+                n = Math.floor(n / d);
+            }
+            else{
+                d ++;
+            }
+        }
+        if(n > 1){
+            result.push(n);
+        }
+        if(result.length > 1) return false;
+        else return true;
+    }
+
+    #nearestPrime(n){
+        if(n % 2 == 0){
+            n ++;
+        }
+        while(!this.#isPrime(n)){
+            n += 2;
+        }
+        return n;
+    }
+
+    #countHash(s){
+        let n = 7;
+        for(let c of s){
+            n = n * 31 + c.charCodeAt(0);
+        }
+        return Math.floor(this.#size * (n * ((Math.sqrt(5) - 1) / 2) % 1));
+    }
+
+    constructor(size){
+        this.#size = this.#nearestPrime(size);
+        this.#table = Array(this.#size).fill(undefined);
+    }
+
+    search(key){
+        return this.#table[this.#countHash(key)];
+    }
+
+    insert(key, value){
+        this.#table[this.#countHash(key)] = value;
+    }
+
+    remove(key){
+        this.#table[this.#countHash(key)] = undefined;
+    }
+}
+```
+
+`Go`:
+
+```go
+func IsPrime(n int) bool {
+    result := []int{}
+    d := 2
+    for d*d <= n {
+        if n%d == 0 {
+            result = append(result, d)
+            n = int(n / d)
+        } else {
+            d++
+        }
+    }
+    if n > 1 {
+        result = append(result, n)
+    }
+    if len(result) > 1 {
+        return false
+    } else {
+        return true
+    }
+}
+
+func NearestPrime(n int) int {
+    if n%2 == 0 {
+        n += 1
+    }
+    for !IsPrime(n) {
+        n += 2
+    }
+    return n
+}
+
+type HashTable[T any] struct {
+    Size  int
+    Table []T
+}
+
+func NewHashTable[T any](size int) HashTable[T] {
+    sz := NearestPrime(size)
+    table := []T{}
+    var def T
+    for i := 0; i < size; i++ {
+        table = append(table, def)
+    }
+    ht := HashTable[T]{sz, table}
+    return ht
+}
+
+func (ht HashTable[T]) CountHash(s string) int {
+    n := 7
+    for i := 0; i < len(s); i++ {
+        n = n*31 + int(s[i])
+    }
+    return int(float64(ht.Size) * (float64(n)*((math.Sqrt(5)-1)/2) - math.Floor(float64(n)*((math.Sqrt(5)-1)/2))))
+}
+
+func (ht HashTable[T]) Search(key string) T {
+    return ht.Table[ht.CountHash(key)]
+}
+
+func (ht HashTable[T]) Insert(key string, value T) {
+    ht.Table[ht.CountHash(key)] = value
+}
+
+func (ht HashTable[T]) Remove(key string) {
+    var def T
+    ht.Table[ht.CountHash(key)] = def
+}
+```
+
+`C++`:
+
+```cpp
+#include <cmath>
+#include <vector>
+
+template <typename T>
+
+class HashTable{
+
+    private:
+
+        int size_;
+        vector<T> table_;
+
+        bool isprime_(int n){
+            vector<int> result;
+            int d = 2;
+            while(d * d <= n){
+                if(n % d == 0){
+                    result.push_back(d);
+                    n = n / d;
+                }
+                else{
+                    d ++;
+                }
+            }
+            if(n > 1){
+                result.push_back(n);
+            }
+            if(result.size() > 1) return false;
+            else return true;
+        }
+
+        int nearest_prime_(int n){
+            if(n % 2 == 0){
+                n += 1;
+            }
+            while(!isprime_(n)){
+                n += 2;
+            }
+            return n;
+        }
+
+        int count_hash_(string s){
+            int n = 7;
+            for(auto c: s){
+                n = n * 31 + (c + 0);
+            }
+            return (size_ * (n * ((sqrt(5) - 1) / 2) - floor(n * ((sqrt(5) - 1) / 2))));
+        }
+
+    public:
+
+        HashTable(int size){
+            size_ = nearest_prime_(size);
+            table_ = vector<T>(size_);
+            T def;
+            for(int i = 0; i < size_; i ++){
+                table_[i] = def;
+            }
+        }
+
+        T search(string key){
+            return table_[count_hash_(key)];
+        }
+
+        void insert(string key, T value){
+            table_[count_hash_(key)] = value;
+        }
+
+        void remove(string key){
+            T def;
+            table_[count_hash_(key)] = def;
+        }
+
+};
+```
+
+`C#`:
+
+```cs
+class HashTable<T>
+{
+
+    private int _size;
+    private T[] _table;
+
+    private bool _IsPrime(int n)
+    {
+        List<int> result = new List<int>() { };
+        int d = 2;
+        while (d * d <= n)
+        {
+            if (n % d == 0)
+            {
+                result.Add(d);
+                n = n / d;
+            }
+            else
+            {
+                d++;
+            }
+        }
+        if (n > 1)
+        {
+            result.Add(n);
+        }
+        if (result.Count > 1) return false;
+        else return true;
+    }
+
+    private int _NearesPrime(int n)
+    {
+        if (n % 2 == 0)
+        {
+            n += 1;
+        }
+        while (!this._IsPrime(n))
+        {
+            n += 2;
+        }
+        return n;
+    }
+
+    private int _CountHash(string s)
+    {
+        int n = 7;
+        foreach (char c in s)
+        {
+            n = n * 31 + (int)c;
+        }
+        return (int)(this._size * ((n * ((Math.Sqrt(5) - 1) / 2)) - Math.Floor(n * ((Math.Sqrt(5) - 1) / 2))));
+    }
+
+    public HashTable(int size)
+    {
+        this._size = this._NearesPrime(size);
+        this._table = new T[this._size];
+        for (int i = 0; i < this._size; i++)
+        {
+            this._table[i] = default(T);
+        }
+    }
+
+    public T Search(string key)
+    {
+        return this._table[this._CountHash(key)];
+    }
+
+    public void Insert(string key, T value)
+    {
+        this._table[this._CountHash(key)] = value;
+    }
+
+    public void Remove(string key)
+    {
+        this._table[this._CountHash(key)] = default(T);
+    }
+
 }
 ```
 
