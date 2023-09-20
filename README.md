@@ -1544,7 +1544,7 @@ func NPrimes(n int) []int {
 `C++`:
 
 ```cpp
-vector <int> n_primes(a){
+vector <int> n_primes(int a){
     vector <int> result;
     int i = 0;
     int m = 1;
@@ -1662,7 +1662,7 @@ func PrimeFactors(a int) []int {
 `C++`:
 
 ```cpp
-vector <int> prime_factors(a){
+vector <int> prime_factors(int a){
     vector <int> result;
     int d = 2;
     while(d * d <= a){
